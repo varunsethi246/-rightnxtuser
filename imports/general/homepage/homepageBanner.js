@@ -120,47 +120,47 @@ Template.homepageBanner.helpers({
 
       return {currentCityList, currentAreaList};
   },
-  tellBrowserName(){
-    // var videoarr = [];
-      if((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) != -1 ) 
-      {
-          // alert('Opera');
-          var videoScr = 'video/RightNXT.webm';
-          var videotype = 'video/webm';
-      }
-      else if(navigator.userAgent.indexOf("Chrome") != -1 )
-      {
-          // alert('Chrome');
-          var videoScr = 'video/RightNXT.webm';
-          var videotype = 'video/webm';
-      }
-      else if(navigator.userAgent.indexOf("Safari") != -1)
-      {
-          // alert('Safari');
-          var videoScr = 'video/RightNXT_converted.mp4';
-          var videotype = 'video/mp4';
+  // tellBrowserName(){
+  //   // var videoarr = [];
+  //     if((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) != -1 ) 
+  //     {
+  //         // alert('Opera');
+  //         var videoScr = 'video/RightNXT.webm';
+  //         var videotype = 'video/webm';
+  //     }
+  //     else if(navigator.userAgent.indexOf("Chrome") != -1 )
+  //     {
+  //         // alert('Chrome');
+  //         var videoScr = 'video/RightNXT.webm';
+  //         var videotype = 'video/webm';
+  //     }
+  //     else if(navigator.userAgent.indexOf("Safari") != -1)
+  //     {
+  //         // alert('Safari');
+  //         var videoScr = 'video/RightNXT_converted.mp4';
+  //         var videotype = 'video/mp4';
 
-      }
-      else if(navigator.userAgent.indexOf("Firefox") != -1 ) 
-      {
-           // alert('Firefox');
-          var videoScr = 'video/RightNXT.webm';
-          var videotype = 'video/webm';
+  //     }
+  //     else if(navigator.userAgent.indexOf("Firefox") != -1 ) 
+  //     {
+  //          // alert('Firefox');
+  //         var videoScr = 'video/RightNXT.webm';
+  //         var videotype = 'video/webm';
 
-      }
-      else if((navigator.userAgent.indexOf("MSIE") != -1 ) || (!!document.documentMode == true )) //IF IE > 10
-      {
-        // alert('IE');
-          var videoScr = 'video/RightNXT_converted.mp4';
-          var videotype = 'video/mp4';
-      }  
-      else 
-      {
-         console.log('unkonw browser please check!');
-      }
+  //     }
+  //     else if((navigator.userAgent.indexOf("MSIE") != -1 ) || (!!document.documentMode == true )) //IF IE > 10
+  //     {
+  //       // alert('IE');
+  //         var videoScr = 'video/RightNXT_converted.mp4';
+  //         var videotype = 'video/mp4';
+  //     }  
+  //     else 
+  //     {
+  //        console.log('unkonw browser please check!');
+  //     }
 
-      return {videoScr, videotype};
-    },
+  //     return {videoScr, videotype};
+  //   },
 });
 
 

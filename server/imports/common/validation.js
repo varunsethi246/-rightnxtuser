@@ -1,3 +1,0 @@
-isNumeric = function(val){
-	
-}
