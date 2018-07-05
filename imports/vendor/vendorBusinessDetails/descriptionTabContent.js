@@ -8,11 +8,11 @@ import { Business } from '/imports/api/businessMaster.js';
 import { Review } from '/imports/api/reviewMaster.js';
 import { ReviewCommentLikes } from '/imports/api/reviewCommentLikesMaster.js';
 
-import { UserReviewStoreS3New } from '/client/cfsjs/UserReviewS3.js';
-import { UserProfileStoreS3New } from '/client/cfsjs/UserProfileS3.js';
-import { BusinessImgUploadS3 } from '/client/cfsjs/businessImage.js';
 import { FollowUser } from '/imports/api/userFollowMaster.js';
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import { VendorImage } from '/imports/videoUploadClient/vendorImageClient.js';
+import { ReviewImage } from '/imports/videoUploadClient/reviewImageClient.js';
+import ImageCompressor from 'image-compressor.js';
 
 import './businessEventIcons.js'
 import './businessEvntIcons2.html'
@@ -27,6 +27,13 @@ tagedFriends = [];
 
 var filesR = [];
 var counterImg = 0;
+
+// Template.userReviewTemplate.onCreated(function(){
+//   this.subscribe('vendorImage');
+// });
+// Template.descriptionTabContent.onCreated(function(){
+//   this.subscribe('vendorImage');
+// });
 
 Template.userReviewTemplate.helpers({
 
@@ -162,9 +169,9 @@ Template.descriptionTabContent.helpers({
 				if (userObj){
 					if(userObj.profile.userProfilePic){
 
-							var pic = UserProfileStoreS3New.findOne({"_id":userObj.profile.userProfilePic});
+							var pic = VendorImage.findOne({"_id":userObj.profile.userProfilePic});
 							if(pic){
-								allReviews[i].revProfilePic = pic.url();	
+								allReviews[i].revProfilePic = pic.link();	
 							}
 							else{
 								allReviews[i].revProfilePic = "/users/profile/profile_image_dummy.svg";	
@@ -183,9 +190,9 @@ Template.descriptionTabContent.helpers({
 						if (userTagObj) {
 
 							if(userTagObj.profile.userProfilePic){
-								var imgData = UserProfileStoreS3New.findOne({"_id":userTagObj.profile.userProfilePic});
+								var imgData = VendorImage.findOne({"_id":userTagObj.profile.userProfilePic});
 								if(imgData)	{
-									dataImgUser = imgData.url();
+									dataImgUser = imgData.link();
 								}else{
 									dataImgUser = '/users/profile/profile_image_dummy.svg';
 								}
@@ -251,16 +258,16 @@ Template.descriptionTabContent.helpers({
 
 				if(allReviews[i].reviewImages){
 					for(j=0;j<allReviews[i].reviewImages.length;j++){
-						var reviewPhoto = UserReviewStoreS3New.findOne({"_id":allReviews[i].reviewImages[j].img});
+						var reviewPhoto = ReviewImage.findOne({"_id":allReviews[i].reviewImages[j].img});
 						if(reviewPhoto){
-							if(reviewPhoto.copies){
-								if(reviewPhoto.original.type == 'image/png'){
+							// if(reviewPhoto.copies){
+								if(reviewPhoto.type == 'image/png'){
 									allReviews[i].reviewImages[j].checkpngImg = '';
 								}else{
 									allReviews[i].reviewImages[j].checkpngImg = 'bgGif';
 								}
-								allReviews[i].reviewImages[j].imagePath = reviewPhoto.url();								
-							}
+								allReviews[i].reviewImages[j].imagePath = reviewPhoto.link();								
+							// }
 						}
 					}
 				}
@@ -270,9 +277,9 @@ Template.descriptionTabContent.helpers({
 					var data = Meteor.users.findOne({"_id":id},{"profile":1});
 					if(data.profile.userProfilePic){
 
-						var pic = UserProfileStoreS3New.findOne({"_id":data.profile.userProfilePic});
+						var pic = VendorImage.findOne({"_id":data.profile.userProfilePic});
 						if(pic){
-							allReviews[i].userProfilePic = pic.url();	
+							allReviews[i].userProfilePic = pic.link();	
 						}
 						else{
 							allReviews[i].userProfilePic = "/users/profile/profile_image_dummy.svg";	
@@ -322,9 +329,9 @@ Template.descriptionTabContent.helpers({
 						if(userObj){
 							allReviews[i].userComments[k].commentUserName = userObj.profile.name;
 							if(userObj.profile.userProfilePic){								
-								var pic = UserProfileStoreS3New.findOne({"_id":userObj.profile.userProfilePic});
+								var pic = VendorImage.findOne({"_id":userObj.profile.userProfilePic});
 								if(pic){
-									allReviews[i].userComments[k].userProfileImgPath = pic.url();	
+									allReviews[i].userComments[k].userProfileImgPath = pic.link();	
 								}
 								else{
 									allReviews[i].userComments[k].userProfileImgPath = "/users/profile/profile_image_dummy.svg";
@@ -364,9 +371,9 @@ Template.descriptionTabContent.helpers({
 									if(userObj1){
 										replyObj.commentReplyUserName = userObj1.profile.name;
 										if(userObj1.profile.userProfilePic){								
-											var pic = UserProfileStoreS3New.findOne({"_id":userObj1.profile.userProfilePic});
+											var pic = VendorImage.findOne({"_id":userObj1.profile.userProfilePic});
 											if(pic){
-												replyObj.replyProfileImgPath = pic.url();	
+												replyObj.replyProfileImgPath = pic.link();	
 											}
 											else{
 												replyObj.replyProfileImgPath = "/users/profile/profile_image_dummy.svg";
@@ -1286,9 +1293,9 @@ Template.userReviewTemplate.events({
 			var userVar = Meteor.users.findOne({"_id":userData.tagedFriends[i]});
 			var userImg = "";
 			if(userVar.profile.userProfilePic){
-				var imgData = UserProfileStoreS3New.findOne({"_id":userVar.profile.userProfilePic});
+				var imgData = VendorImage.findOne({"_id":userVar.profile.userProfilePic});
 				if(imgData)	{
-				var userImg = imgData.url();
+				var userImg = imgData.link();
 				}else{
 				var userImg = '/users/profile/profile_image_dummy.svg';
 				}
@@ -1396,37 +1403,60 @@ Template.userReviewTemplate.events({
 			// console.log('rating: ', rating);
 			// console.log("filesR: ",filesR)
 			if(filesR){
-				for(i = 0 ; i < filesR.length; i++){		
-					Resizer.resize(filesR[i], {width: 300, height: 300, cropSquare: false}, function(err, file) {
-						if(err){
-							console.log('err ' , err.message);
-						}else{
-							UserReviewStoreS3New.insert(file, function (err, fileObj) {
-						        // Inserted new doc with ID fileObj._id, and kicked off the data upload using HTTP
-						        if(err){
-						        	console.log('Error : ' + err.message);
-						        }else{
-						        	var imgId =  fileObj._id ;
-						        	// console.log("imgId: ",imgId);
-							        Meteor.call("updateReviewBulkImg", id, imgId,
-							          function(error1, result1) { 
-							              if(error1) {
-							                console.log ('Error Message: ' + error ); 
-							              }else{
-											// console.log('img upload ', fileObj._id);	
-											// console.log('img added');
-											$('.publishReview').show();
-											$('.openReviewBox').hide();
-											$('.reviewImages').hide();
-											$('#searchFrndsEdit').val('');
-											event.target.review.value	= '';
-							              }
-							        });
+				for(i = 0 ; i < filesR.length; i++){
+					const imageCompressor = new ImageCompressor();
+				    imageCompressor.compress(filesR[i])
+				        .then((result) => {
+				          // console.log(result);
 
-						        }
-						    });
-						}
-					});
+				          // Handle the compressed image file.
+				          // We upload only one file, in case
+				        // multiple files were selected
+				        const upload = ReviewImage.insert({
+				          file: result,
+				          streams: 'dynamic',
+				          chunkSize: 'dynamic',
+				          // imagetype: 'profile',
+				        }, false);
+
+				        upload.on('start', function () {
+				          // template.currentUpload.set(this);
+				        });
+
+				        upload.on('end', function (error, fileObj) {
+				          if (error) {
+				            // alert('Error during upload: ' + error);
+				            console.log('Error during upload 1: ' + error);
+				            console.log('Error during upload 1: ' + error.reason);
+				          } else {
+				            // alert('File "' + fileObj._id + '" successfully uploaded');
+				            Bert.alert('Review Image uploaded.','success','growl-top-right');
+				            // console.log(fileObj._id);
+				            // Session.set("vendorImgFilePath",fileObj._id);
+				            var imgId =  fileObj._id ;
+					        Meteor.call("updateReviewBulkImg", id, imgId,
+					          function(error1, result1) { 
+					              if(error1) {
+					                console.log ('Error Message: ' + error ); 
+					              }else{
+									// console.log('img upload ', fileObj._id);	
+									// console.log('img added');
+									$('.publishReview').show();
+									$('.openReviewBox').hide();
+									$('.reviewImages').hide();
+									$('#searchFrndsEdit').val('');
+									event.target.review.value	= '';
+					              }
+					        });
+				          }
+				          // template.currentUpload.set(false);
+				        });
+
+				        upload.start();
+				        })
+				        .catch((err) => {
+				          // Handle the error
+				    })
 				}
 				filesR = [];
 				counterImg = 0;

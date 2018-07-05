@@ -2,9 +2,9 @@ import { Template } from 'meteor/templating' ;
 
 import { Business } from '/imports/api/businessMaster.js';
 import { Likes } from '/imports/api/likesMaster.js';
-import { BusinessImgUploadS3 } from '/client/cfsjs/businessImage.js';
 import { emptyReviewTemplate } from '../../common/emptyReviewTemplate.html';
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import { BusinessImage } from '/imports/videoUploadClient/businessImageClient.js';
 
 import '../userLayout.js'
 import './userLike.html'
@@ -62,9 +62,9 @@ Template.userLike.helpers({
 					
 					if(bussdata.businessImages){
 						if(bussdata.businessImages.length>0){
-							var pic = BusinessImgUploadS3.findOne({"_id":bussdata.businessImages[0].img});
+							var pic = BusinessImage.findOne({"_id":bussdata.businessImages[0].img});
 							if(pic){
-								businessImages = pic.url();
+								businessImages = pic.link();
 							}else{
 								businessImages = '/images/rightnxt_image_nocontent.jpg';
 							}

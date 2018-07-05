@@ -13,6 +13,7 @@ import '../categoriesSearchField/categoriesSearchField.js';
 import '/imports/common/tagInputField/tagInputField.js';
 import '/imports/vendor/AddNewBusiness/AddvendorOpeningAndClosing.html'
 
+Meteor.subscribe('vendorBusiness');
 
 var dataIndex = 0;
 var dataIndexTag = 0;
@@ -567,7 +568,6 @@ Template.addvendorOpeningAndClosing.events({
               // Bert.alert('Business categories and timing information submitted successfully!','success','growl-top-right');
         var docLink = FlowRouter.getParam('businessLink');
         var docId = Business.findOne({"businessLink":docLink});
-        console
         for(i=0;i<saveDay.length;i++){
           var valueObj = {
             "day"       :  saveDay[i],

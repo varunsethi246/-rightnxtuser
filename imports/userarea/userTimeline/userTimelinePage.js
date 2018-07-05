@@ -6,11 +6,12 @@ import { emptyReviewTemplate } from '../../common/emptyReviewTemplate.html';
 import { FollowUser } from '../../api/userFollowMaster.js';
 import { Review } from '../../api/reviewMaster.js';
 import { ReviewCommentLikes } from '/imports/api/reviewCommentLikesMaster.js';
-import { UserProfileStoreS3New } from '/client/cfsjs/UserProfileS3.js';
 import { Business } from '/imports/api/businessMaster.js';
-import { BusinessImgUploadS3 } from '/client/cfsjs/businessImage.js';
-import { UserReviewStoreS3New } from '/client/cfsjs/UserReviewS3.js';
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import { BusinessImage } from '/imports/videoUploadClient/businessImageClient.js';
+import { VendorImage } from '/imports/videoUploadClient/vendorImageClient.js';
+import { ReviewImage } from '/imports/videoUploadClient/reviewImageClient.js';
+import ImageCompressor from 'image-compressor.js';
 
 import '../userLayout.js';
 import './userTimelinePage.html';
@@ -87,9 +88,9 @@ Template.userSuggestion.helpers ({
 					// var userProfilePic = otherUsersData[i].profile.userProfilePic;
 					var id             = otherUsersData[i]._id;
 					var userIDTimeline = Session.set('useridtimeline',id);
-					var pic            = UserProfileStoreS3New.findOne({"_id":otherUsersData[i].profile.userProfilePic});
+					var pic            = VendorImage.findOne({"_id":otherUsersData[i].profile.userProfilePic});
 					if(pic){
-						otherUsersData[i].profile.userProfilePic = pic.url();	
+						otherUsersData[i].profile.userProfilePic = pic.link();	
 					}
 					else{
 						otherUsersData[i].profile.userProfilePic = "/users/profile/profile_image_dummy.svg";	
@@ -279,9 +280,9 @@ Template.userTimeline.helpers({
 
 			for(i=0; i<allReviews.length; i++){		
 				if(loggedinUser.profile.userProfilePic){
-					var userpic = UserProfileStoreS3New.findOne({"_id":loggedinUser.profile.userProfilePic});
+					var userpic = VendorImage.findOne({"_id":loggedinUser.profile.userProfilePic});
 					if(userpic){
-						allReviews[i].loggedinUserProfilePic = userpic.url();	
+						allReviews[i].loggedinUserProfilePic = userpic.link();	
 					}
 					else{
 						allReviews[i].loggedinUserProfilePic = "/users/profile/profile_image_dummy.svg";	
@@ -299,9 +300,9 @@ Template.userTimeline.helpers({
 						// console.log("userTagObj: ",userTagObj);
 						var dataImgUser = '';
 						if(userTagObj.profile && userTagObj.profile.userProfilePic){
-							var imgData = UserProfileStoreS3New.findOne({"_id":userTagObj.profile.userProfilePic});
+							var imgData = VendorImage.findOne({"_id":userTagObj.profile.userProfilePic});
 							if(imgData)	{
-								dataImgUser = imgData.url();
+								dataImgUser = imgData.link();
 							}else{
 								dataImgUser = '/users/profile/profile_image_dummy.svg';
 							}
@@ -344,9 +345,9 @@ Template.userTimeline.helpers({
 					}
 					// console.log("data: ",data);
 					if(data.profile && data.profile.userProfilePic){
-						var pic = UserProfileStoreS3New.findOne({"_id":data.profile.userProfilePic});
+						var pic = VendorImage.findOne({"_id":data.profile.userProfilePic});
 						if(pic){
-							allReviews[i].userProfilePic = pic.url();	
+							allReviews[i].userProfilePic = pic.link();	
 						}
 						else{
 							allReviews[i].userProfilePic = "/users/profile/profile_image_dummy.svg";	
@@ -368,9 +369,9 @@ Template.userTimeline.helpers({
 					allReviews[i].businessCity = businessData.businessCity;
 
 					if(businessData.businessImages && businessData.businessImages.length > 0){
-						var pic = BusinessImgUploadS3.findOne({"_id":businessData.businessImages[0].img});
+						var pic = BusinessImage.findOne({"_id":businessData.businessImages[0].img});
 						if(pic){
-							allReviews[i].businessImages = pic.url();
+							allReviews[i].businessImages = pic.link();
 						}else{
 							allReviews[i].businessImages = '/images/rightnxt_image_nocontent.jpg';
 						}
@@ -392,9 +393,9 @@ Template.userTimeline.helpers({
 								}
 								allReviews[i].userComments[k].commentUserName = userObj.profile.name;
 									if(userObj.profile && userObj.profile.userProfilePic){								
-										var pic = UserProfileStoreS3New.findOne({"_id":userObj.profile.userProfilePic});
+										var pic = VendorImage.findOne({"_id":userObj.profile.userProfilePic});
 										if(pic){
-											allReviews[i].userComments[k].userProfileImgPath = pic.url();	
+											allReviews[i].userComments[k].userProfileImgPath = pic.link();	
 										}
 										else{
 											allReviews[i].userComments[k].userProfileImgPath = "/users/profile/profile_image_dummy.svg";
@@ -426,9 +427,9 @@ Template.userTimeline.helpers({
 										if(userObj1){
 											replyObj.commentReplyUserName = userObj1.profile.name;
 											if(userObj1.profile && userObj1.profile.userProfilePic){								
-												var pic = UserProfileStoreS3New.findOne({"_id":userObj1.profile.userProfilePic});
+												var pic = VendorImage.findOne({"_id":userObj1.profile.userProfilePic});
 												if(pic){
-													replyObj.replyProfileImgPath = pic.url();	
+													replyObj.replyProfileImgPath = pic.link();	
 												}
 												else{
 													replyObj.replyProfileImgPath = "/users/profile/profile_image_dummy.svg";
@@ -511,9 +512,9 @@ Template.userTimeline.helpers({
 
 					if(allReviews[i].reviewImages){
 						for(j=0;j<allReviews[i].reviewImages.length;j++){
-							var reviewPhoto = UserReviewStoreS3New.findOne({"_id":allReviews[i].reviewImages[j].img});
+							var reviewPhoto = ReviewImage.findOne({"_id":allReviews[i].reviewImages[j].img});
 							if(reviewPhoto){
-								allReviews[i].reviewImages[j].imagePath = reviewPhoto.url();
+								allReviews[i].reviewImages[j].imagePath = reviewPhoto.link();
 							}//reviewphoto
 						}//j
 					}//allReviews i
@@ -1122,9 +1123,9 @@ Template.userTimeline.events({
 			var businessData = Business.findOne({'businessLink':title});
 			if(businessData){
 				if(businessData.businessImages.length > 0){
-					var pic = BusinessImgUploadS3.findOne({"_id":businessData.businessImages[0].img});
+					var pic = BusinessImage.findOne({"_id":businessData.businessImages[0].img});
 					if(pic){
-						businessData.businessImages = pic.copies.businessImgS3.key;
+						businessData.businessImages = pic.path;
 					}else{
 						businessData.businessImages = '/images/rightnxt_image_nocontent.jpg';
 					}
@@ -1157,9 +1158,9 @@ Template.userTimeline.events({
 			var businessData = Business.findOne({'businessLink':title});
 			if(businessData){
 				if(businessData.businessImages.length > 0){
-					var pic = BusinessImgUploadS3.findOne({"_id":businessData.businessImages[0].img});
+					var pic = BusinessImage.findOne({"_id":businessData.businessImages[0].img});
 					if(pic){
-						businessData.businessImages = pic.copies.businessImgS3.key;
+						businessData.businessImages = pic.path;
 					}else{
 						businessData.businessImages = '/images/rightnxt_image_nocontent.jpg';
 					}
@@ -1841,9 +1842,9 @@ Template.userTimeline.events({
 			var userVar = Meteor.users.findOne({"_id":userData.tagedFriends[i]});
 			var userImg = "";
 			if(userVar.profile.userProfilePic){
-				var imgData = UserProfileStoreS3New.findOne({"_id":userVar.profile.userProfilePic});
+				var imgData = VendorImage.findOne({"_id":userVar.profile.userProfilePic});
 				if(imgData)	{
-				var userImg = imgData.url();
+				var userImg = imgData.link();
 				}else{
 				var userImg = '/users/profile/profile_image_dummy.svg';
 				}
@@ -2031,35 +2032,59 @@ Template.userTimeline.events({
 			// console.log('rating time: ', rating);
 
 			if(filesR){
-				for(i = 0 ; i < filesR.length; i++){		
-					Resizer.resize(filesR[i], {width: 300, height: 300, cropSquare: false}, function(err, file) {
-						if(err){
-							console.log('err ' , err.message);
-						}else{
-							UserReviewStoreS3New.insert(file, function (err, fileObj) {
-						        // Inserted new doc with ID fileObj._id, and kicked off the data upload using HTTP
-						        if(err){
-						        	console.log('Error : ' + err.message);
-						        }else{
-						        	var imgId =  fileObj._id ;
-							        Meteor.call("updateReviewBulkImg", id, imgId,
-							          function(error1, result1) { 
-							              if(error1) {
-							                console.log ('Error Message: ' + error ); 
-							              }else{
-											// console.log('img upload ', fileObj._id);	
-											// console.log('img added');
-											$('.publishReview').show();
-											$('.openReviewBox').hide();
-											$('.reviewImages').hide();
-											// event.target.review.value	= '';
-							              }
-							        });
+				for(i = 0 ; i < filesR.length; i++){
+					const imageCompressor = new ImageCompressor();
+				    imageCompressor.compress(filesR[i])
+				        .then((result) => {
+				          // console.log(result);
 
-						        }
-						    });
-						}
-					});
+				          // Handle the compressed image file.
+				          // We upload only one file, in case
+				        // multiple files were selected
+				        const upload = ReviewImage.insert({
+				          file: result,
+				          streams: 'dynamic',
+				          chunkSize: 'dynamic',
+				          // imagetype: 'profile',
+				        }, false);
+
+				        upload.on('start', function () {
+				          // template.currentUpload.set(this);
+				        });
+
+				        upload.on('end', function (error, fileObj) {
+				          if (error) {
+				            // alert('Error during upload: ' + error);
+				            console.log('Error during upload 1: ' + error);
+				            console.log('Error during upload 1: ' + error.reason);
+				          } else {
+				            // alert('File "' + fileObj._id + '" successfully uploaded');
+				            Bert.alert('Review Image uploaded.','success','growl-top-right');
+				            // console.log(fileObj._id);
+				            // Session.set("vendorImgFilePath",fileObj._id);
+				            var imgId =  fileObj._id ;
+					        Meteor.call("updateReviewBulkImg", id, imgId,
+					          function(error1, result1) { 
+					              if(error1) {
+					                console.log ('Error Message: ' + error ); 
+					              }else{
+									// console.log('img upload ', fileObj._id);	
+									// console.log('img added');
+									$('.publishReview').show();
+									$('.openReviewBox').hide();
+									$('.reviewImages').hide();
+									// event.target.review.value	= '';
+					              }
+					        });
+				          }
+				          // template.currentUpload.set(false);
+				        });
+
+				        upload.start();
+				        })
+				        .catch((err) => {
+				          // Handle the error
+				    })		
 				}
 				filesR = [];
 				counterImg = 0;

@@ -4,11 +4,10 @@ import { Template } from 'meteor/templating';
 import { Bert } from 'meteor/themeteorchef:bert';
 
 import { Business } from '../../api/businessMaster.js';
-import { BusinessImgUploadS3 } from '/client/cfsjs/businessImage.js';
-import { UserReviewStoreS3New } from '/client/cfsjs/UserReviewS3.js';
 import { Review } from '../../api/reviewMaster.js';
 import { UserImgLikes } from '/imports/api/UserImgLikesMaster.js';
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import { ReviewImage } from '/imports/videoUploadClient/reviewImageClient.js';
 
 import '../userLayout.js';
 import './userPhotos.html';
@@ -85,7 +84,7 @@ Template.userPhotos.helpers({
 					for(j = 0 ; j < imgListCount ; j++)
 					{
 						var imgId =  data[i].reviewImages[j];
-						var imgData = UserReviewStoreS3New.findOne({"_id":imgId.img});
+						var imgData = ReviewImage.findOne({"_id":imgId.img});
 						if(imgData){
 							imgData.showDelete = showDelete;
 							imgData.margLike = margLike;
@@ -157,7 +156,15 @@ Template.userPhotos.events({
 							$('.modal').css('display',"none");
 							$('.modal-backdrop').hide();
 							for(var i = 0; i<checked.length; i++){	
-								UserReviewStoreS3New.remove(checked[i].img);
+								Meteor.call('removeReviewImage', checked[i].img, 
+					              function(error,result){
+					                if(error){
+					                  return;
+					                }else{
+					                  
+					                }
+					              }
+					            );
 							}
 							checked = [];
 						}

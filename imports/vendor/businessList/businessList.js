@@ -2,12 +2,11 @@ import { Enquiry } from '/imports/api/enquiryMaster.js';
 import { Review } from '/imports/api/reviewMaster.js';
 import { Offers } from '/imports/api/offersMaster.js';
 import { Business } from '/imports/api/businessMaster.js';
-import { EnquiryImgUploadS3 } from '/client/cfsjs/enquiryImages.js';
-import { BusinessImgUploadS3 } from '/client/cfsjs/businessImage.js';
 import { Bert } from 'meteor/themeteorchef:bert';
 import { BusinessBanner } from '/imports/api/businessBannerMaster.js';
 import { BusinessAds } from '/imports/api/businessAdsMaster.js';
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import { EnquiryImage } from '/imports/videoUploadClient/enquiryImageClient.js';
 
 import '../../common/searchinitialisation.js'
 import './businessList.html'
@@ -37,6 +36,9 @@ var options = {
 var fields = ['businessTitle','tags','businesscategories'];
 businessSearchbanner1 = new SearchSource('sidebarBusinessBanners', fields, options);
 
+Template.allbusinessList.onCreated(function(){
+  this.subscribe('businessEnquiryImage');
+});
 
 Template.businessList.onRendered(function(){
     $("html,body").scrollTop(0);
@@ -98,6 +100,17 @@ Template.thumbnailBusinessList.helpers({
 				var currentLg = position.coords.longitude;
 				Session.set("currentLng",currentLg);
 			}
+		} else{
+			var cityPre = FlowRouter.getParam('city');
+            var geocoder = new google.maps.Geocoder();
+            geocoder.geocode( { 'address': cityPre}, function(results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    var latitude = results[0].geometry.location.lat();
+                    var longitude = results[0].geometry.location.lng();
+                    Session.set("currentLat",latitude);
+                    Session.set("currentLng",longitude);
+                } 
+            });
 		}
 		var currentLat = Session.get("currentLat");
 		var currentLng = Session.get("currentLng");
@@ -195,6 +208,21 @@ Template.thumbnailBusinessList.helpers({
 
 	isGridViewVisible(){
 		if(Session.get('showGridView')){
+			var searchText = FlowRouter.getParam('searchText');
+			if(!searchText){
+				searchText = " ";
+			}
+			var currentUrl = FlowRouter.current().path;
+			if(currentUrl){
+				var newURl = currentUrl.split('/');
+			} else{
+				var newURl = "";
+			}
+
+			if(newURl[1] == 'searchMap'){
+				var flowGo = "/search/"+FlowRouter.getParam('city')+"/"+FlowRouter.getParam('area')+"/"+searchText;
+				FlowRouter.go(flowGo);
+			}
 			return true;
 		}
 	},
@@ -383,11 +411,35 @@ Template.allbusinessList.events({
 		if(errorIn!="true" && enquiryName && enquiryEmail && enquiryPhoneTwo && enquiryDesc) {
 			if(filesM.length > 0){
 		      for(i = 0 ; i < filesM.length; i++){
-		          	EnquiryImgUploadS3.insert(filesM[i], function (err, fileObj) {
-			            if(err){
+		      		const imageCompressor = new ImageCompressor();
+				    imageCompressor.compress(filesM[i])
+				        .then((result) => {
+				          // console.log(result);
 
-			            }	else{
-			              	enquiryPhoto = fileObj._id;
+				          // Handle the compressed image file.
+				          // We upload only one file, in case
+				        // multiple files were selected
+				        const upload = EnquiryImage.insert({
+				          file: result,
+				          streams: 'dynamic',
+				          chunkSize: 'dynamic',
+				          // imagetype: 'profile',
+				        }, false);
+
+				        upload.on('start', function () {
+				          // template.currentUpload.set(this);
+				        });
+
+				        upload.on('end', function (error, fileObj) {
+				          if (error) {
+				            // alert('Error during upload: ' + error);
+				            console.log('Error during upload 1: ' + error);
+				            console.log('Error during upload 1: ' + error.reason);
+				          } else {
+				            // alert('File "' + fileObj._id + '" successfully uploaded');
+				            Bert.alert('Enquiry Image uploaded.','success','growl-top-right');
+				            // console.log(fileObj._id);
+				            enquiryPhoto = fileObj._id;
 				            for(j=0;j<serched.length;j++){
 								var id = serched[j];
 								var businessid = Business.findOne({"businessLink":id});
@@ -539,8 +591,15 @@ Template.allbusinessList.events({
 									});
 								}
 							}
-			            }
-		          });
+				          }
+				          // template.currentUpload.set(false);
+				        });
+
+				        upload.start();
+				        })
+				        .catch((err) => {
+				          // Handle the error
+				    })
 		      	}
 
 		      	filesM = '';
@@ -735,6 +794,7 @@ Template.businessList.events({
 
 	// Map View Click Events
 	'click .mapVwPointer': function() {
+		console.log('mapVwPointer: ');
 		$('.displayMapView').show();
 		$('.displayMapView').addClass('col-lg-5');
 		$('.displayGridView').removeClass('col-lg-8');
@@ -759,10 +819,6 @@ Template.businessList.events({
 			var flowGo = "/search/"+FlowRouter.getParam('city')+"/"+FlowRouter.getParam('area');
 			FlowRouter.go(flowGo);
 		}
-
-		
-
-
 		setTimeout(function() {
         	if($('.listRelevance').hasClass('busListSelected')){
 				$('.listRelevance').click();
@@ -773,12 +829,11 @@ Template.businessList.events({
 			if($('.listDistance').hasClass('busListSelected')){
 				$('.listDistance').click();
 			}
-      	}, 1);
-
-		
+    	}, 1);
 	},
 	// Grid View Click Events
 	'click .gridVwBus': function() {
+		console.log('gridVwBus: ');
 		$('.sidebarMapPre').css('display','block');
 		$('.displayMapView').hide();
 		$('.displayGridView').addClass('col-lg-8');
@@ -853,6 +908,7 @@ Template.thumbnailBusinessList.events({
 		$('.vEnqModalCShowOne').children().attr('data-link',linkName);
 	},
 	'click .enqRightDiv':function(event){
+		console.log("enqRightDiv");
 		var currentMarker = $(event.currentTarget).attr('cords-ids');
 		$('.displayMapView').show();
 		$('.displayMapView').addClass('col-lg-5');
@@ -884,7 +940,30 @@ Template.thumbnailBusinessList.events({
 		  if(!searchText){
 			searchText = " ";
 		  }
+		  console.log("im clicked");
 		  
+
+
+		// var currentUrl = FlowRouter.current().path;
+		// console.log('currentUrl: ', currentUrl);
+		// if(currentUrl){
+		// 	var newURl = currentUrl.split('/');
+		// } else{
+		// 	var newURl = "";
+		// }
+		// console.log('newURl: ', newURl);
+
+		// if(newURl[1] == 'searchMap'){
+		// 	console.log("Im if");
+		// 	var flowGo = "/search/"+FlowRouter.getParam('city')+"/"+FlowRouter.getParam('area')+"/"+searchText;
+		// 	FlowRouter.go(flowGo);
+		// }else{
+		// 	console.log("Im else");
+		// 	var flowGo = "/searchMap/"+FlowRouter.getParam('city')+"/"+FlowRouter.getParam('area')+"/"+searchText+"/"+currentMarker;
+		// 	FlowRouter.go(flowGo);
+		// }
+
+
 		  var flowGo = "/searchMap/"+FlowRouter.getParam('city')+"/"+FlowRouter.getParam('area')+"/"+searchText+"/"+currentMarker;
 		  FlowRouter.go(flowGo);
 

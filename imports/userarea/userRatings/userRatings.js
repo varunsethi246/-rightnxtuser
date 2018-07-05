@@ -5,8 +5,8 @@ import { Bert } from 'meteor/themeteorchef:bert';
 
 import { Business } from '../../api/businessMaster.js';
 import { Review } from '/imports/api/reviewMaster.js';
-import { BusinessImgUploadS3 } from '/client/cfsjs/businessImage.js';
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import { BusinessImage } from '/imports/videoUploadClient/businessImageClient.js';
 
 import '../userLayout.js';
 import './userRatings.html';
@@ -47,9 +47,9 @@ Template.userRatings.helpers({
 
 					if(businessObj.businessImages){
 						if(businessObj.businessImages.length>0){
-							var pic = BusinessImgUploadS3.findOne({"_id":businessObj.businessImages[0].img});
+							var pic = BusinessImage.findOne({"_id":businessObj.businessImages[0].img});
 							if(pic){
-								businessRatings[i].businessImages = pic.url();
+								businessRatings[i].businessImages = pic.link();
 							}else{
 								businessRatings[i].businessImages = '/images/rightnxt_image_nocontent.jpg';
 							}

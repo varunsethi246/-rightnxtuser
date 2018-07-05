@@ -5,9 +5,9 @@ import { Bert } from 'meteor/themeteorchef:bert';
 
 import { Business } from '../../api/businessMaster.js';
 import { Bookmark } from '../../api/bookmarkMaster.js';
-import { BusinessImgUploadS3 } from '/client/cfsjs/businessImage.js';
-import { UserReviewStoreS3New } from '/client/cfsjs/UserReviewS3.js';
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import { BusinessImage } from '/imports/videoUploadClient/businessImageClient.js';
+import { ReviewImage } from '/imports/videoUploadClient/reviewImageClient.js';
 
 import '../userLayout.js';
 import '../../vendor/vendorBusinessDetails/businessEventIcons.html';
@@ -91,12 +91,12 @@ Template.userBookmarks.helpers({
 
 						if(businessObj.businessImages){
 							if(businessObj.businessImages.length>0){
-								var pic = BusinessImgUploadS3.findOne({"_id":businessObj.businessImages[0].img});
-								var pic1 = UserReviewStoreS3New.findOne({"_id":businessObj.businessImages[0].img});
+								var pic = BusinessImage.findOne({"_id":businessObj.businessImages[0].img});
+								var pic1 = ReviewImage.findOne({"_id":businessObj.businessImages[0].img});
 								if(pic){
-									businessBookmark[i].ownerPhoto = pic.url();
+									businessBookmark[i].ownerPhoto = pic.link();
 								}else if(pic1){
-									businessBookmark[i].ownerPhoto = pic1.url();
+									businessBookmark[i].ownerPhoto = pic1.link();
 								}else{
 									businessBookmark[i].ownerPhoto = '../images/rightnxt_image_nocontent.jpg'
 								}	

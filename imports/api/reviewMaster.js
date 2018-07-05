@@ -260,7 +260,15 @@ Meteor.methods({
 			if(reviewData.reviewImages){
 				if (reviewData.reviewImages.length > 0){
 					for (var i = 0; i < reviewData.reviewImages.length; i++) {
-						UserReviewStoreS3New.remove({"_id": reviewData.reviewImages[i].img}); 
+						Meteor.call('removeReviewImage', reviewData.reviewImages[i].img, 
+			              function(error,result){
+			                if(error){
+			                  return;
+			                }else{
+			                  
+			                }
+			              }
+			            );
 					}
 				}
 			}

@@ -4,10 +4,10 @@ import { Template } from 'meteor/templating';
 import { Bert } from 'meteor/themeteorchef:bert';
 
 import { Business } from '../../api/businessMaster.js';
-import { BusinessImgUploadS3 } from '/client/cfsjs/businessImage.js';
 import { BeenThere } from '../../api/beenThereMaster.js';
-import { UserReviewStoreS3New } from '/client/cfsjs/UserReviewS3.js';
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import { BusinessImage } from '/imports/videoUploadClient/businessImageClient.js';
+import { ReviewImage } from '/imports/videoUploadClient/reviewImageClient.js';
 
 import '../userLayout.js';
 import '../../vendor/vendorBusinessDetails/businessEventIcons.html';
@@ -58,12 +58,12 @@ Template.userBeenThere.helpers({
 					userBeenThere[i].businessLink = businessObj.businessLink;
 
 					if(businessObj.businessImages && businessObj.businessImages.length>0){
-						var pic = BusinessImgUploadS3.findOne({"_id":businessObj.businessImages[0].img});
-						var pic1 = UserReviewStoreS3New.findOne({"_id":businessObj.businessImages[0].img});
+						var pic = BusinessImage.findOne({"_id":businessObj.businessImages[0].img});
+						var pic1 = ReviewImage.findOne({"_id":businessObj.businessImages[0].img});
 						if(pic){
-							userBeenThere[i].ownerPhoto = pic.url();
+							userBeenThere[i].ownerPhoto = pic.link();
 						}else if(pic1){
-							userBeenThere[i].ownerPhoto = pic1.url();
+							userBeenThere[i].ownerPhoto = pic1.link();
 						}else{
 							userBeenThere[i].ownerPhoto = '../images/rightnxt_image_nocontent.jpg'
 						}	

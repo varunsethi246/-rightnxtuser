@@ -3,16 +3,17 @@ import { Mongo } from 'meteor/mongo';
 import { Template } from 'meteor/templating';
 import { Session } from 'meteor/session';
 import { Bert } from 'meteor/themeteorchef:bert';
-import { UserReviewStoreS3New } from '/client/cfsjs/UserReviewS3.js';
 import { Business } from '/imports/api/businessMaster.js';
 import { Review } from '/imports/api/reviewMaster.js';
 import { ReviewCommentLikes } from '/imports/api/reviewCommentLikesMaster.js';
 import { FollowUser } from '../../api/userFollowMaster.js';
-import { UserProfileStoreS3New } from '/client/cfsjs/UserProfileS3.js';
-import { BusinessImgUploadS3 } from '/client/cfsjs/businessImage.js';
 import { Categories } from '../../api/masterData/categoriesMaster.js';
 import { emptyReviewTemplate } from '../../common/emptyReviewTemplate.html';
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import { BusinessImage } from '/imports/videoUploadClient/businessImageClient.js';
+import { VendorImage } from '/imports/videoUploadClient/vendorImageClient.js';
+import { ReviewImage } from '/imports/videoUploadClient/reviewImageClient.js';
+import ImageCompressor from 'image-compressor.js';
 
 import '../userLayout.js';
 import './userReviewPage.html';
@@ -188,9 +189,9 @@ Template.userReview.helpers({
 							reviewData[i].businessCity 	= businessData.businessCity;
 
 							if(businessData.businessImages && businessData.businessImages.length > 0){
-								var pic = BusinessImgUploadS3.findOne({"_id":businessData.businessImages[0].img});
+								var pic = BusinessImage.findOne({"_id":businessData.businessImages[0].img});
 								if(pic){
-									reviewData[i].businessImages = pic.url();
+									reviewData[i].businessImages = pic.link();
 								}else{
 									reviewData[i].businessImages = '/images/rightnxt_image_nocontent.jpg';
 								}
@@ -215,9 +216,9 @@ Template.userReview.helpers({
 							reviewData[i].userIDs = reviewData[i].userId;
 						}
 						if(data.profile.userProfilePic){
-							var pic = UserProfileStoreS3New.findOne({"_id":data.profile.userProfilePic});
+							var pic = VendorImage.findOne({"_id":data.profile.userProfilePic});
 							if(pic){
-								reviewData[i].userProfilePic = pic.url();	
+								reviewData[i].userProfilePic = pic.link();	
 							}
 							else{
 								reviewData[i].userProfilePic = "/users/profile/profile_image_dummy.svg";	
@@ -237,9 +238,9 @@ Template.userReview.helpers({
 
 							var dataImgUser = '';
 							if(userTagObj.profile.userProfilePic){
-								var imgData = UserProfileStoreS3New.findOne({"_id":userTagObj.profile.userProfilePic});
+								var imgData = VendorImage.findOne({"_id":userTagObj.profile.userProfilePic});
 								if(imgData)	{
-									dataImgUser = imgData.url();
+									dataImgUser = imgData.link();
 								}else{
 									dataImgUser = '/users/profile/profile_image_dummy.svg';
 								}
@@ -286,9 +287,9 @@ Template.userReview.helpers({
 								}
 								reviewData[i].userComments[k].commentUserName = userObj.profile.name;
 									if(userObj.profile.userProfilePic){	
-										var pic = UserProfileStoreS3New.findOne({"_id":userObj.profile.userProfilePic});
+										var pic = VendorImage.findOne({"_id":userObj.profile.userProfilePic});
 										if(pic){
-											reviewData[i].userComments[k].userProfileImgPath = pic.url();	
+											reviewData[i].userComments[k].userProfileImgPath = pic.link();	
 										}
 										else{
 											reviewData[i].userComments[k].userProfileImgPath = "/users/profile/profile_image_dummy.svg";
@@ -324,9 +325,9 @@ Template.userReview.helpers({
 										if(userObj1){
 											replyObj.commentReplyUserName = userObj1.profile.name;
 											if(userObj1.profile.userProfilePic){	
-												var pic = UserProfileStoreS3New.findOne({"_id":userObj1.profile.userProfilePic});
+												var pic = VendorImage.findOne({"_id":userObj1.profile.userProfilePic});
 												if(pic){
-													replyObj.replyProfileImgPath = pic.url();	
+													replyObj.replyProfileImgPath = pic.link();	
 												}
 												else{
 													replyObj.replyProfileImgPath = "/users/profile/profile_image_dummy.svg";
@@ -410,9 +411,9 @@ Template.userReview.helpers({
 
 					if(reviewData[i].reviewImages){
 						for(j=0;j<reviewData[i].reviewImages.length;j++){
-							var reviewPhoto = UserReviewStoreS3New.findOne({"_id":reviewData[i].reviewImages[j].img});
+							var reviewPhoto = ReviewImage.findOne({"_id":reviewData[i].reviewImages[j].img});
 							if(reviewPhoto){
-								reviewData[i].reviewImages[j].imagePath = reviewPhoto.url();
+								reviewData[i].reviewImages[j].imagePath = reviewPhoto.link();
 							}
 						}
 					}
@@ -642,9 +643,9 @@ Template.userReviewSuggestion.helpers ({
 						var name    = otherUsersData[i].profile.name;
 						var id      = otherUsersData[i]._id;
 						var userID  = Session.set('useridone',id);
-						var pic     = UserProfileStoreS3New.findOne({"_id":otherUsersData[i].profile.userProfilePic});
+						var pic     = VendorImage.findOne({"_id":otherUsersData[i].profile.userProfilePic});
 						if(pic){
-							otherUsersData[i].profile.userProfilePic = pic.url();	
+							otherUsersData[i].profile.userProfilePic = pic.link();	
 						}
 						else{
 							otherUsersData[i].profile.userProfilePic = "/users/profile/profile_image_dummy.svg";	
@@ -1251,9 +1252,9 @@ Template.userReview.events({
 			var businessData = Business.findOne({'businessLink':title});
 			if(businessData){
 				if(businessData.businessImages.length > 0){
-					var pic = BusinessImgUploadS3.findOne({"_id":businessData.businessImages[0].img});
+					var pic = BusinessImage.findOne({"_id":businessData.businessImages[0].img});
 					if(pic){
-						businessData.businessImages = pic.copies.businessImgS3.key;
+						businessData.businessImages = pic.path;
 					}else{
 						businessData.businessImages = '/images/rightnxt_image_nocontent.jpg';
 					}
@@ -1287,9 +1288,9 @@ Template.userReview.events({
 			var businessData = Business.findOne({'businessLink':title});
 			if(businessData){
 				if(businessData.businessImages.length > 0){
-					var pic = BusinessImgUploadS3.findOne({"_id":businessData.businessImages[0].img});
+					var pic = BusinessImage.findOne({"_id":businessData.businessImages[0].img});
 					if(pic){
-						businessData.businessImages = pic.copies.businessImgS3.key;
+						businessData.businessImages = pic.path;
 					}else{
 						businessData.businessImages = '/images/rightnxt_image_nocontent.jpg';
 					}
@@ -2004,9 +2005,9 @@ Template.userReview.events({
 			var userVar = Meteor.users.findOne({"_id":userData.tagedFriends[i]});
 			var userImg = "";
 			if(userVar.profile.userProfilePic){
-				var imgData = UserProfileStoreS3New.findOne({"_id":userVar.profile.userProfilePic});
+				var imgData = VendorImage.findOne({"_id":userVar.profile.userProfilePic});
 				if(imgData)	{
-				var userImg = imgData.url();
+				var userImg = imgData.link();
 				}else{
 				var userImg = '/users/profile/profile_image_dummy.svg';
 				}
@@ -2079,35 +2080,59 @@ Template.userReview.events({
 			var rating = parseFloat(starRating) / 2;
 
 			if(filesR){
-				for(i = 0 ; i < filesR.length; i++){		
-					Resizer.resize(filesR[i], {width: 300, height: 300, cropSquare: false}, function(err, file) {
-						if(err){
-							console.log('err ' , err.message);
-						}else{
-							UserReviewStoreS3New.insert(file, function (err, fileObj) {
-						        // Inserted new doc with ID fileObj._id, and kicked off the data upload using HTTP
-						        if(err){
-						        	console.log('Error : ' + err.message);
-						        }else{
-						        	var imgId =  fileObj._id ;
-						        	// console.log("imgId: ",imgId);
-							        Meteor.call("updateReviewBulkImg", id, imgId,
-							          function(error1, result1) { 
-							              if(error1) {
-							                console.log ('Error Message: ' + error ); 
-							              }else{
+				for(i = 0 ; i < filesR.length; i++){
+					const imageCompressor = new ImageCompressor();
+				    imageCompressor.compress(filesR[i])
+				        .then((result) => {
+				          // console.log(result);
 
-											$('.publishReview').show();
-											$('.openReviewBox').hide();
-											$('.reviewImages').hide();
-											// event.target.review.value	= '';
-							              }
-							        });
+				          // Handle the compressed image file.
+				          // We upload only one file, in case
+				        // multiple files were selected
+				        const upload = ReviewImage.insert({
+				          file: result,
+				          streams: 'dynamic',
+				          chunkSize: 'dynamic',
+				          // imagetype: 'profile',
+				        }, false);
 
-						        }
-						    });
-						}
-					});
+				        upload.on('start', function () {
+				          // template.currentUpload.set(this);
+				        });
+
+				        upload.on('end', function (error, fileObj) {
+				          if (error) {
+				            // alert('Error during upload: ' + error);
+				            console.log('Error during upload 1: ' + error);
+				            console.log('Error during upload 1: ' + error.reason);
+				          } else {
+				            // alert('File "' + fileObj._id + '" successfully uploaded');
+				            Bert.alert('Review Image uploaded.','success','growl-top-right');
+				            // console.log(fileObj._id);
+				            // Session.set("vendorImgFilePath",fileObj._id);
+				            var imgId =  fileObj._id ;
+					        Meteor.call("updateReviewBulkImg", id, imgId,
+					          function(error1, result1) { 
+					              if(error1) {
+					                console.log ('Error Message: ' + error ); 
+					              }else{
+									// console.log('img upload ', fileObj._id);	
+									// console.log('img added');
+									$('.publishReview').show();
+									$('.openReviewBox').hide();
+									$('.reviewImages').hide();
+									// event.target.review.value	= '';
+					              }
+					        });
+				          }
+				          // template.currentUpload.set(false);
+				        });
+
+				        upload.start();
+				        })
+				        .catch((err) => {
+				          // Handle the error
+				    })
 				}
 				filesR = [];
 				counterImg = 0;

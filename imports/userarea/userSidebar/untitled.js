@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
-import { UserProfileStoreS3New } from './UserProfileS3.js';
+import { VendorImage } from '/imports/videoUploadClient/vendorImageClient.js';
 
 SearchSource.defineSource('tagFriend', function(searchText, options) {
   var options = {};
@@ -12,9 +12,9 @@ SearchSource.defineSource('tagFriend', function(searchText, options) {
     // =========================================================
     var userPageShowImage = (imgId)=> {
       if(imgId){
-          var imgData = UserProfileStoreS3New.findOne({"_id":imgId});
+          var imgData = VendorImage.findOne({"_id":imgId});
           if(imgData)	{
-            var data = imgData.url();
+            var data = imgData.link();
           }else{
             var data = '/users/profile/profile_image_dummy.svg';
           }

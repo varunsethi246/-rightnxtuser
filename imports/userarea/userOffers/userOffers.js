@@ -7,12 +7,9 @@ import { Bert } from 'meteor/themeteorchef:bert';
 import { Business } from '/imports/api/businessMaster.js';
 import { Offers } from '/imports/api/offersMaster.js';
 import { Review } from '/imports/api/reviewMaster.js';
-import { OfferImagesS3 } from '/client/cfsjs/offersImagesS3.js';
 import { SavedOffer } from '/imports/api/savedOffersMaster.js';
+import { OfferImage } from '/imports/videoUploadClient/offerImageClient.js';
 
-import { UserReviewStoreS3New } from '/client/cfsjs/UserReviewS3.js';
-import { UserProfileStoreS3New } from '/client/cfsjs/UserProfileS3.js';
-import { BusinessImgUploadS3 } from '/client/cfsjs/businessImage.js';
 import { Categories } from '../../api/masterData/categoriesMaster.js';
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
@@ -100,7 +97,7 @@ Template.userOffers.helpers({
 	offerImgData(){
 		var businessOffers = Offers.findOne({"_id" : this._id, "offerStatus":'Active'});
 		if(businessOffers){
-			var pic = OfferImagesS3.findOne({'_id' : businessOffers.offerImage});
+			var pic = OfferImage.findOne({'_id' : businessOffers.offerImage});
 			if(pic){
 				return pic;
 			}	

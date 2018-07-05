@@ -6,13 +6,16 @@ import { Business } from '/imports/api/businessMaster.js';
 import { Likes } from '/imports/api/likesMaster.js';
 import { Review } from '../../../api/reviewMaster.js';
 
-import { UserProfileStoreS3New } from '/client/cfsjs/UserProfileS3.js';
 import { FollowUser } from '/imports/api/userFollowMaster.js';
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import { VendorImage } from '/imports/videoUploadClient/vendorImageClient.js';
 
 import '../../vendor.js';
 // import '../../vendorBusinessDetails/businessEventIcons.js';
 
+// Template.VendorGotLikes.onCreated(function(){
+//   this.subscribe('vendorImage');
+// });
 
 Template.VendorGotLikes.helpers({
 	'businessLikesData': function(){
@@ -28,9 +31,9 @@ Template.VendorGotLikes.helpers({
 					if(data){
 						if(data.profile){
 							if(data.profile.userProfilePic){
-								var pic = UserProfileStoreS3New.findOne({"_id":data.profile.userProfilePic});
+								var pic = VendorImage.findOne({"_id":data.profile.userProfilePic});
 								if(pic){
-									businessLikes[i].userProfilePic = pic.url();	
+									businessLikes[i].userProfilePic = pic.link();	
 								}
 								else{
 									businessLikes[i].userProfilePic = "/users/profile/profile_image_dummy.svg";	

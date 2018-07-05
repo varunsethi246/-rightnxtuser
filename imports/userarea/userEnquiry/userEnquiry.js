@@ -1,8 +1,10 @@
 import { Business } from '/imports/api/businessMaster.js';
 import { Enquiry } from '/imports/api/enquiryMaster.js';
-import { EnquiryImgUploadS3 } from '/client/cfsjs/enquiryImages.js';
-import { BusinessImgUploadS3 } from '/client/cfsjs/businessImage.js';
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import { EnquiryImage } from '/imports/videoUploadClient/enquiryImageClient.js';
+import ImageCompressor from 'image-compressor.js';
+import { VendorImage } from '/imports/videoUploadClient/vendorImageClient.js';
+import { BusinessImage } from '/imports/videoUploadClient/businessImageClient.js';
 
 import '../userLayout.js';
 import './userEnquiry.html';
@@ -57,9 +59,9 @@ Template.userEnquiryPage.helpers({
 								if (userObj){
 									if(userObj.businessImages){
 										if(userObj.businessImages.length>0){
-											var pic = BusinessImgUploadS3.findOne({"_id":userObj.businessImages[0].img});
+											var pic = BusinessImage.findOne({"_id":userObj.businessImages[0].img});
 											if(pic){
-												enqList[i].userProfilePic = pic.url();	
+												enqList[i].userProfilePic = pic.link();	
 											}
 											else{
 												enqList[i].userProfilePic = "/images/rightnxt_image_nocontent.jpg";	
@@ -85,9 +87,9 @@ Template.userEnquiryPage.helpers({
 							if (userObj){
 								if(userObj.businessImages){
 									if(userObj.businessImages.length>0){
-										var pic = BusinessImgUploadS3.findOne({"_id":userObj.businessImages[0].img});
+										var pic = BusinessImage.findOne({"_id":userObj.businessImages[0].img});
 										if(pic){
-											enqList[i].userProfilePic = pic.url();	
+											enqList[i].userProfilePic = pic.link();	
 										}
 										else{
 											enqList[i].userProfilePic = "/images/rightnxt_image_nocontent.jpg";	
@@ -125,9 +127,9 @@ Template.userEnquiryPage.helpers({
 								if (userObj){
 									if(userObj.businessImages){
 										if(userObj.businessImages.length>0){
-											var pic = BusinessImgUploadS3.findOne({"_id":userObj.businessImages[0].img});
+											var pic = BusinessImage.findOne({"_id":userObj.businessImages[0].img});
 											if(pic){
-												enqList[i].userProfilePic = pic.url();	
+												enqList[i].userProfilePic = pic.link();	
 											}
 											else{
 												enqList[i].userProfilePic = "/images/rightnxt_image_nocontent.jpg";	
@@ -153,9 +155,9 @@ Template.userEnquiryPage.helpers({
 							if (userObj){
 								if(userObj.businessImages){
 									if(userObj.businessImages.length>0){
-										var pic = BusinessImgUploadS3.findOne({"_id":userObj.businessImages[0].img});
+										var pic = BusinessImage.findOne({"_id":userObj.businessImages[0].img});
 										if(pic){
-											enqList[i].userProfilePic = pic.url();	
+											enqList[i].userProfilePic = pic.link();	
 										}
 										else{
 											enqList[i].userProfilePic = "/images/rightnxt_image_nocontent.jpg";	
@@ -194,9 +196,9 @@ Template.userEnquiryPage.helpers({
 								if (userObj){
 									if(userObj.businessImages){
 										if(userObj.businessImages.length>0){
-											var pic = BusinessImgUploadS3.findOne({"_id":userObj.businessImages[0].img});
+											var pic = BusinessImage.findOne({"_id":userObj.businessImages[0].img});
 											if(pic){
-												enqList[i].userProfilePic = pic.url();	
+												enqList[i].userProfilePic = pic.link();	
 											}
 											else{
 												enqList[i].userProfilePic = "/images/rightnxt_image_nocontent.jpg";	
@@ -222,9 +224,9 @@ Template.userEnquiryPage.helpers({
 							if (userObj){
 								if(userObj.businessImages){
 									if(userObj.businessImages.length>0){
-										var pic = BusinessImgUploadS3.findOne({"_id":userObj.businessImages[0].img});
+										var pic = BusinessImage.findOne({"_id":userObj.businessImages[0].img});
 										if(pic){
-											enqList[i].userProfilePic = pic.url();	
+											enqList[i].userProfilePic = pic.link();	
 										}
 										else{
 											enqList[i].userProfilePic = "/images/rightnxt_image_nocontent.jpg";	
@@ -259,7 +261,7 @@ Template.userEnquiryPage.helpers({
 			if(enqData.enquiryDesc){
 				for(i=0; i<enqData.enquiryDesc.length; i++){
 					if(enqData.enquiryDesc[i].commentImage != ''){
-						enqData.enquiryDesc[i].enquiryPhoto = EnquiryImgUploadS3.findOne({"_id":enqData.enquiryDesc[i].commentImage}).url();
+						enqData.enquiryDesc[i].enquiryPhoto = EnquiryImage.findOne({"_id":enqData.enquiryDesc[i].commentImage}).url();
 						enqData.enquiryDesc[i].enquiryImgVal = true;
 					}else{
 						enqData.enquiryDesc[i].enquiryImgVal = false;
@@ -384,12 +386,35 @@ Template.userEnquiryPage.events({
 
        	if(filesM.length > 0){
 			for(i = 0 ; i < filesM.length; i++){
-			    EnquiryImgUploadS3.insert(filesM[i], function (err, fileObj) {
-		        // Inserted new doc with ID fileObj._id, and kicked off the data upload using HTTP
-		            if(err){
-		              	console.log('Error : ' + err.message);
-		            }else{
-		              	enquiryPhoto = fileObj._id;
+				const imageCompressor = new ImageCompressor();
+			    imageCompressor.compress(filesM[i])
+			        .then((result) => {
+			          // console.log(result);
+
+			          // Handle the compressed image file.
+			          // We upload only one file, in case
+			        // multiple files were selected
+			        const upload = EnquiryImage.insert({
+			          file: result,
+			          streams: 'dynamic',
+			          chunkSize: 'dynamic',
+			          // imagetype: 'profile',
+			        }, false);
+
+			        upload.on('start', function () {
+			          // template.currentUpload.set(this);
+			        });
+
+			        upload.on('end', function (error, fileObj) {
+			          if (error) {
+			            // alert('Error during upload: ' + error);
+			            console.log('Error during upload 1: ' + error);
+			            console.log('Error during upload 1: ' + error.reason);
+			          } else {
+			            // alert('File "' + fileObj._id + '" successfully uploaded');
+			            Bert.alert('Enquiry Image uploaded.','success','growl-top-right');
+			            // console.log(fileObj._id);
+			            enquiryPhoto = fileObj._id;
 
 					  	var formValues ={
 								        	"id" 				: id,
@@ -459,10 +484,15 @@ Template.userEnquiryPage.events({
 
 					      	});
 						// }
-			         	
+			          }
+			          // template.currentUpload.set(false);
+			        });
 
-		            }
-		        });
+			        upload.start();
+			        })
+			        .catch((err) => {
+			          // Handle the error
+			    })
 		    }
 		    filesM = '';
 

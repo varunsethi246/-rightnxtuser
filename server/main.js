@@ -3,11 +3,11 @@ import { Accounts } from 'meteor/accounts-base';
 //============================================================
 //   Meteor Files or OSTRIO Files import for images
 //============================================================
+import { BusinessOwnerImages } from '/imports/api/ostriofiles/addBusinessOwnerServer.js';
 
-
-// Meteor.publish('allBusinessOwnerImages', function () {
-//   return BusinessOwnerImages.find().cursor;
-// });
+Meteor.publish('allBusinessOwnerImages', function () {
+  return BusinessOwnerImages.find().cursor;
+});
 
 
 
@@ -79,7 +79,13 @@ import '../imports/api/s3Details.js';
 import { BizVideo } from '/imports/videoUploadserver/videoUpload.js';
 import { BizVideoBanner } from '/imports/videoUploadserver/videoUploadBanner.js';
 import { FollowUser } from '/imports/api/userFollowMaster.js';
-import { BusinessOwnerImages }  from '/imports/videoUploadserver/addBusinessOwner.js';
+import { VendorImage } from '/imports/videoUploadserver/vendorImageServer.js';
+import { OwnerImage } from '/imports/videoUploadserver/ownerImageServer.js';
+import { BusinessImage } from '/imports/videoUploadserver/businessImageServer.js';
+import { BusinessMenu } from '/imports/videoUploadserver/businessMenuServer.js';
+import { OfferImage } from '/imports/videoUploadserver/offerImageServer.js';
+import { EnquiryImage } from '/imports/videoUploadserver/enquiryImageServer.js';
+import { ReviewImage } from '/imports/videoUploadserver/reviewImageServer.js';
 
 Meteor.publish('getBizVideo', function() {
     return BizVideo.find({}).cursor;
@@ -87,11 +93,27 @@ Meteor.publish('getBizVideo', function() {
 Meteor.publish('getBizVideoBanner', function() {
     return BizVideoBanner.find({}).cursor;
 });
-Meteor.publish('getBusinessOwnerImages', function() {
-    return BusinessOwnerImages.find({}).cursor;
+Meteor.publish('vendorImage', function() {
+    return VendorImage.find({}).cursor;
 });
-
-
+Meteor.publish('ownerImage', function() {
+    return OwnerImage.find({}).cursor;
+});
+Meteor.publish('businessImage', function() {
+    return BusinessImage.find({}).cursor;
+});
+Meteor.publish('businessMenuImage', function() {
+    return BusinessMenu.find({}).cursor;
+});
+Meteor.publish('businessOfferImage', function() {
+    return OfferImage.find({}).cursor;
+});
+Meteor.publish('businessEnquiryImage', function() {
+    return EnquiryImage.find({}).cursor;
+});
+Meteor.publish('reviewImage', function() {
+    return ReviewImage.find({}).cursor;
+});
 
  // Meteor.publish('followUser', function() {
  //    return FollowUser.find({});
@@ -111,10 +133,10 @@ Meteor.startup(() => {
   
   // process.env.MAIL_URL="smtp://rightnxt123:Rightnxt@123@smtp.gmail.com:587";
   process.env.MAIL_URL='smtp://rightnxt123%40gmail.com:' + encodeURIComponent("Rightnxt@123") + '@smtp.gmail.com:587';
-	// process.env.MAIL_URL="smtp://rightnxt123:Rightnxt@123@smtp.gmail.com:587";
-	Accounts.emailTemplates.resetPassword.from = () => 'rightnxt <rightnxt123@gmail.com>';
-	Accounts.emailTemplates.siteName = "RightNxt";
-	Accounts.emailTemplates.from = 'RightNxt Admin <rightnxt123@gmail.com>';
+  // process.env.MAIL_URL="smtp://rightnxt123:Rightnxt@123@smtp.gmail.com:587";
+  Accounts.emailTemplates.resetPassword.from = () => 'rightnxt <rightnxt123@gmail.com>';
+  Accounts.emailTemplates.siteName = "RightNxt";
+  Accounts.emailTemplates.from = 'RightNxt Admin <rightnxt123@gmail.com>';
 
   // Meteor.AppCache.config({
   //   chrome: false,
@@ -124,7 +146,7 @@ Meteor.startup(() => {
 });
 
 Meteor.methods({
-	sendEmailRightNxt: function (to , from, subject ,body) {
+  sendEmailRightNxt: function (to , from, subject ,body) {
     check([to, from, subject, body], [String]);
     // Let other method calls from the same client start running,
     // without waiting for the email sending to complete.
@@ -268,5 +290,28 @@ Meteor.methods({
     });
   },
 
+  'removeOwnerImage':function(imgId){
+    var userId = Meteor.userId();
+    OwnerImage.remove({'_id': imgId,'userId': userId});
+    // var allVendorImages = OwnerImage.find({'_id':imgId,'userId': userId}).fetch();
+    // console.log(allVendorImages);
+    // if(allVendorImages){
+      // for (var i = 0; i < allVendorImages.length-1; i++) {
+      //   OwnerImage.remove({'_id': allVendorImages[i]._id,'userId': userId});
+      // }
+    // }
+  },
+  'removeBusinessImage':function(imgId){
+    BusinessImage.remove({'_id':imgId});
+  },
+  'removeBusinessMenuImage':function(imgId){
+    BusinessMenu.remove({'_id':imgId});
+  },
+  'removeOfferImage':function(imgId){
+    OfferImage.remove({'_id':imgId});
+  },
+  'removeReviewImage':function(imgId){
+    ReviewImage.remove({'_id':imgId});
+  },
 });
 
