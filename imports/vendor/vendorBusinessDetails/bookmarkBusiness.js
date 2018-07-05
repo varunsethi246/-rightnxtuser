@@ -27,7 +27,7 @@ Template.businessEventIcons.events({
 						$("#bookmark").addClass('activeBookmark');
 				
 						var businessurl = FlowRouter.getParam('businessurl');
-						Meteor.call('insertBookmark',businessurl,'active',
+						Meteor.call('insertBookmark',businessurl,'active',userId,
 							function(error,result){
 								if(error){
 									Bert.alert('Some error occured while bookmark this page!','danger','growl-top-right','fa-remove');

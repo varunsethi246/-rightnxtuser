@@ -33,33 +33,39 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-	'insertBookmark':function(businessurl,actInact){
+	'insertBookmark':function(businessurl,actInact,userId){
+		// if (Meteor.userId() ==) {
 
-		var businessObj = Business.findOne({"businessLink":businessurl});
-		if(businessObj){
-			businessId 			= businessObj._id;
-			if(actInact == 'inactive'){
-				Bookmark.remove({'businessId':businessId});
-			}else{
-				Bookmark.insert({ 
-				 	'userId'        	: Meteor.userId(),
-				 	'businessId'		: businessId,
-				 	'businessLink'		: businessurl,
-					'createdAt'     	: new Date(),
-					'businessStatus'	: 'active',
-					'date'				: moment().format('DD/MM/YYYY'),
-					}, function(error,result){
-						if(error){
-							return error;
-						}
-						if(result){
-							return result; 
-						}
-					}
+			var businessObj = Business.findOne({"businessLink":businessurl});
 
-				);				
-			}
-		}		
+			if(businessObj){
+				businessId 			= businessObj._id;
+				if(actInact == 'inactive'){
+					// console.log(Bookmark.find({'userId':Meteor.userId(),'businessId':businessId}).fetch());
+					Bookmark.remove({'userId':Meteor.userId(),'businessId':businessId});
+				}else{
+					Bookmark.insert({ 
+					 	'userId'        	: Meteor.userId(),
+					 	'businessId'		: businessId,
+					 	'businessLink'		: businessurl,
+						'createdAt'     	: new Date(),
+						'businessStatus'	: 'active',
+						'date'				: moment().format('DD/MM/YYYY'),
+						}, function(error,result){
+							if(error){
+								return error;
+							}
+							if(result){
+								return result; 
+							}
+						}
+
+					);				
+				}
+			}		
+		// }else{
+		// 	console.log('not log in');
+		// }
 	
 	},
 });

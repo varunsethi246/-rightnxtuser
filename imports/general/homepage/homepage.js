@@ -30,17 +30,19 @@ import '../mainBusinessSearch/mainBusinessSearch.js';
 });*/
 Template.anonymousUserLayout.onCreated(function () {
   // Use this.subscribe inside onCreated callback
-  // this.subscribe('userfunction');
-  // this.subscribe('allCity');
-  // this.subscribe('area');
+  this.subscribe('userfunction');
+  this.subscribe('allCity');
+  this.subscribe('area');
+  
   this.subscribe('homeBannerVideo');
   this.subscribe('getBizVideoBanner');
-  // this.subscribe('categories');
-  // this.subscribe('notification');
-  // this.subscribe('notificationTemplate');
-  // this.subscribe('vendorBusiness');
-  // this.subscribe('userProfileS3OneUser'); 
-  // this.subscribe('businessImgS3');
+  
+  this.subscribe('categories');
+  this.subscribe('notification');
+  this.subscribe('notificationTemplate');
+  this.subscribe('vendorBusiness');
+  this.subscribe('userProfileS3OneUser'); 
+  this.subscribe('businessImgS3');
   
 });
 

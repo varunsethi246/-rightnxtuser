@@ -59,6 +59,15 @@ loadingFf = function () {
 		$("#inject-loader-wrapper").fadeOut(1500, function() { $(this).remove(); });
 	})
 }
+
+notificationConfigFunc= function () {    
+	import('/imports/notifications/notificationConfig.js').then(function (handle) {        
+		handle.notificationConfigForm();    
+	})
+	.then(function(){
+		$("#inject-loader-wrapper").fadeOut(1500, function() { $(this).remove(); });
+	})
+}
 vendorBusinessLayoutFunc= function () {    
 	import('/imports/vendor/vendorBusinessDetails/vendorBusinessDetails.js')
 	.then(function (handle) {        

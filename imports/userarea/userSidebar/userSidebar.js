@@ -53,28 +53,100 @@ Template.userSidebar.helpers({
 				data.activeClass = '';
 				data.changeHref = '';
 			}
+			console.log('data :',data);
 			return data;
 		}			
 		
 	},
 
 	'siderbarLikesCount':function(){
-		var count = Counts.get('LikesCount');
-		var likedDataReturn = {
-				noofLikes		: count,
-		}
-		return likedDataReturn;
-		
+		// var count = Counts.get('LikesCount');
+		// var likedDataReturn = {
+		// 		noofLikes		: count,
+		// }
+
+			var id ='';
+			var url = FlowRouter.current().path;
+			var checkIdExists = url.split('/');
+			if(checkIdExists[2] != '' && checkIdExists[2]){
+				id = produceURLid(checkIdExists[2]);
+				// console.log('id 3:',id);
+				var count = 0;
+				var likesData = Likes.find({"userid":id}).fetch();	
+				if(likesData){
+					for(i=0;i<likesData.length;i++){
+						var bussdata = Business.findOne({'_id':likesData[i].businessId,"status":'active'});
+						// console.log('bussdata')
+							if(bussdata){
+								count++;
+							}
+						}
+						var likedDataReturn = {
+							noofLikes		: count,
+						}
+						// console.log("likedDataReturn 2:",likedDataReturn);
+						var current = window.location.host;
+					// console.log("window.location : ",current );
+					return likedDataReturn;
+				}
+			}else{
+				// id = Meteor.userId();
+				// console.log('id 4:',id);
+				var count = Counts.get('LikesCount');
+				var likedDataReturn = {
+						noofLikes		: count,
+				}
+					return likedDataReturn;
+			}
+
 	},
 
 	'siderbarBookmarkCount':function(){
-		var countBookmark = Counts.get('bookmarkCount');
+		// var countBookmark = Counts.get('bookmarkCount');
 
-		var bookmarkDataReturn = {
-			noofBookmark		: countBookmark,
+		// var bookmarkDataReturn = {
+		// 	noofBookmark		: countBookmark,
+		// }
+		// return bookmarkDataReturn;
+		// }else {
+		$("html,body").scrollTop(0);
+		var id ='';
+		var url = FlowRouter.current().path;
+		var checkIdExists = url.split('/');
+		var data = {};
+		if(checkIdExists[2] != '' && checkIdExists[2]){
+			id = produceURLid(checkIdExists[2]);
+			console.log('id 1',id);
+			var bookmarkData = Bookmark.find({"userId":id}).fetch();
+			var count = 0;
+			if(bookmarkData){	
+				for(i=0;i<bookmarkData.length;i++){
+				var bussdata = Business.findOne({'businessLink':bookmarkData[i].businessLink,"status":'active'});
+				// consosle.log('bussdata 1:',bussdata);
+					if(bussdata){
+						count++;
+					}
+				}
+
+			// return likedDataReturn;	
+				var bookmarkDataReturn = {
+					noofBookmark		: count,
+				}
+				// console.log('bookmarkDataReturn 2 :',bookmarkDataReturn);
+				
+			}
+			// console.log('bookmarkData :',bookmarkDataReturn);
+				return bookmarkDataReturn;
+		}else{
+			console.log('id 2');
+			var countBookmark = Counts.get('bookmarkCount');
+
+			var bookmarkDataReturn = {
+				noofBookmark		: countBookmark,
+			}
+			return bookmarkDataReturn;
 		}
-		return bookmarkDataReturn;
-	
+
 	},
 
 	'siderbarBeenThereCount':function(){

@@ -338,7 +338,7 @@ Meteor.methods({
 	},
 
 	'insertBusinessRate':function(eventInfoFormValue){
-		console.log(eventInfoFormValue);
+		// console.log(eventInfoFormValue);
 		var userId = CompanySettings.findOne({"companyId" : 101});
 		if(userId && eventInfoFormValue.monthlyRate != "" && eventInfoFormValue.categoryRate != "" && eventInfoFormValue.areaRate != ""){
 			
@@ -424,7 +424,7 @@ Meteor.methods({
 		} //end of if userid
 	},
 	removeRateDetails: function(rateDetailsArray){
-		console.log(rateDetailsArray);
+		// console.log(rateDetailsArray);
      		CompanySettings.update({"companyId":101},{$pull:{"rates":rateDetailsArray}});
       
     },
@@ -481,8 +481,8 @@ Meteor.methods({
 	},
 
 	'insertOtherSettings':function(otherSettingsFormValue){
-		console.log("true");	
-		console.log(JSON.stringify(otherSettingsFormValue));
+		// console.log("true");	
+		// console.log(JSON.stringify(otherSettingsFormValue));
 		var userId = CompanySettings.findOne({"companyId" : 101});
 		if(userId){
 			CompanySettings.update({'_id': userId._id},

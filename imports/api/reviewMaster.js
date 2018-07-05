@@ -9,38 +9,41 @@ export const Review = new Mongo.Collection('review');
 
 if (Meteor.isServer) {
   // This code only runs on the server
-  Meteor.publish('review', function review(businessLink) {
-    return Review.find({"businessLink": businessLink});
-  });
+	Meteor.publish('review', function review(businessLink) {
+	return Review.find({"businessLink": businessLink});
+	});
 
-  Meteor.publish('reviewUser', function() {
-    return Review.find({"userId": this.userId});
-  });
+	Meteor.publish('reviewUser', function() {
+	return Review.find({"userId": this.userId});
+	});
 
-  Meteor.publish('allreviews', function allreviews() {
-    return Review.find({});
-  });
+	Meteor.publish('allreviews', function allreviews() {
+		return Review.find({});
+	});
+	Meteor.publish('currentUserReviews', function allreviews() {
+		return Review.find({'_id':this.userId});
+	});
 
- // Meteor.publish('businessReviewsCount', function() {
- //    return Review.find({});
- // });
+	// Meteor.publish('businessReviewsCount', function() {
+	//    return Review.find({});
+	// });
 
 
-  Meteor.publish('businessListReview',function(){
-  	return Review.find({},{fields:{"businessLink":1,"rating":1}});
-  });
+	Meteor.publish('businessListReview',function(){
+		return Review.find({},{fields:{"businessLink":1,"rating":1}});
+	});
 
-  Meteor.publish('reviewCount', function() {
-  	Counts.publish(this, 'reviewCount', Review.find({}));
-  });
+	Meteor.publish('reviewCount', function() {
+		Counts.publish(this, 'reviewCount', Review.find({}));
+	});
 
-  Meteor.publish('searchListReview',function(){
-  	return Review.find({},{fields:{"businessLink":1,"rating":1}});
-  });
-  Meteor.publish('ReviewsCount', function() {
-  		var userID = this.userId;
+	Meteor.publish('searchListReview',function(){
+		return Review.find({},{fields:{"businessLink":1,"rating":1}});
+	});
+	Meteor.publish('ReviewsCount', function() {
+			var userID = this.userId;
 		Counts.publish(this, 'ReviewsCount', Review.find({'userId':userID,'businessStatus':'active'}));
-  });
+	});
 	Meteor.publish('ReviewsPhotoCount', function() {
 			var userID = this.userId;
 		Counts.publish(this, 'ReviewsPhotoCount', Review.find({'userId':userID,'businessStatus':'active'},{fields : {"reviewImages" : 1, "_id" : 0} }), { countFromFieldLength: 'reviewImages' });

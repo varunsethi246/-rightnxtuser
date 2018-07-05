@@ -125,7 +125,7 @@ Meteor.methods({
 		);
 		Business.remove(formValues);
 
-		console.log("formValues: ",formValues);
+		// console.log("formValues: ",formValues);
 
 	},
 	'insertBusinessInfo':function(formValues){
@@ -1220,7 +1220,7 @@ Meteor.methods({
 	'updateBusInactivate':function(busId, busComment){
 		var busId = Business.findOne({"_id":busId});
 		var busLink = busId.businessLink;
-		console.log('busid :',busId);
+		// console.log('busid :',busId);
 		Business.update(
 			{"businessLink":busLink},
 			{$set: 

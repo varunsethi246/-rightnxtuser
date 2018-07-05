@@ -14,7 +14,7 @@ if (Meteor.isServer) {
   // });
 
   Meteor.publish('userImgLikes', function userImgLikes() {
-	    return UserImgLikes.find({});
+	    return UserImgLikes.find({"_id":this.userId});
   });
 }
 

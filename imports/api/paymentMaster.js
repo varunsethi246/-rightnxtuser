@@ -193,7 +193,7 @@ Meteor.methods({
 			var userObj      	= Meteor.users.findOne({"_id":userId});
 			var mobileNumber 	= businessUser.ownerMobile;
 			var grandTotal 		= paymentCheck.totalAmount;
-			console.log("METEOR_URL: ",METEOR_URL);
+			// console.log("METEOR_URL: ",METEOR_URL);
 			var quickWalletInput = {
 				"partnerid"	:   quickwalletDetail.partnerid,
 				"mobile"   	:   mobileNumber,
@@ -204,14 +204,14 @@ Meteor.methods({
 			};
 
 			try {
-				console.log("Im trying");
+				// console.log("Im trying");
 				if (Meteor.isServer) {
 						var result = HTTP.call("POST", quickWalletUrl+"/api/partner/323/requestPayment",
 										{params: quickWalletInput});
 										console.log("result: ",result);
 						if(result.data.status == 'success'){
 							var paymentUrl = result.data.data.url;
-							console.log("paymentUrl: ",paymentUrl);
+							// console.log("paymentUrl: ",paymentUrl);
 				
 							return paymentUrl;
 						}else{

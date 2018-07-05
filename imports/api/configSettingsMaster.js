@@ -123,7 +123,7 @@ Meteor.methods({
       createdAt : new Date(),
 
         },  function(error,result){
-                  console.log(error,result);
+                  // console.log(error,result);
                   if(error) {
                       return error;
                   } else {

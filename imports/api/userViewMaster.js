@@ -11,11 +11,11 @@ if (Meteor.isServer) {
   // This code only runs on the server
   
   Meteor.publish('allStatistics', function() {
-    return UserStatistics.find({});
+    return UserStatistics.find({'_id':this.userId});
   });
 
   Meteor.publish('allLatLng', function() {
-    return UserLatLng.find({});
+    return UserLatLng.find({'_id':this.userId});
   });
 
 }

@@ -318,14 +318,6 @@
 // 	})
 // }
 
-// notificationConfigFunc= function () {    
-// 	import('/imports/notifications/notificationConfig.js').then(function (handle) {        
-// 		handle.notificationConfigForm();    
-// 	})
-// 	.then(function(){
-// 		$("#inject-loader-wrapper").fadeOut(1500, function() { $(this).remove(); });
-// 	})
-// }
 // ViewAllNotifFuncs = function () {    
 // 	import('/imports/admin/commonAdmin/commonAdmin.js').then(function (handle) {        
 // 		handle.ViewAllNotifsForms();    
