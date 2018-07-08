@@ -18,6 +18,7 @@ import { BusinessImage } from '/imports/videoUploadClient/businessImageClient.js
 import { OfferImage } from '/imports/videoUploadClient/offerImageClient.js';
 import { EnquiryImage } from '/imports/videoUploadClient/enquiryImageClient.js';
 import { ReveiwImage } from '/imports/videoUploadClient/reviewImageClient.js';
+import { ResumeImage } from '/imports/videoUploadClient/resumeImageClient.js';
 
 import '../mainBusinessSearch/mainBusinessSearch.js';
 
@@ -52,6 +53,7 @@ Template.anonymousUserLayout.onCreated(function () {
   this.subscribe('businessOfferImage');
   this.subscribe('businessEnquiryImage');
   this.subscribe('reviewImage');
+  this.subscribe('resumeImage');
   // this.subscribe('categories');
   // this.subscribe('notification');
   // this.subscribe('notificationTemplate');
