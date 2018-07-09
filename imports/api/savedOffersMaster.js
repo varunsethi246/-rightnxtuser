@@ -27,7 +27,8 @@ if (Meteor.isServer) {
   Meteor.publish('saveOfferCount', function() {
   		var userID = this.userId;
   		// console.log('user :',userID);
-		Counts.publish(this, 'saveOfferCount', SavedOffer.find({'userId':userID,'businessStatus':'active'}));
+		// Counts.publish(this, 'saveOfferCount', SavedOffer.find({'userId':userID,'businessStatus':'active'}));
+		Counts.publish(this, 'saveOfferCount', SavedOffer.find({'userId':userID}));
   });
 }
 

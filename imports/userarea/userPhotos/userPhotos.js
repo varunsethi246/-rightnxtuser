@@ -136,6 +136,7 @@ Template.userPhotos.events({
 	'click .photoDeleteBtn' : function(event){
 		event.preventDefault();
 		if(checked.length == 0){
+			Bert.alert('Please slect the photo by clicking on delete icon.','danger','growl-top-right');	
 			$(event.target).removeAttr('data-target');
 		}else{
 			$(event.target).attr('data-target',"#userModal");

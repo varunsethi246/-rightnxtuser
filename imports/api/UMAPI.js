@@ -11,11 +11,11 @@ import { Email } from 'meteor/email';
 if(Meteor.isServer){
 
 
-  Meteor.publish('userfunction', function userfunction(){
-      // this.unblock();
-      // console.log('userfunction testing');
-      return Meteor.users.find({},{fields : {"profile" : 1} });
-  }); 
+  // Meteor.publish('userfunction', function userfunction(){
+  //     // this.unblock();
+  //     // console.log('userfunction testing');
+  //     return Meteor.users.find({},{fields : {"profile" : 1} });
+  // }); 
   Meteor.publish('notificationConfiguration', function userfunction(){
       // this.unblock();
       // console.log('userfunction testing');
@@ -25,7 +25,7 @@ if(Meteor.isServer){
       // ===needed for otp=====
       return Meteor.users.find({});
   });
-  Meteor.publish('userData', function userfunction(){
+  Meteor.publish('userfunction', function userfunction(){
       // ===needed for otp=====
       return Meteor.users.find({});
   });

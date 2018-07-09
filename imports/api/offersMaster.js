@@ -5,6 +5,7 @@ import { Session } from 'meteor/session';
 import { Bert } from 'meteor/themeteorchef:bert';
 
 import { Payment } from './paymentMaster.js';
+import { Business } from './businessMaster.js';
 export const Offers = new Mongo.Collection('offers');
 
 if (Meteor.isServer) {
@@ -16,7 +17,8 @@ if (Meteor.isServer) {
 		return Offers.find({"offerStatus":"Active"},{fields:{"dealHeadline":1}});
 	});
 	Meteor.publish('businessOffers', function businessOffers(businessLink) {
-		return Offers.find({"businessLink": businessLink});
+		var businessObj = Business.findOne({'businessLink':businessLink});
+		return Offers.find({"businessId": businessObj._id});
 	});
 	Meteor.publish('businessOffersCount', function businessOffersCount() {
 		return Offers.find({});

@@ -13,6 +13,7 @@ if (Meteor.isServer) {
 	Meteor.publish('beenThereCount', function() {
 		var userId =  this.userId;
 		Counts.publish(this, 'beenThereCount', BeenThere.find({'userId':userId,'businessStatus':'active'}));
+		Counts.publish(this, 'beenThereCount', BeenThere.find({'userId':userId}));
 	});
 	Meteor.publish('beenThere', function beenThere(businessLink) {
 		var businessObj = Business.findOne({"businessLink" : businessLink});

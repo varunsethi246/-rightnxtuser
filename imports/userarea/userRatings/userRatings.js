@@ -103,7 +103,7 @@ Template.userRatings.helpers({
 	},
 	ratingsDataCount(){
 		var count = Counts.get('ReviewsCount');
-		
+		// console.log(count);
 		var RatingDataReturn = {
 			noofRatingData		: count,
 		}

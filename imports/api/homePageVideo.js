@@ -9,7 +9,7 @@ export const HomeBannerVideo = new Mongo.Collection('homeBannerVideo');
 if (Meteor.isServer) {
 	
   // This code only runs on the server
-  Meteor.publish('homeBannerVideo', function vendorBusiness() {
+  Meteor.publish('homeBannerVideo', function homeBannerVideo() {
     return HomeBannerVideo.find({});
   });
 }

@@ -182,7 +182,7 @@ transform:none
 }
 
 .howitworks {
-margin-top:37%
+margin-top:26%;
 }
 
 .howitworks h1 {
@@ -294,7 +294,8 @@ overflow:hidden
 }
 
 .aboutus {
-text-align:justify
+text-align:justify;
+min-height: 400px;
 }
 
 .aboutus h2 {
@@ -1727,6 +1728,22 @@ margin-top:6%
 }
 
 .merchantGuidelinesxs {
+margin-top:34%
+}
+
+.faqsm {
+margin-top:13%
+}
+
+.faqlg {
+margin-top:10.5%
+}
+
+.faqmd {
+margin-top:6%
+}
+
+.faqxs {
 margin-top:34%
 }
 

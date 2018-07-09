@@ -17,7 +17,7 @@
 					<div class="col-lg-6 col-md-6 col-sm-5 {{#if showElement}}col-xs-12{{/if}}"></div>
 				{{/if}}
 
-				<!-- {{#if isInRole 'user'}}
+				{{#if isInRole 'user'}}
 					<div class="notifiacationUsers col-sm-1 col-lg-1">
 						<ul class="nav navbar-nav top-userNav" id="navHeaderDropdown">
 			                <li class="dropdown">
@@ -59,8 +59,8 @@
 			                </li>
 			            </ul>
 					</div>
-				{{/if}} -->
-				{{#if isInRole 'Vendor'}}
+				{{/if}}
+				<!-- {{#if isInRole 'Vendor'}}
 					<div class="notifiacationUsers col-sm-1 col-lg-1">
 						<ul class="nav navbar-nav top-userNav" id="navHeaderDropdown">
 			                <li class="dropdown">
@@ -104,7 +104,7 @@
 			                </li>
 			            </ul>
 					</div>
-				{{/if}}
+				{{/if}} -->
 
 				<div class="{{#if isInRole 'admin'}}col-lg-2 col-md-2 col-sm-3 col-xs-3 {{else}}col-lg-2 col-md-3 col-sm-3 col-xs-5{{/if}} {{#if showElement}}dropmenu{{else}}dropmenuGen{{/if}} pull-right">
 					{{#with userDetails}}
@@ -121,7 +121,7 @@
 								<i class="fa fa-angle-down fa-2x userFaAngle"></i>
 							</a>
 							<ul class="dropdown-menu pull-right logoutRight logoutBtnDropdown">
-							<!-- {{#if  isInRole 'user'}}
+							{{#if  isInRole 'user'}}
 
 								<li>
 									<a href="/userProfile">
@@ -142,8 +142,8 @@
 										<span class="lgout">Logout</span>
 									</a>
 								</li>
-							{{/if}} -->
-							{{#if  isInRole 'Vendor'}}
+							{{/if}}
+							<!-- {{#if  isInRole 'Vendor'}}
 								<li>
 									<a href="/vendorDashboard">
 										<i class="fa fa-server" aria-hidden="true"></i>
@@ -162,7 +162,7 @@
 										<span>Logout</span>
 									</a>
 								</li>
-							{{/if}}
+							{{/if}} -->
 
 							{{#if  isInRole 'admin,Staff'}}
 								<li>

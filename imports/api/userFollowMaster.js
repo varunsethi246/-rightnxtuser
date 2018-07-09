@@ -11,6 +11,9 @@ if (Meteor.isServer) {
   Meteor.publish('followUser', function() {
     return FollowUser.find({});
   });
+  Meteor.publish('followOneUser', function() {
+    return FollowUser.find({'userId':this.userId});
+  });
   // Meteor.publish('followerCount', function() {
  	//  Counts.publish(this, 'followerCounts', FollowUser.find({}));
   // });

@@ -62,9 +62,9 @@ Template.homepageBanner.onRendered(function(){
 Template.homepageBanner.helpers({
 
   bannerVideo: function() {
-      var bussData = HomeBannerVideo.find({}).fetch();
-      if(bussData.length > 0){
-        var data = BizVideoBanner.find({"_id":bussData[0].bannerLink}).fetch();
+      var bussData = HomeBannerVideo.findOne({});
+      if(bussData){
+        var data = BizVideoBanner.findOne({"_id":bussData.bannerLink});
           if(data){
             return data;
           }else{

@@ -31,11 +31,11 @@ alanning:roles
 staringatlights:fast-render
 meteorhacks:unblock
 
-cfs:standard-packages
-cfs:filesystem
-cfs:dropbox
-cfs:s3
-cfs:ui
+#cfs:standard-packages
+#cfs:filesystem
+#cfs:dropbox
+#cfs:s3
+#cfs:ui
 
 email@1.2.3
 accounts-password@1.5.0
@@ -57,7 +57,6 @@ tsega:bootstrap3-datetimepicker
 ejson@1.1.0
 mizzao:timesync
 bigdsk:inputmask
-thinksoftware:image-resize-client
 chart:chart
 tmeasday:publish-counts
 
@@ -79,5 +78,6 @@ mizzao:user-status
 #peerlibrary:aws-sdk
 #appcache@1.1.0
 #djk:jquery-ui
-edgee:slingshot
+#edgee:slingshot
 #webdeb:app-loader
+#thinksoftware:image-resize-client

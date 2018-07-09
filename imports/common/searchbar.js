@@ -68,12 +68,18 @@ Template.searchbar.helpers({
 				var currentCity = "Pune";
 			}
 		}else{
-			if(currentParams){
-				var busCity = Business.findOne({"businessLink":currentParams},{fields: {'businessCity': 1}});
-				var currentCity = busCity.businessCity;
-			}else{
-				var currentCity = FlowRouter.getParam('city');
-			}
+			// if(currentParams){
+			// 	var busCity = Business.findOne({"businessLink":currentParams},{fields: {'businessCity': 1}});
+			// 	var currentCity = busCity.businessCity;
+			// }else{
+			// 	var currentCity = FlowRouter.getParam('city');
+			// }
+			var sesVal = Session.get('rxtNxtCityDatlist');
+		    if(sesVal){
+		      currentCity = sesVal;
+		    }else{
+		      var currentCity = "Pune";
+		    }
 		}
 
 	    var currentArea =  FlowRouter.getParam('area');

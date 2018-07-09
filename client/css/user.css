@@ -802,8 +802,8 @@ color:#fff!important
 
 .usersidebarUl li:hover {
 background:#f89b1c;
-margin-bottom:2px;
-margin-top:2px
+/*margin-bottom:2px;*/
+/*margin-top:2px*/
 }
 
 .usersidebarUl li:hover a,.usersidebarUl li:hover a i {
@@ -897,6 +897,7 @@ padding:30px
 }
 
 .contentBodys {
+/*background-color:#f5f5f5;*/
 background-color:#fff;
 border-left:1px solid #ccc;
 padding-bottom:100px
@@ -3656,7 +3657,12 @@ line-height:0;
 border-radius:0;
 height:25px;
 padding:3px 0 0;
-border:0
+/*border:0*/
+}
+.categorySelect:active,.locationSelect:active,.selectNewest:active,
+.categorySelect:focus,.locationSelect:focus,.selectNewest:focus {
+	outline: none;
+	border-color: #f89b1c;
 }
 
 .vendorCon h1 {
@@ -3686,7 +3692,8 @@ margin-bottom:8px
 .business_offer {
 color:#4e4f51;
 font-size:14px;
-font-family:'PROXIMANOVA-BOLD'
+font-family:'PROXIMANOVA-BOLD';
+margin-top: 10px;
 }
 
 .valid_txt {
@@ -3867,8 +3874,8 @@ color:#f89b1c
 
 .profSettingsidebarUl li:hover {
 background:#f89b1c;
-margin-bottom:2px;
-margin-top:2px
+/*margin-bottom:2px;*/
+/*margin-top:2px*/
 }
 
 .profSettingsidebarUl li a:hover {
@@ -3985,26 +3992,30 @@ color:#fff
 color:#f89b1c
 }
 
-.dropGeneral:hover .userFaAngle {
+.dropGeneral a:hover .userFaAngle {
 color:#f89b1c
 }
 
 .dropdown-menu > li > .hoverColor:hover,.dropdown-menu > li > .hoverColor:focus {
- color: #fff;
+ 	color: #fff;
     text-decoration: none;
     background-color: #ffe0b6;
     margin-left: 0;
-     padding-bottom: 0px; 
+    padding-bottom: 0px; 
     /* background: #000; */
 }
+.dropdown-menu > li > a{padding-bottom: 10px;}
 .dropdown-menu > li > a:hover,.dropdown-menu > li > a:focus {
 color:#fff;
 text-decoration:none;
 background-color:#f89b1c;
 margin-left:0;
-padding-bottom:8px
+/*padding-bottom:8px*/
 }
-
+.dropdown-menu > li > a:hover i,.dropdown-menu > li > a:focus i,
+.dropdown-menu > li > a:hover span,.dropdown-menu > li > a:focus span{
+color: #fff;
+}
 .dropdown-menu>li:hover .userFaSever,.dropdown-menu>li:hover .settingCog,.dropdown-menu>li:hover .powerOff {
 color:#fff
 }

@@ -24,8 +24,9 @@ Template.userBeenThere.helpers({
 		}else{
 			id = Meteor.userId();
 		}
-		var userBeenThere = BeenThere.find({"userId":id}).count();
-		
+		var userBeenTh = BeenThere.find({"userId":id}).count();
+		var userBeenThere = Counts.get('beenThereCount');
+		console.log(userBeenThere);
 		if(userBeenThere <= 0){
 			return true;
 		}else{

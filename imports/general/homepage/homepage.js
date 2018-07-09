@@ -13,12 +13,6 @@ import './homepageBanner.js';
 import { City } from '../../api/masterData/cityMaster.js';
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import { Template } from 'meteor/templating';
-import { VendorImage } from '/imports/videoUploadClient/vendorImageClient.js';
-import { BusinessImage } from '/imports/videoUploadClient/businessImageClient.js';
-import { OfferImage } from '/imports/videoUploadClient/offerImageClient.js';
-import { EnquiryImage } from '/imports/videoUploadClient/enquiryImageClient.js';
-import { ReveiwImage } from '/imports/videoUploadClient/reviewImageClient.js';
-import { ResumeImage } from '/imports/videoUploadClient/resumeImageClient.js';
 
 import '../mainBusinessSearch/mainBusinessSearch.js';
 
@@ -36,31 +30,29 @@ import '../mainBusinessSearch/mainBusinessSearch.js';
 });*/
 Template.anonymousUserLayout.onCreated(function () {
   // Use this.subscribe inside onCreated callback
-  this.subscribe('userfunction');
+  this.subscribe('notificationTemplate');
+  this.subscribe('notification');
+  this.subscribe('currentuser');
   this.subscribe('allCity');
   this.subscribe('area');
-  
-  this.subscribe('homeBannerVideo');
   this.subscribe('getBizVideoBanner');  
+  this.subscribe('homeBannerVideo');
   this.subscribe('categories');
-  this.subscribe('notification');
-  this.subscribe('notificationTemplate');
-  this.subscribe('vendorBusiness');
-  this.subscribe('userProfileS3OneUser'); 
-  this.subscribe('businessImgS3');
   this.subscribe('vendorImage');
-  this.subscribe('businessImage');
-  this.subscribe('businessOfferImage');
-  this.subscribe('businessEnquiryImage');
-  this.subscribe('reviewImage');
-  this.subscribe('resumeImage');
+  // this.subscribe('vendorBusiness');
+  // this.subscribe('userProfileS3OneUser'); 
+  // this.subscribe('businessImgS3');
+  // this.subscribe('businessImage');
+  // this.subscribe('businessOfferImage');
+  // this.subscribe('businessEnquiryImage');
+  // this.subscribe('reviewImage');
+  // this.subscribe('resumeImage');
   // this.subscribe('categories');
   // this.subscribe('notification');
   // this.subscribe('notificationTemplate');
   // this.subscribe('vendorBusiness');
   // this.subscribe('userProfileS3OneUser'); 
-  // this.subscribe('businessImgS3');
-  
+  // this.subscribe('businessImgS3');  
 });
 
 Template.homepage.helpers({

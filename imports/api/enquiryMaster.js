@@ -11,12 +11,16 @@ if (Meteor.isServer) {
 	Meteor.publish('vendorBusinessEnquiry', function vendorBusinessEnquiry() {
 		return Enquiry.find({});
 	});
+	Meteor.publish('userEnquiry', function userEnquiry() {
+		return Enquiry.find({'enquirySentBy':this.userId});
+	});
 	// Meteor.publish('businessEnquiryCount', function businessEnquiryCount() {
 	// 	return Enquiry.find({});
 	// });
 	 Meteor.publish('enquiryCount', function() {
   		var userID = this.userId;
-		Counts.publish(this, 'enquiryCount', Enquiry.find({'enquirySentBy':this.userId,'businessStatus':'active'}));
+		// Counts.publish(this, 'enquiryCount', Enquiry.find({'enquirySentBy':this.userId,'businessStatus':'active'}));
+		Counts.publish(this, 'enquiryCount', Enquiry.find({'enquirySentBy':this.userId}));
   	});
   	Meteor.publish('noOfEnqWeek', function() {
   		var days = 7;

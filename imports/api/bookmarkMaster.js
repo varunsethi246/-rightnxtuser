@@ -13,7 +13,8 @@ if (Meteor.isServer) {
   Meteor.publish('bookmarkCount', function() {
   		var userID = this.userId;
   		// console.log('user :',userID);
-		Counts.publish(this, 'bookmarkCount', Bookmark.find({'userId':userID,'businessStatus':'active'}));
+		// Counts.publish(this, 'bookmarkCount', Bookmark.find({'userId':userID,'businessStatus':'active'}));
+		Counts.publish(this, 'bookmarkCount', Bookmark.find({'userId':userID}));
   });
 
   Meteor.publish('bookmark', function bookmark(businessLink) {

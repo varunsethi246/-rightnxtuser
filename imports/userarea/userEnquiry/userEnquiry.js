@@ -261,7 +261,7 @@ Template.userEnquiryPage.helpers({
 			if(enqData.enquiryDesc){
 				for(i=0; i<enqData.enquiryDesc.length; i++){
 					if(enqData.enquiryDesc[i].commentImage != ''){
-						enqData.enquiryDesc[i].enquiryPhoto = EnquiryImage.findOne({"_id":enqData.enquiryDesc[i].commentImage}).url();
+						enqData.enquiryDesc[i].enquiryPhoto = EnquiryImage.findOne({"_id":enqData.enquiryDesc[i].commentImage}).link();
 						enqData.enquiryDesc[i].enquiryImgVal = true;
 					}else{
 						enqData.enquiryDesc[i].enquiryImgVal = false;
