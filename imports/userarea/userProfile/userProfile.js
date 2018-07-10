@@ -6,7 +6,7 @@ import ImageCompressor from 'image-compressor.js';
 
 Template.userProfile.onCreated(function() {
     this.currentUpload = new ReactiveVar(false);
-    this.subscribe('vendorImage');
+    // this.subscribe('vendorImage');
 });
 
 Template.userProfile.helpers({
@@ -248,7 +248,7 @@ Template.userProfile.events({
 					   console.log('Error during upload 1: ' + error.reason);
 					} else {
 				  		// alert('File "' + fileObj._id + '" successfully uploaded');
-				    	Bert.alert('Vendor Image uploaded.','success','growl-top-right');
+				    	Bert.alert('User Image uploaded.','success','growl-top-right');
 				  	
 					  	// console.log(fileObj._id);
 					  	Meteor.call("updateUserProfileImage", fileObj._id,

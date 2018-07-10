@@ -38,7 +38,7 @@ Template.anonymousUserLayout.onCreated(function () {
   this.subscribe('getBizVideoBanner');  
   this.subscribe('homeBannerVideo');
   this.subscribe('categories');
-  this.subscribe('vendorImage');
+  // this.subscribe('vendorImage');
   // this.subscribe('vendorBusiness');
   // this.subscribe('userProfileS3OneUser'); 
   // this.subscribe('businessImgS3');

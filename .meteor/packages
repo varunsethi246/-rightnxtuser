@@ -64,12 +64,12 @@ ostrio:files
 ostrio:flow-router-extra
 dynamic-import@0.2.0
 pfafman:plivo
-chuangbo:cookie
 meteorhacks:subs-manager
 staringatlights:inject-data
 initialinject
 mizzao:user-status
 
+#chuangbo:cookie
 #barbatus:stars-rating
 #iassureit:advanced-star-rating
 #easy:search
