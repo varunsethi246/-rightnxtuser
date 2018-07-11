@@ -34,11 +34,18 @@ Template.career.onCreated(function () {
 	this.subscribe('newjob');
 	this.subscribe('vendorImage');
 	this.subscribe('generalContentUrl','career');  
+	// this.subscribe('resumeImage');
 	// this.subscribe('userProfileS3'); 
 	// this.subscribe('businessImgS3');
+});
+Template.jobApplicationForm.onCreated(function () {
     this.currentUpload = new ReactiveVar(false);
 });
-
+Template.jobApplicationForm.helpers({
+    currentUpload: function() {
+        return Template.instance().currentUpload.get();
+    },
+});
 Template.career.helpers({
 	careerContent(){
 		var jobTitle = Newjob.find({"jobStatus" : 'active'}).fetch();
@@ -106,10 +113,7 @@ Template.joinUs.helpers({
 			joinus.commonCareer3 = 'noLeftContent';
 		}
 		return joinus;	
-	},
-	currentUpload: function() {
-        return Template.instance().currentUpload.get();
-    },
+	}
 });
 
 Template.careerJoinUsForm.helpers({
@@ -212,7 +216,7 @@ Template.jobApplicationForm.events({
 	        }, false);
 
 	        upload.on('start', function () {
-	          // template.currentUpload.set(this);
+	          template.currentUpload.set(this);
 	        });
 
 	        upload.on('end', function (error, fileObj) {
@@ -240,6 +244,7 @@ Template.jobApplicationForm.events({
 							Bert.alert('Error occurs while submitting job application.', 'danger', 'growl-top-right' );
 							return;
 						}else{
+	          				template.currentUpload.set(false);
 							Bert.alert('Your job application submitted successfully.', 'success', 'growl-top-right' );	
 							event.target.name.value				= '';
 							event.target.email.value			= '';
@@ -253,7 +258,6 @@ Template.jobApplicationForm.events({
 					}	
 				);
 	          }
-	          // template.currentUpload.set(false);
 	        });
 
 		    upload.start();
