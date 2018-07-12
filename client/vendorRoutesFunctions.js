@@ -189,14 +189,15 @@
 // 		$("#inject-loader-wrapper").fadeOut(1500, function() { $(this).remove(); });
 // 	})
 // }
-// businessListFunc= function () {    
-// 	import('/imports/vendor/businessList/businessList.js').then(function (handle) {        
-// 		handle.businessListForm();    
-// 	})
-// 	.then(function(){
-// 		$("#inject-loader-wrapper").fadeOut(1500, function() { $(this).remove(); });
-// 	})
-// }
+businessListFunc= function () {    
+	console.log('hello');
+	import('/imports/vendor/businessList/businessList.js').then(function (handle) {        
+		handle.businessListForm();    
+	})
+	.then(function(){
+		$("#inject-loader-wrapper").fadeOut(1500, function() { $(this).remove(); });
+	})
+}
 
 
 

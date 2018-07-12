@@ -228,6 +228,9 @@ Template.header.events({
   
   'click .loginClosenew': function(event) {
     $('.modal-backdrop').hide();
+    $('.passwordWrongSpan').text("");
+    $('#emailLogin-error').hide();
+    $('#pwdlogin-error').hide();
   },
 });
 
