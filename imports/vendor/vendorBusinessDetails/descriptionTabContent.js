@@ -1263,10 +1263,11 @@ Template.userReviewTemplate.events({
 		// TO edit the Review
 		event.preventDefault();
 		var id = $(event.target).attr('id');
+		$('.boxbg').removeClass('fixStar1');
+		$('.boxbg').removeClass('fixStar2');
 		$('.reviewImages-'+id).css('display','block');
 		$('.userReviewTempcommTxt-'+id).css('display','none');
 		$('.editBoxCommentRev-'+id).css('display','block');
-
 		// $('#searchFrndsEdit').focus();
 		// $('#searchFrndsEdit').focusout();
 

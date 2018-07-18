@@ -26,7 +26,7 @@ import { Area } from '../../api/masterData/areaMaster.js';
 import { users } from '../../api/userMasterAPI.js';
 import { BusinessImgUploadS3 } from '/client/cfsjs/businessImage.js';
 import { BusinessMenuUpload } from '/client/cfsjs/businessMenu.js';
-import { BusinessVideoUpload } from '/client/cfsjs/businessVideo.js';
+// import { BusinessVideoUpload } from '/client/cfsjs/businessVideo.js';
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 import { BizVideo } from '/imports/videoUploadClient/videoUpload.js';

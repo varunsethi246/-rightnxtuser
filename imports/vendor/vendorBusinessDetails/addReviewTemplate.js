@@ -472,7 +472,7 @@ Template.addReviewTemplate.events({
 		var userReview = Review.findOne({"userId":Meteor.userId(),"businessLink":busLink});
 		if(userReview){
 			// businessObj.alreadyReviewed = true;
-			
+			console.log('hi in review');
 			$('.passwordWrongSpan').text("You have already reviewed this Business. Hence more review is not allowed.");
             $('.passwordWrongSpan').addClass('reviewWrngErrorMsg');	
 

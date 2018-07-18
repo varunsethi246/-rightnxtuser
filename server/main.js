@@ -123,9 +123,11 @@ Meteor.publish('resumeImage', function() {
  //    return FollowUser.find({});
  //  });
 
-  Meteor.publish('followerCounts', function() {
-      Counts.publish(this, 'followerCounts', FollowUser.find({}));
-  });
+  // Meteor.publish('followerCounts', function() {
+  //     this.userId;
+  //     console.log('this.userId :',this.userId);
+  //     Counts.publish(this, 'followerCounts', FollowUser.find({}));
+  // });
 
 // import '../imports/notifications/notification.js';
 

@@ -633,10 +633,10 @@ Template.userReviewSuggestion.helpers ({
 		}else{
 			uid = Meteor.userId();
 		}
-		console.log('uid :',uid);
+		// console.log('uid :',uid);
 		var currentUserObj = Meteor.users.findOne({"_id":uid});
-		console.log('currentUserObj :',currentUserObj);
-				console.log('currentUserObj :',currentUserObj.profile);
+		// console.log('currentUserObj :',currentUserObj);
+				// console.log('currentUserObj :',currentUserObj.profile);
 			if(currentUserObj && currentUserObj.profile){
 
 				userCity = currentUserObj.profile.city;

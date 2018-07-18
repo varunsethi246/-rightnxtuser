@@ -14,7 +14,7 @@ SearchSource.defineSource('tagFriend', function(searchText, options) {
       if(imgId){
           var imgData = VendorImage.findOne({"_id":imgId});
           if(imgData) {
-            var data = imgData.url();
+            var data = imgData.link();
           }else{
             var data = '/users/profile/profile_image_dummy.svg';
           }
