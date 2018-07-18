@@ -589,7 +589,10 @@ padding-left:10px
 }
 
 .UserLikesList {
-margin-bottom:16px
+margin-bottom:16px;
+    border-radius: 5px;
+    border: 1px solid #eee;
+    box-shadow: 1px 1px 1px #eee;
 }
 
 .revClass {

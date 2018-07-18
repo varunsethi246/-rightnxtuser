@@ -279,12 +279,12 @@ margin-left:-7px
 }
 
 .likeRightTxt {
-margin-left:0!important;
-margin-top:0!important
+/*margin-left:0!important;
+margin-top:0!important*/
 }
 
 .likeRightTxt p {
-padding:0!important
+/*padding:0!important*/
 }
 
 .AddFrid {
@@ -503,7 +503,8 @@ padding-left:15px
 }
 
 .likeLeftImg {
-padding-left:0
+padding-left:0;
+padding-top:10px;
 }
 
 .likeHeight > .VendorGotLikesClass {
@@ -772,7 +773,9 @@ font-size:14px;
 padding-left:24px;
 margin:0;
 margin-left:10px;
-cursor:pointer
+cursor:pointer;
+    margin-top: 1px;
+    margin-bottom: 1px;
 }
 
 .usersidebarUl li span {
@@ -802,6 +805,7 @@ color:#fff!important
 
 .usersidebarUl li:hover {
 background:#f89b1c;
+    box-shadow: 1px 1px 1px #905300;
 /*margin-bottom:2px;*/
 /*margin-top:2px*/
 }
@@ -890,10 +894,11 @@ padding-left:0!important
 }
 
 .timeline-reviews {
-background:#fff;
-box-shadow:0 0 3px #ccc;
-margin-bottom:20px;
-padding:30px
+    background: #fff;
+    box-shadow: 1px 1px 8px #bbb;
+    margin-bottom: 20px;
+    padding: 30px;
+    border-radius: 5px;
 }
 
 .contentBodys {
@@ -3612,14 +3617,15 @@ padding-right:0
 }
 
 .likeRightTxt {
-padding:0;
+/*padding:0;*/
 text-decoration:none;
-margin-left:-15px;
-margin-top:-3px
+/*margin-left:-15px;*/
+/*margin-top:-3px*/
 }
 
 .likeLeftImg {
-padding-left:0
+padding-left:0;
+    padding-top: 10px;
 }
 
 .likeRightTxt a {
@@ -3635,7 +3641,7 @@ text-decoration:none
 .likeRightTxt p {
 font-size:14px;
 color:#b2b2b2!important;
-padding:0 0 8px;
+/*padding:0 0 8px;*/
 margin:0;
 font-family:'PROXIMANOVA-REGULAR'
 }
