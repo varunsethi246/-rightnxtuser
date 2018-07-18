@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
-import { UserProfileStoreS3New } from '../cfsjs/UserProfileS3.js';
+// import { UserProfileStoreS3New } from '../cfsjs/UserProfileS3.js';
 import { FollowUser } from '/imports/api/userFollowMaster.js';
 
 SearchSource.defineSource('tagFriend', function(searchText, options) {
@@ -12,7 +12,8 @@ SearchSource.defineSource('tagFriend', function(searchText, options) {
     // =========================================================
     var userPageShowImage = (imgId)=> {
       if(imgId){
-          var imgData = UserProfileStoreS3New.findOne({"_id":imgId});
+          // var imgData = UserProfileStoreS3New.findOne({"_id":imgId});
+          var imgData = '';
           if(imgData) {
             var data = imgData.url();
           }else{

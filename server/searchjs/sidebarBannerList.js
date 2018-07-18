@@ -1,5 +1,5 @@
 import { Business } from '/imports/api/businessMaster.js';
-import { BusinessImgUploadS3 } from '../cfsjs/businessImage.js';
+// import { BusinessImgUploadS3 } from '../cfsjs/businessImage.js';
 import { BusinessBanner } from '/imports/api/businessBannerMaster.js';
 
 SearchSource.defineSource('sidebarBusinessBanners', (searchText, options)=> {
@@ -70,7 +70,8 @@ SearchSource.defineSource('sidebarBusinessBanners', (searchText, options)=> {
     // =========================================================
     var searchPageShowImage = (imgId)=> {
 		if(imgId){
-			var imgData = BusinessImgUploadS3.findOne({"_id":imgId});
+            // var imgData = BusinessImgUploadS3.findOne({"_id":imgId});
+			var imgData = '';
 			if(imgData)	{
 				var data = {
 					img : imgData.url(),

@@ -1893,7 +1893,8 @@ margin:0;
 color:#f89b1c;
 font-size:20px;
 font-weight:400;
-font-family:'PROXIMANOVA-BOLD'
+font-family:'PROXIMANOVA-BOLD';
+margin-bottom: 10px!important;
 }
 
 .leftOfferImg img {
@@ -3167,7 +3168,7 @@ margin:0!important
 color:#4e4f51;
 font-size:14px;
 font-family:'PROXIMANOVA-REGULAR';
-padding-bottom:10px
+/*padding-bottom:10px*/
 }
 
 .openReviewBox {

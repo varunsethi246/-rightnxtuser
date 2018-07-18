@@ -772,31 +772,30 @@ Template.userEnquiryPage.events({
 		$('.unreadEnq').show();
 	},
 
+	// Selected Items Click Events
 	'click .activeDownListPre': function(event){
     	event.preventDefault();
-    	// console.log('drop list');
     	event.stopPropagation();
-		$('.activeDownList').toggleClass('activeDownListBlock');
-		$('.activeDownListFlag').removeClass('activeDownListBlockFlag');
+
+		// $('.activeDownListFlag').removeClass('activeDownListBlockFlag');
+		$('.activeDownListFlag').hide();
 		$('.activeDownList').toggle();
-
-		// $('.activeDownList').attr('style', 'display:block !important');
-		// $('.activeDownList').css('display','block !important');
+		$('.activeDownList').toggleClass('activeDownListBlock');
+		// $('.activeDownList').toggle();
 	},
-
-	'click .activeDownListFlagPre': function(event){
-		event.preventDefault();
+	'click .activeDownListFlagPre': function(){
+    	event.preventDefault();
     	event.stopPropagation();
-		$('.activeDownListFlag').toggleClass('activeDownListBlockFlag');
-		$('.activeDownList').removeClass('activeDownListBlock');
+
+		// $('.activeDownList').removeClass('activeDownListBlock');
+		$('.activeDownList').hide();
 		$('.activeDownListFlag').toggle();
-		
+		$('.activeDownListFlag').toggleClass('activeDownListBlockFlag');
+		// $('.activeDownListFlag').toggle();
 	},
-	'click .activeEnquiryTabsPre': function(event){
-		event.preventDefault();
-		
-		$('.activeDownListFlag').removeClass('activeDownListBlockFlag');
-		$('.activeDownList').removeClass('activeDownListBlock');
+	'click .activeEnquiryTabsPre': function(){
+		// $('.activeDownListFlag').removeClass('activeDownListBlockFlag');
+		// $('.activeDownList').removeClass('activeDownListBlock');
 	},
 
 	'click .EnqListCheckbox':function(event){

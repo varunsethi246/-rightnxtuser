@@ -8,6 +8,7 @@ import { Enquiry } from '/imports/api/enquiryMaster.js';
 import { Business } from '/imports/api/businessMaster.js';
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import { EnquiryImage } from '/imports/videoUploadClient/enquiryImageClient.js';
+import ImageCompressor from 'image-compressor.js';
 
 import './businessEnquiry.html'
 

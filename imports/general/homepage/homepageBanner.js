@@ -107,6 +107,8 @@ Template.homepageBanner.helpers({
         // }
       }
 
+      console.log(currentCity);
+
       // Most Important Sesion to pass Dynamic City to footer links
       Session.set("rxtNxtCityDatlist",currentCity);
   
@@ -207,6 +209,9 @@ Template.homepageBanner.events({
     if(e.keyCode === 13){
       $('#changeCityModal').modal('hide');
     }
+    $('#changeCityModal').modal('hide');
+    $('.modal-backdrop').hide();
+
     var text=$('#getCity').val().trim();
 
     if(!text){

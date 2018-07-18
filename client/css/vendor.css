@@ -1798,12 +1798,12 @@ color:#fff
 
 .vEnqUserAdjGreen {
 position:relative;
-top:5px;
+top:0px;
 color:#43c50f!important;
 transform:rotateY(180deg);
 cursor:pointer;
 background:#fff;
-padding:2px
+padding:1px;
 }
 
 .restoreArchivei {
@@ -3614,6 +3614,7 @@ color:#f89b1c
     padding: 20px;
     font-size: 20px;
     box-shadow: 1px 2px 1px 1px #ccc;
+    font-family:'PROXIMANOVA-REGULAR'; 
 }
 
 .userSavedOffer {

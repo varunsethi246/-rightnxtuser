@@ -24,6 +24,41 @@ var totalpgno = 1;
 Template.claim.onRendered(function(){
 	Session.set('pgno',1);
 	totalpgno = 1;
+	$('.outerPaginationDiv').find('input').val('');
+	$('.outerPaginationDiv').find('input').removeClass('active');
+	$('#claimBusiness').val('');
+	$('.claimRow').hide();
+	$(".visible-lg").removeClass("claimlg");
+	$(".visible-md").removeClass("claimmd");
+	$(".visible-sm").removeClass("claimsm");
+	$(".visible-xs").removeClass("claimxs");
+	$(window).scroll(function() {
+	    if ($(document).scrollTop() > 25) {
+	      $(".visible-lg").addClass("claimlg");
+	      $(".visible-md").addClass("claimmd");
+	      $(".visible-sm").addClass("claimsm");
+	      $(".visible-xs").addClass("claimxs");
+	    } else {
+	   	  $(".visible-lg").removeClass("claimlg");
+	      $(".visible-md").removeClass("claimmd");
+	      $(".visible-sm").removeClass("claimsm");
+	      $(".visible-xs").removeClass("claimxs");
+	    }
+  	});
+	Session.set('idVal','');
+	Session.set('idGVal','');
+	var city = FlowRouter.getParam('city');
+    if(city){
+		Session.set("claimSelectedCity",city);
+		$('.claimUserCity').html(city);
+    }else if(Session.get("rxtNxtCityDatlist")){
+		Session.set("claimSelectedCity",Session.get("rxtNxtCityDatlist"));
+		$('.claimUserCity').html(Session.get("rxtNxtCityDatlist"));
+    }else{
+		Session.set("claimSelectedCity",'Pune');
+		$('.claimUserCity').html('Pune');
+	}
+	// Session.set('pgno','');
 });
 
 Template.claim.helpers({ 
@@ -210,35 +245,19 @@ Template.alreadyClaimed.helpers({
 	}
 });
 
-
-Template.claim.onRendered(function(){
-	$(".visible-lg").removeClass("claimlg");
-	$(".visible-md").removeClass("claimmd");
-	$(".visible-sm").removeClass("claimsm");
-	$(".visible-xs").removeClass("claimxs");
-	$(window).scroll(function() {
-	    if ($(document).scrollTop() > 25) {
-	      $(".visible-lg").addClass("claimlg");
-	      $(".visible-md").addClass("claimmd");
-	      $(".visible-sm").addClass("claimsm");
-	      $(".visible-xs").addClass("claimxs");
-	    } else {
-	   	  $(".visible-lg").removeClass("claimlg");
-	      $(".visible-md").removeClass("claimmd");
-	      $(".visible-sm").removeClass("claimsm");
-	      $(".visible-xs").removeClass("claimxs");
-	    }
-  	});
-	Session.set('idVal','');
-	Session.set('idGVal','');
-	Session.set("claimSelectedCity",'Pune');
-	
-});
-
 Template.claim.events({
+	'click .clearValue':function(event){
+		event.preventDefault();
+		$('#claimOtps').val('');
+		$('#alternatenmbers').val('');
+	},
 	"keyup #claimBusiness": _.throttle(function(e) {
 		$('.footer-row').removeClass("hidden-lg");
-		var claimSearchCity = $("#getClaimCity").val();
+	    if(Session.get("claimSelectedCity")){
+	    	var claimSearchCity = Session.get("claimSelectedCity");
+	    }else{
+			var claimSearchCity = 'Pune';
+	    }
 		var claimSearchArea = $("#getAreaClaim").val();
     var text = $(e.target).val().trim();
     var searchBusinessText = claimSearchCity + '|' + claimSearchArea + '|' + text;
@@ -300,10 +319,23 @@ Template.claim.events({
 	},
 
 	'change #getClaimCity': function(event){
+	    $('.claimRow').hide();
+		$('.outerPaginationDiv').find('input').val('');
+		$('.outerPaginationDiv').find('input').removeClass('active');
+		$('#claimBusiness').val('');
+		$('.footer-row').addClass("hidden-lg");
+
 	    var selectedCityClaim = event.currentTarget.value;
 	    var id = selectedCityClaim.trim();
-	    Session.set("claimSelectedCity",id);
-	    $('.claimUserCity').text(id)
+	    var city = FlowRouter.getParam('city');
+	    if(city){
+	    	FlowRouter.go('/claim/'+id)
+			Session.set("claimSelectedCity",id);
+			$('.claimUserCity').text(id);
+	    }else{
+	    	Session.set("claimSelectedCity",id);
+	    	$('.claimUserCity').text(id);
+	    }
 	    $('#changeCityModal').modal('hide');
 	  },
 	'click .reclaim' : function(event){
@@ -500,81 +532,94 @@ Template.claimOtp.events({
 		var id = $(event.target).parent().parent().find('input[name = "claimName"]').val();
 		var businessObj = Business.findOne({'_id': id});
 		var typedOtp = $(event.target).siblings().val();
-		if(businessObj){
-			var savedOtp = businessObj.otp.otp;						
-			if(typedOtp == savedOtp){
-				Meteor.call('updateOwnerID',id,savedOtp,
-				function(error,result){
-					if(error){
-						Bert.alert(error.reason,"danger","growl-top-right");
-					}else{
-						// Bert.alert('Entered OTP matches with existing OTP.','success',"growl-top-right");
-						$('.modal-backdrop').hide();
-						// FlowRouter.go('/addNewBusiness/businessInfo');
-						FlowRouter.go('/aboutBusiness/:businessLink',{'businessLink':businessObj.businessLink});
-					}
-				});
-			}else{
-				Bert.alert('Entered OTP does not matches with existing OTP.','danger','growl-top-right'); 
+		if(typedOtp){
+			if(businessObj){
+				var savedOtp = businessObj.otp.otp;						
+				if(typedOtp == savedOtp){
+					Meteor.call('updateOwnerID',id,savedOtp,
+					function(error,result){
+						if(error){
+							Bert.alert(error.reason,"danger","growl-top-right");
+						}else{
+							// Bert.alert('Entered OTP matches with existing OTP.','success',"growl-top-right");
+							$('.modal-backdrop').hide();
+							// FlowRouter.go('/addNewBusiness/businessInfo');
+							FlowRouter.go('/aboutBusiness/:businessLink',{'businessLink':businessObj.businessLink});
+						}
+					});
+				}else{
+					Bert.alert('Entered OTP does not matches with existing OTP.','danger','growl-top-right'); 
+				}
 			}
+		}else{
+			Bert.alert('Please enter the OTP.','danger','growl-top-right');
 		}
 	},
 	'click .callBkbtn' : function(event){
 		event.preventDefault();
 		var id = event.currentTarget.id;
 		var currentuser = Meteor.userId();
-		console.log('currentuser :' ,currentuser);
+		// console.log('currentuser :' ,currentuser);
 		var businessId = Session.get("idGVal");
 		var Alternate  = $('#alternatenmbers').val();
-		console.log('Alternate',Alternate);
-		console.log('businessId: ',businessId);
-		var businessName = Business.findOne({"_id":businessId});
-		if(businessName){
-			var name 			= businessName.ownerFullName;
-			var businessTitle 	= businessName.businessTitle;
-		}//businessName
-		console.log('businessName: ',businessName);
-		var newdate = new Date();
-		var currentdate = moment(newdate).format('DD/MM/YYYY');
-		var userData  = Meteor.users.findOne({'roles':'admin'});
-        if(userData){
-            var adminID = userData._id;
-            var msgvariable = {
-				'[vendorname]' 		: name,
-				'[date]' 			: currentdate,
-	           	'[businessname]'	: businessTitle,
-	           	'[AlternateNumber]' : Alternate,
-	       	};
+		// console.log('Alternate',Alternate);
+		// console.log('businessId: ',businessId);
+		if(Alternate){
+			if(Alternate.match(/^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$/)){
+				var businessName = Business.findOne({"_id":businessId});
+				if(businessName){
+					var name 			= businessName.ownerFullName;
+					var businessTitle 	= businessName.businessTitle;
+				}//businessName
+				// console.log('businessName: ',businessName);
+				var newdate = new Date();
+				var currentdate = moment(newdate).format('DD/MM/YYYY');
+				var userData  = Meteor.users.findOne({'roles':'admin'});
+		        if(userData){
+		            var adminID = userData._id;
+		            var msgvariable = {
+						'[vendorname]' 		: name,
+						'[date]' 			: currentdate,
+			           	'[businessname]'	: businessTitle,
+			           	'[AlternateNumber]' : Alternate,
+			       	};
 
 
-			var inputObj = {
-				from         : adminID,
-			    to           : adminID,
-			    templateName : 'Claim',
-			    variables    : msgvariable,
+					var inputObj = {
+						from         : adminID,
+					    to           : adminID,
+					    templateName : 'Claim',
+					    variables    : msgvariable,
+					}
+
+					sendMailNotification(inputObj);
+
+					var inputObj = {
+					    to           : adminID,
+					    templateName : 'Claim',
+					    variables    : msgvariable,
+					} 
+
+					sendInAppNotification(inputObj); 
+
+					// var inputObj = {
+			  //           roles       : 'admin',
+			  //           to          : adminID,
+			  //           templateName: 'Claim',
+			  //           OrderId     : id,
+			  //       }
+
+			  //       sendMailnNotif(inputObj); 
+			        $('#claimLoginModal').modal('hide');
+			        $('#claimOtps').val('');
+					$('#alternatenmbers').val('');
+			    }//userData 
+			}else{
+				Bert.alert('Please enter the valid mobile number.','danger','growl-top-right');
 			}
-
-			sendMailNotification(inputObj);
-
-			var inputObj = {
-			    to           : adminID,
-			    templateName : 'Claim',
-			    variables    : msgvariable,
-			} 
-
-			sendInAppNotification(inputObj); 
-
-			// var inputObj = {
-	  //           roles       : 'admin',
-	  //           to          : adminID,
-	  //           templateName: 'Claim',
-	  //           OrderId     : id,
-	  //       }
-
-	  //       sendMailnNotif(inputObj); 
-	        $('#claimLoginModal').modal('hide');
-	        
-	    }//userData 
+		}else{
+			Bert.alert('Please enter the mobile number.','danger','growl-top-right');
+		}
 	},
 });
 
