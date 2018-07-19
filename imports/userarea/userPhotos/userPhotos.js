@@ -136,7 +136,7 @@ Template.userPhotos.events({
 	'click .photoDeleteBtn' : function(event){
 		event.preventDefault();
 		if(checked.length == 0){
-			Bert.alert('Please slect the photo by clicking on delete icon.','danger','growl-top-right');	
+			Bert.alert('Please select the photo by clicking on delete icon.','danger','growl-top-right');	
 			$(event.target).removeAttr('data-target');
 		}else{
 			$(event.target).attr('data-target',"#userModal");
@@ -176,6 +176,7 @@ Template.userPhotos.events({
 	},
 	'click .likeIcn': function(event){
 		var id = $(event.target).attr("id");
+		console.log('id === >',id);
 		var imgClass = ($(event.target).parent().attr("class")).split(' ');
 		if(id){
 			Meteor.call('insertUserImgLikes',id,imgClass[1],
@@ -183,7 +184,7 @@ Template.userPhotos.events({
 					if(error){
 						Bert.alert('Some error occured while liking this page!','danger','growl-top-right','fa-remove');
 					}else{
-						// Bert.alert('Thanks for Liking our business!','success','growl-top-right','fa-check');
+						Bert.alert('Thanks for Liking.','success','growl-top-right','fa-check');
 					}
 				}
 			);

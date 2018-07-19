@@ -123,7 +123,7 @@ Template.header.helpers({
 	showElement(){
 		var currentUrl = FlowRouter.current().path;
 		var city = FlowRouter.getParam('city');
-		if(currentUrl == '/' || currentUrl == '/claim' || city){
+		if(currentUrl == '/' || currentUrl == '/claim' || currentUrl == '/claim/'+city){
 			return false;
 		}else{
 			return true;
@@ -135,7 +135,7 @@ Template.generalHeader.helpers({
 	showElement(){
 		var currentUrl = FlowRouter.current().path;
 		var city = FlowRouter.getParam('city');
-		if(currentUrl == '/' || currentUrl == '/claim' || city){
+		if(currentUrl == '/' || currentUrl == '/claim' || currentUrl == '/claim/'+city){
 			return false;
 		}else{
 			return true;

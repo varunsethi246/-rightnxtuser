@@ -74,7 +74,7 @@ if(s3Data)
                         // We use Random.id() instead of real file's _id
                         // to secure files from reverse engineering on the AWS client
                         const filePath = 'files/' + (Random.id()) + '-' + version + '.' + fileRef.extension;
-                        console.log("filePath: ", filePath);
+                        // console.log("filePath: ", filePath);
 
                         // Create the AWS:S3 object.
                         // Feel free to change the storage class from, see the documentation,
@@ -97,7 +97,7 @@ if(s3Data)
                                     // Update FilesCollection with link to the file at AWS
                                     const upd = { $set: {} };
                                     upd['$set']['versions.' + version + '.meta.pipePath'] = filePath;
-                                    console.log("upd: ", upd);
+                                    // console.log("upd: ", upd);
 
                                     this.collection.update({
                                         _id: fileRef._id
@@ -163,7 +163,7 @@ if(s3Data)
                         const fileColl = this;
                         s3.getObject(opts, function(error) {
                             if (error) {
-                                console.error(error);
+                                // console.error(error);
                                 if (!http.response.finished) {
                                     http.response.end();
                                 }
