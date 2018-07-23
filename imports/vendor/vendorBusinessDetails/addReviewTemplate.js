@@ -188,7 +188,7 @@ Template.addReviewTemplate.events({
 			"reviewComment" 		: event.target.review.value,
 			"tagedFriends"      : tagedFriendsList,
 		};
-
+		console.log('rating :', rating);	
 		if(rating == 0){
 			$('.passwordWrongSpan').text("Please rate the business before submitting the review!");
       		$('.passwordWrongSpan').addClass('passwordWrongWar');

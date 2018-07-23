@@ -37,6 +37,7 @@ Template.userRatings.helpers({
 			// console.log(businessRatings);
 			for(i=0; i<businessRatings.length; i++){
 				var businessLink = businessRatings[i].businessLink;
+				console.log('businessLink :',businessLink);
 				var businessObj = Business.findOne({"businessLink":businessLink, "status":'active'});
 				
 				if(businessObj){
@@ -62,7 +63,7 @@ Template.userRatings.helpers({
 					useridArr.push(businessRatings[i]);
 				}// businessRatings
 			}// i
-			
+			console.log('businessLink :',businessLink);
 			return useridArr;	
 		}
 	},

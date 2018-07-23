@@ -335,7 +335,9 @@ Template.businessEventIcons.events({
 					}
 					sendPageShareMail(inputObj);
 					$('#share_page3').modal('hide');
-					
+					// console.log('inputObj :',inputObj);
+					Bert.alert('Business page shared successfully !','success','growl-top-right');
+
 				}
 				
 				//============================================================

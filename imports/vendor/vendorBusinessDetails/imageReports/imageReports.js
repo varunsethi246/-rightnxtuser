@@ -600,6 +600,7 @@ Template.imageReports.events({
 
 	'click .likeModalIcon': function(event){
 		event.preventDefault();
+		// console.log('click');
 		var businessLink = $(event.target).parent().attr('id');
 
 		if($("#likeimage").hasClass('inactivelikeImg')){
@@ -615,6 +616,7 @@ Template.imageReports.events({
 						'businessLink' 			: businessLink,
 						'LikedImage'			: picId,
 					}
+					// console.log('formValues :',formValues);
 				// if(Meteor.userId()){
 					Meteor.call('insertBussImgLikes',formValues,'active',
 						function(error,result){

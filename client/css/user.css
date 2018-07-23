@@ -207,7 +207,9 @@ text-decoration:none!important;
 color:#4e4f51;
 font-family:'PROXIMANOVA-REGULAR'
 }
-
+.rightBtn.prfSetting a{
+	box-shadow: 1px 1px 1px #ccc;
+}
 .collapseMenuBusiness {
 background:#f89b1c;
 border-color:#f89b1c;
@@ -751,6 +753,9 @@ text-align:center;
 text-decoration:none;
 color:#4e4f51;
 font-family:'PROXIMANOVA-REGULAR'
+}
+.rightBtn.prfSetting a{
+	    box-shadow: 1px 1px 1px #ccc;
 }
 
 .timeLineSetting {
@@ -2941,7 +2946,10 @@ height:25px;
 line-height:25px;
 font-size:12px;
 color:#b2b2b2;
-text-align:center
+text-align:center;
+}
+.userHover{
+	box-shadow: 1px 1px 1px #ccc;
 }
 
 .userFollow:hover {
@@ -4250,4 +4258,34 @@ padding-left: 48px;
 }
 .rightBtn .timeLineFollowBtn:hover {
 	color: white;
+}
+.commentOne{
+	cursor: pointer;
+}
+.commentOne:hover div.commentTxt p{
+    color: orange;
+}
+.commentOne:hover div.commentTxt{
+    border: 1px solid orange;
+}
+.commentOne:hover div#comment{
+	    border: 1px solid orange;
+}
+.commentOne:hover div#comment i{
+	    color: #f89b1c;
+}
+.likeHover{
+	cursor: pointer;
+}
+.likeHover:hover div.like p{
+	color: orange;
+}
+.likeHover:hover div.like{
+	border: 1px solid orange;
+}
+.likeHover:hover div.userHeart{
+	border: 1px solid orange;
+}
+.likeHover:hover div.userHeart i{
+	    color: #f89b1c;
 }

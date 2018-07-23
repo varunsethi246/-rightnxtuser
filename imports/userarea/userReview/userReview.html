@@ -244,19 +244,23 @@
             </div>
           </div> -->
 
-          <div class="all-comment userRevAllComment col-lg-12 col-sm-12 col-xs-12">    
-            <div class="like col-lg-2 col-sm-2 col-xs-3">
-              <p>{{reviewLikeCount}} Like </p>
+          <div class="all-comment userRevAllComment col-lg-12 col-sm-12 col-xs-12">
+            <div class="likeHover"> 
+              <div class="like col-lg-2 col-sm-2 col-xs-3">
+                <p>{{reviewLikeCount}} Like </p>
+              </div>
+              <div class="heart col-lg-1 col-sm-1 col-xs-1 {{likeClass}} userHeart " id="like-{{_id}}">
+                <i class="fa fa-heart" aria-hidden="true"></i>
+              </div>
             </div>
-            <div class="heart col-lg-1 col-sm-1 col-xs-1 {{likeClass}} userHeart " id="like-{{_id}}">
-              <i class="fa fa-heart" aria-hidden="true"></i>
-            </div>
-            <div class="commentTxt col-lg-3 col-sm-3 col-xs-4">
-              <p>{{userCommentsCount}} Comment </p>
-            </div>
-            <div class="comment col-lg-1 col-sm-1 col-xs-1" id="comment">
-              <i class="fa fa-comment" aria-hidden="true"></i>
-            </div>
+            <div class="commentOne">
+              <div class="commentTxt col-lg-3 col-sm-3 col-xs-4">
+                <p>{{userCommentsCount}} Comment </p>
+              </div>
+              <div class="comment col-lg-1 col-sm-1 col-xs-1" id="comment">
+                <i class="fa fa-comment" aria-hidden="true"></i>
+              </div>
+            </div>    
             <div class="share_page share-pop col-lg-1 pull-right col-sm-2 col-xs-1" data-toggle="modal" data-target="#userReviewShare">
               <i class="fa fa-share" aria-hidden="true"></i>
             </div>

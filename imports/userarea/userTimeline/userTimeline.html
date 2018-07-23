@@ -200,17 +200,21 @@
           </div> -->
 
           <div class="all-comment col-lg-12 col-xs-12 col-md-12">
-            <div class="like col-lg-2 col-xs-3 col-md-2">
-              <p>{{reviewLikeCount}}  Like </p>
+            <div class="likeHover">
+              <div class="like col-lg-2 col-xs-3 col-md-2">
+                <p>{{reviewLikeCount}}  Like </p>
+              </div>
+              <div class="heart col-lg-1 col-xs-1 col-md-1 {{likeClass}} userHeart" id="like-{{_id}}">
+                <i class="fa fa-heart" aria-hidden="true"></i>
+              </div>
             </div>
-            <div class="heart col-lg-1 col-xs-1 col-md-1 {{likeClass}} userHeart" id="like-{{_id}}">
-              <i class="fa fa-heart" aria-hidden="true"></i>
-            </div>
-            <div class="commentTxt col-lg-3 col-xs-4 col-md-3">
-              <p>{{userCommentsCount}} Comment </p>
-            </div>
-            <div class="comment col-lg-1 col-xs-1 col-md-1" id="comment">
-              <i class="fa fa-comment" aria-hidden="true"></i>
+            <div class="commentOne">
+              <div class="commentTxt col-lg-3 col-xs-4 col-md-3">
+                <p>{{userCommentsCount}} Comment </p>
+              </div>
+              <div class="comment col-lg-1 col-xs-1 col-md-1" id="comment">
+                <i class="fa fa-comment" aria-hidden="true"></i>
+              </div>
             </div>
             <div class="share_page share-pop col-lg-1 col-lg-offset-3 pull-right col-xs-1 col-md-1" data-toggle="modal" data-target="#Timelineshare" title="Share">
               <i class="fa fa-share" aria-hidden="true"></i>

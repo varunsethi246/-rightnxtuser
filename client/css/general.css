@@ -2527,7 +2527,10 @@ padding-left:0
 
 .userRevBussVendor > .userReviews {
 padding:23px!important;
-margin-bottom:10px!important
+margin-bottom:10px!important;
+background: #fff;
+box-shadow: 1px 1px 8px #bbb;
+border-radius: 5px;
 }
 
 .bussMapContainer {

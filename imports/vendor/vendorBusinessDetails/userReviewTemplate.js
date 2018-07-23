@@ -42,6 +42,7 @@ Template.userReviewTemplate.helpers({
 
 
 Template.userReviewTemplate.events({
+
 	'keydown .editReviewOneTime':function(event){
       setTimeout(function() {
          var comment = $('.editReviewOneTime').val();
@@ -68,6 +69,7 @@ Template.userReviewTemplate.events({
 		// To Change Buttons
 		$(event.currentTarget).parent().css('display','none');
 		$(event.currentTarget).parent().siblings('showLessCommnt').css('display','block');
+		$('.userCommentOne').removeClass('userCommentWrapper');
 	},
 
 

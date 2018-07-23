@@ -33,7 +33,7 @@
 					    <h5>{{profile.aboutMe}}</h5>
 					    {{#if profile.city}}<h5><img src="../images/locPng.png"> &nbsp; {{profile.city}}</h5>{{/if}}
 					    {{#if isInRole 'user'}}
-						    <div class="userFollow col-lg-2 {{followButton}} {{followButtonClass}}" id="follow-{{_id}}">
+						    <div class="userFollow userHover col-lg-2 {{followButton}} {{followButtonClass}}" id="follow-{{_id}}">
 						    	{{followButtonText}}
 						    </div>
 						{{/if}}
