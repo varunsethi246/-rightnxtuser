@@ -299,15 +299,15 @@ ResetPasswordFunc= function () {
 // 	})
 // }
 
-// ViewAdminNotifsFunc= function () {
-// 	console.log('function');    
-// 	import('/imports/admin/commonAdmin/commonAdmin.js').then(function (handle) {        
-// 		handle.ViewAllNotifsForm();    
-// 	})
-// 	.then(function(){
-// 		$("#inject-loader-wrapper").fadeOut(1500, function() { $(this).remove(); });
-// 	})
-// }
+ViewAdminNotifsFunc= function () {
+	console.log('function');    
+	import('/imports/admin/commonAdmin/commonAdmin.js').then(function (handle) {        
+		handle.ViewAllNotifsForm();    
+	})
+	.then(function(){
+		$("#inject-loader-wrapper").fadeOut(1500, function() { $(this).remove(); });
+	})
+}
 
 // homePageBannerFunc = function () { 
 // 	import('/imports/admin/homePageBanner/homePageBanner.js').then(function (handle) {        

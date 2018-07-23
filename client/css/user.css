@@ -801,7 +801,8 @@ color:#fff
 }
 
 .userSidebarDiv .usersidebarUl .active {
-background:#f89b1c
+background:#f89b1c;
+box-shadow: 1px 1px 1px #905300;
 }
 
 .userSidebarDiv .usersidebarUl .active span {
@@ -1141,7 +1142,8 @@ line-height:38px;
 background:#6cc233;
 text-align:center;
 cursor:pointer;
-margin-top:7px
+margin-top:7px;
+    box-shadow: 4px 4px 6px #8b9c7f;
 }
 
 /*.suggestedToFollow {
@@ -4288,4 +4290,7 @@ padding-left: 48px;
 }
 .likeHover:hover div.userHeart i{
 	    color: #f89b1c;
+}
+.useraddbusiness{
+    cursor: pointer;
 }

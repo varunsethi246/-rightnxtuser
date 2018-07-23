@@ -4,7 +4,7 @@ import { Bert } from 'meteor/themeteorchef:bert';
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 import { BizVideo } from '/imports/videoUploadClient/videoUpload.js';
-import { BusinessMenuUpload } from '/client/cfsjs/businessMenu.js';
+// import { BusinessMenuUpload } from '/client/cfsjs/businessMenu.js';
 import { Categories } from '/imports/api/masterData/categoriesMaster.js';
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import { BusinessImage } from '/imports/videoUploadClient/businessImageClient.js';

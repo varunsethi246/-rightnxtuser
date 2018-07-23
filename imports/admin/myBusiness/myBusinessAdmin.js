@@ -24,7 +24,7 @@ import { State } from '../../api/masterData/stateMaster.js';
 import { City } from '../../api/masterData/cityMaster.js';
 import { Area } from '../../api/masterData/areaMaster.js';
 import { users } from '../../api/userMasterAPI.js';
-import { BusinessImgUploadS3 } from '/client/cfsjs/businessImage.js';
+// import { BusinessImgUploadS3 } from '/client/cfsjs/businessImage.js';
 import { BusinessMenuUpload } from '/client/cfsjs/businessMenu.js';
 // import { BusinessVideoUpload } from '/client/cfsjs/businessVideo.js';
 import { Template } from 'meteor/templating';

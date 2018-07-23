@@ -16,8 +16,29 @@
 							<ul class="hoverme">
 								<li class="clickAddNewBusi">
 									<!-- <a href="/claim/{{currentCity}}" ><i class="fa fa-check-circle" aria-hidden="true"></i>Add a Business</a> -->
+									{{#if isInRole 'Vendor'}}
 									<a href="/claim" ><i class="fa fa-check-circle" aria-hidden="true"></i>Add a Business</a>
+									{{else}}
+									<a  class="useraddbusiness" data-toggle="modal" data-target="#addbusineuser"><i class="fa fa-check-circle" aria-hidden="true"></i>Add a Business</a>
+									<div class="modal fade modaldelete" id="addbusineuser" role="dialog">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header delete-close editofferModal1">
+									        		<a href="#" data-dismiss="modal" aria-hidden="true" class="close pull-right">
+									        			<i class="fa fa-times-circle-o fa-lg" aria-hidden="true"></i>
+									        		</a>
+									   			</div>
+									            <div class="modal-body">
+								          			<p>To add business please login as vendor.</p>
+								          			
+									            </div>
+									        </div>
+										</div>
+									</div>
+									{{/if}}
 								</li>
+
+
 								<li>
 									<!-- <a href="/merchant-guidelines/{{currentCity}}"><i class="fa fa-check-circle" aria-hidden="true"></i>Merchant guidelines</a> -->
 									<a href="/webpage/merchant-guidelines"><i class="fa fa-check-circle" aria-hidden="true"></i>Merchant Guidelines</a>

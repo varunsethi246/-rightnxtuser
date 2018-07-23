@@ -313,6 +313,7 @@ Template.userProfile.events({
 							}
 
 							sendMailNotification(inputObj);
+							$('.followII').css('display','block');
 	                	}//userVar
 				}
 			});
@@ -351,6 +352,7 @@ Template.userProfile.events({
 						    variables    : msgvariable,
 						}
 						sendMailNotification(inputObj);
+						$('.followII').css('display','none');
                 	}//userVar
               	}//followData 
 			}
