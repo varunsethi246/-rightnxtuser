@@ -32,7 +32,9 @@ if (Meteor.isServer) {
 	    return BeenThere.find({});  		
 	});
 
-   
+   Meteor.publish('VendorBeenThereCount', function(businessLink) {
+		Counts.publish(this, 'VendorBeenThereCount', BeenThere.find({'businessStatus':'active','businessLink':businessLink}));
+	});
 }
 
 Meteor.methods({

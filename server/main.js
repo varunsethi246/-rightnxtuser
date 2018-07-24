@@ -122,7 +122,9 @@ Meteor.publish('resumeImage', function() {
  // Meteor.publish('followUser', function() {
  //    return FollowUser.find({});
  //  });
-
+ Meteor.publish('followerCounts', function() {
+      Counts.publish(this, 'followerCounts', FollowUser.find({}));
+  });
   // Meteor.publish('followerCounts', function() {
   //     this.userId;
   //     console.log('this.userId :',this.userId);

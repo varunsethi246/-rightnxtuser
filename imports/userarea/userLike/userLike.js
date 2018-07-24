@@ -51,7 +51,7 @@ Template.userLike.helpers({
 			for(i=0;i<likesData.length;i++){
 			var bussdata = Business.findOne({'_id':likesData[i].businessId,"status":'active'});
 				if(bussdata){
-					// console.log('bussdata ', bussdata);
+					console.log('bussdata ', bussdata);
 					var businessName	 = bussdata.ownerFullName;
 					var businessArea	 = bussdata.businessArea;
 					var businessLink	 = bussdata.businessLink;
