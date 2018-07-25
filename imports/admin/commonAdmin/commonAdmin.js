@@ -134,7 +134,7 @@ Template.ViewAllNotif.helpers({
             })
           }//i
         }//notifDetails
-        console.log('notifArray :',notifArray);
+        // console.log('notifArray :',notifArray);
       return notifArray;
   },
  //  'AllnotifCounts':function(){
