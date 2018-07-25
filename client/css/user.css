@@ -4294,3 +4294,15 @@ padding-left: 48px;
 .useraddbusiness{
     cursor: pointer;
 }
+.btnEffect{
+    height: 50px;
+    width: 100%;
+    border-radius: 0px!important;
+    margin-bottom: 10px;
+}
+
+.tabPills{
+        border-top: 0px solid #000!important;
+    text-align: center;
+    border: 0px !important;
+}
