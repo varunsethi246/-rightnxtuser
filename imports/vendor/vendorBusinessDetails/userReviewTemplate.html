@@ -90,12 +90,12 @@
 					<div class="reviewImgInputDiv">
 						<div class="tagedFrndList">
 							  {{#each getFrndsList.resultFrnds}} 
-								<span class="bunchTagFrnd bunchTagFrndTagged">
+								<span class="bunchTagFrnd bunchTagFrndTagged tagfriendOne-{{selectedUserId}}">
 									<span className="">
 										<img src="{{userImage}}" alt="" class="img img-circle userPhotReviewList">
 									</span>	
 									{{selectedUser}}
-									<span class="bunchTagFrndCross" data-userId = "{{selectedUserId}}">x</span>
+									<span class="bunchTagFrndCross " data-userId = "{{selectedUserId}}">x</span>
 								</span>
 							{{/each}}
 						</div>

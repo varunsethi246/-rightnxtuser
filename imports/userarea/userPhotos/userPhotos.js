@@ -176,7 +176,7 @@ Template.userPhotos.events({
 	},
 	'click .likeIcn': function(event){
 		var id = $(event.target).attr("id");
-		console.log('id === >',id);
+		// console.log('id === >',id);
 		var imgClass = ($(event.target).parent().attr("class")).split(' ');
 		if(id){
 			Meteor.call('insertUserImgLikes',id,imgClass[1],

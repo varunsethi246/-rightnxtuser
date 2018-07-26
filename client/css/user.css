@@ -3045,8 +3045,10 @@ margin:0
 }
 
 .businessVendorOfferText {
-border:1px solid #ccc;
-margin-top:15px
+border-radius: 3px;
+border: 1px solid #ccc;
+margin-top: 15px;
+box-shadow: 1px 1px 2px #ccc;
 }
 
 .userOfferText {
@@ -3960,6 +3962,7 @@ font-weight:600
 }
 
 .notifyreportWrapper {
+border:1px solid #ccc;
 width:100%;
 height:auto;
 margin:auto;

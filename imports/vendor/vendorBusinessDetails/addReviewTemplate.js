@@ -467,6 +467,7 @@ Template.addReviewTemplate.events({
 	// },
 	
 	'click .publishReview': function(event){
+
 		var busLink = FlowRouter.getParam("businessurl");
 		if(Meteor.userId()){
 		var userReview = Review.findOne({"userId":Meteor.userId(),"businessLink":busLink});

@@ -18,13 +18,33 @@ $(document).on("click",function(){
 	$('.activeDownListFlag').hide();
 	// $('.passwordWrongSpan').removeClass('reviewWrngErrorMsg');
 });
+
 $(document).on('click',function(){
 	$(".loginClosenew").click(function() {
 	    $('.loginEmail').val('');
 	    $('.loginPassword').val('');
 	});
 });
+// $(document).mouseup(function(e) 
+// {
+//     var container = $(".passwordWrongSpan");
 
+//     // if the target of the click isn't the container nor a descendant of the container
+//     if (container.is(e.target) && !container.has(e.target).length === 0) 
+//     {
+//         container.hide();
+//     }
+// });
+// $("body").click
+// (
+//   function(e)
+//   {
+//     if(e.target.className !== $('#publish3'))
+//     {
+//       $(".passwordWrongSpan").hide();
+//     }
+//   }
+// );
 Meteor.startup(function () {
   TimeSync.loggingEnabled = false;
 
