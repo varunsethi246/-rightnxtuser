@@ -4306,3 +4306,9 @@ padding-left: 48px;
     text-align: center;
     border: 0px !important;
 }
+input[type="file"]#reviewImgfilesEdits,input[type="file"]#reviewImgfileEdits,input[type="file"]#reviewImgfilesEdit{
+position: relative;
+    width: 100%;
+    top: -25px;
+    left: -15px;
+}

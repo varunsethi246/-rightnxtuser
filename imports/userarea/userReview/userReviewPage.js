@@ -1999,6 +1999,7 @@ Template.userReview.events({
 		$('.tagedFrndDivPre-'+id).css('display','none');
 		$('.userRevComsEdit'+id).css('display','block');
 		$('.tagFrndUlFrieldList').css('display','none');
+		$('#reviewImglistsEdits').empty();
 		
 
 		var userData = Review.findOne({"_id": id});

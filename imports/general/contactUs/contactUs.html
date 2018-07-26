@@ -46,7 +46,26 @@
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 info-div contact-form">
 					<h3>RightNxt for Business</h3>
 					<p>Own a business? See how you can get the most out of RightNxt.</p>
-					<a href="/claim"><button type="submit" class="btn btn-default">Learn More</button></a>
+					{{#if isInRole 'Vendor'}}
+						<a href="/claim"><button type="submit" class="btn btn-default">Learn More</button></a>
+					{{else}}
+						<a  class="useraddbusiness" data-toggle="modal" data-target="#addbusineuser"><i class="fa fa-check-circle" aria-hidden="true"></i>Add a Business</a>
+						<div class="modal fade modaldelete" id="addbusineuser" role="dialog">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header delete-close editofferModal1">
+						        		<a href="#" data-dismiss="modal" aria-hidden="true" class="close pull-right">
+						        			<i class="fa fa-times-circle-o fa-lg" aria-hidden="true"></i>
+						        		</a>
+						   			</div>
+						            <div class="modal-body">
+					          			<p>To add a business please login as vendor or contact admin.</p>
+					          			
+						            </div>
+						        </div>
+							</div>
+						</div>
+					{{/if}}
 					<!-- <a href="/claim/{{getCityName}}"><button type="submit" class="btn btn-default">Learn More</button></a> -->
 				</div>
 			</div>

@@ -1833,6 +1833,8 @@ Template.userTimeline.events({
 		$('.tagFrnd-'+id).css('display','block');
 		$('.tagFrndUlFrieldList').css('display','none');
 		$('.starRatingblock-'+id).css('display','block');
+		$('#reviewImglistEdits').empty();
+
 		
 		
 		var userData = Review.findOne({"_id": id});

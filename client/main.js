@@ -16,6 +16,7 @@ Meteor.startup(() => {
 $(document).on("click",function(){
 	$('.activeDownList').hide();
 	$('.activeDownListFlag').hide();
+	// $('.passwordWrongSpan').removeClass('reviewWrngErrorMsg');
 });
 $(document).on('click',function(){
 	$(".loginClosenew").click(function() {

@@ -1270,6 +1270,8 @@ Template.userReviewTemplate.events({
 		$('.editBoxCommentRev-'+id).css('display','block');
 		// $('#searchFrndsEdit').focus();
 		// $('#searchFrndsEdit').focusout();
+		$('#reviewImglistEdit').empty();
+		
 
 		// $('.editBoxCommentRev-'+id).children('.editReviewTextArea').focus();
 
@@ -1530,6 +1532,7 @@ Template.userReviewTemplate.events({
 	},
 });
 Template.descriptionTabContent.events({
+	
 	'click .loadmore': function(event){
 		event.preventDefault();
 		if(Session.get('loadmore')){			
