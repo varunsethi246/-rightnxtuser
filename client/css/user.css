@@ -732,7 +732,7 @@ color:#4e4f51;
 font-size:14px;
 padding:8px 0 8px 24px;
 margin:0;
-background:url(../images/locPng.png) no-repeat left center
+background:url(https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/locPng.png) no-repeat left center
 }
 
 .rightBtn {
@@ -3351,7 +3351,9 @@ margin-left:20px
 }
 
 .profileSettingSidebar .profSettingsidebarUl .active {
-background:#f89b1c
+background:#f89b1c;
+    box-shadow: 1px 1px 1px #905300;
+
 }
 
 .profSettingsidebarUl {
@@ -3900,6 +3902,9 @@ color:#f89b1c
 .profSettingsidebarUl li:hover {
 background:#f89b1c;
 /*margin-bottom:2px;*/
+box-shadow: 1px 1px 1px #905300;
+    margin-bottom: 1px;
+    margin-top: 1px;
 /*margin-top:2px*/
 }
 
@@ -3912,7 +3917,9 @@ color:#fff
 }
 
 .profileSettingSidebar .profSettingsidebarUl .active {
-background:#f89b1c
+background:#f89b1c;
+margin-bottom: 1px;
+    margin-top: 1px;
 }
 
 .profileSettingSidebar .profSettingsidebarUl .active span {

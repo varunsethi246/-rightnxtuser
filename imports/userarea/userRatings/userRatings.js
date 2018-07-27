@@ -52,13 +52,13 @@ Template.userRatings.helpers({
 							if(pic){
 								businessRatings[i].businessImages = pic.link();
 							}else{
-								businessRatings[i].businessImages = '/images/rightnxt_image_nocontent.jpg';
+								businessRatings[i].businessImages = 'https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg';
 							}
 						}else{
-							businessRatings[i].businessImages = '/images/rightnxt_image_nocontent.jpg';
+							businessRatings[i].businessImages = 'https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg';
 						}
 					}else{
-						businessRatings[i].businessImages = '/images/rightnxt_image_nocontent.jpg';
+						businessRatings[i].businessImages = 'https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg';
 					}
 					useridArr.push(businessRatings[i]);
 				}// businessRatings

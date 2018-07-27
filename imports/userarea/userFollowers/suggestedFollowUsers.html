@@ -4,7 +4,8 @@
       <ul class="friendL">
       {{#each  userSuggestionData}}
         <li id="{{_id}}">
-          <div class="photoSugg col-lg-2 col-md-1 col-sm-1 col-xs-2"><img src="{{#if UsersuggestionImg}}{{UsersuggestionImg}}{{else}}/users/profile/profile_image_dummy.svg{{/if}}" alt="" class="userImg"></div>
+          <div class="photoSugg col-lg-2 col-md-1 col-sm-1 col-xs-2">
+            <img src="{{#if UsersuggestionImg}}{{UsersuggestionImg}}{{else}}https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/profile_image_dummy.svg{{/if}}" alt="" class="userImg"></div>
             <div class="suggInfoTimeline col-lg-8 col-md-10 col-sm-10 col-xs-8">
                 <h5>{{profile.name}}</h5>
                 <p>{{#with userReviewInfo _id}} {{userSuggestionRev}} {{/with}} Reviews , {{#with userFollowInfo _id}}  {{userSuggestionFol}} {{/with}} Followers</p>
