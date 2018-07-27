@@ -2945,7 +2945,7 @@ padding-right:0
 }
 
 .howitworks {
-margin-top:55%
+margin-top:0%;
 }
 
 .howitworks h1 {
@@ -3241,7 +3241,8 @@ margin-left:30px
 
 .aboutNavbar {
 padding-left:17px;
-padding-right:20px
+padding-right:20px;
+margin-left: 0px;
 }
 
 .comingSoon .h1Div {
@@ -3347,7 +3348,8 @@ margin-top:0!important
 }
 
 .userReviewTempImg ul li img {
-width:75px
+    width: 71.8px;
+    height: 70px;
 }
 
 .busiVendorRightOfferText i {
@@ -3383,7 +3385,7 @@ padding-right:0;
 padding-left:0;
 position:relative;
 top:-105px;
-right:8px
+right:3px;
 }
 
 .dropmenuGen {
@@ -3402,7 +3404,8 @@ padding-right:0
 
 .header-general .form4General {
 padding-right:15px;
-padding-left:15px
+padding-left:15px;
+margin-top: -18px;
 }
 
 .gernalHeaderNavBar {
@@ -3504,6 +3507,45 @@ width:100%!important
 #busiRate .col-lg-12 {
 padding-left:10px
 }
+.squarenotifAngle:before,.squarenotifAngle:after{border-width: 0px!important;}
+.citySearchMheader{height: 120px!important;}
+.logoutRight{margin-right: 0px;margin-top: 25px;box-shadow: 0px 0px 10px #aaa;}
+.right-Carousel i{margin-right: 8px!important;}
+.left-Carousel i{margin-left: 8px!important;}
+.logoNamePhoto{position: absolute;right: 0px;}
+.RevEditBoxTimeline{position: absolute;right: 0px;top: 90px;padding-left: 0px;padding-right: 0px;z-index: 2;}
+.deleEditBox{padding-right: 3px;}
+.revName{padding-right: 0px;}
+.userReplyComent{padding-left: 10px!important;;}
+.userRepName{padding-left: 15px!important;}
+.usercommReplyDate{padding-left: 10px!important;}
+.commentReplyArr{padding-left: 30px!important;}
+.userCommentText,.editBoxComment,.reviewCommCancel{padding-left: 15px!important;}
+.commentReplyInputBox{padding-left: 30px!important;}
+#businessMenuCollapse{padding-left: 0px;padding-right: 0px;}
+#businessMenuCollapse .userMenuItem{margin-left: 0px;padding-left: 15px;}
+.unfollowUserBtn{width: 30%!important;}
+.LoadMore1,.followBox,.takeRating{padding-left: 0px;padding-right: 0px;}
+.followersPaddTop{padding-top: 10px!important;}
+.myRatingOnBuss,.starRatingblock,.bunchTagFrndTagged,.tagedFrndSpans,
+.userRevCommentEditPen,.userRevvCommentDel,.userRevRepEdit,.userRevvReplyDel,
+.commentReplyEditInput{font-family:'PROXIMANOVA-REGULAR';font-size: 12px!important;}
+.reviewImgtext{font-size: 15px;font-family:'PROXIMANOVA-REGULAR';}
+.tagedFrndsTitle{font-family:'PROXIMANOVA-REGULAR';}
+.usercomRevTemtext,.userlike,.commentReplyBox,.reviewReplyCancel{padding-left: 15px!important;}
+.editBoxComment{margin-bottom: 0px!important;z-index: 2}
+.commentReplyBox{padding-right: 0px;border: 0px!important;}
+.commentReplyEditInput{padding-left: 0px!important;}
+.noLeftPaddUser{padding-left: 0px!important;}
+.xsBorderInput{border: 1px solid #ccc;}
+/*.userBusinessRating{padding-left: 5px!important;}*/
+.UserLikesList h4{font-size: 15px;}
+.enqDateMargin,.enqActionMargin{padding-left: 0px!important;}
+.vEnqUserAdj{font-size: 13px!important;}
+.paddUserImgEnq{padding-left: 15px!important;}
+.titleEnqTop{margin-top: 6px;}
+/*.businessVendorOfferText{margin-top: 0px!important;}*/
+.starRatingblock{margin-top: 15px;z-index: 2}
 }
 
 @media screen and (min-width: 992px) and (max-width: 1199px) {
@@ -4013,7 +4055,7 @@ margin-left:0
 }
 
 .top-userNav > .open > .notif-dropdown {
-max-width:200px
+max-width:200px;box-shadow: 0px 0px 10px #aaa;
 }
 
 .notifContent {
@@ -4035,7 +4077,7 @@ top:20px
 @media screen and (min-width:360px) and (max-width:767px) {
 .notifiacationUsers {
 position:absolute;
-left:35%;
+left:36%;
 top:20px
 }
 }
@@ -4258,3 +4300,4 @@ text-align: center
     margin-top: 15px;
 }
 .busiTimeOpenHrs{margin-top: 10px;margin-bottom: 0px;}
+.noPaddingGeneral{padding-right: 0px;padding-left: 0px;}

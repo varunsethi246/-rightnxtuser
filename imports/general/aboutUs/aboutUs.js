@@ -17,7 +17,8 @@ Template.aboutUs.onCreated(function () {
   this.subscribe('notification');
   this.subscribe('currentuser');
   this.subscribe('area');
-  this.subscribe('generalContentURL','about'); 
+  this.subscribe('generalContentUrl','about'); 
+  // this.subscribe('generalContent'); 
   // // Use this.subscribe inside onCreated callback
   // this.subscribe('userfunction');
   // this.subscribe('allCity');
@@ -37,19 +38,14 @@ Template.aboutUs.helpers({
 	welcomeData(){
 		var currentURL = FlowRouter.current().path;
 		var splitUlr = currentURL.split('/');
-		var actualURL = currentURL.substring(1);
 		var welcome = GeneralContent.findOne({"url": splitUlr[1] , "tabName": "COMPANY" , "sectionHeading": "Welcome to RightNxt"});
 		return welcome;
 	},
 
 	visionData(){
 		var currentURL = FlowRouter.current().path;
-		console.log('currentURL :',currentURL);
 		var splitUlr = currentURL.split('/');
-		var actualURL = currentURL.substring(1);
-		// console.log('actualURL :',actualURL);
 		var vision = GeneralContent.findOne({"url": splitUlr[1] , "tabName": "COMPANY" , "sectionHeading": "Our Vision"});
-		// console.log('vision',vision);
 		return vision;
 	},
 

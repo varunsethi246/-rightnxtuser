@@ -66,7 +66,7 @@
               </p>
             {{/if}}
           </div>
-          <div class="editBoxCommentRev-{{_id}} editBoxComment col-lg-11 col-md-11 col-sm-11 col-xs-11 ">
+          <div class="editBoxCommentRev-{{_id}} editBoxComment col-lg-11 col-md-11 col-sm-11 col-xs-12 noLeftPaddUser">
             <textarea class="form-control editReviewTextArea editreviewsOne" rows="5" name="review"  id="{{_id}}" placeholder="at least 140 characters" minlength="140" value="{{reviewComment}}"></textarea>
             <!-- <span class="passwordWrongSpan"></span> -->
             <p class="textRemain">0 / 140</p>
@@ -300,7 +300,7 @@
                 </div>
                 <div class="col-lg-11 col-xs-11 col-md-11 userTimelineCommentText">
                   <div class="">
-                    <div class="col-lg-7 col-xs-8 col-md-6 usercommName">
+                    <div class="col-lg-7 col-xs-7 col-md-6 usercommName">
                       {{#if checkCurrentUser userId}}
                       <div class="col-lg-12 col-xs-12 col-md-6 revName">{{commentUserName}} </div>
                       {{else}}
@@ -310,7 +310,7 @@
                     <div class="col-lg-4 col-xs-4 col-md-6 userCommDt timelineRevDate">   {{userCommentDateAgo}} </div>
                     
                     {{#if userID}}
-                    <div class="dropdown pull-right col-lg-1 col-md-6 col-sm-6 col-xs-4 deleEditBox {{deleEditBlock}}">
+                    <div class="dropdown pull-right col-lg-1 col-md-6 col-sm-6 col-xs-1 deleEditBox {{deleEditBlock}}">
                       <i class="fa fa-ellipsis-h pull-right" data-toggle="dropdown" aria-hidden="true"></i>
                       <ul class="dropdown-menu userRevDeleEdit">
                         <li class="userRevCommentEditPen" id='{{userCommentId}}'>
@@ -339,7 +339,7 @@
                       </div>
                     </div>
                     
-                    <div class="editCommentBox_{{userCommentId}} editBoxComment col-lg-11 col-md-11 col-sm-11 col-xs-11">
+                    <div class="editCommentBox_{{userCommentId}} editBoxComment col-lg-11 col-md-11 col-sm-11 col-xs-12">
                       <input class="editCommentInput" data-commentId="{{userCommentId}}" id="editComment-{{../_id}}" value="{{userComment}}" type="text">
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-2 col-xs-2 reviewCommCancel reviewCommCancel-{{userCommentId}}" id="{{userCommentId}}">
@@ -370,41 +370,60 @@
                   <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 userReplyPic">
                     <img class="replyImg" src="{{replyProfileImgPath}}" />
                   </div>
-                  <div class="col-lg-5 col-md-6 col-sm-6 col-xs-8 userRepName">  {{commentReplyUserName}}</div>
-                  <div class="col-lg-5 col-md-6 col-sm-6 col-xs-4 userCommRepDt usercommReplyDate">   {{commentReplyDateAgo}} </div>
-                  {{#if ../userID}}
-                  <div class="dropdown pull-right col-lg-1 col-md-6 col-sm-6 col-xs-4 deleEditBox commRepEditDel {{repEditBlock}}">
-                    <i class="fa fa-ellipsis-h pull-right" data-toggle="dropdown" aria-hidden="true"></i>
-                    <ul class="dropdown-menu userRevDeleEdit">
-                      <li class="userRevRepEdit" id='{{replyId}}'>
-                        <i class="fa fa-pencil editPen" aria-hidden="true"></i> Edit
-                      </li>
-                      <li class="userRevvReplyDel" data-toggle="modal" data-target="#deleteModal-{{replyId}}">
-                        <i class="fa fa-trash-o deltrash" aria-hidden="true"></i> Delete
-                      </li>
-                    </ul>
-                  </div>
-                  {{/if}}
-                  <div class="modal fade modaldelete" id="deleteModal-{{replyId}}" role="dialog">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header delete-close editofferModal1">
-                          <a href="#" data-dismiss="modal" aria-hidden="true" class="close pull-right"><i class="fa fa-times-circle-o fa-lg" aria-hidden="true"></i></a>
-                        </div>
-                        <div class="modal-body">
-                          <p class="text-center">Are you sure you want to delete this reply?</p>
-                          <div class="body-close">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                            <button type="button" id="{{../../_id}}" data-commentid="{{replyId}}" data-reviewPostedBy="{{../../userId}}" data-businesslink="{{../../businessLink}}" data-cid="{{userCommentID}}" class="btn userReviewReplyDel btn-danger btn-ok delete">Delete</button>
+                  <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 noPaddingGeneral">
+                    <div class="col-lg-5 col-md-6 col-sm-6 col-xs-6 userRepName">  {{commentReplyUserName}}</div>
+                    <div class="col-lg-5 col-md-6 col-sm-6 col-xs-4 userCommRepDt usercommReplyDate">   {{commentReplyDateAgo}} </div>
+                    {{#if ../userID}}
+                    <div class="dropdown pull-right col-lg-1 col-md-6 col-sm-6 col-xs-1 deleEditBox commRepEditDel {{repEditBlock}}">
+                      <i class="fa fa-ellipsis-h pull-right" data-toggle="dropdown" aria-hidden="true"></i>
+                      <ul class="dropdown-menu userRevDeleEdit">
+                        <li class="userRevRepEdit" id='{{replyId}}'>
+                          <i class="fa fa-pencil editPen" aria-hidden="true"></i> Edit
+                        </li>
+                        <li class="userRevvReplyDel" data-toggle="modal" data-target="#deleteModal-{{replyId}}">
+                          <i class="fa fa-trash-o deltrash" aria-hidden="true"></i> Delete
+                        </li>
+                      </ul>
+                    </div>
+                    {{/if}}
+                    <div class="modal fade modaldelete" id="deleteModal-{{replyId}}" role="dialog">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header delete-close editofferModal1">
+                            <a href="#" data-dismiss="modal" aria-hidden="true" class="close pull-right"><i class="fa fa-times-circle-o fa-lg" aria-hidden="true"></i></a>
+                          </div>
+                          <div class="modal-body">
+                            <p class="text-center">Are you sure you want to delete this reply?</p>
+                            <div class="body-close">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                              <button type="button" id="{{../../_id}}" data-commentid="{{replyId}}" data-reviewPostedBy="{{../../userId}}" data-businesslink="{{../../businessLink}}" data-cid="{{userCommentID}}" class="btn userReviewReplyDel btn-danger btn-ok delete">Delete</button>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="col-lg-11 col-md-12 col-sm-12 col-xs-12  userCommentText usercomRevTemtext userReplyText-{{replyId}}">  {{commentReply}} </div>
-                  <div class="col-lg-10 col-md-12 col-sm-12 col-xs-12 reviewReplyInputBox-{{replyId}} commentReplyBox">
-                    <div class="col-lg-12 col-md-11 col-sm-11 col-xs-11 userReplyComent">
-                      <input class="commentReplyEditInput" placeholder="Add your Reply here" value="{{commentReply}}" type="text" id="{{../../_id}}" data-reviewPostedBy="{{../userId}}" data-replyId="{{replyId}}" data-businesslink="{{../businessLink}}">
+                    <div class="col-lg-11 col-md-12 col-sm-12 col-xs-12  userCommentText usercomRevTemtext userReplyText-{{replyId}}">  {{commentReply}} </div>
+                    <div class="col-lg-10 col-md-12 col-sm-12 col-xs-12 reviewReplyInputBox-{{replyId}} commentReplyBox">
+                      <div class="col-lg-12 col-md-11 col-sm-11 col-xs-12 userReplyComent xsBorderInput">
+                        <input class="commentReplyEditInput" placeholder="Add your Reply here" value="{{commentReply}}" type="text" id="{{../../_id}}" data-reviewPostedBy="{{../userId}}" data-replyId="{{replyId}}" data-businesslink="{{../businessLink}}">
+                      </div>
+                    </div>
+                    <div class="col-lg-3 col-lg-offset-1 col-md-3 col-sm-2 col-xs-2 reviewReplyCancel reviewReplyCancel-{{replyId}}" id="{{replyId}}">
+                      cancel
+                    </div>
+                    <div class="col-lg-11 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 userlike">
+                      <span class="commentReplyLike" data-replyid="{{replyId}}" data-commentPostedUser={{../userId}} data-commentReplyPostedUser={{commentReplyUserId}}>
+                        {{#if replyLikeUnlike}}
+                        Like
+                        {{else}}
+                        Like
+                        {{/if}}
+                        <span>({{commentReplyLikeCount}})</span>
+                      </span>
+                      &nbsp;.&nbsp;
+                      <!-- <span class="usrCommentReply">
+                        Reply
+                      </span> -->
                     </div>
                   </div>
                   <div class="col-lg-3 col-lg-offset-1 col-md-3 col-sm-2 col-xs-2 reviewReplyCancel reviewReplyCancel-{{replyId}}" id="{{replyId}}">
@@ -447,7 +466,7 @@
                   </div>
                   <div class="col-lg-11 col-xs-11 col-md-11 userTimelineCommentText">
                     <div class="">
-                      <div class="col-lg-7 col-xs-8 col-md-6 usercommName">
+                      <div class="col-lg-7 col-xs-7 col-md-6 usercommName">
                         {{#if checkCurrentUser userId}}
                         <div class="col-lg-12 col-xs-12 col-md-6 revName">{{commentUserName}} </div>
                         {{else}}
@@ -457,7 +476,7 @@
                       <div class="col-lg-4 col-xs-4 col-md-6 userCommDt timelineRevDate">   {{userCommentDateAgo}} </div>
                       
                       {{#if userID}}
-                      <div class="dropdown pull-right col-lg-1 col-md-6 col-sm-6 col-xs-4 deleEditBox {{deleEditBlock}}">
+                      <div class="dropdown pull-right col-lg-1 col-md-6 col-sm-6 col-xs-1 deleEditBox {{deleEditBlock}}">
                         <i class="fa fa-ellipsis-h pull-right" data-toggle="dropdown" aria-hidden="true"></i>
                         <ul class="dropdown-menu userRevDeleEdit">
                           <li class="userRevCommentEditPen" id='{{userCommentId}}'>
@@ -485,7 +504,7 @@
                           </div>
                         </div>
                       </div>
-                      <div class="editCommentBox_{{userCommentId}} editBoxComment col-lg-11 col-md-11 col-sm-11 col-xs-11">
+                      <div class="editCommentBox_{{userCommentId}} editBoxComment col-lg-11 col-md-11 col-sm-11 col-xs-12">
                         <input class="editCommentInput" data-commentId="{{userCommentId}}" id="editComment-{{../_id}}" value="{{userComment}}" type="text">
                       </div>
                       <div class="col-lg-3 col-md-3 col-sm-2 col-xs-2 reviewCommCancel reviewCommCancel-{{userCommentId}}" id="{{userCommentId}}">
@@ -515,41 +534,60 @@
                   <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 userReplyPic">
                     <img class="replyImg" src="{{replyProfileImgPath}}" />
                   </div>
-                  <div class="col-lg-5 col-md-6 col-sm-6 col-xs-8 userRepName">  {{commentReplyUserName}}</div>
-                  <div class="col-lg-5 col-md-6 col-sm-6 col-xs-4 userCommRepDt usercommReplyDate">   {{commentReplyDateAgo}} </div>
-                  {{#if ../userID}}
-                  <div class="dropdown pull-right col-lg-1 col-md-6 col-sm-6 col-xs-4 deleEditBox commRepEditDel {{repEditBlock}}">
-                    <i class="fa fa-ellipsis-h pull-right" data-toggle="dropdown" aria-hidden="true"></i>
-                    <ul class="dropdown-menu userRevDeleEdit">
-                      <li class="userRevRepEdit" id='{{replyId}}'>
-                        <i class="fa fa-pencil editPen" aria-hidden="true"></i> Edit
-                      </li>
-                      <li class="userRevvReplyDel" data-toggle="modal" data-target="#deleteModal-{{replyId}}">
-                        <i class="fa fa-trash-o deltrash" aria-hidden="true"></i> Delete
-                      </li>
-                    </ul>
-                  </div>
-                  {{/if}}
-                  <div class="modal fade modaldelete" id="deleteModal-{{replyId}}" role="dialog">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header delete-close editofferModal1">
-                          <a href="#" data-dismiss="modal" aria-hidden="true" class="close pull-right"><i class="fa fa-times-circle-o fa-lg" aria-hidden="true"></i></a>
-                        </div>
-                        <div class="modal-body">
-                          <p class="text-center">Are you sure you want to delete this reply?</p>
-                          <div class="body-close">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                            <button type="button" id="{{../../_id}}" data-commentid="{{replyId}}" data-reviewPostedBy="{{../../userId}}" data-businesslink="{{../../businessLink}}" data-cid="{{userCommentID}}" class="btn userReviewReplyDel btn-danger btn-ok delete">Delete</button>
+                  <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 noPaddingGeneral">
+                    <div class="col-lg-5 col-md-6 col-sm-6 col-xs-6 userRepName">  {{commentReplyUserName}}</div>
+                    <div class="col-lg-5 col-md-6 col-sm-6 col-xs-4 userCommRepDt usercommReplyDate">   {{commentReplyDateAgo}} </div>
+                    {{#if ../userID}}
+                    <div class="dropdown pull-right col-lg-1 col-md-6 col-sm-6 col-xs-1 deleEditBox commRepEditDel {{repEditBlock}}">
+                      <i class="fa fa-ellipsis-h pull-right" data-toggle="dropdown" aria-hidden="true"></i>
+                      <ul class="dropdown-menu userRevDeleEdit">
+                        <li class="userRevRepEdit" id='{{replyId}}'>
+                          <i class="fa fa-pencil editPen" aria-hidden="true"></i> Edit
+                        </li>
+                        <li class="userRevvReplyDel" data-toggle="modal" data-target="#deleteModal-{{replyId}}">
+                          <i class="fa fa-trash-o deltrash" aria-hidden="true"></i> Delete
+                        </li>
+                      </ul>
+                    </div>
+                    {{/if}}
+                    <div class="modal fade modaldelete" id="deleteModal-{{replyId}}" role="dialog">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header delete-close editofferModal1">
+                            <a href="#" data-dismiss="modal" aria-hidden="true" class="close pull-right"><i class="fa fa-times-circle-o fa-lg" aria-hidden="true"></i></a>
+                          </div>
+                          <div class="modal-body">
+                            <p class="text-center">Are you sure you want to delete this reply?</p>
+                            <div class="body-close">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                              <button type="button" id="{{../../_id}}" data-commentid="{{replyId}}" data-reviewPostedBy="{{../../userId}}" data-businesslink="{{../../businessLink}}" data-cid="{{userCommentID}}" class="btn userReviewReplyDel btn-danger btn-ok delete">Delete</button>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="col-lg-11 col-md-12 col-sm-12 col-xs-12  userCommentText usercomRevTemtext userReplyText-{{replyId}}">  {{commentReply}} </div>
-                  <div class="col-lg-10 col-md-12 col-sm-12 col-xs-12 reviewReplyInputBox-{{replyId}} commentReplyBox">
-                    <div class="col-lg-12 col-md-11 col-sm-11 col-xs-11 userReplyComent">
-                      <input class="commentReplyEditInput" placeholder="Add your Reply here" value="{{commentReply}}" type="text" id="{{../../_id}}" data-reviewPostedBy="{{../userId}}" data-replyId="{{replyId}}" data-businesslink="{{../businessLink}}">
+                    <div class="col-lg-11 col-md-12 col-sm-12 col-xs-12  userCommentText usercomRevTemtext userReplyText-{{replyId}}">  {{commentReply}} </div>
+                    <div class="col-lg-10 col-md-12 col-sm-12 col-xs-12 reviewReplyInputBox-{{replyId}} commentReplyBox">
+                      <div class="col-lg-12 col-md-11 col-sm-11 col-xs-12 userReplyComent xsBorderInput">
+                        <input class="commentReplyEditInput" placeholder="Add your Reply here" value="{{commentReply}}" type="text" id="{{../../_id}}" data-reviewPostedBy="{{../userId}}" data-replyId="{{replyId}}" data-businesslink="{{../businessLink}}">
+                      </div>
+                    </div>
+                    <div class="col-lg-3 col-lg-offset-1 col-md-3 col-sm-2 col-xs-2 reviewReplyCancel reviewReplyCancel-{{replyId}}" id="{{replyId}}">
+                      cancel
+                    </div>
+                    <div class="col-lg-11 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 userlike">
+                      <span class="commentReplyLike" data-replyid="{{replyId}}" data-commentPostedUser={{../userId}} data-commentReplyPostedUser={{commentReplyUserId}}>
+                        {{#if replyLikeUnlike}}
+                        Like
+                        {{else}}
+                        Like
+                        {{/if}}
+                        <span>({{commentReplyLikeCount}})</span>
+                      </span>
+                      &nbsp;.&nbsp;
+                      <!-- <span class="usrCommentReply">
+                        Reply
+                      </span> -->
                     </div>
                   </div>
                   <div class="col-lg-3 col-lg-offset-1 col-md-3 col-sm-2 col-xs-2 reviewReplyCancel reviewReplyCancel-{{replyId}}" id="{{replyId}}">
@@ -576,7 +614,7 @@
                 <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 userReplyPic">
                   <img class="replyImg" src="{{userProfileImgPath}}" />
                 </div>
-                <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 userReplyComent">
+                <div class="col-lg-11 col-md-11 col-sm-11 col-xs-12 userReplyComent xsBorderInput">
                   <input class="commentReplyInput" placeholder="Add your Reply here" type="text" data-reviewId="{{../_id}}" data-reviewPostedBy="{{../userId}}" data-commentId="{{userCommentId}}" data-businesslink="{{../businessLink}}" data-userCommentId={{userId}}>
                 </div>
               </div>
