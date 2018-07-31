@@ -22,7 +22,6 @@ Template.businessEnquiry.helpers({
       var getloginId = Meteor.userId();
       if (getloginId) {
         var getUser    = Meteor.users.findOne({"_id" : getloginId});
-        console.log('getUser :',getUser);
         return getUser;
       }     
    },
@@ -123,7 +122,6 @@ Template.businessEnquiry.events({
         if(enquiryName && enquiryEmail && enquiryPhoneTwo && enquiryDesc) {
             // console.log('inif');
             if(filesM.length > 0){
-                 console.log('inif');
                 for(i = 0 ; i < filesM.length; i++){
                      // console.log('inif');
                     const imageCompressor = new ImageCompressor();
@@ -434,7 +432,6 @@ Template.businessEnquiry.events({
             }
         }else {
             // Bert.alert('Fill all fields before sending enquiry','danger','growl-top-right');
-            console.log('hello');
             if (!enquiryName) {
                 $(".spanEnqName").addClass("ErrorRedText");
                 $(".enquiryName").addClass("SpanLandLineRedBorder");

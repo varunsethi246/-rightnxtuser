@@ -803,7 +803,6 @@ Template.businessList.events({
 
 	// Map View Click Events
 	'click .mapVwPointer': function() {
-		console.log('mapVwPointer: ');
 		$('.displayMapView').show();
 		$('.displayMapView').addClass('col-lg-5');
 		$('.displayGridView').removeClass('col-lg-8');
@@ -842,7 +841,6 @@ Template.businessList.events({
 	},
 	// Grid View Click Events
 	'click .gridVwBus': function() {
-		console.log('gridVwBus: ');
 		$('.sidebarMapPre').css('display','block');
 		$('.displayMapView').hide();
 		$('.displayGridView').addClass('col-lg-8');
@@ -917,7 +915,6 @@ Template.thumbnailBusinessList.events({
 		$('.vEnqModalCShowOne').children().attr('data-link',linkName);
 	},
 	'click .enqRightDiv':function(event){
-		console.log("enqRightDiv");
 		var currentMarker = $(event.currentTarget).attr('cords-ids');
 		$('.displayMapView').show();
 		$('.displayMapView').addClass('col-lg-5');
@@ -949,7 +946,6 @@ Template.thumbnailBusinessList.events({
 		  if(!searchText){
 			searchText = " ";
 		  }
-		  console.log("im clicked");
 		  
 
 
