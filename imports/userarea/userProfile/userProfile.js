@@ -10,6 +10,14 @@ Template.userProfile.onCreated(function() {
 });
 
 Template.userProfile.helpers({
+	currentUserFollow:function(){
+		var url = FlowRouter.current().path;
+		var checkIdExists = url.split('&');
+		if (checkIdExists[2] == Meteor.userId()) {
+			return true;
+		}
+
+	},
 	currentUpload: function() {
         return Template.instance().currentUpload.get();
     },
