@@ -7,6 +7,13 @@ import '/imports/common/common.js';
 // if (Meteor.isClient) {
 
   Template.loginScreen.events({
+    'click .forgotPass': function(event) {
+    $('.passwordWrongSpan').removeClass('passwordWrongWar');
+    $('label.error').hide();
+    $('input[type="email"]').val('');
+    $('input[type="password"]').val('');
+    $('.loginLabel').removeClass('active');
+  },
     'click .UMloginbutton': function(event, template) {
       event.preventDefault();
 
