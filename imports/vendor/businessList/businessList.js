@@ -769,7 +769,16 @@ Template.allbusinessList.events({
                 $( ".spanEnqDesc" ).text("Please enter the description of the product you are looking for." );
             }
             $('.SpanLandLineRedBorder:visible:first').focus();
+			$('.showEnquiryImgAll>span').replaceWith( '<i class="fa fa-camera fa-5x" aria-hidden="true"></i>');
+
 		}
+	},
+	'click .enqSendClose':function(event){
+			// $('.enquiryName').val('');
+			// $('.enquiryEmail').val('');
+			// $('.enquiryPhone').val('');
+			$('.enquiryDesc').val('');
+			$('.enquiryPhotoAll').val('');
 	},
 });
 

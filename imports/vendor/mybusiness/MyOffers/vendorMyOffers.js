@@ -736,15 +736,19 @@ Template.paymentInvoice.helpers({
 	invoiceDetails(){
 		var invNum 			= parseInt(FlowRouter.getParam('invoiceNumber'));
 		var businessLink 	= FlowRouter.getParam('businessLink');
+		console.log('businessLink:',businessLink);
 
 		var businessDetails = Business.findOne({"businessLink":businessLink, "status":"active"});
+		console.log('companyDetails:',companyDetails);
+
 		var companyDetails 	= CompanySettings.findOne({'companyId':101});
+		console.log('businessDetails:',businessDetails);
 
 		// var paymentDetails 	= Payment.findOne({'invoiceNumber':invNum,"orderType":'Offer'});
 
-		var paymentDetails 	= Payment.findOne({'invoiceNumber':invNum});
+		var paymentDetails 	= Payment.findOne({'invoiceNumber':maxInvNum});
 
-
+		console.log('paymentDetails:',paymentDetails);
 		if(paymentDetails){
 			var offers = [];
 			var totalPrice = 0;
@@ -1725,6 +1729,7 @@ Template.editOffer.helpers({
 		var allPages = [];
 		var businessLink = FlowRouter.getParam('businessLink');
 		var businessName = Business.findOne({"businessLink":businessLink, "status":"active"});
+		console.log('businessName :',businessName);
 		var businessId = businessName._id;
 		var companyRates = CompanySettings.findOne({'companyId':101},{"rates":1,"_id":0});
 		allPages = Offers.find({"vendorId":Meteor.userId(),"businessId":businessId}).fetch();

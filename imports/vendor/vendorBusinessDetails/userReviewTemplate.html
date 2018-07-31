@@ -70,7 +70,15 @@
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
 				
 				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 starRatingblock starRatingblock-{{_id}}" >
-						New Rating: {{> starRating }}
+						New Rating: 
+
+<!-- {{#if starRating}} -->
+						{{> starRating }}
+<!-- {{else}}
+	{{#with showRating _id}}
+		{{> starRating2 }}
+	{{/with}}
+{{/if}} -->
 				</div>
 			</div>
 
@@ -89,7 +97,7 @@
 				<div class="col-lg-12" id="tagImgDiv">
 					<div class="reviewImgInputDiv">
 						<div class="tagedFrndList">
-							  {{#each getFrndsList.resultFrnds}} 
+							{{#each getFrndsList.resultFrnds}} 
 								<span class="bunchTagFrnd bunchTagFrndTagged tagfriendOne-{{selectedUserId}}">
 									<span className="">
 										<img src="{{userImage}}" alt="" class="img img-circle userPhotReviewList">
@@ -367,7 +375,13 @@
 									</span>
 									&nbsp; &nbsp;
 									<span class="{{#if isInRole 'user, Vendor'}}commentReply{{else}}unuserLike{{/if}}"> 
-										Reply <span>({{commentReplyCount}})</span> 
+										Reply <span>(
+										{{#if commentReplyCount}}
+											{{commentReplyCount}}
+										{{else}}
+											(0)
+										{{/if}}
+									)</span> 
 									</span>
 								</div>
 								<!-- reply -->
@@ -425,7 +439,7 @@
 												{{#if replyLikeUnlike}}
 													Like
 												{{else}}
-													Like
+													Like asdas
 												{{/if}} 
 												<span>({{commentReplyLikeCount}})</span>
 											</span>
@@ -508,7 +522,7 @@
 										{{#if likeUnlike}}
 											Like
 										{{else}}
-											Like
+											Like nllk
 										{{/if}} 
 										<span>({{commentLikeCount}})</span>
 									</span>

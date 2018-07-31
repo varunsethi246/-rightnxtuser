@@ -111,3 +111,12 @@ jobListFunc= function () {
 		$("#inject-loader-wrapper").fadeOut(1500, function() { $(this).remove(); });
 	})
 }
+
+vendorPhotosFunc= function () {    
+	import('/imports/vendor/mybusiness/Photos/vendorPhotos.js').then(function (handle) {        
+		handle.vendorPhotosForm();    
+	})
+	.then(function(){
+		$("#inject-loader-wrapper").fadeOut(1500, function() { $(this).remove(); });
+	})
+}

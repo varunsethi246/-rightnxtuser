@@ -22,6 +22,7 @@ Template.businessEnquiry.helpers({
       var getloginId = Meteor.userId();
       if (getloginId) {
         var getUser    = Meteor.users.findOne({"_id" : getloginId});
+        console.log('getUser :',getUser);
         return getUser;
       }     
    },
@@ -49,9 +50,9 @@ Template.businessEnquiry.events({
             }
 
             var reader = new FileReader();
-      
             // Closure to capture the file information.
-            reader.onload = (function(theFile) {
+            reader.onload = ((theFile) =>{
+
                 return function(e) {
                     // Render thumbnail.
                     var span = document.createElement('span');
@@ -64,12 +65,17 @@ Template.businessEnquiry.events({
             // Read in the image file as a data URL.
             reader.readAsDataURL(f);
         }// end of for loop
+            if (filesM.length == 0){
+                $( '<i class="fa fa-camera fa-5x" aria-hidden="true"></i>').appendTo( ".showEnquiryImg" );
+            }
+
     },
 
     'click .SendEnqTo': function(event){
         event.preventDefault();
 
         var id = FlowRouter.getParam('businessurl');
+        // console.log("id :",id);
         if(id){
             var businessLink = id;
         }else{
@@ -101,7 +107,11 @@ Template.businessEnquiry.events({
         }
 
         var businessObject = Business.findOne({"businessLink":businessLink});
+         // console.log('businessObject :',businessObject);
         var businessid = businessObject._id;
+         // console.log('businessid :',businessid);
+        
+
         var businessTitle = businessObject.businessTitle;
         //Save image on S3
 
@@ -111,8 +121,11 @@ Template.businessEnquiry.events({
         }
 
         if(enquiryName && enquiryEmail && enquiryPhoneTwo && enquiryDesc) {
+            // console.log('inif');
             if(filesM.length > 0){
+                 console.log('inif');
                 for(i = 0 ; i < filesM.length; i++){
+                     // console.log('inif');
                     const imageCompressor = new ImageCompressor();
                     imageCompressor.compress(filesM[i])
                         .then((result) => {

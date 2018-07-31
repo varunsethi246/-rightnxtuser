@@ -14,9 +14,9 @@ if (Meteor.isServer) {
 	Meteor.publish('userEnquiry', function userEnquiry() {
 		return Enquiry.find({'enquirySentBy':this.userId});
 	});
-	// Meteor.publish('businessEnquiryCount', function businessEnquiryCount() {
-	// 	return Enquiry.find({});
-	// });
+	Meteor.publish('businessEnquiryCount', function businessEnquiryCount() {
+		return Enquiry.find({});
+	});
 	 Meteor.publish('enquiryCount', function() {
   		var userID = this.userId;
 		// Counts.publish(this, 'enquiryCount', Enquiry.find({'enquirySentBy':this.userId,'businessStatus':'active'}));
