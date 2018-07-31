@@ -430,6 +430,7 @@ margin-left:0!important
 .userCommDt {
 padding-left:0!important;
 padding-right:0
+
 }
 
 .usercommName {
@@ -3490,7 +3491,9 @@ border-radius:100%
 .userCommDt {
 font-size:11px;
 color:#999;
-padding-left:50px
+padding-left:50px;    
+padding-left: 68px;
+
 }
 
 .userCommentText {

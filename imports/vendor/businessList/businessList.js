@@ -775,10 +775,23 @@ Template.allbusinessList.events({
 	},
 	'click .enqSendClose':function(event){
 			// $('.enquiryName').val('');
-			// $('.enquiryEmail').val('');
-			// $('.enquiryPhone').val('');
-			$('.enquiryDesc').val('');
-			$('.enquiryPhotoAll').val('');
+			// console.log('click');
+			
+			if (Meteor.userId()) {
+
+				$('.draggedImgenq').val('');
+				$('input[type="file"]').val('');
+				$('.enquiryDesc').val('');
+				$('.enquiryPhotoAll').val('');
+			}else{
+
+				// console.log('hello');
+				$('.enquiryName').val('');
+				$('.enquiryEmail').val('');
+				$('.enquiryPhone').val('');
+				$('.enquiryDesc').val('');
+				$('.enquiryPhotoAll').val('');
+			}
 	},
 });
 
