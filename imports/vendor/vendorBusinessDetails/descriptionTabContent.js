@@ -1399,10 +1399,15 @@ Template.userReviewTemplate.events({
 			var taggedPpl = tagedFriends;
 			
 			var starRating = $('.starRatingWrapper .fixStar1').length;
-			// console.log('starRating description: ', starRating);
-			starRating = starRating + $('.starRatingWrapper .fixStar2').length;
-			// console.log('starRating: ', starRating);
-			var rating = parseFloat(starRating) / 2;
+			if(starRating > 0){
+
+				starRating = starRating + $('.starRatingWrapper .fixStar2').length;
+
+				var rating = parseFloat(starRating) / 2;
+			}else{
+				Bert.alert('Please give atleast 0.5 rating.', 'danger', 'growl-top-right');
+
+			}
 			// console.log('rating: ', rating);
 			// console.log("filesR: ",filesR)
 			if(filesR){
