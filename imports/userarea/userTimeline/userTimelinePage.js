@@ -2024,15 +2024,22 @@ Template.userTimeline.events({
 		if(revComment){
 			var id = event.currentTarget.id;
 			var taggedPpl = tagedFriends;
+			var businessLink = FlowRouter.getParam('businessurl');
 
 
 			var starRating = $('.starRatingblock .fixStar1').length;
 			// console.log('starRating time: ',starRating);
-			starRating = starRating + $('.starRatingblock .fixStar2').length;
-			// console.log('starRating time: ',starRating);
-			var rating = parseFloat(starRating) / 2;
+			// starRating = starRating + $('.starRatingblock .fixStar2').length;
+			// // console.log('starRating time: ',starRating);
+			// var rating = parseFloat(starRating) / 2;
 			// console.log('rating time: ', rating);
-
+			if(starRating > 0){
+				starRating = starRating + $('.starRatingWrapper .fixStar2').length;
+				var rating = parseFloat(starRating) / 2;
+			}else{
+				var ratingInt = Review.findOne({"_id" : id,"businessLink":businessLink});
+				var rating = ratingInt.rating;
+			}
 			if(filesR){
 				for(i = 0 ; i < filesR.length; i++){
 					const imageCompressor = new ImageCompressor();

@@ -2075,14 +2075,22 @@ Template.userReview.events({
 		},
 	'click .reviewBusSave': function(event){
 		var revComment = $(event.currentTarget).parent().siblings('.editBoxComment').children('.editReviewTextArea').val();
+		var businessLink = FlowRouter.getParam('businessurl');
+		
 		if(revComment){
 			var id = event.currentTarget.id;
 			var taggedPpl = tagedFriends;
 			
 			var starRating = $('.starRatingblock .fixStar1').length;
-			starRating = starRating + $('.starRatingblock .fixStar2').length;
-			var rating = parseFloat(starRating) / 2;
-
+			// starRating = starRating + $('.starRatingblock .fixStar2').length;
+			// var rating = parseFloat(starRating) / 2;
+			if(starRating > 0){
+				starRating = starRating + $('.starRatingWrapper .fixStar2').length;
+				var rating = parseFloat(starRating) / 2;
+			}else{
+				var ratingInt = Review.findOne({"_id" : id,"businessLink":businessLink});
+				var rating = ratingInt.rating;
+			}
 			if(filesR){
 				for(i = 0 ; i < filesR.length; i++){
 					const imageCompressor = new ImageCompressor();

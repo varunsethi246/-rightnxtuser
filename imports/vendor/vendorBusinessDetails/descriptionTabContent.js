@@ -60,6 +60,7 @@ Template.userReviewTemplate.helpers({
 			if(balRating > 0.5){
 				var finalRating = intRating + 1;
 			}
+			// console.log("finalRasting:",finalRating);
 
 			ratingObj = {};
 
@@ -76,6 +77,7 @@ Template.userReviewTemplate.helpers({
 				}
 			
 			}
+			// console.log(ratingObj);
 			return ratingObj;
 		}else{
 			return {};
@@ -627,10 +629,10 @@ Template.userReviewTemplate.events({
 	// 	$('#searchFrndsEdit').val();
 	// 	console.log('#searchFrndList:',$('#searchFrndsEdit').val());
 	// },
-	'click #searchFrndsEdit': function(e){
-		e.stopPropagation();
-		$('.tagFrndUlFrieldList').removeClass('searchDisplayHide').addClass('searchDisplayShow');
-	},
+	// 'click #searchFrndsEdit': function(e){
+	// 	e.stopPropagation();
+	// 	$('.tagFrndUlFrieldList').removeClass('searchDisplayHide').addClass('searchDisplayShow');
+	// },
 	"click .tagFrndLiFrieldList" : function(e){
 		var selectedUser = $(e.currentTarget).attr('data-userName');
 		var frndId = $(e.currentTarget).attr('id');
@@ -1392,24 +1394,23 @@ Template.userReviewTemplate.events({
 
 
 	'click .reviewBusSave': function(event){
+		// console.log('click');
 		event.preventDefault();
 		var revComment = $(event.currentTarget).parent().siblings('.editBoxComment').children('.editReviewTextArea').val();
+		var businessLink = FlowRouter.getParam('businessurl');
 		if(revComment){
 			var id = event.currentTarget.id;
+			console.log(id);
 			var taggedPpl = tagedFriends;
 			
 			var starRating = $('.starRatingWrapper .fixStar1').length;
 			if(starRating > 0){
-
 				starRating = starRating + $('.starRatingWrapper .fixStar2').length;
-
 				var rating = parseFloat(starRating) / 2;
 			}else{
-				Bert.alert('Please give atleast 0.5 rating.', 'danger', 'growl-top-right');
-
+				var ratingInt = Review.findOne({"_id" : id,"businessLink":businessLink});
+				var rating = ratingInt.rating;
 			}
-			// console.log('rating: ', rating);
-			// console.log("filesR: ",filesR)
 			if(filesR){
 				for(i = 0 ; i < filesR.length; i++){
 					const imageCompressor = new ImageCompressor();
@@ -1479,6 +1480,7 @@ Template.userReviewTemplate.events({
 				// $('.publishReview').hide();
 			}else{
 				$('.passwordWrongSpans').text("");
+
 				Meteor.call('updateRevCommentEdit', id, revComment, taggedPpl, rating, function(error, result){
 					if(error){
 						Bert.alert('Some technical issue happened... Your review is not posted.', 'danger', 'growl-top-right');
