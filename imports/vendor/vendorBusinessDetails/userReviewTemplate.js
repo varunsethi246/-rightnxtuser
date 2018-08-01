@@ -42,7 +42,6 @@ Template.userReviewTemplate.helpers({
 
 
 Template.userReviewTemplate.events({
-
 	'keydown .editReviewOneTime':function(event){
       setTimeout(function() {
          var comment = $('.editReviewOneTime').val();
@@ -51,8 +50,10 @@ Template.userReviewTemplate.events({
             var remainText = 140 - commentlen;
             if(remainText < 0){
 	            $('.textRemain').css('display','none');
+	            $('.newMsgHide').css('display','none');
             }else{
 	            $('.textRemain').css('display','block');
+	            $('.newMsgHide').css('display','block');
 	            $('.textRemain').text(remainText + ' /140');
             }
          }else{

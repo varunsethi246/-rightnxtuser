@@ -1473,6 +1473,7 @@ Template.userReviewTemplate.events({
 				// $('.openReviewBox').show();
 				// $('.publishReview').hide();
 			}else{
+				$('.passwordWrongSpans').text("");
 				Meteor.call('updateRevCommentEdit', id, revComment, taggedPpl, rating, function(error, result){
 					if(error){
 						Bert.alert('Some technical issue happened... Your review is not posted.', 'danger', 'growl-top-right');

@@ -192,7 +192,16 @@ Template.businessEventIcons.events({
 		if(Meteor.userId()){
 			var userReview = Review.findOne({"userId":Meteor.userId()});
 			if(userReview){
-				// businessObj.alreadyReviewed = true;	
+				// businessObj.alreadyReviewed = true;
+				var userId = userReview._id;
+				if (userId) {
+					$('html,body').animate({
+				        scrollTop: $("#"+userId).offset().top},
+				        'slow');
+					
+				}
+				// console.log('click');
+				// console.log('userReview :',userReview);
 			}else{
 				// businessObj.alreadyReviewed = false;
 				$('.openReview').show();	
