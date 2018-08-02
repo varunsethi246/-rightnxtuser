@@ -4294,6 +4294,10 @@ text-align: center
 	.aboutNavbar{
 		margin-left: 39%;
 	}
+	.dayBuss{
+		position: relative;
+		left:-26px;
+	}
 }
 .otpOuterDiv{
 	border: 1px solid #bbbbbb;
