@@ -136,13 +136,15 @@ Template.userTimeline.helpers({
 		var businessUrl = this.businessLink;
 		// var businessLinkNew = Business.findOne({"businessLink":businessLinks});
 		// console.log('businessUrl :',businessUrl);
-		var ratingInt = Review.find({
-										$or:[ 
-												{ "userId":{$in  : uniqueId},"businessLink":businessUrl } , 
-											]
-										},
-									).fetch();
-		console.log('ratingInt :',ratingInt);
+		var ratingInt = Review.find({"userId" : userId,"businessLink":businessUrl}).fetch();
+		
+		// var ratingInt = Review.find({
+		// 								$or:[ 
+		// 										{ "userId":{$in  : uniqueId},"businessLink":businessUrl } , 
+		// 									]
+		// 								},
+		// 							).fetch();
+		// console.log('ratingInt :',ratingInt);
 		if(ratingInt){
 			for (var i = 0; i < ratingInt.length; i++) {
 				
