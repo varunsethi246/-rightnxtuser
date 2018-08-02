@@ -562,9 +562,9 @@ Template.userReview.helpers({
 
 		var ratingInt = Review.find({"userId" : userId,"businessLink":businessUrl}).fetch();
 		if(ratingInt){
-			for (var j = 0; j < ratingInt.length; j++) {
+			for (var i = 0; i < ratingInt.length; i++) {
 				
-				var latestRating = ratingInt[j].rating;
+				var latestRating = ratingInt[i].rating;
 
 				var intRating = parseInt(latestRating);
 				var balRating = latestRating - intRating;
@@ -578,10 +578,10 @@ Template.userReview.helpers({
 
 				ratingObj = {};
 
-				for(i=1; i<=10; i++){
-					var x = "star" + i;
-					if(i <= finalRating*2){
-						if( i%2 == 0){
+				for(j=1; j<=10; j++){
+					var x = "star" + j;
+					if(j <= finalRating*2){
+						if( j%2 == 0){
 							ratingObj[x] = "fixStar2";
 						}else{
 							ratingObj[x] = "fixStar1";
@@ -591,6 +591,7 @@ Template.userReview.helpers({
 					}
 				
 				}
+
 			}
 
 			return ratingObj;
@@ -633,10 +634,8 @@ Template.userReviewSuggestion.helpers ({
 		}else{
 			uid = Meteor.userId();
 		}
-		// console.log('uid :',uid);
 		var currentUserObj = Meteor.users.findOne({"_id":uid});
-		// console.log('currentUserObj :',currentUserObj);
-				// console.log('currentUserObj :',currentUserObj.profile);
+	
 			if(currentUserObj && currentUserObj.profile){
 
 				userCity = currentUserObj.profile.city;
@@ -2075,11 +2074,12 @@ Template.userReview.events({
 		},
 	'click .reviewBusSave': function(event){
 		var revComment = $(event.currentTarget).parent().siblings('.editBoxComment').children('.editReviewTextArea').val();
-		var businessLink = FlowRouter.getParam('businessurl');
+		// var businessLink = FlowRouter.getParam('businessurl');
 		
 		if(revComment){
 			var id = event.currentTarget.id;
 			var taggedPpl = tagedFriends;
+			var businessLink = $('.reviewBusSave').attr('value');
 			
 			var starRating = $('.starRatingblock .fixStar1').length;
 			// starRating = starRating + $('.starRatingblock .fixStar2').length;
@@ -2096,8 +2096,7 @@ Template.userReview.events({
 					const imageCompressor = new ImageCompressor();
 				    imageCompressor.compress(filesR[i])
 				        .then((result) => {
-				          // console.log(result);
-
+				       
 				          // Handle the compressed image file.
 				          // We upload only one file, in case
 				        // multiple files were selected
@@ -2114,7 +2113,6 @@ Template.userReview.events({
 
 				        upload.on('end', function (error, fileObj) {
 				          if (error) {
-				            // alert('Error during upload: ' + error);
 				            console.log('Error during upload 1: ' + error);
 				            console.log('Error during upload 1: ' + error.reason);
 				          } else {
@@ -2128,8 +2126,7 @@ Template.userReview.events({
 					              if(error1) {
 					                console.log ('Error Message: ' + error ); 
 					              }else{
-									// console.log('img upload ', fileObj._id);	
-									// console.log('img added');
+									
 									$('.publishReview').show();
 									$('.openReviewBox').hide();
 									$('.reviewImages').hide();
@@ -2174,7 +2171,7 @@ Template.userReview.events({
 						// $('.openReviewBox').show();
 						// $('.publishReview').hide();
 					}else{
-						Meteor.call('updateRevCommentEdit', id, revComment, taggedPpl, totalRating, function(error, result){
+						Meteor.call('updateRevCommentEdit', id, revComment, taggedPpl, rating, totalRating, function(error, result){
 							if(error){
 								Bert.alert('Some technical issue happened... Your review is not posted.', 'danger', 'growl-top-right');
 							}else{

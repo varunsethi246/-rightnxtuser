@@ -52,7 +52,6 @@ Template.userSidebar.helpers({
 				data.activeClass = '';
 				data.changeHref = '';
 			}
-			console.log('data :',data);
 			return data;
 		}			
 		
@@ -115,7 +114,6 @@ Template.userSidebar.helpers({
 		var data = {};
 		if(checkIdExists[2] != '' && checkIdExists[2]){
 			id = produceURLid(checkIdExists[2]);
-			console.log('id 1',id);
 			var bookmarkData = Bookmark.find({"userId":id}).fetch();
 			var count = 0;
 			if(bookmarkData){	
@@ -137,7 +135,6 @@ Template.userSidebar.helpers({
 			// console.log('bookmarkData :',bookmarkDataReturn);
 				return bookmarkDataReturn;
 		}else{
-			console.log('id 2');
 			var countBookmark = Counts.get('bookmarkCount');
 
 			var bookmarkDataReturn = {

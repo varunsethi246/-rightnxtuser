@@ -449,9 +449,9 @@ Meteor.methods({
 		);
 	},
 
-	'updateRevCommentEdit':function(id,revComment,taggedPpl,totalRating){
+	'updateRevCommentEdit':function(id,revComment,taggedPpl,rating,totalRating){
 		var taggedArr = [];
-		// console.log('in meteor call');
+		console.log('rating :',rating);
 		for(i=0;i<taggedPpl.length;i++){
 			taggedArr.push(taggedPpl[i].selectedUserId);
 		}
@@ -459,7 +459,7 @@ Meteor.methods({
 			{_id : id},
 			{$set :{
 					reviewComment 	: revComment,
-					rating 			: totalRating,
+					rating 			: rating,
 					reviewDate 		: new Date(),
 					tagedFriends	: taggedArr,
 				}

@@ -142,7 +142,7 @@ Template.userTimeline.helpers({
 											]
 										},
 									).fetch();
-		// console.log('ratingInt :',ratingInt);
+		console.log('ratingInt :',ratingInt);
 		if(ratingInt){
 			for (var i = 0; i < ratingInt.length; i++) {
 				
@@ -157,13 +157,13 @@ Template.userTimeline.helpers({
 				if(balRating > 0.5){
 					var finalRating = intRating + 1;
 				}
-
+				// console.log('finalRating :',finalRating);
 				ratingObj = {};
 
-				for(i=1; i<=10; i++){
-					var x = "star" + i;
-					if(i <= finalRating*2){
-						if( i%2 == 0){
+				for(j=1; j<=10; j++){
+					var x = "star" + j;
+					if(j <= finalRating*2){
+						if( j%2 == 0){
 							ratingObj[x] = "fixStar2";
 						}else{
 							ratingObj[x] = "fixStar1";
@@ -176,6 +176,7 @@ Template.userTimeline.helpers({
 				// console.log("ratingObj = ", ratingObj);
 			}
 			// console.log("ratingInt = ", ratingInt);
+				// console.log('ratingObj :',ratingObj);
 
 			return ratingObj;
 		}else{
@@ -1822,6 +1823,8 @@ Template.userTimeline.events({
 
 	'click .userRevComEdit':function(event){
 		var id = $(event.target).attr('id');
+		$('.boxbg').removeClass('fixStar1');
+		$('.boxbg').removeClass('fixStar2');
 		$('.reviewImages-'+id).css('display','block');
 		$('.userReviewTempcommTxt-'+id).css('display','none');
 		$('.editBoxCommentRev-'+id).css('display','block');
@@ -2024,18 +2027,17 @@ Template.userTimeline.events({
 		if(revComment){
 			var id = event.currentTarget.id;
 			var taggedPpl = tagedFriends;
-			var businessLink = FlowRouter.getParam('businessurl');
-
-
+			var businessLink = $('.reviewBusSave').attr('value');
 			var starRating = $('.starRatingblock .fixStar1').length;
 			// console.log('starRating time: ',starRating);
-			// starRating = starRating + $('.starRatingblock .fixStar2').length;
-			// // console.log('starRating time: ',starRating);
-			// var rating = parseFloat(starRating) / 2;
-			// console.log('rating time: ', rating);
+			starRating = starRating + $('.starRatingblock .fixStar2').length;
+			// console.log('starRating time: ',starRating);
+			var rating = parseFloat(starRating) / 2;
 			if(starRating > 0){
+
 				starRating = starRating + $('.starRatingWrapper .fixStar2').length;
 				var rating = parseFloat(starRating) / 2;
+
 			}else{
 				var ratingInt = Review.findOne({"_id" : id,"businessLink":businessLink});
 				var rating = ratingInt.rating;
@@ -2130,7 +2132,7 @@ Template.userTimeline.events({
 						// $('.publishReview').hide();
 					}else{
 
-						Meteor.call('updateRevCommentEdit', id, revComment, taggedPpl, totalRating,function(error, result){
+						Meteor.call('updateRevCommentEdit', id, revComment, taggedPpl, rating,totalRating,function(error, result){
 							if(error){
 								Bert.alert('Some technical issue happened... Your review is not posted.', 'danger', 'growl-top-right');
 							}else{
