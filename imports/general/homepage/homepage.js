@@ -32,14 +32,14 @@ Template.anonymousUserLayout.onCreated(function () {
   // Use this.subscribe inside onCreated callback
   this.subscribe('notificationTemplate');
   this.subscribe('notification');
-  this.subscribe('currentuser');
-  this.subscribe('allCity');
   this.subscribe('area');
+  this.subscribe('currentuser');
+  this.subscribe('userfunction');
+  this.subscribe('allCity');
+  this.subscribe('categories');
   this.subscribe('getBizVideoBanner');  
   this.subscribe('homeBannerVideo');
-  this.subscribe('categories');
-  this.subscribe('userRole');
-  this.subscribe('userfunction');
+  // this.subscribe('userRole');
   // this.subscribe('vendorImage');
   // this.subscribe('vendorBusiness');
   // this.subscribe('userProfileS3OneUser'); 

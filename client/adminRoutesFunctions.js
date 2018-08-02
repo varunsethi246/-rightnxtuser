@@ -1,4 +1,14 @@
+HomepageFunc = function () {
+console.log('1st');  
+	import('/imports/general/homepage/homepage.js')
+	.then(function (handle) {  
+		handle.Homepage();    
+	})
+	.then(function(){
+		$("#inject-loader-wrapper").fadeOut(1500, function() { $(this).remove(); });
+	})
 
+}
 
 // AdminHomepageFunction = function () {
 // 	console.log('in handle');

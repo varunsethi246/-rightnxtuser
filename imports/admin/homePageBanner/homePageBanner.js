@@ -11,7 +11,7 @@ import '/imports/admin/commonAdmin/commonAdmin.js';
 
 Template.homePageBanner.onCreated(function() {
     this.currentUpload = new ReactiveVar(false);
-    this.subscribe('getBizVideoBanner');
+    // this.subscribe('getBizVideoBanner');
 });
 
 Template.homePageBanner.events({

@@ -63,6 +63,7 @@ Template.homepageBanner.helpers({
 
   bannerVideo: function() {
       var bussData = HomeBannerVideo.findOne({});
+      // console.log(bussData);
       if(bussData){
         var data = BizVideoBanner.findOne({"_id":bussData.bannerLink});
           if(data){
@@ -70,6 +71,8 @@ Template.homepageBanner.helpers({
           }else{
             return false;
           }
+      }else{
+        return false;
       }
     },
 
