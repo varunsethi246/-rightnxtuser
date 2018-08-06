@@ -285,7 +285,15 @@ Template.allbusinessList.events({
 
 		Session.set('showMapView',true);
 		Session.set('showGridView',false);
-
+		var searchText = FlowRouter.getParam('searchText');
+		
+		if(searchText){
+			var flowGo = "/search/"+FlowRouter.getParam('city')+"/"+FlowRouter.getParam('area')+"/"+searchText;
+			FlowRouter.go(flowGo);
+		}else{
+			var flowGo = "/search/"+FlowRouter.getParam('city')+"/"+FlowRouter.getParam('area');
+			FlowRouter.go(flowGo);
+		}
 
 		setTimeout(function() {
         	if($('.listRelevance').hasClass('busListSelected')){

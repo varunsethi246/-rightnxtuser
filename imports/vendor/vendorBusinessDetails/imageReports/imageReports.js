@@ -16,6 +16,7 @@ import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import { BusinessImage } from '/imports/videoUploadClient/businessImageClient.js';
 import { BusinessMenu } from '/imports/videoUploadClient/businessMenuClient.js';
 import { ReviewImage } from '/imports/videoUploadClient/reviewImageClient.js';
+import { VendorImage } from '/imports/videoUploadClient/vendorImageClient.js';
 
 // hello
 Template.imageCommet.onCreated(function(){
@@ -51,9 +52,9 @@ Template.imageCommet.helpers({
 							var userName = Meteor.users.findOne({"_id":reviewDetails[i].userId});
 							if(userName){
 								if(userName.profile.userProfilePic){
-									var pic = UserProfileStoreS3New.findOne({"_id":userName.profile.userProfilePic});
+									var pic = VendorImage.findOne({"_id":userName.profile.userProfilePic});
 									if(pic){
-										var pic = pic.url();
+										var pic = pic.link();
 									}else{
 										var pic = '/user/profile/profile_image_dummy.svg';
 									}
@@ -115,9 +116,9 @@ Template.imageCommet.helpers({
 						commentDetails[i].commentUserName = userObj.profile.name;
 
 						if(userObj.profile.userProfilePic){								
-							var pic = UserProfileStoreS3New.findOne({"_id":userObj.profile.userProfilePic});
+							var pic = VendorImage.findOne({"_id":userObj.profile.userProfilePic});
 							if(pic){
-								commentDetails[i].userProfileImgPath = pic.url();	
+								commentDetails[i].userProfileImgPath = pic.link();	
 							}
 							else{
 								commentDetails[i].userProfileImgPath = "/users/profile/profile_image_dummy.svg";
@@ -176,9 +177,9 @@ Template.imageCommet.helpers({
 									commentDetails[i].imgMultiComment[j].commentUserName = userObj.profile.name;
 
 									if(userObj.profile.userProfilePic){								
-										var pic = UserProfileStoreS3New.findOne({"_id":userObj.profile.userProfilePic});
+										var pic = VendorImage.findOne({"_id":userObj.profile.userProfilePic});
 										if(pic){
-											commentDetails[i].imgMultiComment[j].userProfileImgPath = pic.url();	
+											commentDetails[i].imgMultiComment[j].userProfileImgPath = pic.link();	
 										}
 										else{
 											commentDetails[i].imgMultiComment[j].userProfileImgPath = "/users/profile/profile_image_dummy.svg";
