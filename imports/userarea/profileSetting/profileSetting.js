@@ -48,6 +48,7 @@ Template.profileSetting.events({
       if (err) {
         console.log("err",err);
         }else {
+            Bert.alert('Your profile is blocked, please contact us for the next steps.','success','growl-top-right','fa-frown-o');
             Meteor.logout();
             FlowRouter.go('/');
             $('.modal-backdrop').hide();

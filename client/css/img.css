@@ -343,7 +343,7 @@ overflow-y:scroll
 .tagFrndUlFrieldList{
     background:#FFF;
     padding:0 3px;
-    box-shadow:3px 4px 8px 0 #555;
+    /*box-shadow:3px 4px 8px 0 #555;*/
     width:100%;
     top:31px;
     border:1px solid #ccc;

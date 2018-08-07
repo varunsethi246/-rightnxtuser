@@ -288,7 +288,7 @@ Template.searchbar.events({
 		    $options.eq(current_index).addClass('selectedSearch');
 		    var text = $('.selectedSearch .selectedTitleVal').text();
 		    $('#gridSearchBusiness').val(text.trim());
-			$('.topSearchBarList').addClass('searchDisplayShow').removeClass('searchDisplayHide');
+			// $('.topSearchBarList').addClass('searchDisplayShow').removeClass('searchDisplayHide');
 
 			// To scroll the selection
 			var $s = $('.topSearchBarList');
@@ -389,7 +389,7 @@ Template.searchbar.events({
 	
 	'click .seachBusiness': function(e){
 		// console.log("Me clicked");
-		$('.topSearchBarList').addClass('searchDisplayShow').removeClass('searchDisplayHide');
+		// $('.topSearchBarList').addClass('searchDisplayShow').removeClass('searchDisplayHide');
 		var currentPath = FlowRouter.current().path;
 		var currentParams 	= FlowRouter.getParam('businessurl');
 		var currentText = $('#gridSearchBusiness').val();
@@ -497,12 +497,12 @@ Template.searchbar.events({
 	'click #gridSearchBusiness': function(e){
 		//To stop closing the dropdown
 	    var currentText		= $('#gridSearchBusiness').val();
-		$('.topSearchBarList').addClass('searchDisplayShow').removeClass('searchDisplayHide');
+		// $('.topSearchBarList').addClass('searchDisplayShow').removeClass('searchDisplayHide');
 		e.stopPropagation(); 
 	},
 	'click .topSearchBarList': function(e){
 		//To stop closing the dropdown
-		$('.topSearchBarList').addClass('searchDisplayShow').removeClass('searchDisplayHide');
+		// $('.topSearchBarList').addClass('searchDisplayShow').removeClass('searchDisplayHide');
 	    $('.topSearchBarList').css('display','none');
 		e.stopPropagation(); 
 	},

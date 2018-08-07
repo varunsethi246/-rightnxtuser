@@ -254,7 +254,7 @@ Template.loginScreen.onRendered(function(){
   $.validator.addMethod("regex_1", function(value, element, regexpr) {          
 
       return regexpr.test(value);
-  }, "Please Enter valid Email Address");
+  }, "Please enter a valid email address.");
 
    $(".loginForm").validate({
     rules:{

@@ -193,7 +193,9 @@ Template.addReviewTemplate.events({
 			$('.passwordWrongSpan').text("Please rate the business before submitting the review!");
       		$('.passwordWrongSpan').addClass('passwordWrongWar');
 			$('.openReviewBox').show();
-			$('.publishReview').hide();			
+			$('.publishReview').hide();	
+			$('.passwordWrongSpan').css('display','block');
+
 		}else{
 			if(formValues.reviewComment.length >=0 && formValues.reviewComment.length<=140){
 

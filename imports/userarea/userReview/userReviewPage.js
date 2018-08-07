@@ -640,6 +640,7 @@ Template.userReviewSuggestion.helpers ({
 
 				userCity = currentUserObj.profile.city;
 				var otherUsersData  = Meteor.users.find({"profile.city":userCity, "_id":{$ne: uid}, "roles":{$nin: [ 'admin', 'Vendor']}}).fetch();
+				console.log('otherUsersData :',otherUsersData);
 				if(otherUsersData && otherUsersData.length>0){
 					for(var i=0;i<otherUsersData.length;i++){
 						var name    = otherUsersData[i].profile.name;

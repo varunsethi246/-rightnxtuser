@@ -87,7 +87,7 @@ Template.mainBusinessSearch.events({
 		    $options.eq(current_index).addClass('selectedSearchHomePage');
 		    var text = $('.selectedSearchHomePage .selectedTitleVal').text();
 		    $('#getBusiness').val(text.trim());
-			$('.homeSearchBarList').addClass('searchDisplayShow').removeClass('searchDisplayHide');
+			// $('.homeSearchBarList').addClass('searchDisplayShow').removeClass('searchDisplayHide');
 
 			// To scroll the selection
 			var $s = $('.homeSearchBarList');
@@ -148,7 +148,7 @@ Template.mainBusinessSearch.events({
 	
 	'click #getBusiness':function(e){
 		e.stopPropagation(); 
-		$('.homeSearchBarList').addClass('searchDisplayShow').removeClass('searchDisplayHide');
+		// $('.homeSearchBarList').addClass('searchDisplayShow').removeClass('searchDisplayHide');
 	},
 });
 

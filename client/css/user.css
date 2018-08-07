@@ -4326,10 +4326,15 @@ padding-left: 48px;
     border: 0px !important;
 }
 input[type="file"]#reviewImgfilesEdits,input[type="file"]#reviewImgfileEdits,input[type="file"]#reviewImgfilesEdit{
-position: relative;
+/*position: relative;
     width: 100%;
     top: -25px;
-    left: -15px;
+    left: -15px;*/
+        position: relative;
+    width: 106%;
+    top: -32px;
+    left: -32px;
+    height: 96px;
 }
 .backGroundCommon{
     background: #fff!important;
