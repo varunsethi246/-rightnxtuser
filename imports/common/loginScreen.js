@@ -7,7 +7,10 @@ import '/imports/common/common.js';
 // if (Meteor.isClient) {
 
   Template.loginScreen.events({
-    'click .forgotPass': function(event) {
+  'click .verifyotp':function(event){
+    $('.modal-backdrop').remove();
+  },
+  'click .forgotPass': function(event) {
     $('.passwordWrongSpan').removeClass('passwordWrongWar');
     $('label.error').hide();
     $('input[type="email"]').val('');

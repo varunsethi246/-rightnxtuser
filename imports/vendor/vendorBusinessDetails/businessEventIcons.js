@@ -135,6 +135,8 @@ Template.businessEventIcons.events({
 				$('.genLoginSignup').show();
 				$('.thankyouscreen').hide();
 				$('.signUpBox').hide();
+				$('.leftModal').removeClass('hidden-xs');
+				$('.rightModal').removeClass('newHeight');
 			}
 		}else{
 			$('#loginModal').modal('show');
@@ -144,6 +146,9 @@ Template.businessEventIcons.events({
 			$('.genLoginSignup').show();
 			$('.thankyouscreen').hide();
 			$('.signUpBox').hide();
+
+		$('.leftModal').removeClass('hidden-xs');
+		$('.rightModal').removeClass('newHeight');
 		}
 	},
 	'mouseover #likeme':function(){
@@ -172,6 +177,8 @@ Template.businessEventIcons.events({
 			$('.thankyouscreen').hide();
 			$('.genLoginSignup').show();
 			$('.signUpBox').hide();
+			$('.leftModal').removeClass('hidden-xs');
+			$('.rightModal').removeClass('newHeight');
 		}
 	},
 
@@ -185,6 +192,8 @@ Template.businessEventIcons.events({
 			$('.genLoginSignup').show();
 			$('.signUpBox').hide();
 			$('#share_page3').modal('hide');
+			$('.leftModal').removeClass('hidden-xs');
+			$('.rightModal').removeClass('newHeight');
 		}
 	},
 
@@ -247,6 +256,9 @@ Template.businessEventIcons.events({
 			$('.thankyouscreen').hide();
 			$('.genLoginSignup').show();
 			$('.signUpBox').hide();
+			$('.leftModal').removeClass('hidden-xs');
+			$('.rightModal').removeClass('newHeight');
+
 		}
 
 
@@ -305,6 +317,7 @@ Template.businessEventIcons.events({
 		var currentUserNote = $('#toVAddNote').val();
 		var businessLink = FlowRouter.getParam('businessurl');
 		var currentPath = Meteor.absoluteUrl(businessLink);
+		console.log('currentPath :',currentPath);
 		var businessData = Business.findOne({"businessLink":businessLink});
 		var nameRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
 		if (currentUserMail==null||currentUserMail==""||!currentUserMail.match(nameRegex)) {
@@ -314,6 +327,8 @@ Template.businessEventIcons.events({
 				//============================================================
 				// 			Notification Email / SMS / InApp
 				//============================================================
+				console.log('currentPath 2:',currentPath);
+				
 				var currentUserId = Meteor.userId();
 				var currentUser = Meteor.users.findOne({'_id':currentUserId});
 	
@@ -323,6 +338,8 @@ Template.businessEventIcons.events({
 				}
 	
 				if(currentUser&&admin){
+					console.log('currentPath 3:',currentPath);
+
 					var username = currentUser.profile.name;
 	
 					//Send Mail to Shared User Email

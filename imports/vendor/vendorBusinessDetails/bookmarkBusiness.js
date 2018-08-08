@@ -136,6 +136,8 @@ Template.businessEventIcons.events({
 				$('.genLoginSignup').show();
 				$('.thankyouscreen').hide();
 				$('.signUpBox').hide();
+				$('.leftModal').removeClass('hidden-xs');
+				$('.rightModal').removeClass('newHeight');
 			}
 		}else{
 			$('#loginModal').modal('show');
@@ -145,6 +147,8 @@ Template.businessEventIcons.events({
 			$('.genLoginSignup').show();
 			$('.thankyouscreen').hide();
 			$('.signUpBox').hide();
+			$('.leftModal').removeClass('hidden-xs');
+			$('.rightModal').removeClass('newHeight');
 		}
 	},
 
@@ -270,6 +274,8 @@ Template.businessEventIcons.events({
 				$('.genLoginSignup').show();
 				$('.thankyouscreen').hide();
 				$('.signUpBox').hide();
+				$('.leftModal').removeClass('hidden-xs');
+				$('.rightModal').removeClass('newHeight');
 			}
 		}else{
 			$('#loginModal').modal('show');
@@ -279,6 +285,8 @@ Template.businessEventIcons.events({
 			$('.genLoginSignup').show();
 			$('.thankyouscreen').hide();
 			$('.signUpBox').hide();
+			$('.leftModal').removeClass('hidden-xs');
+			$('.rightModal').removeClass('newHeight');
 		}
 	},	
 });

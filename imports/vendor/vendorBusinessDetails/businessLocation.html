@@ -1,5 +1,5 @@
 <template name="businessLocation">
-	<div class="venderCon3">
+	<div class="venderCon3 col-xs-12">
 
 		<div class="bussLoc col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<p class="locBusi col-lg-6 col-md-6 col-sm-6 col-xs-6"><b>Location</b></p>
@@ -30,9 +30,9 @@
 		</div>	
 
 		{{#if isInRole 'admin'}}
-			<p class="addrBusi">{{> editableText collection="business" field="businessAddress"}},&nbsp;{{> editableText collection="business" field="businessCity"}},&nbsp;{{> editableText collection="business" field="businessState"}}</p>
+			<p class="addrBusi col-xs-12 col-sm-12 col-md-12 col-lg-12">{{> editableText collection="business" field="businessAddress"}},&nbsp;{{> editableText collection="business" field="businessCity"}},&nbsp;{{> editableText collection="business" field="businessState"}}</p>
 		{{else}}
-			<p class="addrBusi">{{businessAddress}},&nbsp;{{businessArea}},&nbsp;{{businessCity}},&nbsp;{{businessState}}</p>
+			<p class="addrBusi col-xs-12 col-sm-12 col-md-12 col-lg-12">{{businessAddress}},&nbsp;{{businessArea}},&nbsp;{{businessCity}},&nbsp;{{businessState}}</p>
 		{{/if}}
 		<div class="mapRight">
 			<div class="map-container bussMapContainer">

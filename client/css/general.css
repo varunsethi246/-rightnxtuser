@@ -2544,7 +2544,8 @@ margin-bottom:15px
 .addrBusi {
 font-size:16px;
 margin-bottom:0;
-word-break:break-all
+word-break:break-all;
+padding: 0;
 }
 
 .reportModalForm ul {
@@ -4034,7 +4035,7 @@ width:auto
 
 .carousel-inner > .item > img {
 width:100%!important;
-height:100%!important
+height: 250px!important;
 }
 
 #imageSliderCarousel {

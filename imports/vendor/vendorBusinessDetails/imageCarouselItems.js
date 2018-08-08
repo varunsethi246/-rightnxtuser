@@ -16,23 +16,24 @@ Template.imageCarouselItems.onRendered(function(){
               slidesToScroll: 1,
                 dots:false,
                 responsive: [
-                {
-                  breakpoint: 991,
-                  settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 1,
-                    infinite: true,
-                            dots:false,
+                  {
+                    breakpoint: 991,
+                    settings: {
+                      slidesToShow: 3,
+                      slidesToScroll: 1,
+                      infinite: true,
+                              dots:false,
+                    }
+                  },
+                  {
+                    breakpoint: 768,
+                    settings: {
+                      slidesToShow  : 1,
+                      slidesToScroll: 1,
+                      infinite      : true,
+                      dots          : false,
+                    }
                   }
-                },
-                {
-                  breakpoint: 768,
-                  settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                            dots:false,
-                  }
-                }
                 ]
         });
     },2000);

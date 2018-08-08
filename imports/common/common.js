@@ -159,6 +159,8 @@ Template.header.events({
 		$('.genLoginSignup').show();
 		$('.thankyouscreen').hide();
 		$('.signUpBox').hide();
+		$('.leftModal').removeClass('hidden-xs');
+		
 	},
 	'click .loginTxt': function(event){
 		$('.loginScreen').hide();
@@ -170,6 +172,10 @@ Template.header.events({
 		$('.genLoginSignup').hide();
 		$('.signupScreen').show();
 		$('.thankyouscreen').hide();
+		$('.leftModal').addClass('hidden-xs');
+		$('.rightModal').addClass('newHeight');
+
+
 	},
 	'click .signUp-btn1':function(event){
 		$('.loginScreen').hide();
@@ -182,6 +188,10 @@ Template.header.events({
 		$('.genLoginSignup').show();
 		$('.signupScreen').hide();
 		$('.thankyouscreen').hide();
+		$('.leftModal').removeClass('hidden-xs');
+		$('.rightModal').removeClass('newHeight');
+
+
 	},
 	'click .RegisterHere': function(event){
 		$('.loginScreen').hide();
