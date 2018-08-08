@@ -24,11 +24,6 @@ import '../../common/common.js';
 import '../BusinessEnquiry/businessEnquiry.js';
 import './businessMapView/businessMapView.js';
 
-
-Session.set('showMapView',false);
-Session.set('showGridView',true);
-
-
 var options = {
 	keepHistory: 0,
 	localSearch: true
@@ -81,6 +76,8 @@ Template.businessList.onRendered(function(){
 		$('#gridSearchBusiness').val("");
 	}
 
+	Session.set('showMapView',false);
+	Session.set('showGridView',true);
 });
 
 
@@ -89,6 +86,7 @@ Template.thumbnailBusinessList.helpers({
 	gridviewBusinessList() {
 		var listCategory = [];
 		var busList = businessSearch1.getData();
+
 		//**************************************************************
 		//*******************To get Current Location********************
 		//**************************************************************
@@ -201,7 +199,7 @@ Template.thumbnailBusinessList.helpers({
 		//*********************************************************************
 
 		}
-
+		// console.log(busList);
 		return busList;
 
 	},
@@ -258,7 +256,7 @@ Template.allbusinessList.events({
 		$('.listOffers').addClass('busListSelected');
 		$('.thumBusDistance').css('display','none');
 		$('.thumBusOffers').css('display','block');
-		$('.busNoOffer').css('display','none');
+		// $('.busNoOffer').css('display','none');
 	},
 	'click .listDistance': function(){
 		$('.busListSelectedPre').removeClass('busListSelected');
@@ -441,8 +439,7 @@ Template.allbusinessList.events({
 				        upload.on('end', function (error, fileObj) {
 				          if (error) {
 				            // alert('Error during upload: ' + error);
-				            console.log('Error during upload 1: ' + error);
-				            console.log('Error during upload 1: ' + error.reason);
+				            
 				          } else {
 				            // alert('File "' + fileObj._id + '" successfully uploaded');
 				            Bert.alert('Enquiry Image uploaded.','success','growl-top-right');
@@ -777,29 +774,7 @@ Template.allbusinessList.events({
                 $( ".spanEnqDesc" ).text("Please enter the description of the product you are looking for." );
             }
             $('.SpanLandLineRedBorder:visible:first').focus();
-			$('.showEnquiryImgAll>span').replaceWith( '<i class="fa fa-camera fa-5x" aria-hidden="true"></i>');
-
 		}
-	},
-	'click .enqSendClose':function(event){
-			// $('.enquiryName').val('');
-			// console.log('click');
-			
-			if (Meteor.userId()) {
-
-				$('.draggedImgenq').val('');
-				$('input[type="file"]').val('');
-				$('.enquiryDesc').val('');
-				$('.enquiryPhotoAll').val('');
-			}else{
-
-				// console.log('hello');
-				$('.enquiryName').val('');
-				$('.enquiryEmail').val('');
-				$('.enquiryPhone').val('');
-				$('.enquiryDesc').val('');
-				$('.enquiryPhotoAll').val('');
-			}
 	},
 });
 

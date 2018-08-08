@@ -188,7 +188,7 @@ Template.businessMap.onCreated(function() {
                                             ` + addr + `
                                                     </div>
                                                     <div class="markerSInfoModal">
-                                                        <img src="https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/phone-icon.png" style="display:inline-block">
+                                                        <img src="/images/search/phone-icon.png" style="display:inline-block">
                                                         <div style="display:inline-block">
                                             ` + contactNumbers + `
                                                         </div>
@@ -203,7 +203,7 @@ Template.businessMap.onCreated(function() {
 
                     var marker  =  new google.maps.Marker({
                                         position : mapPosition,
-                                        icon     : "https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/location-icon.png",
+                                        icon     : "/images/location-icon.png",
                                         map      : map.instance,
                                     });
 

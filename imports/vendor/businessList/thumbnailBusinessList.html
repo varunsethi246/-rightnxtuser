@@ -1,11 +1,11 @@
 <template name="thumbnailBusinessList">
-	<div class="thumbBusList">
+	<div class="thumbBusList {{#if isGridViewVisible }}{{else}}col-lg-12 col-md-6{{/if}}">
 		<div class="row">
 			{{#if isGridViewVisible }}
 				<!-- {{#if gridviewBusinessList}} -->
 						{{#each gridviewBusinessList}}
 								<!-- Grid View -->
-								<div class="col-lg-4 gridViewBusList {{busNoOffer}}">
+								<div class="col-lg-4 col-md-4 col-sm-4 gridViewBusList {{busNoOffer}}">
 									<div class="thumbBusDiv">
 										<div class="thumImgDim">
 											<div class="enqRatingBus">
@@ -18,7 +18,7 @@
 													
 												</div>
 												<div class="enqMidDiv">{{totalVote}} votes</div>
-												<div class="enqRightDiv pull-right" cords-ids="{{businessLongitude}}-{{businessLatitude}}-{{_id}}">
+												<div class="enqRightDiv pull-right hidden-xs" cords-ids="{{businessLongitude}}-{{businessLatitude}}-{{_id}}">
 													<i class="fa fa-map-marker pull-right" aria-hidden="true"></i>
 												</div>
 											</div>
@@ -42,7 +42,7 @@
 											<span class="thumBusOffersSnO">
 												<i class="fa fa-percent" aria-hidden="true"></i>
 											</span>
-											<span class="thumBusOffersSnT">{{busOffer}}</span>
+											<span class="thumBusOffersSnT">{{busNoOffer}} Offer</span>
 										</div>
 										<div class="thumbEnqBtn" data-link="{{businessLink}}" data-toggle="modal" data-target="#vEnqModal">
 											<button class="btn btn-success">Enquiry</button>
@@ -51,7 +51,7 @@
 											</span>
 										</div>
 										<div class="thumBusDistance pull-right">
-											{{busDist}} km
+											{{#if busDist}}{{busDist}}{{else}}--{{/if}} km
 										</div>
 									</div>
 								</div>
@@ -79,7 +79,7 @@
 			{{#if isMapViewVisible }}
 				{{#each gridviewBusinessList}}
 					<!-- Map View -->
-						<div class="col-lg-11 col-xs-12 mapViewBusList {{busNoOffer}}" style="padding:0 5px !important">
+						<div class="col-lg-11 col-md-12 col-sm-12 col-xs-12 mapViewBusList {{busNoOffer}}">
 							<div class="thumbBusDivs">
 								<div class="row">
 									<div class="thumImgDims col-xs-5 col-lg-5" >
@@ -94,7 +94,7 @@
 									</div>
 
 									<div class="col-lg-7 col-xs-7" style="padding:0!important">
-										<div class="leftBorder" id={{_id}}>
+										<div class="leftBorder col-lg-12 col-md-12 col-sd-12 col-xs-12" id={{_id}}>
 											<a  href="/{{businessLink}}"  class="enqHelper">
 												<span class="mapVBusTitle thumImgDescP" data-linkUrl={{businessLink}}  id={{businessTitle}}>{{businessTitle}}</span>
 											</a>
@@ -118,18 +118,20 @@
 													{{> businessEnquiry}}
 												</span>
 											</div>
+											
 											<div class="thumBusDistance pull-right">
-												{{busDist}} km
+												{{#if busDist}}{{busDist}}{{else}}--{{/if}} km
 											</div>
+
 										</div>
 
 									</div>
-									<div class="col-lg-12">
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 										<div class="thumBusOffers">
 											<span class="thumBusOffersSnO">
 												<i class="fa fa-percent" aria-hidden="true"></i>
 											</span>
-											<span class="thumBusOffersSnT">{{busOffer}}</span>
+											<span class="thumBusOffersSnT">{{busNoOffer}} Offer</span>
 										</div>
 									</div>
 								</div>

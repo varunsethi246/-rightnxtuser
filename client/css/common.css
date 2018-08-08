@@ -1192,7 +1192,7 @@ text-align: center;
 @media only screen and (max-width: 1280px){
 
     .aboutNavbar{
-        margin-left:35%;
+        /*margin-left:35%;*/
     }
 }
 /*.aboutNavbar{

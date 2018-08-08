@@ -1,5 +1,5 @@
 HomepageFunc = function () {
-console.log('1st');  
+// console.log('1st');  
 	import('/imports/general/homepage/homepage.js')
 	.then(function (handle) {  
 		handle.Homepage();    

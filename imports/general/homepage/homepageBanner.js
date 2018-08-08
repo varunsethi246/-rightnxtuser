@@ -78,7 +78,7 @@ Template.homepageBanner.helpers({
     },
 
   shwCityAndArea(){
-      var currentCityList=citySearch1.getData();
+       var currentCityList=citySearch1.getData();
       var currentAreaList = [];
 
       var userId = Meteor.userId();
@@ -109,13 +109,9 @@ Template.homepageBanner.helpers({
         // }else{
         //   var currentCity = "Pune";
         // }
+        // Most Important Sesion to pass Dynamic City to footer links
+        Session.set("rxtNxtCityDatlist",currentCity);
       }
-
-      // console.log(currentCity);
-
-      // Most Important Sesion to pass Dynamic City to footer links
-      Session.set("rxtNxtCityDatlist",currentCity);
-  
     
       var currentAreaList = Area.find({'city':currentCity,"status":"active"}).fetch();
       currentAreaList.sort(function(a, b) {
@@ -199,6 +195,7 @@ Template.homepageBanner.events({
     if(!text){
       text = "Pune";
     }
+
     citySearch1.search(text);
     $(".curUserCity").text(text);
     Session.set("userSelecetedRXTCity",text);
@@ -206,16 +203,16 @@ Template.homepageBanner.events({
     var userId = Meteor.userId();
     if(userId){
       Meteor.call("storeUserSelectedCity", userId, text);
+    }else{
+      Session.set("rxtNxtCityDatlist",text);
     }
   },
 
   'change #getCity': function(e) {
-    if(e.keyCode === 13){
-      $('#changeCityModal').modal('hide');
-    }
+    // if(e.keyCode === 13){
     $('#changeCityModal').modal('hide');
     $('.modal-backdrop').hide();
-
+    // }
     var text=$('#getCity').val().trim();
 
     if(!text){
@@ -227,6 +224,8 @@ Template.homepageBanner.events({
     var userId = Meteor.userId();
     if(userId){
       Meteor.call("storeUserSelectedCity", userId, text);
+    }else{
+      Session.set("rxtNxtCityDatlist",text);
     }
   },
 

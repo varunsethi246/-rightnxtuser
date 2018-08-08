@@ -18,20 +18,6 @@ Template.aboutUs.onCreated(function () {
   this.subscribe('currentuser');
   this.subscribe('area');
   this.subscribe('generalContentUrl','about'); 
-  // this.subscribe('generalContent'); 
-  // // Use this.subscribe inside onCreated callback
-  // this.subscribe('userfunction');
-  // this.subscribe('allCity');
-  // this.subscribe('area');
-  // // this.subscribe('userProfileS3OneUser');
-  // this.subscribe('categories');
-  // this.subscribe('notification');
-  // this.subscribe('notificationTemplate');
-  // this.subscribe('vendorBusiness');
-  // this.subscribe('userProfileS3'); 
-  // this.subscribe('businessImgS3');
-  // this.subscribe('userProfileS3');
-  // this.subscribe('businessImgS3');
 });
 
 Template.aboutUs.helpers({
@@ -111,8 +97,13 @@ Template.aboutUsForm.events({
 		else{
 			Bert.alert("Please enter data in the field !!!","danger","growl-top-right");
 		}	
-	}
-		
+	}	
+});
+
+Template.aboutUs.events({
+	'click .closeMenuTab': function(event){
+		$(event.currentTarget).parent().parent().removeClass('in');
+	}	
 });
 
 Template.aboutUs.onRendered(function(){

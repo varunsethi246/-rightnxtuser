@@ -517,8 +517,12 @@ color:#4e4f51!important
 
 input[type=number].no-spinner::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button {
 -webkit-appearance:none;
-margin:0
+margin:0;
 }
+input[type=number] {
+    -moz-appearance:textfield;
+}
+.fileupload{height: inherit;}
 
 .addNewBtn {
 margin-top:20px;
@@ -2834,7 +2838,7 @@ font-size:60px
 
 .comingSoon .h1Div {
 text-align:center;
-background:url(../images/claim/banner.jpg) no-repeat;
+background:url(/images/banner.jpg) no-repeat;
 background-attachment:fixed;
 height:500px;
 margin-top:-2%;
@@ -2922,12 +2926,13 @@ margin-left:0
 margin-left:0;
 padding-top:0;
 position:relative;
-top:-54px
+top:-38px;
 }
 
 .headerLogin-xs {
 padding-top:0;
-padding-right:0
+padding-right:0;
+height: 0px;
 }
 
 .headerLogin-xs .login {
@@ -3122,11 +3127,12 @@ padding-left:0;
 padding-right:0
 }
 
-.introduction .panel-heading {
-padding-left:2px;
-padding-right:4px
+.introduction .panel-heading {padding-left:8px;padding-right:8px;}
+.panel-heading .span {
+    position: relative;
+    top: 0px;
+    font-size: 11px;
 }
-
 .introduction .panel-body {
 text-align:justify
 }
@@ -3163,9 +3169,7 @@ margin-left:28%;
 width:42%
 }
 
-.genLoginSignup {
-margin-top:0
-}
+.genLoginSignup {margin-top:0;margin-bottom: 15px;}
 
 .rightModal p {
 padding-top:8px;
@@ -3550,6 +3554,7 @@ padding-left:10px
 }
 
 @media screen and (min-width: 992px) and (max-width: 1199px) {
+.mapViewBusList{padding: 0px 15px!important;}
 .footerWrapper-xs {
 padding-left:45px
 }
@@ -3778,17 +3783,28 @@ top:-5px!important
 }
 }
 
+@media (min-width: 992px){
+.form4General{margin-top: 16px;}
+.section3-1{padding-left: 30px;}
+.section3-head{padding-left: 15px;}
+.footerCompany,.footetDiv1-xs{padding-left: 0px;padding-right: 0px;}	
+}
+
 @media screen and (min-width: 800px) and (max-width: 991px) {
 .section3-1 {
 right:164px
 }
-
 .section3-head {
 right:236px!important
 }
 }
 
-@media screen and (min-width: 768px) and (max-width: 991px) {
+@media screen and (min-width: 768px) and (max-width: 991px){
+.mapContainer{max-height: 550px;}
+.thumbBusDivs{position: initial;margin-left: 15px;}
+.mapViewBusList{padding: 0px 15px!important;}
+.scrollMapVwBus{overflow-y: auto;height: 600px;}
+.aboutUsNavbar{margin-left: 25%;}
 .products {
 height:110px
 }
@@ -3827,7 +3843,8 @@ height:40px
 
 .form4General {
 padding-left:0!important;
-padding-right:0!important
+padding-right:0!important;
+margin-top: 18px;
 }
 
 .notifiacationUsers {
@@ -3907,9 +3924,7 @@ margin-left:0
 margin-top:5%
 }
 
-#faqCollapse {
-margin-bottom:30px
-}
+#faqCollapse {margin-bottom:30px;margin-left: 9%!important;}
 
 .contact-margin {
 padding-right:0;
@@ -4000,24 +4015,21 @@ padding:4px 5px!important
 }
 
 @media screen and (min-width:320px) and (max-width:767px) {
+.busListEnq{margin-bottom: 10px!important;width: 100%;}
 .mapViewBusList .mapVBusTitle,.mapViewBusList .mapVBusAddr,.mapViewBusList .mapVBusPhnNum {
 width:90%
 }
-
 .displayMapView {
-min-height:720px!important
+min-height:200px!important
 }
-
 .thumbBusDivs {
 width:93%
 }
-
-.optionOfAreaG {
-width:30%
-}
+.hideMarginBot{margin-bottom: 0px;}
+.optionOfAreaG {width:30%;margin-bottom: 0px;}
 
 .mapContainer {
-padding:10px 15px 0
+padding:10px 15px 0;height: 200px;
 }
 
 .scrollMapVwBus {
@@ -4299,6 +4311,12 @@ text-align: center
 		position: relative;
 		left:-26px;
 	}
+	#faqCollapse{margin-left: 32.5%!important;}
+	.merchantGuidelineslg{margin-top: 3%}
+	.mapViewBusList .mapVBusTitle, .mapViewBusList .mapVBusAddr, .mapViewBusList .mapVBusPhnNum {width: 100%}
+}
+@media screen and (min-width: 768px) and (max-width: 1024px){
+	#faqCollapse{margin-left: 21%;}
 }
 .otpOuterDiv{
 	border: 1px solid #bbbbbb;
@@ -4306,3 +4324,4 @@ text-align: center
 }
 .busiTimeOpenHrs{margin-top: 10px;margin-bottom: 0px;}
 .noPaddingGeneral{padding-right: 0px;padding-left: 0px;}
+.mapViewBusList{padding:0 5px}

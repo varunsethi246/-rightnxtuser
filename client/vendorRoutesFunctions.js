@@ -183,7 +183,7 @@
 // 	})
 // }
 businessListFunc= function () {    
-	console.log('hello');
+	// console.log('hello');
 	import('/imports/vendor/businessList/businessList.js').then(function (handle) {        
 		handle.businessListForm();    
 	})
