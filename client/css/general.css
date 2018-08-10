@@ -10,7 +10,7 @@ width:100%
 }
 
 .homeScrollTop,.bussScrollTop {
-color:#b2b2b2;
+color:#f89b1c;
 right:8px;
 bottom:5px;
 cursor:pointer;
@@ -20,7 +20,7 @@ z-index:5
 }
 
 .homeScrollTop:hover,.bussScrollTop:hover {
-color:#f89b1c
+color:#b2b2b2;
 }
 
 .location-city {
@@ -3481,7 +3481,7 @@ margin-bottom:5px
 }
 
 .slick-next {
-right:26%!important
+right:13%!important
 }
 
 .slick-prev {
