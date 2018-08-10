@@ -11,17 +11,17 @@
                   <img src="{{businessImages}}" alt="">
                 </a>
               </div>
-              <div class="timelineRightTxt col-lg-3 col-md-6 col-xs-6">
+              <div class="timelineRightTxt col-lg-3 col-md-3 col-xs-6">
                 <a href="/{{businessLink}}"  target="_blank">{{businessTitle}}</a>
                 <p>{{businessArea}}, {{businessCity}}</p>
                 <p>{{timeAgo reviewDate}}</p>
               </div>
-              <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 myRatingOnBuss" >
+              <div class="col-lg-4 col-md-4 col-sm-6 col-xs-5 myRatingOnBuss" >
                 {{#with showRating}}
                   Rating: {{> starRating2 }}
                 {{/with}}
               </div>
-              <div class="logoNamePhoto col-lg-3 pull-right col-xs-3 col-md-3 col-sm-3   ">
+              <div class="logoNamePhoto col-lg-3 pull-right col-xs-3 col-md-3 col-sm-3">
                 <div class="userPicReview"> 
                   <a href="/userReview/{{redirectUid}}" target="_blank">
                     <img src="{{userProfilePic}}"  height="40px" width="40px" alt="userProfilePic" class="bgGif">
@@ -52,7 +52,7 @@
             </div>
           </div>
           {{/if}}
-          <div class="userReviewTempcommTxt-{{_id}} timelineCommTxt col-lg-12">
+          <div class="userReviewTempcommTxt-{{_id}} timelineCommTxt col-lg-12 col-md-12 col-sm-12 col-xs-12">
             {{ #if userReviewTimelineDesc2 }}
               <p>
                 {{ userReviewTimelineDesc1 }}

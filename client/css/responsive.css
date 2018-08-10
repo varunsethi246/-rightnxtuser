@@ -105,6 +105,11 @@
 	/*==========home page===========*/
 
 }
+@media only screen and (min-device-width : 1600px) and (max-device-width : 1900px) {
+	.times.dayBuss{
+		padding: 0px;
+	}
+}
 @media only screen and (width : 640px) {
 /* Styles */
 	.howitworks{

@@ -740,14 +740,21 @@ Template.userTimeline.events({
 	},
 
 	"click .bunchTagFrndCross":function(e){
+		// console.log('click');
 		var userId = $(e.currentTarget).attr('data-userId');
 		var tagfrnd = [];
 		for(var i = 0 ; i < tagedFriends.length; i++ ){
 			if(tagedFriends[i].selectedUserId != userId){
-				tagfrnd.push(tagedFriends[i])
+			// console.log('tagfrnd.push(tagedFriends[i]) :',tagfrnd.push(tagedFriends[i]));
+				tagfrnd.push(tagedFriends[i]);
+
 			}
+			// console.log('in for');
 		}
 		$('#searchFrndsEdit').trigger('keyup');
+			// console.log('$(#searchFrndsEdit).trigger(keyup) :',$('#searchFrndsEdit').trigger('keyup'));
+			// console.log('tagfrnd :',tagfrnd);
+
 		tagedFriends = tagfrnd;
 	},
 	// ============================================================
