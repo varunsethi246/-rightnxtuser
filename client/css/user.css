@@ -3446,11 +3446,11 @@ display:none
 }
 
 .minopenReviewHeight {
-height:250px
+height:260px
 }
 
 .maxopenReviewHeight {
- height:365px ;
+ height:375px ;
 display: block;
 /*display: flow-root !important;*/
 }

@@ -15,20 +15,25 @@
 						</div>
 					{{else}}
 						{{#each bussDataArray}}
-							<div class="UserLikesList col-lg-7 col-md-12 col-sm-12 col-xs-12">
-								<div class="likeList">
-									<div class="likeLeftImg col-lg-1 col-xs-2 col-md-2">
-										<!-- <a href="#"> -->
-										<img src="{{businessImg}}" alt="">
-										<!-- </a> -->
-									</div>    
-									<div class="likeRightTxt col-lg-11 col-xs-10 col-md-10"> 
-										<a href="/{{businessLink}}" target="_blank">{{businessTitle}}</a>
-										<p>{{businessArea}}, {{businessCity}}</p>
-										<p>{{timeAgo createdAt}}</p>
-									</div>     
+						<div class="row">
+							
+							<a href="/{{businessLink}}">
+								<div class="UserLikesList col-lg-6 col-md-12 col-sm-12 col-xs-12">
+									<div class="likeList">
+										<div class="likeLeftImg col-lg-1 col-xs-2 col-md-2">
+											<!-- <a href="#"> -->
+											<img src="{{businessImg}}" alt="">
+											<!-- </a> -->
+										</div>    
+										<div class="likeRightTxt col-lg-11 col-xs-10 col-md-10"> 
+											<a href="/{{businessLink}}" target="_blank">{{businessTitle}}</a>
+											<p>{{businessArea}}, {{businessCity}}</p>
+											<p>{{timeAgo createdAt}}</p>
+										</div>     
+									</div>
 								</div>
-							</div>
+							</a>
+						</div>
 						{{/each}}
 					{{/if}}
 				</div>

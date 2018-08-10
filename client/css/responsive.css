@@ -159,6 +159,9 @@
 	.imageReportSlider{
 		width: 100%;
 	}
+	.profSettingsidebarUl li{
+		width: 215%!important;
+	}
 }
 
 /* iPads (landscape) ----------- */
