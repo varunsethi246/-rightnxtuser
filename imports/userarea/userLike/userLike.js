@@ -5,6 +5,7 @@ import { Likes } from '/imports/api/likesMaster.js';
 import { emptyReviewTemplate } from '../../common/emptyReviewTemplate.html';
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import { BusinessImage } from '/imports/videoUploadClient/businessImageClient.js';
+import { ReviewImage } from '/imports/videoUploadClient/reviewImageClient.js';
 
 import '../userLayout.js'
 import './userLike.html'
@@ -51,7 +52,6 @@ Template.userLike.helpers({
 			for(i=0;i<likesData.length;i++){
 			var bussdata = Business.findOne({'_id':likesData[i].businessId,"status":'active'});
 				if(bussdata){
-					console.log('bussdata ', bussdata);
 					var businessName	 = bussdata.ownerFullName;
 					var businessArea	 = bussdata.businessArea;
 					var businessLink	 = bussdata.businessLink;
@@ -66,7 +66,12 @@ Template.userLike.helpers({
 							if(pic){
 								businessImages = pic.link();
 							}else{
-								businessImages = 'https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg';
+								var imgObj = ReviewImage.findOne({"_id":bussdata.businessImages[0].img});
+								if(imgObj){
+									businessImages = imgObj.link();
+								}else{
+									businessImages = 'https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg';
+								}
 							}
 						}else{
 							businessImages = 'https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg';

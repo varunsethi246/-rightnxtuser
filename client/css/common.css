@@ -962,15 +962,15 @@ border-color:#f89b1c
 }
 
 .notifiacationUsers {
-top:28px;
-left:3%
+top:10px;
+/*left:3%*/
 }
 
 .notifiacationUsers>ul {
-margin-right:-30px;
+/*margin-right:-30px;
 height:0;
 position:relative;
-margin-top:-15px
+margin-top:-15px*/
 }
 
 .top-userNav>li>a {

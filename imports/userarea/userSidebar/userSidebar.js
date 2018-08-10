@@ -21,6 +21,9 @@ Template.userSidebar.events({
         $(event.currentTarget).addClass('active');
         $("html,body").scrollTop(0);
 	},
+	'click .closeMenuTab': function(event){
+		$(event.currentTarget).parent().parent().removeClass('in');
+	}
 });
 
 Template.userSidebar.helpers({

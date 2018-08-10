@@ -2894,6 +2894,13 @@ margin-left:6px
 }*/
 
 @media screen and (max-width: 767px) {
+.notifiacationUsers {
+/*position:absolute;
+left:36%;
+top:20px*/
+    /*position: absolute;*/
+    /*right: 45%;*/
+}
 .homepageForms-xs {
 margin-top:4.5%
 }
@@ -3389,8 +3396,8 @@ margin-top:0
 padding-right:0;
 padding-left:0;
 position:relative;
-top:-105px;
-right:3px;
+top:-88px;
+/*right:3px;*/
 }
 
 .dropmenuGen {
@@ -3410,7 +3417,7 @@ padding-right:0
 .header-general .form4General {
 padding-right:15px;
 padding-left:15px;
-margin-top: -18px;
+margin-top: 0px;
 }
 
 .gernalHeaderNavBar {
@@ -3554,6 +3561,7 @@ padding-left:10px
 }
 
 @media screen and (min-width: 992px) and (max-width: 1199px) {
+/*.notifiacationUsers{left: 0%;}*/
 .mapViewBusList{padding: 0px 15px!important;}
 .footerWrapper-xs {
 padding-left:45px
@@ -3800,6 +3808,9 @@ right:236px!important
 }
 
 @media screen and (min-width: 768px) and (max-width: 991px){
+/*.secondDiv,.firstDiv{padding-left: 0px;}*/
+.follwSugg{padding-left: 0px!important;margin-top: 5px;}
+.suggInfoTimeline{padding-left: 15px!important;padding-right: 15px!important;}
 .mapContainer{max-height: 550px;}
 .thumbBusDivs{position: initial;margin-left: 15px;}
 .mapViewBusList{padding: 0px 15px!important;}
@@ -3847,9 +3858,7 @@ padding-right:0!important;
 margin-top: 18px;
 }
 
-.notifiacationUsers {
-left:-2%!important
-}
+.notifiacationUsers {padding-left: 0px;padding-right: 0px;}
 
 .homepageForms-xs {
 margin-top:2.5%
@@ -4079,22 +4088,7 @@ white-space:normal!important
 width:25px!important;
 height:25px!important
 }
-
-.notifiacationUsers {
-position:absolute;
-left:31%;
-top:20px
 }
-}
-
-@media screen and (min-width:360px) and (max-width:767px) {
-.notifiacationUsers {
-position:absolute;
-left:36%;
-top:20px
-}
-}
-
 .notifvalMenu {
 width:100%
 }
@@ -4103,7 +4097,6 @@ width:100%
 .businessDetailsreview {
 width:23%!important
 }
-
 .rateBusi {
 width:37%
 }
@@ -4311,12 +4304,18 @@ text-align: center
 		position: relative;
 		left:-26px;
 	}
+	/*.addPhotoTxt{right: 25.5%!important;}*/
+	.logoutBtnDropdown{right: 76px;top: 52px;}
 	#faqCollapse{margin-left: 32.5%!important;}
 	.merchantGuidelineslg{margin-top: 3%}
 	.mapViewBusList .mapVBusTitle, .mapViewBusList .mapVBusAddr, .mapViewBusList .mapVBusPhnNum {width: 100%}
 }
 @media screen and (min-width: 768px) and (max-width: 1024px){
 	#faqCollapse{margin-left: 21%;}
+}
+@media screen and (min-width: 640px){
+/*.notifiacationUsers {left:46%;}*/
+/*.addPhotoTxt{bottom: -98%!important;height: 16px!important;right: 23%!important;}*/
 }
 .otpOuterDiv{
 	border: 1px solid #bbbbbb;
@@ -4325,3 +4324,21 @@ text-align: center
 .busiTimeOpenHrs{margin-top: 10px;margin-bottom: 0px;}
 .noPaddingGeneral{padding-right: 0px;padding-left: 0px;}
 .mapViewBusList{padding:0 5px}
+.prfContentDiv{margin-top: 20px;}
+.prfContentMarg{margin-top: 5px;}
+.prfUserFollow{margin-bottom: 10px;}
+@media only screen and (orientation: landscape) {
+	@media screen and (min-width: 320px) and (max-width: 767px) {
+		.addPhotoTxt {
+		    right: 5px!important;
+		    width: 120px;
+		}
+		.likeRightTxt {
+		    margin-left: -30px;
+	    	padding-left: 0px;
+	    }
+	    /*.notifiacationUsers{left: 46%;}*/
+	    /*.logoutBtnDropdown{right: 110px;}*/
+	}
+}
+.prfSpan{left: 0px!important;top: 0px!important;}

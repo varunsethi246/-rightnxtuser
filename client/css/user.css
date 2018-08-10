@@ -100,6 +100,11 @@ border-bottom:1px solid #ccc
 }
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
+.top-userNav > .open > .notif-dropdown{position: absolute;}
+.notifSerach{position: absolute;right: 21%;}
+.notifNoSearch{top: 5px;padding-left: 0px;padding-right: 0px;}
+.prfPic{padding-right: 0px;padding-left: 0px;}
+.prfSettingDiv{margin-top: 0px!important;margin-bottom: 10px;padding-left: 0px;padding-right: 0px;}
 .followersBlk > .col-xs-12 {
 padding-left:0;
 padding-right:0
@@ -140,11 +145,11 @@ margin-top:0!important
 }
 
 .genHead {
-height:80px!important;
-padding-right:0
+/*height:80px!important;*/
+/*padding-right:0*/
 }
 
-.prfPic {
+/*.prfPic {
 height:98px!important;
 width:98px!important;
 border:1px solid #ccc!important;
@@ -154,9 +159,9 @@ padding-left:0!important;
 background-image:url(images/Rightnext-Loading.gif);
 background-repeat:no-repeat;
 background-size:100% 100%
-}
+}*/
 
-.addPhotoTxt {
+/*.addPhotoTxt {
 height:18px!important;
 padding:0!important;
 position:absolute!important;
@@ -165,10 +170,10 @@ cursor:pointer!important;
 opacity:.8!important;
 bottom:-27px!important;
 z-index:1!important
-}
+}*/
 
 .prfContent {
-padding-top:11px!important
+/*padding-top:11px!important*/
 }
 
 .prfContent h3 {
@@ -498,8 +503,8 @@ right:3.5px!important
 }
 
 .notifiacationUsers>ul {
-left:12px;
-top:12px
+/*left:12px;
+top:12px*/
 }
 
 .userTimelineCommentText > div > .col-lg-12 {
@@ -543,8 +548,9 @@ margin-bottom:15px
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
+.usersidebarUl{margin-top: 0px!important;}
 .addPhotoTxt {
-left:19px!important
+/*left:30%!important*/
 }
 
 .rightBtn {
@@ -561,7 +567,7 @@ text-decoration:none;
 padding-top: 0%
 }
 .likeRightTxt {
-margin-left:1px!important
+/*margin-left:1px!important*/
 }
 
 .reviewRightTxt {
@@ -602,6 +608,7 @@ top:0
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
+/*.addPhotoTxt{right: 32px!important;}*/
 .timelineRightTxt {
 margin-left:-80px!important;
 margin-top:0!important
@@ -612,7 +619,7 @@ text-decoration:none;
 padding-top: 0%
 }
 .likeRightTxt {
-margin-left:-50px!important
+/*margin-left:-50px!important*/
 }
 
 .menuItems {
@@ -651,7 +658,7 @@ top:8.5px
 }
 
 .addPhotoTxt {
-right:30px!important
+/*right:12px!important*/
 }
 }
 
@@ -667,13 +674,13 @@ margin-top:-15px
 display:none
 }
 
-.prfPic {
-height:186px;
+.genHead {
+/*height:186px;
 width:178px;
-border:1px solid #ccc;
-top:32px;
-padding-right:0;
-padding-left:0
+border:1px solid #ccc;*/
+top:18px;
+/*padding-right:0;
+padding-left:0*/
 }
 
 .propic {
@@ -697,18 +704,25 @@ display:none
 }
 
 .addPhotoTxt {
-height:18px;
+/*height:18px;
 position:absolute;
 right:20px;
 cursor:pointer;
 opacity:1;
 bottom:-27px;
-z-index:1
+z-index:1*/
+/*padding-left: 0px;
+position: relative;
+bottom: -12px;
+right: 3px;*/
+position: absolute;
+bottom: 5px;
+right: 20px;
 }
 
 .prfContent h3 {
 font-size:36px;
-padding:32px 0 0;
+/*padding:32px 0 0;*/
 margin:0;
 font-weight:400;
 line-height:50px;
@@ -737,10 +751,12 @@ background:url(https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general
 }
 
 .rightBtn {
-float:right;
+/*float:right;
 padding:39px 33px 0 0;
-margin:0
+margin:0*/
+padding-left: 0px;padding-right: 0px;
 }
+.prfSettingDiv{margin-top: 30px;}
 
 .rightBtn.prfSetting a:hover {
 color:#f89b1c
