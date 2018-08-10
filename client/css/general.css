@@ -3536,8 +3536,8 @@ padding-left:10px
 .commentReplyInputBox{padding-left: 30px!important;}
 #businessMenuCollapse{padding-left: 0px;padding-right: 0px;}
 #businessMenuCollapse .userMenuItem{margin-left: 0px;padding-left: 15px;}
-.unfollowUserBtn{width: 30%!important;}
-.LoadMore1,.followBox,.takeRating{padding-left: 0px;padding-right: 0px;}
+.unfollowUserBtn,.unfollowUserBtn:hover{width: 30%!important;}
+.LoadMore1,.takeRating{padding-left: 0px;padding-right: 0px;}
 .followersPaddTop{padding-top: 10px!important;}
 .myRatingOnBuss,.starRatingblock,.bunchTagFrndTagged,.tagedFrndSpans,
 .userRevCommentEditPen,.userRevvCommentDel,.userRevRepEdit,.userRevvReplyDel,
@@ -4305,7 +4305,7 @@ text-align: center
 		left:-26px;
 	}
 	/*.addPhotoTxt{right: 25.5%!important;}*/
-	.logoutBtnDropdown{right: 76px;top: 52px;}
+	.logoutBtnDropdown{right: 85px!important;top: 52px;}
 	#faqCollapse{margin-left: 32.5%!important;}
 	.merchantGuidelineslg{margin-top: 3%}
 	.mapViewBusList .mapVBusTitle, .mapViewBusList .mapVBusAddr, .mapViewBusList .mapVBusPhnNum {width: 100%}
@@ -4337,6 +4337,8 @@ text-align: center
 		    margin-left: -30px;
 	    	padding-left: 0px;
 	    }
+	    .userFollInfoSugg,.suggInfoTimeline{margin-left: -30px!important;}
+	    .busiVedorleftOfferImg{width: 20%;}
 	    /*.notifiacationUsers{left: 46%;}*/
 	    /*.logoutBtnDropdown{right: 110px;}*/
 	}

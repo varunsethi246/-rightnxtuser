@@ -3626,11 +3626,11 @@ color:#f89b1c
     font-weight: bold;
 }
 
-.userSavedOffer:hover {
+.userSavedOffer:hover,.userSavedOffer:focus,.userthumbTxtOverfl:hover, .userthumbTxtOverfl:focus {
     color:#f89b1c;
 }
 
-.unfollowUserBtn {
+.unfollowUserBtn,.unfollowUserBtn:hover {
 background: #f89b2f;
 text-align: center;
 color: #f5f5f5;

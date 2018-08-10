@@ -100,6 +100,8 @@ border-bottom:1px solid #ccc
 }
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
+.notifyWrapper{margin-top: 4px!important;}
+.followBox1{padding-left: 15px!important;padding-right: 15px!important;}
 .top-userNav > .open > .notif-dropdown{position: absolute;}
 .notifSerach{position: absolute;right: 21%;}
 .notifNoSearch{top: 5px;padding-left: 0px;padding-right: 0px;}
@@ -192,12 +194,13 @@ margin:0
 }
 
 .prfContent h4 {
-color:#4e4f51;
+/*color:#4e4f51;
 font-size:15px!important;
 padding:0;
 margin:0;
 margin-top:5px!important;
-font-weight:400!important
+font-weight:400!important*/
+margin-bottom: 12px!important;
 }
 
 .rightBtn.prfSetting a {
@@ -548,6 +551,7 @@ margin-bottom:15px
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
+.sort_txt{margin-bottom: 5px;}
 .usersidebarUl{margin-top: 0px!important;}
 .addPhotoTxt {
 /*left:30%!important*/
@@ -576,8 +580,8 @@ margin-top:0!important
 }
 
 .menuItems {
-padding-left:0!important;
-padding-right:30px!important;
+padding-left:10px!important;
+/*padding-right:30px!important;*/
 margin-left:0!important;
 margin-bottom:10px!important
 }
@@ -609,6 +613,7 @@ top:0
 
 @media (min-width: 992px) and (max-width: 1199px) {
 /*.addPhotoTxt{right: 32px!important;}*/
+.unfollowUserBtn,.unfollowUserBtn:hover{right: 15%;position: relative;font-size: 12px!important;width: 35%!important;}
 .timelineRightTxt {
 margin-left:-80px!important;
 margin-top:0!important
@@ -621,10 +626,10 @@ padding-top: 0%
 .likeRightTxt {
 /*margin-left:-50px!important*/
 }
-
+.sort_txt{margin-bottom: 5px;}
 .menuItems {
-padding-left:0!important;
-padding-right:30px!important;
+padding-left:10px!important;
+/*padding-right:30px!important;*/
 margin-left:0!important
 }
 
@@ -733,7 +738,8 @@ color:#f89b1c
 color:#4e4f51;
 font-size:21px;
 padding:0;
-margin:0;
+/*margin:0;*/
+margin-bottom: 18px;
 font-weight:400
 }
 
@@ -1666,13 +1672,15 @@ color:#4e4f51
 }
 
 .infoSugg p {
-font-size:14px;
+font-size:15px;
 font-weight:400;
 padding:0;
 margin:0;
 font-family:'PROXIMANOVA-REGULAR';
 color:#b2b2b2
 }
+.infP{color:#4e4f51!important;margin-bottom: 15px!important;}
+.unfBtns{padding: 5px 8px 5px 8px;font-size: 13px;}
 
 .followerSugg {
 float:right;
@@ -3994,7 +4002,7 @@ font-weight:600
 }
 
 .notifyreportWrapper {
-border:1px solid #ccc;
+/*border:1px solid #ccc;
 width:100%;
 height:auto;
 margin:auto;
@@ -4004,7 +4012,7 @@ border-radius:3px;
 margin-left:0!important;
 padding:2%;
 background:#fff!important;
-margin-bottom:7%
+margin-bottom:7%*/
 }
 
 .notify {
