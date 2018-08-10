@@ -28,7 +28,7 @@ Template.imageCarouselItems.onRendered(function(){
                   {
                     breakpoint: 768,
                     settings: {
-                      slidesToShow  : 1,
+                      slidesToShow  : 2,
                       slidesToScroll: 1,
                       infinite      : true,
                       dots          : false,
