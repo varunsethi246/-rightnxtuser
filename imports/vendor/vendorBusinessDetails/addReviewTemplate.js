@@ -76,11 +76,12 @@ Template.addReviewTemplate.events({
 		var tagfrnd = [];
 		for(var i = 0 ; i < tagedFriends.length; i++ ){
 			if(tagedFriends[i].selectedUserId != userId){
-				tagfrnd.push(tagedFriends[i])
+				tagfrnd.push(tagedFriends[i]);
 			}
 		}
 		$('#searchFrnds').trigger('keyup');
 		tagedFriends = tagfrnd;
+		$(e.currentTarget).parent().remove();
 	},
 	"click .tagFrndClose":function(e){
 		e.preventDefault();
@@ -524,10 +525,10 @@ Template.addReviewTemplate.events({
 	 //  var div2 = document.getElementsByClassName("reviewImages");
     if($('.tagFrnd').css('display') == 'block'){
     	$('.tagFrnd').css("display", "none");
-      	$('.reviewImages').css("display", "block");
+      	$('.userReviewImg').css("display", "block");
 		$('.openReview').addClass('maxopenReviewHeight');			
     }else if ($('.tagFrnd').css('display') == 'none') {
-     	$('.reviewImages').toggle();
+     	$('.userReviewImg').toggle();
      	if( $('.openReview').hasClass('maxopenReviewHeight') ){
 				$('.openReview').removeClass('maxopenReviewHeight');
 				$('.openReview').addClass('minopenReviewHeight');
@@ -548,10 +549,10 @@ Template.addReviewTemplate.events({
 	'click .tagImg': function(event){
 	 if($('.reviewImages').css('display') == 'block'){
     	$('.reviewImages').css("display", "none");
-      $('.tagFrnd').css("display", "block");
+      $('.userTagFrnd').css("display", "block");
 				$('.openReview').addClass('maxopenReviewHeight');			
     }else if ($('.reviewImages').css('display') == 'none') {
-     	$('.tagFrnd').toggle();
+     	$('.userTagFrnd').toggle();
      	if( $('.openReview').hasClass('maxopenReviewHeight') ){
 					$('.openReview').removeClass('maxopenReviewHeight');
 					$('.openReview').addClass('minopenReviewHeight');
