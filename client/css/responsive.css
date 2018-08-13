@@ -101,7 +101,11 @@
 		padding: 0px;
 	}
 
-
+	.thumbBusList{
+		height: 400px;
+		overflow-y: scroll;
+		overflow-x: hidden;
+	}
 	/*==========home page===========*/
 
 }
