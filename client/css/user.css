@@ -4366,3 +4366,6 @@ input[type="file"]#reviewImgfilesEdits,input[type="file"]#reviewImgfileEdits,inp
     box-shadow: 1px 1px 8px #bbb!important;
     border-radius: 5px;
 }
+.forgotPwd ,.verifyotp{
+    padding: 0;
+}

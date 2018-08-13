@@ -30,6 +30,8 @@ import '/imports/common/common.js';
         return val.replace(/^\s*|\s*$/g, "");
       }
 
+      if (emailVar) {
+        console.log('emailVar :',emailVar);
         emailtrim = trimInput(emailVar);
         email     = emailtrim.toLowerCase();
 
@@ -37,16 +39,15 @@ import '/imports/common/common.js';
         if(!vendorObj){
           Bert.alert('This email address does not exist.','danger','growl-top-right');
         }else{
-            if(vendorObj.roles[0] == 'User'){
+            if(vendorObj.roles[0] == 'user'){
               $('.enteredEmail').text(emailVar);
               $('.forgotEmailMessage').show();
+              $('.disableBtn').attr('disabled','disabled');
               Accounts.forgotPassword({email: email}, function(err) {
                 if (err) {
                   if (err.message === 'User not found [403]') {
-                    // console.log('This email does not exist.');
                     Bert.alert('This email does not exist:'+err.reason);
                   } else {
-                    // console.log('We are sorry but something went wrong.');
                     Bert.alert('We are sorry but something went wrong:'+err.reason);
                   }
                 } else {
@@ -55,9 +56,13 @@ import '/imports/common/common.js';
                 }
               });
             }else{
-            Bert.alert("You can't change your password. Please contact Admin.","danger","growl-top-right");
-          }
+              Bert.alert("You can't change your password. Please contact us.","danger","growl-top-right");
+            }
         }
+      }else{
+          Bert.alert('Please enter the email address.',"danger","growl-top-right");
+      }
+        
           
         // Bert.alert( "Instructions sent! We've sent an email with instructions on how to reset your password.If you don't receive an email within a few minutes, check your spam and junk folders.", 'success', 'growl-top-right' );
       return false;
@@ -71,6 +76,9 @@ import '/imports/common/common.js';
     'click .frgtClose':function(e){
       $('.forgotEmailMessage').hide();
       $('.resetPwd').removeClass('diplayNoneresetPwd');
+      $("#forgotPasswordEmail").val('');
+      // $('.disableBtn').attr('disabled','disabled');
+      $('.disableBtn').prop('disabled', false);
 
     },
 
