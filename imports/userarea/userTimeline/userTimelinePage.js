@@ -761,6 +761,8 @@ Template.userTimeline.events({
 			// console.log('tagfrnd :',tagfrnd);
 
 		tagedFriends = tagfrnd;
+		$(e.currentTarget).parent().remove();
+		
 	},
 	// ============================================================
 	// ============================================================

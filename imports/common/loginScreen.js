@@ -9,6 +9,8 @@ import '/imports/common/common.js';
   Template.loginScreen.events({
   'click .verifyotp':function(event){
     $('.modal-backdrop').remove();
+    Session.set("loginSession", undefined);
+    $('.loginModalZindex').hide();
   },
   'click .forgotPass': function(event) {
     $('.passwordWrongSpan').removeClass('passwordWrongWar');

@@ -819,6 +819,8 @@ Template.userReview.events({
 		}
 		$('#searchFrndsEdit').trigger('keyup');
 		tagedFriends = tagfrnd;
+		$(e.currentTarget).parent().remove();
+		
 	},
 	// ============================================================
 	// ============================================================

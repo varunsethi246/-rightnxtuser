@@ -68,6 +68,7 @@ Template.addReviewTemplate.events({
 		tagedFriends.push({'selectedUser':selectedUser, 'selectedUserId':frndId, 'userImage':userImage});
 		$('#searchFrnds').trigger('keyup');  
 		$('#searchFrnds').val("");
+		$('.tagFrndUl').removeClass('searchDisplayHide').addClass('searchDisplayShow');
 		
 	},
 
@@ -484,7 +485,8 @@ Template.addReviewTemplate.events({
 			// businessObj.alreadyReviewed = false;
 				$('.openReview').show();
 				$('.publishReview').hide();
-				$('.socailShare').hide();	
+				$('.socailShare').hide();
+				$('.bunchTagFrndTagged').remove();	
 			}
 		}
 			
@@ -516,6 +518,7 @@ Template.addReviewTemplate.events({
 		$('.openReviewBox').hide();
 		$('.boxbg').removeClass('fixStar1');
 		$('.boxbg').removeClass('fixStar2');
+		$('.bunchTagFrndTagged').remove();
 	},	
 
 	'click .uploadImg': function(event){
