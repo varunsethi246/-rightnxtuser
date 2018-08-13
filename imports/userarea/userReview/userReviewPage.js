@@ -193,7 +193,12 @@ Template.userReview.helpers({
 								if(pic){
 									reviewData[i].businessImages = pic.link();
 								}else{
-									reviewData[i].businessImages = 'https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg';
+									var pic1 = ReviewImage.findOne({"_id":businessData.businessImages[0].img});
+									if(pic1){
+										reviewData[i].businessImages = pic1.link();
+									}else{
+										reviewData[i].businessImages = 'https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg';
+									}
 								}
 
 							}else{
@@ -1259,7 +1264,12 @@ Template.userReview.events({
 					if(pic){
 						businessData.businessImages = pic.path;
 					}else{
-						businessData.businessImages = 'https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg';
+						var pic1 = ReviewImage.findOne({"_id":businessData.businessImages[0].img});
+						if(pic1){
+							businessData.businessImages = pic1.path;
+						}else{
+							businessData.businessImages = 'https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg';
+						}
 					}
 
 				}else{
@@ -1295,7 +1305,12 @@ Template.userReview.events({
 					if(pic){
 						businessData.businessImages = pic.path;
 					}else{
-						businessData.businessImages = 'https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg';
+						var pic1 = ReviewImage.findOne({"_id":businessData.businessImages[0].img});
+						if(pic1){
+							businessData.businessImages = pic1.path;
+						}else{
+							businessData.businessImages = 'https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg';
+						}
 					}
 
 				}else{

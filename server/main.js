@@ -321,5 +321,8 @@ Meteor.methods({
   'removeReviewImage':function(imgId){
     ReviewImage.remove({'_id':imgId});
   },
+  'removeEnquiryImage':function(imgId){
+    EnquiryImage.remove({'_id':imgId});
+  }
 });
 

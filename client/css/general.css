@@ -4297,6 +4297,7 @@ text-align: center
     margin-left: 15px!important;
 }
 @media screen and (min-width: 1920px){
+	.profilePic{height: 250px!important;}
 	.aboutNavbar{
 		margin-left: 39%;
 	}
@@ -4305,6 +4306,8 @@ text-align: center
 		left:-26px;
 	}
 	/*.addPhotoTxt{right: 25.5%!important;}*/
+	.enqActionMargin {padding-left: 76px!important;}
+	.photoAlbmImg {height: 250px!important;}
 	.logoutBtnDropdown{right: 85px!important;top: 52px;}
 	#faqCollapse{margin-left: 32.5%!important;}
 	.merchantGuidelineslg{margin-top: 3%}
@@ -4339,8 +4342,17 @@ text-align: center
 	    }
 	    .userFollInfoSugg,.suggInfoTimeline{margin-left: -30px!important;}
 	    .busiVedorleftOfferImg{width: 20%;}
+	    .photoAlbmImg{width: 200px;padding-left: 5px!important;}
 	    /*.notifiacationUsers{left: 46%;}*/
 	    /*.logoutBtnDropdown{right: 110px;}*/
+	    .enqActionMargin{padding-left: 18px!important;}
+	    .enqBusinessXS{text-align: left!important;padding-left: 45px!important;}
+	    .vEnqInfoUserImg{float: right;}
+	    .delEnq, .flagEnq, .restoreArchivei{top: 0px!important;right: 0px!important;}
+		.profilePic{height: 140px!important;}
 	}
+}
+@media (min-width: 1200px){
+	.profilePic{height: 200px;}
 }
 .prfSpan{left: 0px!important;top: 0px!important;}

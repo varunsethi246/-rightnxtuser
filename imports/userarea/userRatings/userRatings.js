@@ -7,6 +7,7 @@ import { Business } from '../../api/businessMaster.js';
 import { Review } from '/imports/api/reviewMaster.js';
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import { BusinessImage } from '/imports/videoUploadClient/businessImageClient.js';
+import { ReviewImage } from '/imports/videoUploadClient/reviewImageClient.js';
 
 import '../userLayout.js';
 import './userRatings.html';
@@ -52,7 +53,12 @@ Template.userRatings.helpers({
 							if(pic){
 								businessRatings[i].businessImages = pic.link();
 							}else{
-								businessRatings[i].businessImages = 'https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg';
+								var pic1 = ReviewImage.findOne({"_id":businessObj.businessImages[0].img});
+								if(pic1){
+									businessRatings[i].businessImages = pic1.link();
+								}else{
+									businessRatings[i].businessImages = 'https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg';
+								}	
 							}
 						}else{
 							businessRatings[i].businessImages = 'https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg';

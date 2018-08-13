@@ -1791,9 +1791,9 @@ margin-bottom:2px;
 overflow:hidden
 }
 
-.vEnqRowTwo:hover {
+/*.vEnqRowTwo:hover {
 color:#000
-}
+}*/
 
 .activeEnquiryTabPre .active,.activeEnquiryTabPre .active a,.activeEnquiryTabPre .active a>i {
 background:#f89b1c;
@@ -2658,14 +2658,18 @@ height:60px;
 padding-top:9px
 }
 
-.readEnClass:hover,.readEnClass:hover .checkEnq,.readEnClass:hover ~ .delEnq,.readEnClass:hover ~ .flagEnq {
-background:#ccc!important
+.vEnqAllC:hover{
+background:#ccc;
+}
+.vEnqAllC:hover .checkEnq,.vEnqAllC:hover .delEnq,.vEnqAllC:hover .flagEnq {
+color:#fff;
 }
 
 .delEnq,.flagEnq,.checkEnq {
 height:60px;
-padding-top:9px
+padding-top:9px;
 }
+.checkEnq input{margin-top: 0px;}
 
 .delEnq,.flagEnq,.restoreArchivei {
 padding-right:5px;
@@ -2673,7 +2677,7 @@ padding-left:5px
 }
 
 .enqTimestamp {
-font-size:12px
+/*font-size:12px*/
 }
 
 .contentBody {

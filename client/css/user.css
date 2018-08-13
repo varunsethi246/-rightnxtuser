@@ -100,6 +100,14 @@ border-bottom:1px solid #ccc
 }
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
+/*.vEnqAllC:hover,.vEnqAllC:hover .checkEnq,.vEnqAllC:hover .delEnq,.vEnqAllC:hover .flagEnq{
+    background: #f89b1c!important;
+    color: #fff;
+}*/
+.profilePic{height: 90px;}
+.likeIcn{border-color: #b2b2b2;}
+.likeIcn i.inactivelike:hover,.likeIcn i.inactivelike:focus {color: #b2b2b2!important;}   
+.deleteBtn:hover,.deleteBtn:focus{color: #ccc;border-color: #ccc;}
 .notifyWrapper{margin-top: 4px!important;}
 .followBox1{padding-left: 15px!important;padding-right: 15px!important;}
 .top-userNav > .open > .notif-dropdown{position: absolute;}
@@ -328,12 +336,12 @@ position:relative
 
 .flagEnq {
 right:-12px;
-top:-12px!important
+top:-12px;
 }
 
 .delEnq {
 right:9px;
-top:-3px
+top:-3px;
 }
 
 .userImgBusi {
@@ -390,7 +398,7 @@ left:15px
 }
 
 .photoAlbmImg {
-height:175px!important;
+height:140px!important;
 padding-right:0;
 margin-bottom:5px!important
 }
@@ -551,6 +559,15 @@ margin-bottom:15px
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
+/*.vEnqAllC:hover,.vEnqAllC:hover .checkEnq,.vEnqAllC:hover .delEnq,.vEnqAllC:hover .flagEnq{
+    background: #f89b1c!important;
+    color: #fff;
+}*/
+.profilePic{height: 200px;}
+.likeIcn{border-color: #b2b2b2;}
+.likeIcn i.inactivelike:hover,.likeIcn i.inactivelike:focus {color: #b2b2b2!important;}   
+.photoAlbmImg {height: 130px!important;}
+.deleteBtn:hover,.deleteBtn:focus{color: #ccc;border-color: #ccc;}
 .sort_txt{margin-bottom: 5px;}
 .usersidebarUl{margin-top: 0px!important;}
 .addPhotoTxt {
@@ -613,6 +630,16 @@ top:0
 
 @media (min-width: 992px) and (max-width: 1199px) {
 /*.addPhotoTxt{right: 32px!important;}*/
+/*.vEnqAllC:hover,.vEnqAllC:hover .checkEnq,.vEnqAllC:hover .delEnq,.vEnqAllC:hover .flagEnq{
+    background: #f89b1c!important;
+    color: #fff;
+}*/
+.likeIcn{border-color: #b2b2b2;}
+.likeIcn i.inactivelike:hover,.likeIcn i.inactivelike:focus {color: #b2b2b2!important;}   
+.deleteBtn:hover,.deleteBtn:focus{color: #ccc;border-color: #ccc;}
+.profilePic{height: 200px;}
+.enqActionMargin {padding-left: 75px!important;}
+.photoAlbmImg {height: 165px!important;}
 .unfollowUserBtn,.unfollowUserBtn:hover{right: 15%;position: relative;font-size: 12px!important;width: 35%!important;}
 .timelineRightTxt {
 margin-left:-80px!important;
@@ -698,11 +725,11 @@ border-radius:100%
 margin-top:78px
 }
 
-img.profilePic.img-responsive {
+/*img.profilePic.img-responsive {
 display:block;
 height:auto;
 position:relative
-}
+}*/
 
 .image-upload > input {
 display:none

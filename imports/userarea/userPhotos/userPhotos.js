@@ -184,7 +184,7 @@ Template.userPhotos.events({
 					if(error){
 						Bert.alert('Some error occured while liking this page!','danger','growl-top-right','fa-remove');
 					}else{
-						Bert.alert('Thanks for Liking.','success','growl-top-right','fa-check');
+						// Bert.alert('Thanks for Liking.','success','growl-top-right','fa-check');
 					}
 				}
 			);

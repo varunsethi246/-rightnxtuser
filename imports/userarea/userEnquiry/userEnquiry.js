@@ -5,6 +5,7 @@ import { EnquiryImage } from '/imports/videoUploadClient/enquiryImageClient.js';
 import ImageCompressor from 'image-compressor.js';
 import { VendorImage } from '/imports/videoUploadClient/vendorImageClient.js';
 import { BusinessImage } from '/imports/videoUploadClient/businessImageClient.js';
+import { ReviewImage } from '/imports/videoUploadClient/reviewImageClient.js';
 
 import '../userLayout.js';
 import './userEnquiry.html';
@@ -64,7 +65,13 @@ Template.userEnquiryPage.helpers({
 												enqList[i].userProfilePic = pic.link();	
 											}
 											else{
-												enqList[i].userProfilePic = "https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg";	
+												var pic1 = ReviewImage.findOne({"_id":userObj.businessImages[0].img});
+												if(pic1){
+													enqList[i].userProfilePic = pic1.link();	
+												}
+												else{
+													enqList[i].userProfilePic = "https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg";	
+												}
 											}
 										}else{
 											enqList[i].userProfilePic = "https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg";	
@@ -92,7 +99,13 @@ Template.userEnquiryPage.helpers({
 											enqList[i].userProfilePic = pic.link();	
 										}
 										else{
-											enqList[i].userProfilePic = "https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg";	
+											var pic1 = ReviewImage.findOne({"_id":userObj.businessImages[0].img});
+											if(pic1){
+												enqList[i].userProfilePic = pic1.link();	
+											}
+											else{
+												enqList[i].userProfilePic = "https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg";	
+											}
 										}
 									}else{
 										enqList[i].userProfilePic = "https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg";	
@@ -132,7 +145,13 @@ Template.userEnquiryPage.helpers({
 												enqList[i].userProfilePic = pic.link();	
 											}
 											else{
-												enqList[i].userProfilePic = "https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg";	
+												var pic1 = ReviewImage.findOne({"_id":userObj.businessImages[0].img});
+												if(pic1){
+													enqList[i].userProfilePic = pic1.link();	
+												}
+												else{
+													enqList[i].userProfilePic = "https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg";	
+												}
 											}
 										}else{
 											enqList[i].userProfilePic = "https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg";	
@@ -160,7 +179,13 @@ Template.userEnquiryPage.helpers({
 											enqList[i].userProfilePic = pic.link();	
 										}
 										else{
-											enqList[i].userProfilePic = "https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg";	
+											var pic1 = ReviewImage.findOne({"_id":userObj.businessImages[0].img});
+											if(pic1){
+												enqList[i].userProfilePic = pic1.link();	
+											}
+											else{
+												enqList[i].userProfilePic = "https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg";	
+											}
 										}
 									}else{
 										enqList[i].userProfilePic = "https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg";	
@@ -201,7 +226,13 @@ Template.userEnquiryPage.helpers({
 												enqList[i].userProfilePic = pic.link();	
 											}
 											else{
-												enqList[i].userProfilePic = "https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg";	
+												var pic1 = ReviewImage.findOne({"_id":userObj.businessImages[0].img});
+												if(pic1){
+													enqList[i].userProfilePic = pic1.link();	
+												}
+												else{
+													enqList[i].userProfilePic = "https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg";	
+												}
 											}
 										}else{
 											enqList[i].userProfilePic = "https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg";	
@@ -229,7 +260,13 @@ Template.userEnquiryPage.helpers({
 											enqList[i].userProfilePic = pic.link();	
 										}
 										else{
-											enqList[i].userProfilePic = "https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg";	
+											var pic1 = ReviewImage.findOne({"_id":userObj.businessImages[0].img});
+											if(pic1){
+												enqList[i].userProfilePic = pic1.link();	
+											}
+											else{
+												enqList[i].userProfilePic = "https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg";	
+											}
 										}
 									}else{
 										enqList[i].userProfilePic = "https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg";	
@@ -312,6 +349,13 @@ Template.userEnquiryPage.helpers({
 });
 
 Template.userEnquiry.events({
+	'click .vEnqAllC' : function(event){
+    	var $this = $(event.target);
+		$('html, body').animate({
+   		     scrollTop: $('.vEnqForm').offset().top
+      		}, 1000,
+  		);
+    },
 	// Read, Unread enquiry: done
 	'click .readEnClass':function(event){
 		var thisrow = event.currentTarget;
@@ -340,6 +384,17 @@ Template.userEnquiry.events({
 	'click .deleteEnqBtn': function(event){
 		var thisid = event.currentTarget;
 		var id = $(thisid).parent().parent().parent().parent().parent().parent().parent().attr('id');
+		var enquiryObj = Enquiry.findOne({'_id':id});
+		if(enquiryObj){
+			if(enquiryObj.enquiryDesc.length > 0){
+				for (var i = 0; i < enquiryObj.enquiryDesc.length; i++) {
+					if(enquiryObj.enquiryDesc[i].commentImage){
+						var imgId = enquiryObj.enquiryDesc[i].commentImage;
+						Meteor.call('removeEnquiryImage',imgId ,function(err,rslt){});
+					}
+				}
+			}
+		}
 		Meteor.call('deleteUserEnquiry',id ,function(err,rslt){
 		});	
 		$('.modal-backdrop').hide();
@@ -350,7 +405,7 @@ Template.userEnquiry.events({
 		var thisid = event.currentTarget;
 		var id = $(thisid).parent().attr('id');
 		var applyClass = "#"+id ;
-		$(applyClass).children().css('background','#ccc');
+		// $(applyClass).children().css('background','#ccc');
 	},
 	'mouseleave .readEnClass':function(event){
 		var thisid = event.currentTarget;
@@ -365,7 +420,6 @@ Template.userEnquiry.events({
 var filesM = [];
 
 Template.userEnquiryPage.events({
-	
 	"keyup .userEnquiryFormSearch": _.throttle(function(e) {
 	    var text = $(e.target).val().trim();
 	    Session.set("nameKeyUser",text);
@@ -712,6 +766,17 @@ Template.userEnquiryPage.events({
 		});
 		for(i=0;i<selected.length;i++){
 			var id = selected[i];
+			var enquiryObj = Enquiry.findOne({'_id':id});
+			if(enquiryObj){
+				if(enquiryObj.enquiryDesc.length > 0){
+					for (var j = 0; j < enquiryObj.enquiryDesc.length; j++) {
+						if(enquiryObj.enquiryDesc[j].commentImage){
+							var imgId = enquiryObj.enquiryDesc[j].commentImage;
+							Meteor.call('removeEnquiryImage',imgId ,function(err,rslt){});
+						}
+					}
+				}
+			}
 			Meteor.call('deleteUserEnquiry',id ,function(err,rslt){});	
 		}
 		$(".commonCheckbox").prop('checked', false);
