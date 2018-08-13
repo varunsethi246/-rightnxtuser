@@ -422,7 +422,8 @@ top:-1px
 .login-btn {
 border:1px solid #ccc;
 padding:8px;
-padding-left:39%;
+/*padding-left:39%;*/
+text-align: center;
 margin-bottom:8px;
 cursor:pointer;
 font-size:14px;
@@ -433,7 +434,8 @@ font-family:"PROXIMANOVA-REGULAR"
 .signUp-btn {
 border:1px solid #ccc;
 padding:8px;
-padding-left:37%;
+/*padding-left:37%;*/
+text-align: center;
 cursor:pointer;
 font-size:14px;
 color:#4e4f51;

@@ -138,7 +138,7 @@ Meteor.startup(() => {
   // process.env.S3='{"s3":{"key": "AKIAIEMSTWVHER5QZS3A", "secret": "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", "bucket": "rightnxt", "region": "ap-south-1"}}' ;
 // process.env.S3='{"s3":{"key": "AKIAIEMSTWVHER5QZS3A", "secret": "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", "bucket": "rightnxt", "region": "ap-south-1"}}' ;
 // process.env.S3='{"s3":{"key": "AKIAI2F7N3DNQ5IAU3SQ", "secret": "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", "bucket": "rightnxt1", "region": "us-east-2"}}' ;
-  
+  // console.log('server');
   // process.env.MAIL_URL="smtp://rightnxt123:Rightnxt@123@smtp.gmail.com:587";
   process.env.MAIL_URL='smtp://rightnxt123%40gmail.com:' + encodeURIComponent("Rightnxt@123") + '@smtp.gmail.com:587';
   // process.env.MAIL_URL="smtp://rightnxt123:Rightnxt@123@smtp.gmail.com:587";

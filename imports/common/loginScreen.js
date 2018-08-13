@@ -77,11 +77,18 @@ import '/imports/common/common.js';
       $('.forgotEmailMessage').hide();
       $('.resetPwd').removeClass('diplayNoneresetPwd');
       $("#forgotPasswordEmail").val('');
+      $('.forgotEmailMessage').hide();
+
       // $('.disableBtn').attr('disabled','disabled');
       $('.disableBtn').prop('disabled', false);
 
     },
-
+    'click .frgtPwds':function(e){
+      $("#forgotPasswordEmail").val('');
+      // $('.disableBtn').attr('disabled','disabled');
+      $('.disableBtn').prop('disabled', false);
+      $('.forgotEmailMessage').css('display','none');
+    },
 
   //   'click .UMloginbutton': function(event, template) {
   //   event.preventDefault();
