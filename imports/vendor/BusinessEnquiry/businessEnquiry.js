@@ -37,6 +37,21 @@ Template.businessEnquiry.events({
     // 'click .SendEnqToAll1' : function(event){
     //     console.log('true');
     // },
+    'click .enqSendClose':function(event){
+        var userId = Meteor.userId();
+        if (userId) {
+            $('.enquiryDesc').val('');
+            $('.enquiryPhoto').val('');
+
+        }else{
+            $('.enquiryName').val('');
+            $('.enquiryDesc').val('');
+            $('.enquiryPhone').val('');
+            $('.enquiryPhoto').val('');
+            $('.enquiryName').val('');
+            $('.enquiryEmail').val('');
+        }
+    },
     'change .enquiryPhoto' : function(event){
         filesM = event.target.files; // FileList object
         $('.showEnquiryImg').empty(); 
