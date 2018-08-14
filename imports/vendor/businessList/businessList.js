@@ -267,6 +267,9 @@ Template.allbusinessList.events({
 
 	},
 	'click .sidebarMapPre': function(){
+		var data = Template.currentData(self.view);
+		// console.log('data:',data);
+        Blaze.renderWithData(Template.businessMap, data, $(".mapContainer")[0]);
 		$('.sidebarMapPre').css('display','none');
 		
         $('.displayMapView').show();
