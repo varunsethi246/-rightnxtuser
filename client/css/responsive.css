@@ -106,6 +106,14 @@
 		overflow-y: scroll;
 		overflow-x: hidden;
 	}
+	.Valignspan{
+		position: absolute;
+		left: 9%;
+		top: 49%;
+	}
+	.dayBuss{
+		margin-left: 0px; 
+	}
 	/*==========home page===========*/
 
 }
@@ -137,6 +145,9 @@
 	}
 	.centerButton{
 		    margin-left: 0;
+	}
+	.commentTxt{
+		    margin-left: 4px;
 	}
 }
 
