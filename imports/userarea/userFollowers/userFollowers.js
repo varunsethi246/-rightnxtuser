@@ -120,7 +120,7 @@ Template.userFollowers.helpers({
 						UserDataObj.profile.userProfilePic = pic.link();	
 					}
 					else{
-						UserDataObj.profile.userProfilePic = "/users/profile/profile_image_dummy.svg";	
+						UserDataObj.profile.userProfilePic = "https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/profile_image_dummy.svg";	
 					}
 					
 					var fId            = UserDataObj._id;
@@ -173,7 +173,7 @@ Template.userFollowers.helpers({
 						UserDataObj.profile.userProfilePic = pic.link();	
 					}
 					else{
-						UserDataObj.profile.userProfilePic = "/users/profile/user-one.png";	
+						UserDataObj.profile.userProfilePic = "https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/profile_image_dummy.svg";	
 					}
 
 					var followerCount  = FollowUser.find({'followUserId': id}).count();
@@ -379,7 +379,7 @@ Template.suggestedFollowUsers.helpers ({
 							otherUsersData[i].profile.userProfilePic = pic.link();	
 						}
 						else{
-							otherUsersData[i].profile.userProfilePic = "/users/profile/profile_image_dummy.svg";	
+							otherUsersData[i].profile.userProfilePic = "https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/profile_image_dummy.svg";	
 						}
 						var followUser = FollowUser.findOne({'userId':userId , 'followUserId':id});
 						if(!followUser){

@@ -3333,7 +3333,7 @@ color:#888
 
 .optionSearch {
 border:1px solid #eee;
-border-top:none
+border-top:none;line-height: 22px;
 }
 
 .selectedSearch {

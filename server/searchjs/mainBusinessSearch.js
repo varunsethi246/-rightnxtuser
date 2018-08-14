@@ -1,10 +1,8 @@
 import { Business } from '/imports/api/businessMaster.js';
 import { BusinessImage } from '/imports/videoUploadserver/businessImageServer.js';
+import { ReviewImage } from '/imports/videoUploadserver/reviewImageServer.js';
 import { BusinessAds } from '/imports/api/businessAdsMaster.js';
 import { Offers } from '/imports/api/offersMaster.js';
-
-
-
 
 SearchSource.defineSource('business', (searchText, options)=> {
     // searchText = "city|area|categories OR text to search";
@@ -84,10 +82,22 @@ SearchSource.defineSource('business', (searchText, options)=> {
 					data.checkpngImg = '';
 				}
 			}else{
-				var data = {
-					img : 'https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg',
-					checkpngImg: '',
-				};
+                var imgObj = ReviewImage.findOne({"_id":imgId});
+                if(imgObj) {
+                    var data = {
+                        img : imgObj.link(),
+                    }
+                    if(imgObj.type == 'image/png'){
+                        data.checkpngImg = 'bkgImgNone';
+                    }else{
+                        data.checkpngImg = '';
+                    }
+                }else{
+    				var data = {
+    					img : 'https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg',
+    					checkpngImg: '',
+    				};
+                }
 			}
 			return data;
         }

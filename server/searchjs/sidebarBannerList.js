@@ -1,6 +1,7 @@
 import { Business } from '/imports/api/businessMaster.js';
 // import { BusinessImgUploadS3 } from '../cfsjs/businessImage.js';
 import { BusinessImage } from '/imports/videoUploadserver/businessImageServer.js';
+import { ReviewImage } from '/imports/videoUploadserver/reviewImageServer.js';
 import { BusinessBanner } from '/imports/api/businessBannerMaster.js';
 
 SearchSource.defineSource('sidebarBusinessBanners', (searchText, options)=> {
@@ -72,23 +73,35 @@ SearchSource.defineSource('sidebarBusinessBanners', (searchText, options)=> {
     var searchPageShowImage = (imgId)=> {
 		if(imgId){
 			var imgData = BusinessImage.findOne({"_id":imgId});
-            // console.log('imgData :',imgData);
+            console.log('imgData :',imgData);
             // console.log('imgData :',imgData.link());
 			if(imgData)	{
 				var data = {
 					img : imgData.link(),
 				}
-                // if(imgData.copies.businessImgS3.type == 'image/png'){
 				if(imgData.type == 'image/png'){
 					data.checkpngImg = 'bkgImgNone';
 				}else{
 					data.checkpngImg = '';
 				}
 			}else{
-				var data = {
-					img : 'https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg',
-					checkpngImg: '',
-				};
+                var imgObj = ReviewImage.findOne({"_id":imgId});
+                console.log('imgObj :',imgObj);
+                if(imgObj) {
+                    var data = {
+                        img : imgObj.link(),
+                    }
+                    if(imgObj.type == 'image/png'){
+                        data.checkpngImg = 'bkgImgNone';
+                    }else{
+                        data.checkpngImg = '';
+                    }
+                }else{
+    				var data = {
+    					img : 'https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg',
+    					checkpngImg: '',
+    				};
+                }
 			}
 			return data;
         }
@@ -197,14 +210,14 @@ SearchSource.defineSource('sidebarBusinessBanners', (searchText, options)=> {
         return businessBannerListA;
         
     } else{
-        businessBannerListB = _.uniq(businessBannerListB, function(p){ return p.businessLink; });
+        businessBannerListB = _.uniq(businessBannerListB, function(p){ return p.businessLink;});
         console.log('businessBannerListB :',businessBannerListB);
         if(businessBannerListB){
             for(i=0;i<businessBannerListB.length;i++){
                 for(j=0;j<searchResult.length;j++){
                     if(businessBannerListB[i].businessLink==searchResult[j].businessLink){
                     console.log('searchResult[j] ',searchResult[j]);
-        console.log('businessBannerListB [j]:',businessBannerListB [j]);
+                    console.log('businessBannerListB [j]:',businessBannerListB [j]);
 
 
                         var getBannnerImage = Business.findOne({"businessLink":businessBannerListB[i].businessLink});

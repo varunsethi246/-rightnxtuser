@@ -213,6 +213,9 @@ Template.footer.events({
 	'click .clickAddNewBusi': function(){
     	Session.set("backlinkurl",'');
 	},
+	'click .webpageLinks': function(){
+    	$('html, body').scrollTop(0);
+	}
 });
 
 Template.generalHeader.events({

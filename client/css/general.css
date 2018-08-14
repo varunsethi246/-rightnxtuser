@@ -2894,13 +2894,7 @@ margin-left:6px
 }*/
 
 @media screen and (max-width: 767px) {
-.notifiacationUsers {
-/*position:absolute;
-left:36%;
-top:20px*/
-    /*position: absolute;*/
-    /*right: 45%;*/
-}
+.merchant ul{margin-left: 35px;}
 .homepageForms-xs {
 margin-top:4.5%
 }
@@ -3534,7 +3528,7 @@ padding-left:10px
 .commentReplyArr{padding-left: 30px!important;}
 .userCommentText,.editBoxComment,.reviewCommCancel{padding-left: 15px!important;}
 .commentReplyInputBox{padding-left: 30px!important;}
-#businessMenuCollapse{padding-left: 0px;padding-right: 0px;}
+#businessMenuCollapse{padding-left: 0px;padding-right: 0px;overflow-x: hidden;}
 #businessMenuCollapse .userMenuItem{margin-left: 0px;padding-left: 15px;}
 .unfollowUserBtn,.unfollowUserBtn:hover{width: 30%!important;}
 .LoadMore1,.takeRating{padding-left: 0px;padding-right: 0px;}
@@ -3811,10 +3805,10 @@ right:236px!important
 /*.secondDiv,.firstDiv{padding-left: 0px;}*/
 .follwSugg{padding-left: 0px!important;margin-top: 5px;}
 .suggInfoTimeline{padding-left: 15px!important;padding-right: 15px!important;}
-.mapContainer{max-height: 550px;}
+.mapContainer{max-height: 550px;left: 12px;}
 .thumbBusDivs{position: initial;margin-left: 15px;}
 .mapViewBusList{padding: 0px 15px!important;}
-.scrollMapVwBus{overflow-y: auto;height: 600px;}
+.scrollMapVwBus{overflow-y: auto;height: 600px;padding-left: 30px;padding-right: 0px;}
 .aboutUsNavbar{margin-left: 25%;}
 .products {
 height:110px

@@ -623,6 +623,8 @@ top:0
 
 @media (min-width: 992px) and (max-width: 1199px) {
 /*.addPhotoTxt{right: 32px!important;}*/
+.mapContainer{left: 15px;}
+.scrollMapVwBus{padding-left: 40px;}
 .vEnqForm {margin-top:12px}
 .likeIcn{border-color: #b2b2b2;}
 .likeIcn i.inactivelike:hover,.likeIcn i.inactivelike:focus {color: #b2b2b2!important;}   

@@ -199,7 +199,7 @@ Template.thumbnailBusinessList.helpers({
 		//*********************************************************************
 
 		}
-		// console.log(busList);
+		console.log(busList);
 		return busList;
 
 	},
