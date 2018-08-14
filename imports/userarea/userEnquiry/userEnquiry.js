@@ -326,7 +326,6 @@ Template.userEnquiryPage.helpers({
 			}
 			return enqData;			
 		}
-		
 	},
 	userEnquirySortBy: function(){
 		var userSort = Session.get('userSort');
@@ -349,18 +348,18 @@ Template.userEnquiryPage.helpers({
 });
 
 Template.userEnquiry.events({
-	'click .vEnqAllC' : function(event){
-    	var $this = $(event.target);
-		$('html, body').animate({
-   		     scrollTop: $('.vEnqForm').offset().top
-      		}, 1000,
-  		);
-    },
 	// Read, Unread enquiry: done
 	'click .readEnClass':function(event){
 		var thisrow = event.currentTarget;
 		var id = $(thisrow).parent().attr('id');
 		Session.set("EnqIDSes",id);
+		var windowWidth = $(window).width();
+        if(windowWidth <= 1200){		
+			$('html, body').animate({
+	   		     scrollTop: $('.vendorEnqDetailsScroll').offset().top
+	      		}, 1000,
+	  		);	
+        }
 
 		$('.vEnqRowTwo').removeClass('selectedEnq');
 
@@ -402,10 +401,13 @@ Template.userEnquiry.events({
 
 	// Hover over the Enquiry and change color to gray on mouseover and mouseleave: done
 	'mouseover .readEnClass':function(event){
-		var thisid = event.currentTarget;
-		var id = $(thisid).parent().attr('id');
-		var applyClass = "#"+id ;
-		// $(applyClass).children().css('background','#ccc');
+        var windowWidth = $(window).width();
+        if(windowWidth >= 1200){
+			var thisid = event.currentTarget;
+			var id = $(thisid).parent().attr('id');
+			var applyClass = "#"+id ;
+			$(applyClass).children().css('background','#ccc');
+        }
 	},
 	'mouseleave .readEnClass':function(event){
 		var thisid = event.currentTarget;
@@ -784,7 +786,7 @@ Template.userEnquiryPage.events({
 	},
 
 	//All, Read, Unread Options of Active and Flagged Menus: done
-	'click .ADAll': function(){
+	'click .ADAll': function(event){
 		Session.set("EnqIDSes",'');
 		var vSort = $(event.target).text();
 		Session.set('userSort',vSort);
@@ -792,7 +794,7 @@ Template.userEnquiryPage.events({
 		$(".commonCheckbox").prop('checked', false);
 		$('.vEnqRowTwo').show();
 	},
-	'click .ADRead': function(){
+	'click .ADRead': function(event){
 		Session.set("EnqIDSes",'');
 		var vSort = $(event.target).text();
 		Session.set('userSort',vSort);
@@ -801,7 +803,7 @@ Template.userEnquiryPage.events({
 		$('.vEnqRowTwo').hide();
 		$('.readEnq').show();
 	},
-	'click .ADUnread': function(){
+	'click .ADUnread': function(event){
 		Session.set("EnqIDSes",'');
 		var vSort = $(event.target).text();
 		Session.set('userSort',vSort);
@@ -810,7 +812,7 @@ Template.userEnquiryPage.events({
 		$('.vEnqRowTwo').hide();
 		$('.unreadEnq').show();
 	},
-	'click .ADFAll': function(){
+	'click .ADFAll': function(event){
 		Session.set("EnqIDSes",'');
 		var vSort = $(event.target).text();
 		Session.set('userSort',vSort);
@@ -818,7 +820,7 @@ Template.userEnquiryPage.events({
 		$(".commonCheckbox").prop('checked', false);
 		$('.vEnqRowTwo').show();
 	},
-	'click .ADFRead': function(){
+	'click .ADFRead': function(event){
 		Session.set("EnqIDSes",'');
 		var vSort = $(event.target).text();
 		Session.set('userSort',vSort);
@@ -827,7 +829,7 @@ Template.userEnquiryPage.events({
 		$('.vEnqRowTwo').hide();
 		$('.readEnq').show();
 	},
-	'click .ADFUnread': function(){
+	'click .ADFUnread': function(event){
 		Session.set("EnqIDSes",'');
 		var vSort = $(event.target).text();
 		Session.set('userSort',vSort);
@@ -848,7 +850,7 @@ Template.userEnquiryPage.events({
 		$('.activeDownList').toggleClass('activeDownListBlock');
 		// $('.activeDownList').toggle();
 	},
-	'click .activeDownListFlagPre': function(){
+	'click .activeDownListFlagPre': function(event){
     	event.preventDefault();
     	event.stopPropagation();
 
@@ -858,7 +860,7 @@ Template.userEnquiryPage.events({
 		$('.activeDownListFlag').toggleClass('activeDownListBlockFlag');
 		// $('.activeDownListFlag').toggle();
 	},
-	'click .activeEnquiryTabsPre': function(){
+	'click .activeEnquiryTabsPre': function(event){
 		// $('.activeDownListFlag').removeClass('activeDownListBlockFlag');
 		// $('.activeDownList').removeClass('activeDownListBlock');
 	},
@@ -895,7 +897,7 @@ Template.userEnquiryPage.events({
 			$(".vEnqActiveDiv").removeClass('vEnqSpanShow');
 		}		
 	},
-	'click .EnqListCheckboxAll':function(){
+	'click .EnqListCheckboxAll':function(event){
 		 $(".EnqListCheckbox").prop('checked', false); 
 	},
 	

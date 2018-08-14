@@ -109,39 +109,41 @@
 					</div>
 	
 					<!-- Template for Right Side -->
-					{{#with userEnquiryDetailsData}}
-						<div class="col-lg-6">
-							<div class="row">
-								<div class="col-lg-12 hidden-xs hidden-sm vEnqFormAdj"></div>
-								<div class="show-xs show-sm"></div>
-								<div class="col-lg-12 vendorEnqDetailsScroll">
-									<div class="vEnqForm">
-										{{> userEnquiryDetails}}
-									</div>
-								</div>
-								<!-- <div class="col-lg-12">
-									<div class="vEnqFormButton">
-										<button class="btn pull-right">Block Vendor</button>
-									</div>
-								</div> -->
-								<div class="col-lg-12">
-									<div id="showEnquiryImgIdC"></div>
-								</div>
-								<div class="col-lg-12">
-									<textarea class="form-control vEnqFormTextarea" rows="5" ></textarea>
-								</div>
-								<div class="col-lg-12">
-									<div class="vEnqfileSendBtn">
-										<div class="vEnqfileUpload1 pull-right">
-											<span>Add Image<i class="fa fa-picture-o" aria-hidden="true"></i></span>
-											  <input id="uploadBtn" type="file" class="vEnqupload" name="files[]">
+					<div class="vendorEnqDetailsScroll">
+						{{#with userEnquiryDetailsData}}
+							<div class="col-lg-6">
+								<div class="row">
+									<div class="col-lg-12 hidden-xs hidden-sm hidden-md vEnqFormAdj"></div>
+									<div class="show-xs show-sm show-md"></div>
+									<div class="col-lg-12">
+										<div class="vEnqForm">
+											{{> userEnquiryDetails}}
 										</div>
-										<input type="submit" value="Send" class="vEnqsndEnqBtn" id="{{_id}}" data-enquirySentBy={{enquirySentBy}} data-businessLink={{businessLink}}>
+									</div>
+									<!-- <div class="col-lg-12">
+										<div class="vEnqFormButton">
+											<button class="btn pull-right">Block Vendor</button>
+										</div>
+									</div> -->
+									<div class="col-lg-12">
+										<div id="showEnquiryImgIdC"></div>
+									</div>
+									<div class="col-lg-12">
+										<textarea class="form-control vEnqFormTextarea" rows="5" ></textarea>
+									</div>
+									<div class="col-lg-12">
+										<div class="vEnqfileSendBtn">
+											<div class="vEnqfileUpload1 pull-right">
+												<span>Add Image<i class="fa fa-picture-o" aria-hidden="true"></i></span>
+												  <input id="uploadBtn" type="file" class="vEnqupload" name="files[]">
+											</div>
+											<input type="submit" value="Send" class="vEnqsndEnqBtn" id="{{_id}}" data-enquirySentBy={{enquirySentBy}} data-businessLink={{businessLink}}>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-					{{/with}}
+						{{/with}}
+					</div>
 				</div>
 			</div>
 		{{/if}}

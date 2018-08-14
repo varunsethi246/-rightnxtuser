@@ -2658,12 +2658,12 @@ height:60px;
 padding-top:9px
 }
 
-.vEnqAllC:hover{
+/*.vEnqAllC:hover{
 background:#ccc;
 }
 .vEnqAllC:hover .checkEnq,.vEnqAllC:hover .delEnq,.vEnqAllC:hover .flagEnq {
 color:#fff;
-}
+}*/
 
 .delEnq,.flagEnq,.checkEnq {
 height:60px;

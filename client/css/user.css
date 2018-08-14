@@ -100,10 +100,6 @@ border-bottom:1px solid #ccc
 }
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
-/*.vEnqAllC:hover,.vEnqAllC:hover .checkEnq,.vEnqAllC:hover .delEnq,.vEnqAllC:hover .flagEnq{
-    background: #f89b1c!important;
-    color: #fff;
-}*/
 .profilePic{height: 90px;}
 .likeIcn{border-color: #b2b2b2;}
 .likeIcn i.inactivelike:hover,.likeIcn i.inactivelike:focus {color: #b2b2b2!important;}   
@@ -559,10 +555,7 @@ margin-bottom:15px
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
-/*.vEnqAllC:hover,.vEnqAllC:hover .checkEnq,.vEnqAllC:hover .delEnq,.vEnqAllC:hover .flagEnq{
-    background: #f89b1c!important;
-    color: #fff;
-}*/
+.vEnqForm {margin-top:12px}
 .profilePic{height: 200px;}
 .likeIcn{border-color: #b2b2b2;}
 .likeIcn i.inactivelike:hover,.likeIcn i.inactivelike:focus {color: #b2b2b2!important;}   
@@ -630,10 +623,7 @@ top:0
 
 @media (min-width: 992px) and (max-width: 1199px) {
 /*.addPhotoTxt{right: 32px!important;}*/
-/*.vEnqAllC:hover,.vEnqAllC:hover .checkEnq,.vEnqAllC:hover .delEnq,.vEnqAllC:hover .flagEnq{
-    background: #f89b1c!important;
-    color: #fff;
-}*/
+.vEnqForm {margin-top:12px}
 .likeIcn{border-color: #b2b2b2;}
 .likeIcn i.inactivelike:hover,.likeIcn i.inactivelike:focus {color: #b2b2b2!important;}   
 .deleteBtn:hover,.deleteBtn:focus{color: #ccc;border-color: #ccc;}
