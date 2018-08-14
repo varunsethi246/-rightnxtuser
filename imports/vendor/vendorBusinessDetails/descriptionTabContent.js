@@ -179,8 +179,12 @@ Template.descriptionTabContent.helpers({
 								allReviews[i].revProfilePic = "/users/profile/profile_image_dummy.svg";	
 							}
 						}else{
+							console.log('hi');
 							allReviews[i].revProfilePic = "/users/profile/profile_image_dummy.svg";
 						}
+				}else{
+						console.log('hi');
+						allReviews[i].revProfilePic = "/users/profile/profile_image_dummy.svg";
 				}
 				if(allReviews[i].tagedFriends && allReviews[i].tagedFriends.length != 0){
 					allReviews[i].tagedFriendsValidate = true;
@@ -228,22 +232,29 @@ Template.descriptionTabContent.helpers({
 					if(!allReviews[i].username){
 						allReviews[i].username = "Anonymous User";
 					}
+				}else{
+					allReviews[i].username = "Deleted User";
 				}
 
-				if(allReviews[i].userId === Meteor.userId()){
-					allReviews[i].followButton = 'hideFollowButton';
-				}else{
-					allReviews[i].followButton = '';
-					allReviews[i].followButtonText 	= "Follow";
-					allReviews[i].followButtonClass = "";
-					var verifyFollow = FollowUser.findOne({
-															"userId": Meteor.userId(),
-															"followUserId": allReviews[i].userId
-														 });
-					if(verifyFollow){
-						allReviews[i].followButtonText 	= "Following";
-						allReviews[i].followButtonClass = "alreadyFollowing";
+
+				if (userObj) {
+					if(allReviews[i].userId === Meteor.userId()){
+						allReviews[i].followButton = 'hideFollowButton';
+					}else{
+						allReviews[i].followButton = '';
+						allReviews[i].followButtonText 	= "Follow";
+						allReviews[i].followButtonClass = "";
+						var verifyFollow = FollowUser.findOne({
+																"userId": Meteor.userId(),
+																"followUserId": allReviews[i].userId
+															 });
+						if(verifyFollow){
+							allReviews[i].followButtonText 	= "Following";
+							allReviews[i].followButtonClass = "alreadyFollowing";
+						}
 					}
+				}else{
+					allReviews[i].followButton = 'hideFollowButton';
 				}
 
 				var meteorUserUn = Meteor.userId();
