@@ -68,7 +68,7 @@ Template.addReviewTemplate.events({
 		tagedFriends.push({'selectedUser':selectedUser, 'selectedUserId':frndId, 'userImage':userImage});
 		$('#searchFrnds').trigger('keyup');  
 		$('#searchFrnds').val("");
-		$('.tagFrndUl').removeClass('searchDisplayHide').addClass('searchDisplayShow');
+		$('.tagFrndUl').removeClass('searchDisplayShow').addClass('searchDisplayHide');
 		
 	},
 

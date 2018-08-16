@@ -144,7 +144,15 @@ Template.descriptionTabContent.helpers({
 			}
 
 			for(i=0; i<allReviews.length; i++){
-				allReviews[i].userProfileUrl = generateURLid(allReviews[i].userId);	
+				var userObjs = Meteor.users.findOne({"_id":userId});
+
+				if (userObjs) {
+
+					allReviews[i].userProfileUrl = generateURLid(allReviews[i].userId);	
+				}else{
+					allReviews[i].userProfileUrl = "#";	
+
+				}
 				var newUserThree = Meteor.userId();
 				if(newUserThree){
 					if((Meteor.users.findOne({"_id": newUserThree}).roles[0] === 'admin') || (allReviews[i].userId === newUserThree)){
@@ -179,7 +187,7 @@ Template.descriptionTabContent.helpers({
 								allReviews[i].revProfilePic = "/users/profile/profile_image_dummy.svg";	
 							}
 						}else{
-							console.log('hi');
+							// console.log('hi');
 							allReviews[i].revProfilePic = "/users/profile/profile_image_dummy.svg";
 						}
 				}else{
