@@ -168,6 +168,20 @@ Meteor.methods({
     });
   }, //End of Send Email Function
 
+  sendEmailRightNxts: function (to , from, subject ,body) {
+    check([to, from, subject, body], [String]);
+    // Let other method calls from the same client start running,
+    // without waiting for the email sending to complete.
+    this.unblock();
+    // console.log('to ',to,' from ',from,' subject ',subject,' body ',body);
+    Email.send({
+      to: from,
+      from: to,
+      subject: subject,
+      html: body
+    });
+  }, //End of Send Email Function
+
   sendShareEmailRightNxt: function (to , from, subject) {
     check([to, from, subject], [String]);
     // Let other method calls from the same client start running,

@@ -130,6 +130,14 @@ Template.contactUs.events({
 							// Bert.alert('Thanks for writing to us, we will contact you shortly.','success','growl-top-right');
 						}
 					});
+					Meteor.call('sendEmailRightNxts', toEmail, fromEmail, subj, msg,function(error,result){
+						if(error){
+							Bert.alert(error.reason, 'danger', 'growl-top-right' );
+							return;
+						}else{
+							// Bert.alert('Thanks for writing to us, we will contact you shortly.','success','growl-top-right');
+						}
+					});
 					Bert.alert('Thanks for writing to us, we will contact you shortly.', 'success', 'growl-top-right' );	
 					event.target.name.value				= '';
 					event.target.email.value			= '';
