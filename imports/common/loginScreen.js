@@ -45,6 +45,7 @@ import '/imports/common/common.js';
               $('.enteredEmail').text(emailVar);
               $('.forgotEmailMessage').show();
               $('.disableBtn').attr('disabled','disabled');
+              console.log('email :',email);
               Accounts.forgotPassword({email: email}, function(err) {
                 if (err) {
                   if (err.message === 'User not found [403]') {
