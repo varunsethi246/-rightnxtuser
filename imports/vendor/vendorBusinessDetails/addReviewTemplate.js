@@ -90,68 +90,74 @@ Template.addReviewTemplate.events({
 	},
 	"keydown #searchFrnds":function(e){
 		//For Up and Down arrow selection in dropdown
-		$('.tagFrndUl').removeClass('searchDisplayHide').addClass('searchDisplayShow');
-		
-		if(e.keyCode == 9) {
-			e.preventDefault();
-		}
+		if (e.keyCode != 32) {
 
-		var current_index = $('.selectedSearch').index();
-	    var $number_list = $('.tagFrndUl');
-	    var $options = $number_list.find('.tagFrndLi');
-	    var items_total = $options.length;
-
-		if (e.keyCode == 40) {
-	        if (current_index + 1 < items_total) {
-	            current_index++;
-	            change_selection();
-	        }
-	    } else if (e.keyCode == 38) {
-	        if (current_index > 0) {
-	            current_index--;
-	            change_selection();
-	        }
-	    }
-	    var selectedUser = $('.selectedSearch').attr('data-username');
-		var frndId = $('.selectedSearch').attr('id');
-		var userImage = $('.selectedSearch').attr('data-photo');
-
-
-	    if(e.keyCode===9 &&selectedUser.length>0){
-	    	selectedUser = selectedUser.trim();
-	    	tagedFriends.push({
-	    		'selectedUser'	:selectedUser, 
-	    		'selectedUserId':frndId, 
-	    		'userImage'		:userImage
-
-	    	});
-	    	// console.log('tagedFriends :',tagedFriends);
-			$('#searchFrnds').val("");
-	    }
-
-	    function change_selection() {
-		    $options.removeClass('selectedSearch');
-			$options.eq(current_index).addClass('selectedSearch');
+			$('.tagFrndUl').removeClass('searchDisplayHide').addClass('searchDisplayShow');
 			
+			if(e.keyCode == 9) {
+				e.preventDefault();
+			}
 
-			// To scroll the selection
-			var $s = $('.tagFrndUl');
-			var optionTop = $('.selectedSearch').offset().top;
-			var selectTop = $s.offset().top;
-			$s.scrollTop($s.scrollTop() + (optionTop - selectTop)-4);
+			var current_index = $('.selectedSearch').index();
+		    var $number_list = $('.tagFrndUl');
+		    var $options = $number_list.find('.tagFrndLi');
+		    var items_total = $options.length;
+
+			if (e.keyCode == 40) {
+		        if (current_index + 1 < items_total) {
+		            current_index++;
+		            change_selection();
+		        }
+		    } else if (e.keyCode == 38) {
+		        if (current_index > 0) {
+		            current_index--;
+		            change_selection();
+		        }
+		    }
+		    var selectedUser = $('.selectedSearch').attr('data-username');
+			var frndId = $('.selectedSearch').attr('id');
+			var userImage = $('.selectedSearch').attr('data-photo');
+
+
+		    if(e.keyCode===9 &&selectedUser.length>0){
+		    	selectedUser = selectedUser.trim();
+		    	tagedFriends.push({
+		    		'selectedUser'	:selectedUser, 
+		    		'selectedUserId':frndId, 
+		    		'userImage'		:userImage
+
+		    	});
+		    	// console.log('tagedFriends :',tagedFriends);
+				$('#searchFrnds').val("");
+		    }
+
+		    function change_selection() {
+			    $options.removeClass('selectedSearch');
+				$options.eq(current_index).addClass('selectedSearch');
+				
+
+				// To scroll the selection
+				var $s = $('.tagFrndUl');
+				var optionTop = $('.selectedSearch').offset().top;
+				var selectTop = $s.offset().top;
+				$s.scrollTop($s.scrollTop() + (optionTop - selectTop)-4);
+			}
 		}
 	},
 
 	
 	"keyup #searchFrnds": _.throttle(function(e) {
-		$('.tagFrndUl').removeClass('searchDisplayHide').addClass('searchDisplayShow');
-		
-	    var text = $('#searchFrnds').val();
-	    if (text) {
-			$('.tagFrndLiFrieldList').css('display','block');
+		if(e.keyCode != 38 && e.keyCode != 40 && e.keyCode != 37 && e.keyCode != 39 && e.keyCode != 32){
 
-	    	tagFriend1.search(text);
-	    }
+			$('.tagFrndUl').removeClass('searchDisplayHide').addClass('searchDisplayShow');
+			
+		    var text = $('#searchFrnds').val();
+		    if (text) {
+				$('.tagFrndLiFrieldList').css('display','block');
+
+		    	tagFriend1.search(text);
+		    }
+		}
 	  }, 200),
 
 	'click .addFriends': function(event){
@@ -519,6 +525,7 @@ Template.addReviewTemplate.events({
 		$('.boxbg').removeClass('fixStar1');
 		$('.boxbg').removeClass('fixStar2');
 		$('.bunchTagFrndTagged').remove();
+		$('#review').val('');
 	},	
 
 	'click .uploadImg': function(event){
@@ -550,20 +557,23 @@ Template.addReviewTemplate.events({
 		// }
 	},
 	'click .tagImg': function(event){
-	 if($('.reviewImages').css('display') == 'block'){
-    	$('.reviewImages').css("display", "none");
-      $('.userTagFrnd').css("display", "block");
+		if($('.reviewImages').css('display') == 'block'){
+			$('.reviewImages').css("display", "none");
+		  	$('.userTagFrnd').css("display", "block");
+			$('.openReview').addClass('maxopenReviewHeight');
+			$('.tagFrndUl').removeClass('searchDisplayShow').addClass('searchDisplayHide');
+
+
+		}else if ($('.reviewImages').css('display') == 'none') {
+		 	$('.userTagFrnd').toggle();
+		 	if( $('.openReview').hasClass('maxopenReviewHeight') ){
+				$('.openReview').removeClass('maxopenReviewHeight');
+				$('.openReview').addClass('minopenReviewHeight');
+			}else{
+				$('.openReview').removeClass('minopenReviewHeight');
 				$('.openReview').addClass('maxopenReviewHeight');			
-    }else if ($('.reviewImages').css('display') == 'none') {
-     	$('.userTagFrnd').toggle();
-     	if( $('.openReview').hasClass('maxopenReviewHeight') ){
-					$('.openReview').removeClass('maxopenReviewHeight');
-					$('.openReview').addClass('minopenReviewHeight');
-				}else{
-					$('.openReview').removeClass('minopenReviewHeight');
-					$('.openReview').addClass('maxopenReviewHeight');			
-				}
-    }
+			}
+		}
 		 
 		// if( $('.openReview').hasClass('maxopenReviewHeight') ){
 		// 	$('.openReview').removeClass('maxopenReviewHeight');

@@ -944,7 +944,8 @@ height:45px;
 color:#4e4f51;
 font-family:'PROXIMANOVA-REGULAR';
 letter-spacing:1px;
-margin-top:10px
+margin-top:10px;
+border: 1px solid;
 }
 
 .resetPwdinsideWrapper p {

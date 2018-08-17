@@ -581,57 +581,60 @@ Template.userReviewTemplate.events({
 
 	"keydown #searchFrndsEdit":function(e){
 		//For Up and Down arrow selection in dropdown
-		$('.tagFrndUlFrieldList').removeClass('searchDisplayHide').addClass('searchDisplayShow');
-		
-		if(e.keyCode == 9) {
-			e.preventDefault();
-		}
+		if (e.keyCode != 32) {
 
-		var current_index = $('.selectedSearch').index();
-		// console.log("current_index: ",current_index);
-		
-		var $number_list = $('.tagFrndUlFrieldList');
-		// console.log("$number_list: ",$number_list);
-		
-		var $options = $number_list.find('.tagFrndLiFrieldList');
-		// console.log("$options: ",$options);
-		
-		var items_total = $options.length;
-		// console.log("items_total: ",items_total);
-		if (e.keyCode == 40) {
-	        if (current_index + 1 < items_total) {
-	            current_index++;
-	            change_selection();
-	        }
-	    } else if (e.keyCode == 38) {
-	        if (current_index > 0) {
-	            current_index--;
-	            change_selection();
-	        }
-	    }
-	    var selectedUser = $('.selectedSearch').attr('data-username');
-		var frndId = $('.selectedSearch').attr('id');
-		var userImage = $('.selectedSearch').attr('data-photo');
+			$('.tagFrndUlFrieldList').removeClass('searchDisplayHide').addClass('searchDisplayShow');
+			
+			if(e.keyCode == 9) {
+				e.preventDefault();
+			}
+
+			var current_index = $('.selectedSearch').index();
+			// console.log("current_index: ",current_index);
+			
+			var $number_list = $('.tagFrndUlFrieldList');
+			// console.log("$number_list: ",$number_list);
+			
+			var $options = $number_list.find('.tagFrndLiFrieldList');
+			// console.log("$options: ",$options);
+			
+			var items_total = $options.length;
+			// console.log("items_total: ",items_total);
+			if (e.keyCode == 40) {
+		        if (current_index + 1 < items_total) {
+		            current_index++;
+		            change_selection();
+		        }
+		    } else if (e.keyCode == 38) {
+		        if (current_index > 0) {
+		            current_index--;
+		            change_selection();
+		        }
+		    }
+		    var selectedUser = $('.selectedSearch').attr('data-username');
+			var frndId = $('.selectedSearch').attr('id');
+			var userImage = $('.selectedSearch').attr('data-photo');
 
 
-	    if(e.keyCode===9 &&selectedUser.length>0){
-	    	selectedUser = selectedUser.trim();
-	    	tagedFriends.push({'selectedUser':selectedUser, 'selectedUserId':frndId, 'userImage':userImage});
+		    if(e.keyCode===9 &&selectedUser.length>0){
+		    	selectedUser = selectedUser.trim();
+		    	tagedFriends.push({'selectedUser':selectedUser, 'selectedUserId':frndId, 'userImage':userImage});
 
-	    }
+		    }
 
-	    function change_selection() {
-			$options.removeClass('selectedSearch');
-			$options.eq(current_index).addClass('selectedSearch');
-			// To scroll the selection
-			var $s = $('.tagFrndUlFrieldList');
-			var optionTop = $('.selectedSearch').offset().top;
-			var selectTop = $s.offset().top;
-			$s.scrollTop($s.scrollTop() + (optionTop - selectTop)-4);
+		    function change_selection() {
+				$options.removeClass('selectedSearch');
+				$options.eq(current_index).addClass('selectedSearch');
+				// To scroll the selection
+				var $s = $('.tagFrndUlFrieldList');
+				var optionTop = $('.selectedSearch').offset().top;
+				var selectTop = $s.offset().top;
+				$s.scrollTop($s.scrollTop() + (optionTop - selectTop)-4);
+			}
 		}
 	},
 	"keyup #searchFrndsEdit": _.throttle(function(e) {
-		if(e.keyCode != 38 && e.keyCode != 40 && e.keyCode != 37 && e.keyCode != 39){
+		if(e.keyCode != 38 && e.keyCode != 40 && e.keyCode != 37 && e.keyCode != 39 && e.keyCode != 32){
 			$('.tagFrndUlFrieldList').removeClass('searchDisplayHide').addClass('searchDisplayShow');
 			var text = $(e.currentTarget).val();
 			// console.log('text:',text);

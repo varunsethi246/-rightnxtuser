@@ -114,6 +114,14 @@
 	.dayBuss{
 		margin-left: 0px; 
 	}
+	.resetWrapper{
+	    border: 1px solid #f89b1c;
+	    height: 283px;
+	     width: 0%!important; 
+	    margin-bottom: 20px;
+	     margin-left: 0%!important; 
+	    margin-top: 20px;
+	}
 	/*==========home page===========*/
 
 }
