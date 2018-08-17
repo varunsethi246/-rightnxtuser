@@ -214,6 +214,43 @@ Template.userOffers.helpers({
 
 
 Template.userOffers.events({
+	'click .userOfferShare' : function(event){
+		var fromEmail = Meteor.users.findOne({roles:'admin'});
+		console.log(fromEmail);
+		var fromemail = fromEmail.emails[0].address;
+		console.log(fromemail);
+		var id = event.currentTarget.id;
+		var offerData = Offers.findOne({'_id': id});
+		// console.log('offerData: ',offerData);
+		if(offerData){
+			var subj = offerData.dealHeadline;
+			var dealDesc = offerData.dealDescription;
+			var from = moment(offerData.expirationFromDate).format("DD MMM");
+			// console.log(from);
+			var to = moment(offerData.expirationToDate).format("DD MMM YYYY");
+			// console.log(to);	
+		}
+		
+		var toEmail = $('#toVEmail-'+id).val();		
+		var imgUri = "images/logo.png";
+	    var image  = Meteor.absoluteUrl(imgUri)
+	    console.log(image);
+	    var name = Meteor.users.findOne({_id:Meteor.userId()}).profile.name;
+	    var addText = $('#toVAddNote-'+id).val();
+		console.log("addText ",addText);	
+
+	    var msg = 'Hi there, <br/><br/>'+name+ ' has share offer with you. Check it out.<p>'+addText+'</p><br/><div style="border: 1px solid #ccc; width: 800px;"><img src='+image+' alt="" style="height: 60px; width: 60px; padding-left: 15px; padding-top: 15px;" /><SPAN style= "font-size: 16px; font-weight: 700; position:absolute; top: 40%; padding-left: 2%;">'+subj+'</SPAN><span style=""><h5 style="padding-right: 15px; padding-left: 15px;">Expiration Date: From '+from+' To '+to+' </h5><hr style="margin-right: 15px; margin-left: 15px;"><p style="font-size: 14px; padding-right: 15px; padding-left: 15px; text-align: justify; font-weight: 400; color: #555;">'+dealDesc+'</p></span></div>';
+
+		Meteor.call('sendEmailRightNxt', toEmail, fromEmail, subj, msg,function(error,result){
+			if(error){
+				Bert.alert(error.reason, 'danger', 'growl-top-right' );
+				return;
+			}else{
+				$('#shareOfferPage-'+id).modal('hide');
+				Bert.alert('Offer successfully shared with your friend.','success','growl-top-right');
+			}
+		});
+	},
 	'click .knowMore': function(event){
 		var $this = $(event.target);
 

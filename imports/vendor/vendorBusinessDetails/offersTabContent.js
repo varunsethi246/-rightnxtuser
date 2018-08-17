@@ -112,6 +112,7 @@ Template.offersTabContent.events({
 		var toEmail = $('#toVEmail-'+id).val();		
 		var imgUri = "images/logo.png";
 	    var image  = Meteor.absoluteUrl(imgUri)
+	    console.log(image);
 	    var name = Meteor.users.findOne({_id:Meteor.userId()}).profile.name;
 	    var addText = $('#toVAddNote-'+id).val();
 		console.log("addText ",addText);	
