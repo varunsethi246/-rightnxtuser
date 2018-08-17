@@ -729,7 +729,7 @@ Template.userTimeline.events({
 	}, 200),
 	'click #searchFrndsEdit': function(e){
 		e.stopPropagation();
-		$('.tagFrndUlFrieldList').removeClass('searchDisplayHide').addClass('searchDisplayShow');
+		// $('.tagFrndUlFrieldList').removeClass('searchDisplayHide').addClass('searchDisplayShow');
 	},
 	"click .tagFrndLiFrieldList" : function(e){
 		var selectedUser = $(e.currentTarget).attr('data-userName');
@@ -740,26 +740,20 @@ Template.userTimeline.events({
 		$('#searchFrndsEdit').trigger('keyup');
 		$('#searchFrndsEdit').val('');
 		
-		$('.tagFrndUlFrieldList').removeClass('searchDisplayHide').addClass('searchDisplayShow');
+		$('.tagFrndUlFrieldList').removeClass('searchDisplayShow').addClass('searchDisplayHide');
 		
 	},
 
 	"click .bunchTagFrndCross":function(e){
-		// console.log('click');
 		var userId = $(e.currentTarget).attr('data-userId');
 		var tagfrnd = [];
 		for(var i = 0 ; i < tagedFriends.length; i++ ){
 			if(tagedFriends[i].selectedUserId != userId){
-			// console.log('tagfrnd.push(tagedFriends[i]) :',tagfrnd.push(tagedFriends[i]));
 				tagfrnd.push(tagedFriends[i]);
 
 			}
-			// console.log('in for');
 		}
 		$('#searchFrndsEdit').trigger('keyup');
-			// console.log('$(#searchFrndsEdit).trigger(keyup) :',$('#searchFrndsEdit').trigger('keyup'));
-			// console.log('tagfrnd :',tagfrnd);
-
 		tagedFriends = tagfrnd;
 		$(e.currentTarget).parent().remove();
 		
@@ -829,7 +823,6 @@ Template.userTimeline.events({
 	'click .loadmore': function(event){
 		if(Session.get('loadmore')){			
 			var currentLimit = Session.get('loadmore');
-			// console.log("currentLimit",currentLimit);
 			var newLimit = currentLimit + 5;
 		}else{
 			var newLimit = 10;
@@ -1223,7 +1216,6 @@ Template.userTimeline.events({
 			"likedByUserId"		: Meteor.userId(),  
 		});
 
-		// console.log('commentId',commentId);
 		Meteor.call('insertReviewTimelineCommentLike',reviewPostedByUser,reviewId,commentId, function(err,rslt){
 			if(err){
 				console.log('Error: ', err);
@@ -1382,8 +1374,6 @@ Template.userTimeline.events({
 		var reviewId 			= $(event.currentTarget).parent().parent().parent().find('.commentReplyInput').attr('data-reviewId');
 		var commentId 			= $(event.currentTarget).parent().parent().parent().find('.commentReplyInput').attr('data-commentId');		
 		var replyId 			= $(event.currentTarget).attr('data-replyid');
-		
-		// console.log('businessLink: '+businessLink+' | reviewPostedByUser: '+reviewPostedByUser+' | reviewId: '+reviewId+'| replyId: '+replyId);
 		var commentPostedByUser = $(event.currentTarget).attr('data-commentPostedUser');
 		var commentReplyPostedUser = $(event.currentTarget).attr('data-commentReplyPostedUser');
 		var userId 	= Meteor.userId();
@@ -1402,7 +1392,6 @@ Template.userTimeline.events({
 			if(err){
 				console.log('Error: ', err);
 			}else{
-				// Bert.alert('Thanks for liking the comment!', 'success', 'growl-top-right');
 				if(!notofData){
 					//============================================================
 					// 			Notification Email / SMS / InApp
@@ -1581,14 +1570,7 @@ Template.userTimeline.events({
 	},
 
 	'click .commentReply': function(event){
-		// event.preventDefault();
-		// alert('hi');
 		var commentID = this.userCommentId;
-		// console.log('commentID: ',commentID);
-		// console.log('commentIDevent: ',$(event.currentTarget).parent().parent().parent().parent().siblings('.commentReplyInputBox-'+commentID).attr("class"));
-		// console.log('commentIDevent aage: ',$(event.currentTarget).parent().parent().parent().parent().parent().siblings('.commentReplyInputBox-'+commentID).attr("class"));
-		// console.log('commentIDevent piche: ',$(event.currentTarget).parent().parent().parent().siblings('.commentReplyInputBox-'+commentID).attr("class"));
-
 		$(event.currentTarget).parent().parent().parent().siblings('.commentReplyInputBox-'+commentID).toggle();
 		$(event.currentTarget).parent().parent().parent().siblings('.commentReplyInputBox-'+commentID).children().siblings('userReplyComent-'+commentID).children().focus();
 
@@ -1771,11 +1753,6 @@ Template.userTimeline.events({
 		var postedByID = $(event.target).parent().parent().parent().parent().parent().parent().parent().parent().siblings('.commentReplyInputBox').find('.commentReplyInput').attr('data-reviewPostedBy');
 		var businesLink = $(event.target).parent().parent().parent().parent().parent().parent().parent().parent().siblings('.commentReplyInputBox').find('.commentReplyInput').attr('data-businesslink');
 		// var replyId = $(event.target).parent().parent().parent().parent().parent().siblings('.commReplyArray').find('.commentReplyLike').attr('data-replyid');
-
-		// console.log("likeID: ",replyId);
-		// console.log("commentId: ",commentId);
-
-
 		Meteor.call('deletecomment',id,commentId,reviewID,postedByID,businesLink, function(error, result){
 			if(error){
 				Bert.alert('Some technical issue happened... You couldn\'t delete this review.', 'danger', 'growl-top-right');
@@ -1793,18 +1770,10 @@ Template.userTimeline.events({
 
 			var id = $(event.target).attr('id');
 			var commentId = parseInt($(event.target).attr('data-replyId'));
-
-			// console.log("id: ",id);
-			// console.log("commentId: ",commentId);
-			// console.log("userComment :"+ replyComment);
-
 			Meteor.call('updateReplyEdit', id, replyComment,commentId, function(error, result){
 				if(error){
 					Bert.alert('Some technical issue happened... Your comment is not posted.', 'danger', 'growl-top-right');
 				}else{
-			
-					// Bert.alert('Your comment posted successfully!', 'success', 'growl-top-right');
-					// $(event.currentTarget).val('');
 					$('.userReplyText-'+commentId).css('display','block');
 					$('.reviewReplyInputBox-'+commentId).css('display','none');
 					$('.reviewReplyCancel-'+commentId).css('display','none');
@@ -1817,7 +1786,6 @@ Template.userTimeline.events({
 	'click .userRevRepEdit':function(event){
 		event.preventDefault();
 		var id = event.target.id;
-		// console.log('id: ',id);
 		$('.userReplyText-'+id).css('display','none');
 		$('.reviewReplyInputBox-'+id).css('display','block');
 		$('.reviewReplyCancel-'+id).css('display','block');
@@ -1927,25 +1895,16 @@ Template.userTimeline.events({
 
 	'click .userReviewReplyDel' : function(event){
 		event.preventDefault();
-		// console.log('event: ',$(event.target));
-		
 		var id = event.currentTarget.id;
 		var commentId = parseInt($(event.target).attr('data-commentid'));
 		var postedByID = $(event.target).attr('data-reviewPostedBy');
 		var businesLink = $(event.target).attr('data-businesslink');
 		var cId =  $(event.target).attr('data-cId');
 
-		// console.log("id: ",id);
-		// console.log("commentId: ",commentId);
-		// console.log("postedByID: ",postedByID);
-		// console.log("businesLink: ",businesLink);
-
-
 		Meteor.call('deleteReply',id,commentId,cId,postedByID,businesLink, function(error, result){
 			if(error){
 				Bert.alert('Some technical issue happened... You couldn\'t delete this review.', 'danger', 'growl-top-right');
 			}else{
-				// Bert.alert('Your review was deleted successfully!', 'success', 'growl-top-right');
 				$('.modaldelete').modal('hide');
 				$('.modal-backdrop').hide();
 			}
@@ -1969,28 +1928,15 @@ Template.userTimeline.events({
       }, 1);
    },
 	'keypress .editReviewTextArea': function(event){
-
 		var revComment = $(event.currentTarget).val();
-
 		if(event.which === 13 && revComment){
-
 			var id = event.currentTarget.id;
 			var taggedPpl = tagedFriends;
-			
-			// var finalId = id.split('-');
-			// var commentId = parseInt($(event.target).attr('data-commentId'));
-
-			// console.log("id: ",id);
-			// // console.log("commentId: ",commentId);
-			// // console.log("userComment :"+ userComment);
 			if(revComment.length >=0 && revComment.length<=140){
 
 				$('.passwordWrongSpans').text("Your comment is too short, please write min 140 characters.");
 	            $('.passwordWrongSpans').addClass('passwordWrongWar');
-				// $('.openReviewBox').show();
-				// $('.publishReview').hide();
 			}else{
-
 				Meteor.call('updateRevCommentEdit', id, revComment, taggedPpl, function(error, result){
 					if(error){
 						Bert.alert('Some technical issue happened... Your review is not posted.', 'danger', 'growl-top-right');
@@ -2016,27 +1962,19 @@ Template.userTimeline.events({
 	},
 	'change #reviewImgfilesEdits' : function(event){
 			$('#reviewImgtext').hide();
-			// files = event.target.files; // FileList object\
 			var file = event.target.files; // FileList object\
-			// console.log('file ',file);
 			for(var j = 0 , f1;f1 = file[j]; j++){
 				filesR[counterImg] = file[j];
 				counterImg = counterImg + 1;
 			}
-			// console.log('filesR ',filesR);
-
-			// Loop through the FileList and render image files as thumbnails.
+			
 			for (var i = 0, f; f = file[i]; i++) {
-				// filesR[i].businessLink = Session.get('SessionBusinessLink');
-			    // Only process image files.
 			    if (!f.type.match('image.*')) {
 			      continue;
 				}
 				var reader = new FileReader();
-				// Closure to capture the file information.
 			    reader.onload = (function(theFile) {
 			      return function(e) {
-			        // Render thumbnail.
 			        var span = document.createElement('span');
 			        span.innerHTML = ['<img class="draggedReviewImg" src="', e.target.result,
 			                          '" title="', escape(theFile.name), '"/>'].join('');
@@ -2055,9 +1993,7 @@ Template.userTimeline.events({
 			var taggedPpl = tagedFriends;
 			var businessLink = $('.reviewBusSave').attr('value');
 			var starRating = $('.starRatingblock .fixStar1').length;
-			// console.log('starRating time: ',starRating);
 			starRating = starRating + $('.starRatingblock .fixStar2').length;
-			// console.log('starRating time: ',starRating);
 			var rating = parseFloat(starRating) / 2;
 			if(starRating > 0){
 
@@ -2073,11 +2009,6 @@ Template.userTimeline.events({
 					const imageCompressor = new ImageCompressor();
 				    imageCompressor.compress(filesR[i])
 				        .then((result) => {
-				          // console.log(result);
-
-				          // Handle the compressed image file.
-				          // We upload only one file, in case
-				        // multiple files were selected
 				        const upload = ReviewImage.insert({
 				          file: result,
 				          streams: 'dynamic',
@@ -2097,8 +2028,6 @@ Template.userTimeline.events({
 				          } else {
 				            // alert('File "' + fileObj._id + '" successfully uploaded');
 				            Bert.alert('Review Image uploaded.','success','growl-top-right');
-				            // console.log(fileObj._id);
-				            // Session.set("vendorImgFilePath",fileObj._id);
 				            var imgId =  fileObj._id ;
 					        Meteor.call("updateReviewBulkImg", id, imgId,
 					          function(error1, result1) { 
@@ -2131,7 +2060,6 @@ Template.userTimeline.events({
 			var allReviews = Review.findOne({"_id" : id});
 			if(allReviews){
 				var allReviewBusLink = allReviews.businessLink;
-				// console.log('allReviewBusLink: ',allReviewBusLink);
 				var ReviewBussLink = Review.find({"businessLink":allReviewBusLink}).fetch();
 				if(ReviewBussLink){						
 
@@ -2144,12 +2072,6 @@ Template.userTimeline.events({
 					}
 					totalRating = totalRating / ReviewBussLink.length ;
 
-
-					// console.log('totalRating: ',totalRating);
-					// console.log('id: ',id);
-					// console.log('revComment: ',revComment);
-					// console.log('taggedPpl: ',taggedPpl);
-					// console.log('totalRating: ',totalRating);
 					if(revComment.length >=0 && revComment.length<=140){
 
 						$('.passwordWrongSpans').text("Your comment is too short, please write min 140 characters.");

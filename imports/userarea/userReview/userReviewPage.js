@@ -645,7 +645,7 @@ Template.userReviewSuggestion.helpers ({
 
 				userCity = currentUserObj.profile.city;
 				var otherUsersData  = Meteor.users.find({"profile.city":userCity, "_id":{$ne: uid}, "roles":{$nin: [ 'admin', 'Vendor']}}).fetch();
-				console.log('otherUsersData :',otherUsersData);
+				// console.log('otherUsersData :',otherUsersData);
 				if(otherUsersData && otherUsersData.length>0){
 					for(var i=0;i<otherUsersData.length;i++){
 						var name    = otherUsersData[i].profile.name;
@@ -795,7 +795,7 @@ Template.userReview.events({
 	}, 200),
 	'click #searchFrndsEdit': function(e){
 		e.stopPropagation();
-		$('.tagFrndUlFrieldList').removeClass('searchDisplayHide').addClass('searchDisplayShow');
+		// $('.tagFrndUlFrieldList').removeClass('searchDisplayHide').addClass('searchDisplayShow');
 	},
 	"click .tagFrndLiFrieldList" : function(e){
 		var selectedUser = $(e.currentTarget).attr('data-userName');
@@ -805,7 +805,7 @@ Template.userReview.events({
 		tagedFriends.push({'selectedUser':selectedUser, 'selectedUserId':frndId, 'userImage':userImage});
 		$('#searchFrndsEdit').trigger('keyup');
 		$('#searchFrndsEdit').val('');
-		$('.tagFrndUlFrieldList').removeClass('searchDisplayHide').addClass('searchDisplayShow');
+		$('.tagFrndUlFrieldList').removeClass('searchDisplayShow').addClass('searchDisplayHide');
 		
 	},
 

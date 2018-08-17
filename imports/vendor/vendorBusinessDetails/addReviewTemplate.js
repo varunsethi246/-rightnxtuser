@@ -158,7 +158,7 @@ Template.addReviewTemplate.events({
 		$('.frnds').css('display','block');
 	},
 	'click #searchFrnds': function(){
-		$('.tagFrndUl').removeClass('searchDisplayHide').addClass('searchDisplayShow');
+		// $('.tagFrndUl').removeClass('searchDisplayHide').addClass('searchDisplayShow');
 	},
 	'click .tagFrndUl': function(event){
 		event.stopPropagation();
