@@ -1,15 +1,16 @@
 // Business Enquiry Validation
 Template.businessEnquiry.events({
-	'focusout .enquiryName': function(){
-		var myFuncVar = $(".enquiryName").val();
+	'focusout #enquiryName': function(e){
+		console.log('focusout');
+		var myFuncVar = $("#enquiryName").val();
 		if (myFuncVar==null||myFuncVar=="") {
 			$(".spanEnqName").addClass("ErrorRedText");
-			$(".enquiryName").addClass("SpanLandLineRedBorder");
+			$("#enquiryName").addClass("SpanLandLineRedBorder");
 			$( ".spanEnqName" ).text("Please Enter Valid Name" );
 		} else {
 			$( ".spanEnqName" ).text("" );
 			$(".spanEnqName").removeClass("ErrorRedText");
-			$(".enquiryName").removeClass("SpanLandLineRedBorder");
+			$("#enquiryName").removeClass("SpanLandLineRedBorder");
 		}
 	},
 	'keydown .enquiryName': function(e){
