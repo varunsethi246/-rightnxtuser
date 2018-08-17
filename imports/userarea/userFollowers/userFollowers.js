@@ -24,6 +24,13 @@ var fields = ['emails.address'];
 userSearch = new SearchSource('users', fields, options);
 
 Template.userFollowers.helpers({
+	notcheckIdExists(){
+		if(FlowRouter.getQueryParam('id')){
+			return false;
+		}else{
+			return true;
+		}
+	},
 	followShowHide(){
 		var id = '';
 		var url = FlowRouter.current().path;
@@ -359,7 +366,6 @@ Template.suggestedFollowUsers.helpers ({
 		var userIdArr =[userId];
 
 		var followUserData = FollowUser.find({"userId":userId}).fetch();
-		console.log('followUserData :',followUserData);
 		if(followUserData && followUserData.length>0){
 			for(i=0;i<followUserData.length;i++){
 				userIdArr.push(followUserData[i].followUserId);
@@ -391,9 +397,7 @@ Template.suggestedFollowUsers.helpers ({
 								'UsersuggestionImg' : otherUsersData[i].profile.userProfilePic,
 								'userSuggestionFol' : followerCount,
 								'userSuggestionRev' : reviewCount,
-							})
-							
-							
+							})	
 						}//!followUser
 					}//i
 				}//otherUsersData
@@ -402,14 +406,28 @@ Template.suggestedFollowUsers.helpers ({
 			var checkIdExists = url.split('/');
 			if(checkIdExists[1] != '' && checkIdExists[1]){
 				var returnUserArray = userArray.filter(function(el) { 
-					return el._id != checkIdExists[2]; 
+					return el._id != produceURLid(checkIdExists[2]); 
 				});
 			}
 			return returnUserArray;
 	},
 
 	'userSuggestionData': function(){
-		return userSearch.getData();
+		var otherUsersData = userSearch.getData();
+		if(otherUsersData){
+			for(var i=0;i<otherUsersData.length;i++){
+				if(otherUsersData[i].profile){
+					var pic     = VendorImage.findOne({"_id":otherUsersData[i].profile.userProfilePic});
+					if(pic){
+						otherUsersData[i].UsersuggestionImg = pic.link();	
+					}
+					else{
+						otherUsersData[i].UsersuggestionImg = "https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/profile_image_dummy.svg";	
+					}
+				}
+			}
+		}
+		return otherUsersData;
 	},
 
 	'userReviewInfo': function(id){

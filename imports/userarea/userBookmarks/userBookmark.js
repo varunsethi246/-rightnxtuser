@@ -121,7 +121,7 @@ Template.userBookmarks.helpers({
 		var url = FlowRouter.current().path;
 		var checkIdExists = url.split('/');
 		if(checkIdExists[2] != '' && checkIdExists[2]){
-			id = checkIdExists[2];
+			id = produceURLid(checkIdExists[2]);
 		}else{
 			id = Meteor.userId();
 		}
@@ -163,7 +163,7 @@ Template.userBookmarks.helpers({
 		var url = FlowRouter.current().path;
 		var checkIdExists = url.split('/');
 		if(checkIdExists[2] != '' && checkIdExists[2]){
-			id = checkIdExists[2];
+			id = produceURLid(checkIdExists[2]);
 		}else{
 			id = Meteor.userId();
 		}

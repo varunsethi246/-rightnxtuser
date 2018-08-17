@@ -17,10 +17,10 @@ if (Meteor.isServer) {
 	Meteor.publish('businessEnquiryCount', function businessEnquiryCount() {
 		return Enquiry.find({});
 	});
-	 Meteor.publish('enquiryCount', function() {
-  		var userID = this.userId;
+	 Meteor.publish('enquiryCount', function(userID) {
+  		// var userID = this.userId;
 		// Counts.publish(this, 'enquiryCount', Enquiry.find({'enquirySentBy':this.userId,'businessStatus':'active'}));
-		Counts.publish(this, 'enquiryCount', Enquiry.find({'enquirySentBy':this.userId}));
+		Counts.publish(this, 'enquiryCount', Enquiry.find({'enquirySentBy':userID}));
   	});
   	Meteor.publish('noOfEnqWeek', function() {
   		var days = 7;

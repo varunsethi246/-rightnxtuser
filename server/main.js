@@ -94,7 +94,10 @@ Meteor.publish('getBizVideo', function() {
 Meteor.publish('getBizVideoBanner', function() {
     return BizVideoBanner.find({}).cursor;
 });
-Meteor.publish('vendorImage', function() {
+Meteor.publish('vendorImage', function(userid) {
+    return VendorImage.find({'userId':userid}).cursor;
+});
+Meteor.publish('allvendorImage', function() {
     return VendorImage.find({}).cursor;
 });
 Meteor.publish('ownerImage', function() {

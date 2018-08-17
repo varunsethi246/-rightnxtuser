@@ -107,9 +107,7 @@ Template.userSuggestion.helpers ({
 							'userSuggestionFol' : followerCount,
 							'userSuggestionRev' : reviewCount,
 							'redirectid'		: redirectid,
-						})
-						
-						
+						})						
 					}//!followUser
 				}//i
 			}//otherUsersData
@@ -342,26 +340,29 @@ Template.userTimeline.helpers({
 				allReviews[i].redirectUid = generateURLid(allReviews[i].userId);
 				var userId = allReviews[i].userId;
 				if(userId){
-					var data = Meteor.users.findOne({"_id":userId},{"profile":1});
 					if(allReviews[i].userId == Meteor.userId()){
 						allReviews[i].userIDs = allReviews[i].userId;
 					}
-					// console.log("data: ",data);
-					if(data.profile && data.profile.userProfilePic){
-						var pic = VendorImage.findOne({"_id":data.profile.userProfilePic});
-						if(pic){
-							allReviews[i].userProfilePic = pic.link();	
+					var data = Meteor.users.findOne({"_id":userId},{"profile":1});
+					if(data){
+						if(data.profile){
+							if(data.profile.userProfilePic){
+								var pic = VendorImage.findOne({"_id":data.profile.userProfilePic});
+								if(pic){
+									allReviews[i].userProfilePic = pic.link();	
+								}
+								else{
+									allReviews[i].userProfilePic = "/users/profile/profile_image_dummy.svg";	
+								}
+								// console.log('data ', data);
+								// return data;
+							}else{
+								allReviews[i].userProfilePic = "/users/profile/profile_image_dummy.svg";
+							}
+							allReviews[i].username = data.profile.name;
 						}
-						else{
-							allReviews[i].userProfilePic = "/users/profile/profile_image_dummy.svg";	
-						}
-						// console.log('data ', data);
-						// return data;
-					}else{
-						allReviews[i].userProfilePic = "/users/profile/profile_image_dummy.svg";
 					}
 					
-					allReviews[i].username = data.profile.name;
 				}
 
 				var businessLinkVar=allReviews[i].businessLink;
@@ -546,7 +547,7 @@ Template.userSuggestion.events({
 		var link = FlowRouter.current().path;
 		var checkIdExists = link.split('/');
 		if(checkIdExists[2] != ''&& checkIdExists[2]){
-			id = checkIdExists[2];
+			id = produceURLid(checkIdExists[2]);
 		}else{
 			var value  = this;
 			id     = value.id;

@@ -4306,7 +4306,7 @@ padding-left: 48px;
     margin-right: 22px;
 }
 .vEnqListBorder{
-	    overflow-y: scroll;
+	    overflow-y: auto;
     height: 400px;
 }
 .timeLineFollowBtn{

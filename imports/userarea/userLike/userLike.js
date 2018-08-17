@@ -47,8 +47,6 @@ Template.userLike.helpers({
 		var bussDataArray =[];
 		var likesData = Likes.find({"userid":id}).fetch();
 		if(likesData){
-
-			
 			for(i=0;i<likesData.length;i++){
 			var bussdata = Business.findOne({'_id':likesData[i].businessId,"status":'active'});
 				if(bussdata){

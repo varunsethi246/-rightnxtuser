@@ -10,8 +10,8 @@ export const Bookmark = new Mongo.Collection('bookmark');
 
 if (Meteor.isServer) {
   // This code only runs on the server
-  Meteor.publish('bookmarkCount', function() {
-  		var userID = this.userId;
+  Meteor.publish('bookmarkCount', function(userID) {
+  		// var userID = this.userId;
   		// console.log('user :',userID);
 		// Counts.publish(this, 'bookmarkCount', Bookmark.find({'userId':userID,'businessStatus':'active'}));
 		Counts.publish(this, 'bookmarkCount', Bookmark.find({'userId':userID}));
@@ -24,8 +24,8 @@ if (Meteor.isServer) {
   	}
   });
 
-  Meteor.publish('userBookmark', function userBookmark() {
-	    return Bookmark.find({"userId":this.userId});  		
+  Meteor.publish('userBookmark', function userBookmark(userId) {
+	    return Bookmark.find({"userId":userId});  		
   });
 
   Meteor.publish('allBookmark', function allBookmark() {

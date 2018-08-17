@@ -15,9 +15,6 @@ Template.contactUs.onCreated(function () {
 	this.subscribe('notification');
 	this.subscribe('currentuser');
 	this.subscribe('area');
-	// this.subscribe('vendorImage');
-	// this.subscribe('userProfileS3');  
-	// this.subscribe('businessImgS3');  
 });
 
 Template.contactUs.helpers({

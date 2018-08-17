@@ -17,16 +17,16 @@ if (Meteor.isServer) {
   	}
   });
 
-  Meteor.publish('userBusinessLikes', function businessLikes() {
+  Meteor.publish('userBusinessLikes', function businessLikes(id) {
 
-	    return Likes.find({"userid":this.userId});  		
+	    return Likes.find({"userid":id});  		
   });
   
   Meteor.publish('businessLikesCount', function businessLikesCount() {
 	    return Likes.find({});  		
   });
-  Meteor.publish('LikesCount', function() {
-		Counts.publish(this, 'LikesCount', Likes.find({'userid':this.userId,'businessStatus':'active'}));
+  Meteor.publish('LikesCount', function(id) {
+		Counts.publish(this, 'LikesCount', Likes.find({'userid':id,'businessStatus':'active'}));
   });
 }
 

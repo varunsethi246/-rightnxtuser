@@ -2,6 +2,7 @@ import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 import { Session } from 'meteor/session';
 import './main.html';
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 // import { BusinessOwnerImages } from '/imports/ostriofiles/addBusinessOwnerClient.js';
 // import  {BusinessOwnerImages}  from '/imports/videoUploadClient/addBusinessOwner.js';
@@ -49,13 +50,15 @@ Meteor.startup(function () {
   TimeSync.loggingEnabled = false;
 
 	generateURLid =function(id){
-		var newurl = 'q=rightnxt+url&oq=user..69i57j0j69i60l2j0l2.4907j0j7&'+id+'&sourceid=chrome&ie=UTF-8';
+		var newurl = 'visituser?q=rightnxt+url&oq=user..69i57j0j69i60l2j0l2.4907j0j7&id='+id+'&sourceid=chrome&ie=UTF-8';
 		return newurl;
 	}
 	
 	produceURLid = function (id){
-		var newid = id.split('&');
-		return newid[2];
+		if(id){		
+			var newid = FlowRouter.getQueryParam('id');
+			return newid;
+		}
 	}
 });
 

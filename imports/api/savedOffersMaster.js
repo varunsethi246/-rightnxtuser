@@ -17,15 +17,15 @@ if (Meteor.isServer) {
   	}
   });
 
-  Meteor.publish('userOffer', function userOffer() {
-	    return SavedOffer.find({"userId":this.userId});  		
+  Meteor.publish('userOffer', function userOffer(userId) {
+	    return SavedOffer.find({"userId":userId});  		
   });
 
   Meteor.publish('allSavedOffer', function allSavedOffer() {
 	    return SavedOffer.find({});  		
   });
-  Meteor.publish('saveOfferCount', function() {
-  		var userID = this.userId;
+  Meteor.publish('saveOfferCount', function(userID) {
+  		// var userID = this.userId;
   		// console.log('user :',userID);
 		// Counts.publish(this, 'saveOfferCount', SavedOffer.find({'userId':userID,'businessStatus':'active'}));
 		Counts.publish(this, 'saveOfferCount', SavedOffer.find({'userId':userID}));

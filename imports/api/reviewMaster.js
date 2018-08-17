@@ -20,8 +20,8 @@ if (Meteor.isServer) {
 	Meteor.publish('allreviews', function allreviews() {
 		return Review.find({});
 	});
-	Meteor.publish('currentUserReviews', function currentUserReviews() {
-		return Review.find({'userId':this.userId});
+	Meteor.publish('currentUserReviews', function currentUserReviews(userId) {
+		return Review.find({'userId':userId});
 	});
 
 	// Meteor.publish('businessReviewsCount', function() {
@@ -40,13 +40,13 @@ if (Meteor.isServer) {
 	Meteor.publish('searchListReview',function(){
 		return Review.find({},{fields:{"businessLink":1,"rating":1}});
 	});
-	Meteor.publish('ReviewsCount', function() {
-		var userID = this.userId;
+	Meteor.publish('ReviewsCount', function(userID) {
+		// var userID = this.userId;
 		// Counts.publish(this, 'ReviewsCount', Review.find({'userId':userID,'businessStatus':'active'}));
 		Counts.publish(this, 'ReviewsCount', Review.find({'userId':userID}));
 	});
-	Meteor.publish('ReviewsPhotoCount', function() {
-		var userID = this.userId;
+	Meteor.publish('ReviewsPhotoCount', function(userID) {
+		// var userID = this.userId;
 		// Counts.publish(this, 'ReviewsPhotoCount', Review.find({'userId':userID,'businessStatus':'active'},{fields : {"reviewImages" : 1, "_id" : 0} }), { countFromFieldLength: 'reviewImages' });
 		Counts.publish(this, 'ReviewsPhotoCount', Review.find({'userId':userID},{fields : {"reviewImages" : 1, "_id" : 0} }), { countFromFieldLength: 'reviewImages' });
 	});

@@ -26,7 +26,6 @@ Template.userBeenThere.helpers({
 		}
 		var userBeenTh = BeenThere.find({"userId":id}).count();
 		var userBeenThere = Counts.get('beenThereCount');
-		console.log(userBeenThere);
 		if(userBeenThere <= 0){
 			return true;
 		}else{
@@ -77,7 +76,6 @@ Template.userBeenThere.helpers({
 				}//businessObj
 			}// loop i
 
-			console.log(beenThereArr);
 			return beenThereArr;	
 		}
 	},

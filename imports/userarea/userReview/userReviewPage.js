@@ -85,18 +85,8 @@ Template.userReview.helpers({
 		
 	},
 	checkReviewLoading(){
-		var id = '';
-		var url = FlowRouter.current().path;
-		var checkIdExists = url.split('/');
-		var data = {};
-		if(checkIdExists[2] != '' && checkIdExists[2]){
-			id = produceURLid(checkIdExists[2]);
-		}else{
-			id = Meteor.userId();
-		}
-
-		var reviewDataTotalCount = Review.find({"userId":id}).count();
-		if(reviewDataTotalCount<=0){
+		var count = Counts.get('ReviewsCount');		
+		if(count<=0){
 			return true;
 		}else{
 			return false;
@@ -175,39 +165,38 @@ Template.userReview.helpers({
 				var businessLinkVar	= reviewData[i].businessLink;
 				var businessData   	= Business.findOne({'businessLink':businessLinkVar,'status':'active'});
 				if (businessData){
-
 					var reviewDateNumber = reviewData[i].reviewDate.getTime();
 					reviewData[i].reviewDateNumber = reviewDateNumber;
 					if(businessData.businesscategories){
 						var categories = getCategory(businessData.businesscategories);
 						if(categories){
 							reviewData[i].categoryClasses = categories;
-							reviewData[i].businessTitle = businessData.businessTitle;
-							reviewData[i].businessArea 	= businessData.businessArea;
-							businessData.businessArea 	= businessData.businessArea.split(' ').join('-');
-							reviewData[i].AreaClasses 	= businessData.businessArea.split('.').join('-');
-							reviewData[i].businessCity 	= businessData.businessCity;
+						}
+					}
 
-							if(businessData.businessImages && businessData.businessImages.length > 0){
-								var pic = BusinessImage.findOne({"_id":businessData.businessImages[0].img});
-								if(pic){
-									reviewData[i].businessImages = pic.link();
-								}else{
-									var pic1 = ReviewImage.findOne({"_id":businessData.businessImages[0].img});
-									if(pic1){
-										reviewData[i].businessImages = pic1.link();
-									}else{
-										reviewData[i].businessImages = 'https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg';
-									}
-								}
+					reviewData[i].businessTitle = businessData.businessTitle;
+					reviewData[i].businessArea 	= businessData.businessArea;
+					businessData.businessArea 	= businessData.businessArea.split(' ').join('-');
+					reviewData[i].AreaClasses 	= businessData.businessArea.split('.').join('-');
+					reviewData[i].businessCity 	= businessData.businessCity;
 
+					if(businessData.businessImages && businessData.businessImages.length > 0){
+						var pic = BusinessImage.findOne({"_id":businessData.businessImages[0].img});
+						if(pic){
+							reviewData[i].businessImages = pic.link();
+						}else{
+							var pic1 = ReviewImage.findOne({"_id":businessData.businessImages[0].img});
+							if(pic1){
+								reviewData[i].businessImages = pic1.link();
 							}else{
 								reviewData[i].businessImages = 'https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg';
 							}
-
 						}
 
+					}else{
+						reviewData[i].businessImages = 'https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg';
 					}
+
 					reviewData[i].reviewDateAgo = moment(reviewData[i].reviewDate).fromNow();
 					var timeAgo = reviewData[i].reviewDateAgo;
 
@@ -433,9 +422,14 @@ Template.userReview.helpers({
 	},
 
 	businessCategoriesList(){
-		var userId     = Meteor.userId();
+		if(FlowRouter.getQueryParam('id')){
+			var userId     = FlowRouter.getQueryParam('id');
+		}else{
+			var userId     = Meteor.userId();
+		}
 		var categories =[];
-		var reviewData = Review.find({"userId":Meteor.userId()},{sort: {reviewDate:-1} }).fetch();
+
+		var reviewData = Review.find({"userId":userId},{sort: {reviewDate:-1} }).fetch();
 		if(reviewData){
 			for (var i = 0; i < reviewData.length; i++) {
 				var businessLinkVar	= reviewData[i].businessLink;
@@ -462,16 +456,19 @@ Template.userReview.helpers({
 				}
 			}
 			var busCategories = _.uniq(categories);
-
 			return busCategories;
 		}
 
 	},
 
 	businessLocationList(){
-		var userId     = Meteor.userId();
+		if(FlowRouter.getQueryParam('id')){
+			var userId     = FlowRouter.getQueryParam('id');
+		}else{
+			var userId     = Meteor.userId();
+		}
 		var location =[];
-		var reviewData = Review.find({"userId":Meteor.userId()},{sort: {reviewDate:-1} }).fetch();
+		var reviewData = Review.find({"userId":userId},{sort: {reviewDate:-1} }).fetch();
 		if(reviewData){
 			for (var i = 0; i < reviewData.length; i++) {
 				var businessLinkVar	= reviewData[i].businessLink;
@@ -561,10 +558,14 @@ Template.userReviewSuggestion.events({
 Template.userReview.helpers({
 	showRating(){
 		// userId,businessLink
-		var userId = Meteor.userId();
+		var newid = FlowRouter.getQueryParam('id');
+		if(newid){
+			var userId = newid;
+		}else{
+			var userId = Meteor.userId();
+		}
 		var businessUrl = this.businessLink;
 		// var businessLinkNew = Business.findOne({"businessLink":businessLinks});
-
 		var ratingInt = Review.find({"userId" : userId,"businessLink":businessUrl}).fetch();
 		if(ratingInt){
 			for (var i = 0; i < ratingInt.length; i++) {

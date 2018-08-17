@@ -1201,7 +1201,7 @@ text-align: center;
     margin-left:0px;
 } */ 
 .suggestedListScroll{
-        overflow-y: scroll;
+        overflow-y: auto;
     height: 400px;
     width: 100%;
 }

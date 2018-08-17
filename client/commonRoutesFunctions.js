@@ -1,5 +1,5 @@
 userTimelinePageFunc= function () {    
-	console.log('in mainfunction');
+	// console.log('in mainfunction');
 	import('/imports/userarea/userTimeline/userTimelinePage.js')
 	.then(function (handle) {        
 		handle.userTimelinePageForm();    

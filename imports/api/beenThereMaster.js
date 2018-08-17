@@ -10,8 +10,8 @@ export const BeenThere = new Mongo.Collection('beenThere');
 
 if (Meteor.isServer) {
   // This code only runs on the server
-	Meteor.publish('beenThereCount', function() {
-		var userId =  this.userId;
+	Meteor.publish('beenThereCount', function(userId) {
+		// var userId =  this.userId;
 		Counts.publish(this, 'beenThereCount', BeenThere.find({'userId':userId,'businessStatus':'active'}));
 		Counts.publish(this, 'beenThereCount', BeenThere.find({'userId':userId}));
 	});
@@ -22,8 +22,8 @@ if (Meteor.isServer) {
 		}
 	});
 
-	Meteor.publish('userBeenThere', function userBeenThere() {
-	    return BeenThere.find({"userId":this.userId});  		
+	Meteor.publish('userBeenThere', function userBeenThere(userId) {
+	    return BeenThere.find({"userId":userId});  		
 	});
 	Meteor.publish('alluserBeenThere', function alluserBeenThere() {
 	    return BeenThere.find({});  		

@@ -33,10 +33,6 @@ Template.career.onCreated(function () {
 	this.subscribe('area');
 	this.subscribe('newjob');
 	this.subscribe('generalContentUrl','career');  
-	// this.subscribe('vendorImage');
-	// this.subscribe('resumeImage');
-	// this.subscribe('userProfileS3'); 
-	// this.subscribe('businessImgS3');
 });
 Template.jobApplicationForm.onCreated(function () {
     this.currentUpload = new ReactiveVar(false);

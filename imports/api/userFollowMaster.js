@@ -17,12 +17,12 @@ if (Meteor.isServer) {
   // Meteor.publish('followerCount', function() {
  	//  Counts.publish(this, 'followerCounts', FollowUser.find({}));
   // });
-	Meteor.publish('followeringCount', function() {
-			var userID = this.userId;
+	Meteor.publish('followeringCount', function(userID) {
+			// var userID = this.userId;
 		Counts.publish(this, 'followeringCount', FollowUser.find({'userId':userID}));
 	});
-	Meteor.publish('followerCount', function() {
-			var userID = this.userId;
+	Meteor.publish('followerCount', function(userID) {
+			// var userID = this.userId;
 		Counts.publish(this, 'followerCount', FollowUser.find({'followUserId':userID}));
 	});
 

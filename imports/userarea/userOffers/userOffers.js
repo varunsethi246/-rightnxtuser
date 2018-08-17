@@ -150,13 +150,13 @@ Template.userOffers.helpers({
 		var url = FlowRouter.current().path;
 		var checkIdExists = url.split('/');
 		if(checkIdExists[2] != '' && checkIdExists[2]){
-			id = checkIdExists[2];
+			id = produceURLid(checkIdExists[2]);
 		}else{
 			id = Meteor.userId();
 		}
 		var userId     = id;
 		var categories =[];
-		var offerData = SavedOffer.find({"userId":Meteor.userId()}).fetch();
+		var offerData = SavedOffer.find({"userId":userId}).fetch();
 		if(offerData){
 			for (var i = 0; i < offerData.length; i++) {
 				var businessLinkVar	= offerData[i].businessId;
@@ -188,13 +188,13 @@ Template.userOffers.helpers({
 		var url = FlowRouter.current().path;
 		var checkIdExists = url.split('/');
 		if(checkIdExists[2] != '' && checkIdExists[2]){
-			id = checkIdExists[2];
+			id = produceURLid(checkIdExists[2]);
 		}else{
 			id = Meteor.userId();
 		}
 		var userId     = id;
 		var location =[];
-		var userSavedOffer = SavedOffer.find({"userId":Meteor.userId()}).fetch();
+		var userSavedOffer = SavedOffer.find({"userId":userId}).fetch();
 		if(userSavedOffer){
 			for (var i = 0; i < userSavedOffer.length; i++) {
 				var businessLinkVar	= userSavedOffer[i].businessId;
