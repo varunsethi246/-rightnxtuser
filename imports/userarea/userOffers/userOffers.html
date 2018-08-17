@@ -59,7 +59,7 @@
 						</div>
 						<div class="userOffersI col-lg-1 col-md-1 col-sm-2 col-xs-12">
 							<div class="pull-right">
-								<i class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fa fa-share-alt" data-toggle="modal" data-target="#shareOfferPage" title="Share"></i>
+								<i class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fa fa-share-alt" data-toggle="modal" data-target="#shareOfferPage-{{_id}}" title="Share"></i>
 								<!-- <i class="col-lg-5 col-md-5 col-sm-5 col-xs-5 fa fa-floppy-o offerSave {{savedOfferStatus}}SavedOffer" id="{{_id}}" aria-hidden="true" title="Save Offer"></i> -->
 							</div>
 						</div>
@@ -81,7 +81,7 @@
 						</div>
 					
 						<!-- Modal -->
-						<div class="modal fade" id="shareOfferPage" role="dialog">
+						<div class="modal fade" id="shareOfferPage-{{_id}}" role="dialog">
 							<div class="modal-dialog">
 								<div class="modal-content VCommentModalMainContent">
 									<div class="modal-body">
@@ -123,7 +123,7 @@
 																<input type="text" id="toVAddNote-{{_id}}">
 															</div>
 															<div class="vmodalFormButton" id="{{_id}}">
-																<button type="button" class="btn btn-warning userOfferShare">Share</button>
+																<button type="button" class="btn btn-warning userOfferShare" id="{{_id}}">Share</button>
 															</div>
 														</div>
 													</form>
