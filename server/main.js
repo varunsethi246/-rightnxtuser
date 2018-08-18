@@ -202,6 +202,22 @@ Meteor.methods({
     });
   }, //End of Send Email Function
 
+  sendBlockEmailRightnxt: function (to , fromEmail, subject , msg) {
+      check([to, fromEmail, subject, msg], [String]);
+      // Let other method calls from the same client start running,
+      // without waiting for the email sending to complete.
+      // this.unblock();
+     /* var imgUri = "images/logo.png";
+      var image  = Meteor.absoluteUrl(imgUri)
+      var name = Meteor.users.findOne({_id:Meteor.userId()}).profile.name;*/
+      Email.send({
+        to: to,
+        from: fromEmail,
+        subject: subject,
+        html: msg
+      });
+    }, //End of Send Email Function
+
   'sendWelcomeMail': function(body){
     var Id = Meteor.userId();
     var mailReceipant = Meteor.users.findOne({'_id':Id});

@@ -44,17 +44,38 @@ Template.profileSetting.events({
   },
 
   'click .userYesbtn': function(event) {
-  Meteor.call('blockUser',function(err, result) {
-      if (err) {
-        console.log("err",err);
-        }else {
-            Bert.alert('Your profile is blocked, please contact us for the next steps.','success','growl-top-right','fa-frown-o');
-            FlowRouter.go('/');
-            $('.modal-backdrop').hide();
-            Meteor.logout();
-        }
-    });
-  },  
+    event.preventDefault();
+    
+    var fromEmail = Meteor.users.findOne({roles:'admin'}).emails[0].address;
+    var userId    = Meteor.userId();
+    var name      = Meteor.users.findOne({_id:userId}).profile.name;
+    var to        = Meteor.users.findOne({_id:userId}).emails[0].address;
+    var msg       = 'Hi '+name+', <br/><br/> Your account is block sucssefuly. To unblock contact us.';
+    var subject   = 'Your account is block.';
+    // console.log(fromEmail);
+    // console.log(to);
+    // console.log(name);
+    // console.log(msg);
+    // console.log(subject);
+    Meteor.call('blockUser',function(err, result) {
+        if (err) {
+          console.log("err",err);
+          }else {
+            Meteor.call('sendBlockEmailRightnxt', to , fromEmail, subject , msg,function(error,result){
+              if(error){
+                Bert.alert(error.reason, 'danger', 'growl-top-right' );
+                return;
+              }else{
+                Bert.alert('Your profile is blocked, please contact us for the next steps.','success','growl-top-right','fa-frown-o');
+                $('.modal-backdrop').hide();
+                $('#userDeleteModal').hide();
+                Meteor.logout();
+              }
+            });
+                FlowRouter.go('/');
+          }
+      });
+    },  
 
 });
 

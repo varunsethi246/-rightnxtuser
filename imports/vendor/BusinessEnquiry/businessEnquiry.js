@@ -129,12 +129,11 @@ Template.businessEnquiry.events({
     'click .enqSendClose':function(event){
         var userId = Meteor.userId();
         if (userId) {
-            console.log('if');
             $('.enquiryDesc').val('');
             $('.enquiryPhoto').val('');
-
+            $('.ErrorRedText').hide();
+            $('.vEnqModalC').removeClass('SpanLandLineRedBorder')
         }else{
-            console.log('else');
 
             $('.enquiryName').val('');
             $('.enquiryDesc').val('');
@@ -142,6 +141,8 @@ Template.businessEnquiry.events({
             $('.enquiryPhoto').val('');
             $('.enquiryName').val('');
             $('.enquiryEmail').val('');
+            $('.ErrorRedText').hide();
+            $('.vEnqModalC').removeClass('SpanLandLineRedBorder');
         }
     },
     'change .enquiryPhoto' : function(event){

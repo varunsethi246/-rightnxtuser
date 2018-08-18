@@ -275,6 +275,7 @@ Template.imageReportModal.events({
 	'click .imageReportClose':function(){
 		event.preventDefault();
 		$('#imageReportOne').modal('hide');
+		$('#imageReportComment').val('');
 		// $('.modal-backdrop').hide('#imageReportOne');
 		// if($('.secondModal').hasClass('in')){
 		// 	$('.secondModal').removeClass('in')
