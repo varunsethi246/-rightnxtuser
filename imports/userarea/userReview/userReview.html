@@ -50,12 +50,12 @@
                   <img src="{{businessImages}}" alt="" class="bgGif">
                 </a>
               </div>    
-              <div class="reviewRightTxt col-lg-5 col-md-6 col-xs-9" id="reviewRightTxt"> 
+              <div class="reviewRightTxt col-lg-4 col-md-6 col-xs-9" id="reviewRightTxt"> 
                 <a href="/{{businessLink}}">{{businessTitle}}</a>
                 <p>{{businessArea}}, {{businessCity}}</p>
                 <p>{{timeAgo}}</p>
               </div>
-              <div class="col-lg-4 col-md-5 col-sm-6 col-xs-5 myRatingOnBuss" >
+              <div class="col-lg-3 col-md-5 col-sm-6 col-xs-5 myRatingOnBuss" >
                 {{#with showRating}}
                   Rating: {{> starRating2 }}
                 {{/with}}
@@ -63,23 +63,16 @@
 
               </div>   
                      
+              {{#if userIDs}}
+
+                <div class="pull-right col-lg-2 col-md-2 col-sm-2 col-xs-2 RevEditBox RevEditBoxTimeline {{revEditButton}}">
+                  <div class="userRevComEdit userRevComsEdit-{{_id}}"  id="{{_id}}">
+                    Edit
+                  </div>
+                </div>
+              {{/if}}
             </div>     
           </div>
-          {{#if userIDs}}
-            <!-- <div class="dropdown pull-right col-lg-2 col-md-2 col-sm-2 col-xs-2 RevEditBox RevEditBoxTimeline {{revEditButton}}">
-              <i class="fa fa-ellipsis-h pull-right" data-toggle="dropdown" aria-hidden="true"></i>
-              <ul class="dropdown-menu userRevEdit">
-                  <li class="userRevComEdit" id="{{_id}}">
-                    <i class="fa fa-pencil editPen" aria-hidden="true"></i> Edit
-                  </li>
-              </ul>
-            </div> -->
-            <div class="pull-right col-lg-2 col-md-2 col-sm-2 col-xs-2 RevEditBox RevEditBoxTimeline {{revEditButton}}">
-              <div class="userRevComEdit userRevComsEdit-{{_id}}"  id="{{_id}}">
-                Edit
-              </div>
-            </div>
-          {{/if}}
           <div class="ReviewTxt timelineCommTxt userReviewTempcommTxt-{{_id}} col-lg-12 col-md-12 col-sm-12 col-xs-12">
             {{ #if userReviewDesc2 }}
               <p>

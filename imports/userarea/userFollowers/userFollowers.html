@@ -23,11 +23,11 @@
 											</a>
 										</div>
 									<div class="infoSugg userFollInfoSugg col-lg-10 col-md-10 col-sm-10 col-xs-10">
-										<h5>
+										<h5 class="col-lg-6">
 											<a href="/userReview/{{redirectid}}" target="_blank">{{followerInt}}</a>
 										</h5>
 									
-										<p>
+										<p class="col-lg-6">
 											{{#if reviewCountDis}}
 												<span>{{UserFollowerRev}} Reviews</span>,
 											{{else}} 
@@ -95,29 +95,12 @@
 								</div>
 							</a>
 						<div class="infoSugg userFollInfoSugg col-lg-10 col-md-10 col-sm-10 col-xs-10">
-							<h5>
+							<h5 class="col-lg-6">
 								<a href="/userReview/{{redirectid}}" target="_blank">{{followingInt}}</a>
 							</h5>
-							
-								<p>
-								{{#if reviewCountDis}}
-									<span>{{UserFollowingRev}} Reviews</span>,
-								{{else}} 
-									<span>{{UserFollowingRev}} Review</span>, 
-								{{/if}}
-								{{#if followerCountDis}}
-									<span> {{userFollowingFol}} Followers</span>
-								{{else}}
-									<span> {{userFollowingFol}} Follower</span>
-								{{/if}}
-								</p>
-							
-<!-- 								<p>{{UserFollowingRev}} Review , </p> -->
-
-							
 							{{#if followShowHide}}
 								<div class="unfollowUserBtn btn" data-toggle="modal" data-target="#follwMod-{{followId}}">
-									Unfollow
+									Following
 								</div>
 								<div class="modal fade" id="follwMod-{{followId}}" role="dialog">
 									<div class="modal-dialog">
@@ -136,6 +119,23 @@
 									</div>
 								</div>
 							{{/if}}
+							
+							<p class="col-lg-6">
+							{{#if reviewCountDis}}
+								<span>{{UserFollowingRev}} Reviews</span>,
+							{{else}} 
+								<span>{{UserFollowingRev}} Review</span>, 
+							{{/if}}
+							{{#if followerCountDis}}
+								<span> {{userFollowingFol}} Followers</span>
+							{{else}}
+								<span> {{userFollowingFol}} Follower</span>
+							{{/if}}
+							</p>
+						
+<!-- 								<p>{{UserFollowingRev}} Review , </p> -->
+
+							
 
 						</div>
 
