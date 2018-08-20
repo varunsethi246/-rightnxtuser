@@ -83,9 +83,7 @@ Template.userSuggestion.helpers ({
 			var otherUsersData  = Meteor.users.find({"profile.city":userCity, "_id":{$ne: userId}, "roles":{$nin: [ 'admin', 'Vendor']}}).fetch();
 			if(otherUsersData && otherUsersData.length>0){
 				for(var i=0;i<otherUsersData.length;i++){
-					// console.log("otherUsersData[i]: ",otherUsersData[i]);
 					var name           = otherUsersData[i].profile.name;
-					// var userProfilePic = otherUsersData[i].profile.userProfilePic;
 					var id             = otherUsersData[i]._id;
 					var userIDTimeline = Session.set('useridtimeline',id);
 					var pic            = VendorImage.findOne({"_id":otherUsersData[i].profile.userProfilePic});
