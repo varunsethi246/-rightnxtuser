@@ -212,7 +212,7 @@
 				    		</div>
 			 			</div>
 
-						<div class="vndr_SharePage col-lg-1 col-lg-offset-2 col-md-1 col-sm-1 col-xs-1" data-toggle="modal" data-target="{{#if isInRole 'user'}}#busPageShare{{/if}}" id="vndr_SharePage" title="Share Review">
+						<div class="vndr_SharePage col-lg-1 col-lg-offset-2 col-md-1 col-sm-1 col-xs-1" data-toggle="modal" data-target="{{#if isInRole 'user'}}#busPageShare{{/if}}" id="vndr_SharePage" data-id="{{_id}}" title="Share Review">
 							<i class="fa fa-share" aria-hidden="true" ></i>
 						</div>
 
@@ -277,14 +277,14 @@
 		                                       <div class="vCenterOr">or</div>
 		                                       <div class="form-group">
 		                                          <label for="toVEmailRev">To (Email address)</label><br>
-		                                          <input type="text" id="toVEmailRev">
+		                                          <input type="text" id="toVEmailRev-{{_id}}">
 		                                       </div>
 		                                       <div class="form-group">
 		                                          <label for="toVAddNoteRev">Add a note (Optional)</label><br>
-		                                          <input type="text" id="toVAddNoteRev">
+		                                          <input type="text" id="toVAddNoteRev-{{_id}}">
 		                                       </div>
 		                                       <div class="vmodalFormButton">
-		                                          <button type="button" class="btn btn-warning shareBussPageRev">Share</button>
+		                                          <button type="button" class="btn btn-warning shareBussPageRev" id="{{_id}}">Share</button>
 		                                       </div>
 		                                    </div>
 		                                 </form>

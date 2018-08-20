@@ -72,8 +72,14 @@ Template.starRating.events({
 	'click .boxbg': function(event){
 		var whatClass = $(event.currentTarget).attr('class');
 		var classes = whatClass.split(' ');
-		var theClass = classes[classes.length - 2];
-		var classnum = theClass.substr(3);
+		if ($(event.currentTarget).hasClass('fixStar1') || $(event.currentTarget).hasClass('fixStar2')) {
+			var theClass = classes[classes.length - 3];	
+			var classnum = theClass.substr(3);
+		}else{
+			var theClass = classes[classes.length - 2];	
+			var classnum = theClass.substr(3);
+		}
+
 		for(i=0;i<=classnum;i++){
 			if(i%2 != 0){
 				$('.box'+i).removeClass('boxStar1');

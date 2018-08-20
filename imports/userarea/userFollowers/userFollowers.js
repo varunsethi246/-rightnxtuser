@@ -364,6 +364,7 @@ Template.suggestedFollowUsers.helpers ({
 		var followArray    = [];
 		var currentUserObj = Meteor.users.findOne({"_id":userId});
 		var userIdArr =[userId];
+		console.log('currentUserObj:',currentUserObj);
 
 		var followUserData = FollowUser.find({"userId":userId}).fetch();
 		if(followUserData && followUserData.length>0){
@@ -372,50 +373,57 @@ Template.suggestedFollowUsers.helpers ({
 			}
 		}
 
-			if(currentUserObj){
+		if(currentUserObj){
+			if (currentUserObj.profile.city) {
 				userCity = currentUserObj.profile.city;
-				var otherUsersData  = Meteor.users.find({"profile.city":userCity, "_id": { $nin: userIdArr }, "roles":{$nin: [ 'admin', 'Vendor']}}).fetch();
-				
-				if(otherUsersData){
-					for(var i=0;i<otherUsersData.length;i++){
-						var name    = otherUsersData[i].profile.name;
-						var id      = otherUsersData[i]._id;
-						var pic     = VendorImage.findOne({"_id":otherUsersData[i].profile.userProfilePic});
-						if(pic){
-							otherUsersData[i].profile.userProfilePic = pic.link();	
-						}
-						else{
-							otherUsersData[i].profile.userProfilePic = "https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/profile_image_dummy.svg";	
-						}
-						var followUser = FollowUser.findOne({'userId':userId , 'followUserId':id});
-						if(!followUser){
-							var followerCount = FollowUser.find({'followUserId': id}).count();
-							var reviewCount   = Review.find({'userId': id}).count();
-							userArray.push({
-								'_id'               : id,
-								'SuggestionInt'     : name,
-								'UsersuggestionImg' : otherUsersData[i].profile.userProfilePic,
-								'userSuggestionFol' : followerCount,
-								'userSuggestionRev' : reviewCount,
-							})	
-						}//!followUser
-					}//i
-				}//otherUsersData
+			}else{
+				userCity = "Pune";	
 			}
-			var url = FlowRouter.current().path;
-			var checkIdExists = url.split('/');
-			if(checkIdExists[1] != '' && checkIdExists[1]){
-				var returnUserArray = userArray.filter(function(el) { 
-					return el._id != produceURLid(checkIdExists[2]); 
-				});
-			}
-			return returnUserArray;
+
+			var otherUsersData  = Meteor.users.find({"profile.city":userCity, "_id": { $nin: userIdArr }, "roles":{$nin: [ 'admin', 'Vendor' , 'Staff']}}).fetch();
+			console.log('otherUsersData :',otherUsersData);
+			if(otherUsersData){
+				for(var i=0;i<otherUsersData.length;i++){
+					var name    = otherUsersData[i].profile.name;
+					var id      = otherUsersData[i]._id;
+					var pic     = VendorImage.findOne({"_id":otherUsersData[i].profile.userProfilePic});
+					if(pic){
+						otherUsersData[i].profile.userProfilePic = pic.link();	
+					}
+					else{
+						otherUsersData[i].profile.userProfilePic = "https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/profile_image_dummy.svg";	
+					}
+					var followUser = FollowUser.findOne({'userId':userId , 'followUserId':id});
+					if(!followUser){
+						var followerCount = FollowUser.find({'followUserId': id}).count();
+						var reviewCount   = Review.find({'userId': id}).count();
+						userArray.push({
+							'_id'               : id,
+							'SuggestionInt'     : name,
+							'UsersuggestionImg' : otherUsersData[i].profile.userProfilePic,
+							'userSuggestionFol' : followerCount,
+							'userSuggestionRev' : reviewCount,
+						})	
+					}//!followUser
+				}//i
+			}//otherUsersData
+		}
+		var url = FlowRouter.current().path;
+		var checkIdExists = url.split('/');
+		if(checkIdExists[1] != '' && checkIdExists[1]){
+			var returnUserArray = userArray.filter(function(el) { 
+				return el._id != produceURLid(checkIdExists[2]); 
+			});
+		}
+		console.log('returnUserArray :',returnUserArray);
+		return returnUserArray;
 	},
 
 	'userSuggestionData': function(){
 		var otherUsersData = userSearch.getData();
 		if(otherUsersData){
 			for(var i=0;i<otherUsersData.length;i++){
+				console.log('otherUsersData[i].profile :',otherUsersData[i].profile);
 				if(otherUsersData[i].profile){
 					var pic     = VendorImage.findOne({"_id":otherUsersData[i].profile.userProfilePic});
 					if(pic){

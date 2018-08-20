@@ -42,6 +42,37 @@ Template.userReviewTemplate.helpers({
 
 
 Template.userReviewTemplate.events({
+	'click .shareBussPageRev' : function(event){
+	    
+		var fromEmail 	= Meteor.users.findOne({roles:'admin'}).emails[0].address;
+		var id 		  	= event.currentTarget.id;
+		console.log('id +',id);
+		var reviewData = Review.findOne({'_id': id});
+		
+		// var userId = Review.findOne({'_id': id}).userId;
+
+		if(reviewData){
+	    	var reviewComment = reviewData.reviewComment;
+	    	var subj = "Review Share";
+		}
+		
+		var toEmail = $('#toVEmailRev-'+id).val();
+	    var name = Meteor.users.findOne({_id:Meteor.userId()}).profile.name;
+	    var addText = $('#toVAddNoteRev-'+id).val();
+
+	    var msg = 'Hi there, <br/><br/>'+name+ ' has share review comment with you. Check it out.<p>'+addText+'</p><br/><div style="border: 1px solid #ccc;width: 500px;word-break: break-all;"><SPAN style= "font-size: 16px; font-weight: 700; position:absolute; top: 40%; padding-left: 2%;">'+reviewComment+'</SPAN><span style=""></span></div>';
+
+		Meteor.call('sendEmailReviewComment', toEmail, fromEmail, subj, msg,function(error,result){
+			if(error){
+				Bert.alert(error.reason, 'danger', 'growl-top-right' );
+				return;
+			}else{
+				$('#shareOfferPage-'+id).modal('hide');
+				Bert.alert('Review successfully shared with your friend.','success','growl-top-right');
+			}
+		});	
+	},
+
 	'keydown .editReviewOneTime':function(event){
       setTimeout(function() {
          var comment = $('.editReviewOneTime').val();
@@ -60,7 +91,7 @@ Template.userReviewTemplate.events({
             $('.textRemain').text('0 /140');
          }
       }, 1);
-   },
+   	},
 	
 	'click .showMoreCommntDiv': function(event){
 		// To Expant All comments
