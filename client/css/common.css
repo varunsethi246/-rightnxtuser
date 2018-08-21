@@ -1267,3 +1267,4 @@ text-align: center;
 .newMmodalCSS{
         height: 325px;
 }
+.resetPwd[disabled]{opacity: 0.5;cursor:not-allowed;}

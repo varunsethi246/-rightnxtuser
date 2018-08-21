@@ -12,7 +12,7 @@ import '../userarea/profileSetting/editProfile.js';
 import '../userarea/profileSetting/editProfile.html';
 
 Template.notificationConfig.events({
-	'click .submitConfig':function(){
+	'click .submitConfig':function(event){
 		event.preventDefault();
 		var Enquiry = $('input[name=Enquiry]:checked').val();
 		// var Invoice = $('input[name=Invoice]:checked').val();

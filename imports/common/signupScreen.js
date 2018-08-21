@@ -7,13 +7,13 @@ Template.signupScreen.events({
     'click .loginLabel' : function(event){
       $(event.target).siblings().focus();
     },
-    'click .termAndCondition':function(event){
-      $('.modal-backdrop').hide();
-    },
+    // 'click .termAndCondition':function(event){
+    //   $('.modal-backdrop').hide();
+    // },
 
-    'click .privacyPolicy':function(event){
-      $('.modal-backdrop').hide();
-    },
+    // 'click .privacyPolicy':function(event){
+    //   $('.modal-backdrop').hide();
+    // },
 
     'focusout .signUpEmail':function(event){
       var value = $(event.target).val();

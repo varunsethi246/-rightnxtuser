@@ -150,6 +150,15 @@ Template.header.events({
 		$('.signupScreen').hide();
 		$('.thankyouscreen').hide();
 		$('.loginScreen').show();
+
+		//new
+		$('.passwordWrongSpan').removeClass('passwordWrongWar');
+	    $('label.error').hide();
+	    $('input[type="text"]').val('');
+	    $('input[type="password"]').val('');
+	    $('input[type="tel"]').val('');
+	    $('input[type="email"]').val('');
+    	$('.loginLabel').removeClass('active');
 	},
 
 	'click .login': function(event){
@@ -175,7 +184,14 @@ Template.header.events({
 		$('.leftModal').addClass('hidden-xs');
 		$('.rightModal').addClass('newHeight');
 
-
+		//new
+		$('.passwordWrongSpan').removeClass('passwordWrongWar');
+	    $('label.error').hide();
+	    $('input[type="text"]').val('');
+	    $('input[type="password"]').val('');
+	    $('input[type="tel"]').val('');
+	    $('input[type="email"]').val('');
+    	$('.loginLabel').removeClass('active');
 	},
 	'click .signUp-btn1':function(event){
 		$('.loginScreen').hide();

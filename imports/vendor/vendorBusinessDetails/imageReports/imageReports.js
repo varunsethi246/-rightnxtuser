@@ -46,11 +46,14 @@ Template.imageCommet.helpers({
 				if(reviewDetails[i].reviewImages){
 					for(var j = 0 ; j < reviewDetails[i].reviewImages.length; j++){
 						if(reviewDetails[i].reviewImages[j].img == imgId){
-							var reviewCounts = Counts.get('reviewCount');
-							var followerCounts = Counts.get('followerCounts');
+							var reviewCounts = Review.find({"userId":reviewDetails[i].userId}).count();
+							var followerCounts = FollowUser.find({'userId':reviewDetails[i].userId}).count();
+							// console.log(reviewCounts);
+							console.log(followerCounts);
 							var reviewTimeAgo = moment(reviewDetails[i].reviewDate).fromNow();
 							var userName = Meteor.users.findOne({"_id":reviewDetails[i].userId});
 							if(userName){
+								var userProfileUrl = generateURLid(userName._id);
 								if(userName.profile.userProfilePic){
 									var pic = VendorImage.findOne({"_id":userName.profile.userProfilePic});
 									if(pic){
@@ -68,6 +71,7 @@ Template.imageCommet.helpers({
 									userName	   : userName.profile.name,
 									pic 		   : pic,
 									typeofImg      : 'review',
+									userProfileUrl : userProfileUrl,
 								};
 								return dataReturn;
 
@@ -187,8 +191,7 @@ Template.imageCommet.helpers({
 									}else{
 										commentDetails[i].imgMultiComment[j].userProfileImgPath = '/users/profile/profile_image_dummy.svg';
 									}
-
-									commentDetails[i].imgMultiComment[j].userCommentDateAgo = moment(commentDetails[i].imgCommentDate).fromNow();
+									commentDetails[i].imgMultiComment[j].userCommentDateAgo = moment(commentDetails[i].imgMultiComment[j].imgCommentDate).fromNow();
 									
 									if(commentDetails[i].imgMultiComment[j].userId === Meteor.userId()){
 										commentDetails[i].imgMultiComment[j].deletEditReplyBlock = 'showDelEditBlock';
@@ -253,6 +256,27 @@ Template.imageCommet.helpers({
 
 		}
 	},
+
+	'currentUserPic':function(){
+		var userPic = Meteor.users.findOne({'_id':Meteor.userId()});
+		if(userPic){
+			if(userPic.profile){
+				if(userPic.profile.userProfilePic){
+					var userProfilePic = VendorImage.findOne({'_id':userPic.profile.userProfilePic});
+					if(userProfilePic){
+						var userImage = userProfilePic.link();
+					}else{
+						var userImage = '/users/profile/profile_image_dummy.svg';
+					}
+				}else{
+					var userImage = '/users/profile/profile_image_dummy.svg';
+				}
+			}else{
+				var userImage = '/users/profile/profile_image_dummy.svg';
+			}
+			return userImage;
+		}
+	},
 });
 
 
@@ -292,144 +316,149 @@ Template.imageReportModal.events({
 			
 			if(businessname){	
 				var formValues = {
-						businessLink 				: FlowRouter.getParam("businessurl"),
-						selectImageReport			: $('#selectImageReport').val(),
-						imageReportComment 			: $('#imageReportComment').val(),
-						reportType					: 'image',
-						reportedImage				: picId,
-					}
-				Meteor.call('insertreports',formValues, function(error,result){
-						if(error){
-							Bert.alert('error while inserting data','danger','growl-top-right');
-							// console.log(error);
-						}else{
-							Bert.alert('Report Submitted !','success','growl-top-right');
-		                  
-		                    // event.target.selectImageReport.value       = ''; 
-		                    $('#imageReportComment').val('');
-							$('#imageReportOne').modal('hide');		
+					businessLink 				: FlowRouter.getParam("businessurl"),
+					selectImageReport			: $('#selectImageReport').val(),
+					imageReportComment 			: $('#imageReportComment').val(),
+					reportType					: 'image',
+					reportedImage				: picId,
+				}
 
-							//============================================================
-							// 			Notification Email / SMS / InApp
-							//============================================================
-							var admin = Meteor.users.findOne({'roles':'admin'});
-						    if(admin){
-						    	var adminId = admin._id;
-						    }
+				if(formValues.selectImageReport != 'Select an option...'){
+					Meteor.call('insertreports',formValues, function(error,result){
+							if(error){
+								Bert.alert('error while inserting data','danger','growl-top-right');
+								// console.log(error);
+							}else{
+								Bert.alert('Report Submitted !','success','growl-top-right');
+			                  
+			                    // event.target.selectImageReport.value       = ''; 
+			                    $('#imageReportComment').val('');
+								$('#imageReportOne').modal('hide');		
 
-						    // console.log("formValues: ",formValues);
-						    // console.log("businessurl: ",formValues.businessLink);
-							var businessData = Business.findOne({"businessLink":formValues.businessLink});
-							console.log("businessData: ",businessData);
-							if(businessData){
-								var vendorId = businessData.businessOwnerId;
-                				var vendorDetail = Meteor.users.findOne({'_id':vendorId});
+								//============================================================
+								// 			Notification Email / SMS / InApp
+								//============================================================
+								var admin = Meteor.users.findOne({'roles':'admin'});
+							    if(admin){
+							    	var adminId = admin._id;
+							    }
 
-                  	  			var userId = Meteor.userId();
-                				var userDetail = Meteor.users.findOne({'_id':userId});
+							    // console.log("formValues: ",formValues);
+							    // console.log("businessurl: ",formValues.businessLink);
+								var businessData = Business.findOne({"businessLink":formValues.businessLink});
+								// console.log("businessData: ",businessData);
+								if(businessData){
+									var vendorId = businessData.businessOwnerId;
+	                				var vendorDetail = Meteor.users.findOne({'_id':vendorId});
 
-                				if(vendorDetail&&userDetail){
+	                  	  			var userId = Meteor.userId();
+	                				var userDetail = Meteor.users.findOne({'_id':userId});
 
-		        					//Send Notification, Mail and SMS to Vendor
-                					var vendorname 	= vendorDetail.profile.name;
-			                		var date 		= new Date();
-			                		var currentDate = moment(date).format('DD/MM/YYYY');
-			                		var msgvariable = {
-										'[username]' 	: vendorname,
-					   					'[currentDate]'	: currentDate,
-		   								'[businessName]': businessData.businessTitle,
-		   								'[reason]' 		: formValues.selectImageReport,
-		   								'[comment]'		: formValues.imageReportComment
+	                				if(vendorDetail&&userDetail){
 
-					               	};
+			        					//Send Notification, Mail and SMS to Vendor
+	                					var vendorname 	= vendorDetail.profile.name;
+				                		var date 		= new Date();
+				                		var currentDate = moment(date).format('DD/MM/YYYY');
+				                		var msgvariable = {
+											'[username]' 	: vendorname,
+						   					'[currentDate]'	: currentDate,
+			   								'[businessName]': businessData.businessTitle,
+			   								'[reason]' 		: formValues.selectImageReport,
+			   								'[comment]'		: formValues.imageReportComment
 
-									var inputObj = {
-										notifPath	 : formValues.businessLink,
-									    to           : vendorId,
-									    templateName : 'Vendor Modal Image Report',
-									    variables    : msgvariable,
-									    type 		 : "Modal",
-									    picId		 : picId
-									}
-									sendInAppNotification(inputObj);
+						               	};
 
-									var inputObj = {
-										notifPath	 : formValues.businessLink,
-										from         : adminId,
-									    to           : vendorId,
-									    templateName : 'Vendor Modal Image Report',
-									    variables    : msgvariable,
-									    type 		 : "Modal",
-									    picId		 : picId
+										var inputObj = {
+											notifPath	 : formValues.businessLink,
+										    to           : vendorId,
+										    templateName : 'Vendor Modal Image Report',
+										    variables    : msgvariable,
+										    type 		 : "Modal",
+										    picId		 : picId
+										}
+										sendInAppNotification(inputObj);
 
-									}
-									sendMailNotification(inputObj);
+										var inputObj = {
+											notifPath	 : formValues.businessLink,
+											from         : adminId,
+										    to           : vendorId,
+										    templateName : 'Vendor Modal Image Report',
+										    variables    : msgvariable,
+										    type 		 : "Modal",
+										    picId		 : picId
 
-									//Send Notification, Mail and SMS to Current User
-                					var username 	= userDetail.profile.name;
-			                		var date 		= new Date();
-			                		var currentDate = moment(date).format('DD/MM/YYYY');
-			                		var msgvariable = {
-										'[username]' 	: username,
-					   					'[currentDate]'	: currentDate,
-		   								'[businessName]': businessData.businessTitle,
-		   								'[reason]' 		: formValues.selectImageReport,
-		   								'[comment]'		: formValues.imageReportComment
-					               	};
+										}
+										sendMailNotification(inputObj);
 
-									var inputObj = {
-										notifPath	 : formValues.businessLink,
-										from         : adminId,
-									    to           : userId,
-									    templateName : 'User Modal Image Report',
-									    variables    : msgvariable,
-									    type 		 : "Modal",
-									    picId		 : picId
-									    
-									}
-									sendMailNotification(inputObj); 
+										//Send Notification, Mail and SMS to Current User
+	                					var username 	= userDetail.profile.name;
+				                		var date 		= new Date();
+				                		var currentDate = moment(date).format('DD/MM/YYYY');
+				                		var msgvariable = {
+											'[username]' 	: username,
+						   					'[currentDate]'	: currentDate,
+			   								'[businessName]': businessData.businessTitle,
+			   								'[reason]' 		: formValues.selectImageReport,
+			   								'[comment]'		: formValues.imageReportComment
+						               	};
 
-									//Send Notification and Mail to Admin
-									var username 	= userDetail.profile.name;
-			                        var date    = new Date();
-			                        var currentDate = moment(date).format('DD/MM/YYYY');
-			                        var msgvariable = {
-			                           '[username]'   	: username,
-			                           '[adminname]'    : admin.profile.firstName,
-			                           '[currentDate]'  : currentDate,
-			                           '[businessName]' : businessData.businessTitle,
-		   							   '[reason]' 		: formValues.selectImageReport,
-		   							   '[comment]'		: formValues.imageReportComment
+										var inputObj = {
+											notifPath	 : formValues.businessLink,
+											from         : adminId,
+										    to           : userId,
+										    templateName : 'User Modal Image Report',
+										    variables    : msgvariable,
+										    type 		 : "Modal",
+										    picId		 : picId
+										    
+										}
+										sendMailNotification(inputObj); 
 
-			                        };
+										//Send Notification and Mail to Admin
+										var username 	= userDetail.profile.name;
+				                        var date    = new Date();
+				                        var currentDate = moment(date).format('DD/MM/YYYY');
+				                        var msgvariable = {
+				                           '[username]'   	: username,
+				                           '[adminname]'    : admin.profile.firstName,
+				                           '[currentDate]'  : currentDate,
+				                           '[businessName]' : businessData.businessTitle,
+			   							   '[reason]' 		: formValues.selectImageReport,
+			   							   '[comment]'		: formValues.imageReportComment
 
-			                        var inputObj = {
-			                                    notifPath     : formValues.businessLink,
-			                                    to            : adminId,
-			                                    templateName  : 'Admin Business Page Modal Report',
-			                                    variables     : msgvariable,
-			                        }
-			                        sendInAppNotification(inputObj);
+				                        };
 
-			                        var inputObj = {
-			                                    notifPath     : formValues.businessLink,
-			                                    from          : adminId,
-			                                    to            : adminId,
-			                                    templateName  : 'Admin Business Page Modal Report',
-			                                    variables     : msgvariable,
-			                        }
-			                        sendMailNotification(inputObj);
-                				}
+				                        var inputObj = {
+				                                    notifPath     : formValues.businessLink,
+				                                    to            : adminId,
+				                                    templateName  : 'Admin Business Page Modal Report',
+				                                    variables     : msgvariable,
+				                        }
+				                        sendInAppNotification(inputObj);
+
+				                        var inputObj = {
+				                                    notifPath     : formValues.businessLink,
+				                                    from          : adminId,
+				                                    to            : adminId,
+				                                    templateName  : 'Admin Business Page Modal Report',
+				                                    variables     : msgvariable,
+				                        }
+				                        sendMailNotification(inputObj);
+	                				}
+								}
+								//============================================================
+								// 			End Notification Email / SMS / InApp
+								//============================================================
+				
+
+	                             
 							}
-							//============================================================
-							// 			End Notification Email / SMS / InApp
-							//============================================================
-			
-
-                             
 						}
-					}
-				);
+					);
+				}else{
+					Bert.alert('Please select one option.', 'danger', 'growl-top-right' );
+				}
 			}			
 					
 		
@@ -579,7 +608,7 @@ Template.imageReports.events({
 	'click .nextImageID':function(event){
 		var imgIdNext = $('#myCarousel1 .carousel-inner').find('.active').next().children('img').attr('id');
 		if(!imgIdNext){
-			imgIdNext = $('#myCarousel1 .carousel-inner').find('.active').first().children('img').attr('id');
+			imgIdNext = $('#myCarousel1 .carousel-inner').find('.imageReportSlider').first().children('img').attr('id');
 		}
 		Session.set("ModalimageID",imgIdNext);
 		var ImageCount = BussImgLikes.find({'LikedImage':imgIdNext}).count();
@@ -591,10 +620,10 @@ Template.imageReports.events({
 	},
 	'click .previousImageID':function(event){
 		var imgIdPrevious = $('#myCarousel1 .carousel-inner').find('.active').prev().children('img').attr('id');
-		// console.log('a' ,a);
-		if(!imgIdPrevious){
-			imgIdPrevious = $('#myCarousel1 .carousel-inner').find('.active').last().children('img').attr('id');
-		}
+		// if(!imgIdPrevious){
+		// 	imgIdPrevious = $('#myCarousel1 .carousel-inner').find('.active').last().children('img').attr('id');
+		// console.log('imgIdPrevious',imgIdPrevious);
+		// }
 		Session.set("ModalimageID",imgIdPrevious);
 		var ImageCount = BussImgLikes.find({'LikedImage':imgIdPrevious}).count();
 		Session.set('carouselLikeCount', ImageCount);
@@ -1063,7 +1092,7 @@ Template.imageCommet.events({
 				Meteor.call('insertImgCommntOfCmmnt',formValues, function(error, result){
 					if(error){
 					}else{
-						
+						$('#replyOfreplyInput').hide();
 						//============================================================
 						// 			Notification Email / SMS / InApp
 						//============================================================

@@ -7,17 +7,20 @@
 						<img src={{pic}} class="commentImage" alt="">
 					</div>
 					<div class="review_right col-xs-9 col-lg-9">
-				        <p class="userName">{{userName}}</p>
-				        <div class="review-flw">{{reviewCounts}} Reviews ,{{followerCounts}} Followers</div>
-				        <a href="#">
+				        <a href="{{#if userProfileUrl}}/userReview/{{userProfileUrl}}{{/if}}" target="_blank"><p class="userName">{{userName}}</p></a>
+				        <div class="review-flw">{{reviewCounts}} Reviews, {{followerCounts}} Followers</div>
+				        <!-- <a href="#"> -->
 				        <div class="flw_btn imageReportFollowing">Following</div>
-				        </a>
+				        <!-- </a> -->
 				    </div>
 				</div>
 			</div>
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				<h5 class="loginForComment">Please login to comment..</h5>
-			</div>
+			{{#if currentUser}}
+			{{else}}
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<h5 class="loginForComment">Please login to comment.</h5>
+				</div>
+			{{/if}}
 		{{else}}
 			<div class=" imageReportBodyOne col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				<div class="col-lg-12 imageReportTwo">
@@ -45,7 +48,7 @@
 			    </div>
 		    {{/unless}}
 		    <div class="user_image2 col-lg-12">
-		    	<img alt="" src="https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/following2.png" class="userComment">
+		    	<img alt="" src="{{currentUserPic}}" class="userComment">
 		    	<input id="commentone" class="comment_txt modalComments" placeholder="Comment" name="comment" type="text">
 		    </div>
 		</div>
@@ -106,7 +109,7 @@
 
 	                        <!-- MultiComment HTML Start-->
 	                        {{#each imgMultiComment}}
-							<div class="replyOfReplySub">
+							<div class="replyOfReplySub noPaddingGeneral col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
 								<div class="col-lg-1 col-xs-1 col-md-1 userPic">
 									<div class="">
 										<img class="commentImg" src="{{userProfileImgPath}}"/>

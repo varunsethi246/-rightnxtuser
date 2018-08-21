@@ -3173,8 +3173,8 @@ top:3px
 
 .modalCommentWrpr {
 display:inline-block;
-margin-right:31px;
-height:355px;
+margin-right:20px;
+height:300px;
 overflow-y:auto
 }
 
@@ -3204,13 +3204,18 @@ display:none
 }
 
 .showCmmnt {
-display:block
+	display:block;
+    width: 100%;
+    margin-top: 5px;
+    padding-left: 5px; 
+    padding-right: 5px; 
+    border: 1px solid #ccc;
 }
 
 .commntMReplyLike {
 color:#66f;
 font-size:12px;
-font-weight:700;
+/*font-weight:700;*/
 font-style:italic;
 text-align:center;
 cursor:pointer
@@ -3227,7 +3232,9 @@ display:none
 .editdeltCommnt {
 position:absolute;
 top:0;
-right:0
+right:0;
+margin-top: 4px;
+cursor: pointer;
 }
 
 .editdeltCommntOpts {
@@ -3236,7 +3243,8 @@ position:initial
 }
 
 .editdeltCommnt ul li {
-cursor:pointer
+cursor:pointer;
+font-size: 11px;
 }
 
 .editdeltCommnt ul {
@@ -3255,7 +3263,11 @@ display:none
 }
 
 .editReplyInputC {
-display:block!important
+display:block!important;
+border-radius: 0px;
+border: 1px solid #ccc;
+padding-left: 5px;
+width: 100%;
 }
 
 .editReplyTextHide {

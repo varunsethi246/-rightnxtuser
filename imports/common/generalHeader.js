@@ -5,7 +5,7 @@ import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import { VendorImage } from '/imports/videoUploadClient/vendorImageClient.js';
 
 Template.generalHeader.onCreated(function(){
-  this.subscribe('vendorImage');
+  this.subscribe('vendorImage',Meteor.userId());
 });
 Template.generalHeader.helpers({
 	'userDetails' : function(){

@@ -7,6 +7,7 @@ import { BusinessBanner } from '/imports/api/businessBannerMaster.js';
 import { BusinessAds } from '/imports/api/businessAdsMaster.js';
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import { EnquiryImage } from '/imports/videoUploadClient/enquiryImageClient.js';
+import ImageCompressor from 'image-compressor.js';
 
 import '../../common/searchinitialisation.js'
 import './businessList.html'

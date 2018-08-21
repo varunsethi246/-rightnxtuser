@@ -55,29 +55,31 @@ Template.userLike.helpers({
 					var businessLink	 = bussdata.businessLink;
 					var businessCity	 = bussdata.businessCity;
 					var businessTitle	 = bussdata.businessTitle;
-					var businessImages ='';
+					var businessImage ='';
 
 					
 					if(bussdata.businessImages){
 						if(bussdata.businessImages.length>0){
 							var pic = BusinessImage.findOne({"_id":bussdata.businessImages[0].img});
 							if(pic){
-								businessImages = pic.link();
+								businessImage = pic.link();
 							}else{
 								var imgObj = ReviewImage.findOne({"_id":bussdata.businessImages[0].img});
 								if(imgObj){
-									businessImages = imgObj.link();
+									businessImage = imgObj.link();
 								}else{
-									businessImages = 'https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg';
+									businessImage = 'https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg';
 								}
 							}
 						}else{
-							businessImages = 'https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg';
+							businessImage = 'https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg';
 						}
 					}else{
-						businessImages = 'https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg';
+						businessImage = 'https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg';
 					}
-						var reviewDateAgo = moment(likesData[i].createdAt).fromNow();
+								// console.log(businessImages);
+						
+					var reviewDateAgo = moment(likesData[i].createdAt).fromNow();
 
 					bussDataArray.push({
 							ownerFullName	: businessName,
@@ -85,8 +87,8 @@ Template.userLike.helpers({
 							businessLink	: businessLink,
 							businessTitle	: businessTitle,
 							businessCity	: businessCity,	
-							createdAt		  : likesData[i].createdAt,
-							businessImg   : businessImages,
+							createdAt		: likesData[i].createdAt,
+							businessImg     : businessImage,
 					});
 					// returnLikeData.push(bussDataArray[i]);
 				}
