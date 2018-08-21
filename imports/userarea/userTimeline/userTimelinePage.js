@@ -277,17 +277,27 @@ Template.userTimeline.helpers({
 				allReviews.showLoadMore = '';
 			}
 
-			for(i=0; i<allReviews.length; i++){		
-				if(loggedinUser.profile.userProfilePic){
-					var userpic = VendorImage.findOne({"_id":loggedinUser.profile.userProfilePic});
-					if(userpic){
-						allReviews[i].loggedinUserProfilePic = userpic.link();	
+			for(i=0; i<allReviews.length; i++){	
+				// console.log("allReviews.length :",allReviews.length);	
+				// console.log("allReviews.length :",allReviews[i].userId);
+				var userobj = Meteor.users.findOne({_id:allReviews[i].userId});
+				// console.log('userobj :',userobj);
+				if (userobj) {
+					if(loggedinUser.profile.userProfilePic){
+						var userpic = VendorImage.findOne({"_id":loggedinUser.profile.userProfilePic});
+						if(userpic){
+							allReviews[i].loggedinUserProfilePic = userpic.link();	
+						}
+						else{
+							allReviews[i].loggedinUserProfilePic = "/users/profile/profile_image_dummy.svg";	
+						}
+					}else{
+						allReviews[i].loggedinUserProfilePic = "/users/profile/profile_image_dummy.svg";
 					}
-					else{
-						allReviews[i].loggedinUserProfilePic = "/users/profile/profile_image_dummy.svg";	
-					}
+					
 				}else{
-					allReviews[i].loggedinUserProfilePic = "/users/profile/profile_image_dummy.svg";
+						allReviews[i].loggedinUserProfilePic = "/users/profile/profile_image_dummy.svg";
+
 				}
 
 
@@ -414,7 +424,12 @@ Template.userTimeline.helpers({
 
 								allReviews[i].userComments[k].userCommentDateAgo = moment(allReviews[i].userComments[k].userCommentDate).fromNow();
 								allReviews[i].userComments[k].redirectCommUsrId = generateURLid(userId);
-							}		
+							}else{
+								allReviews[i].userComments[k].userProfileImgPath = "/users/profile/profile_image_dummy.svg";
+								allReviews[i].userComments[k].redirectCommUsrId = '#';
+								allReviews[i].userComments[k].commentUserName = "Deleted User";
+
+							}	
 
 							//=========== Comment Replies =============
 							var rn = 0;

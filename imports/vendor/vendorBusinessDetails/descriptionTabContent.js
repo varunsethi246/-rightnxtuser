@@ -1211,6 +1211,7 @@ Template.userReviewTemplate.events({
 			                }
 	                  	}
 	                }
+	                $('.commentReplyInput').val('');
 	                //============================================================
 					// 			End Notification Email / SMS / InApp
 					//============================================================

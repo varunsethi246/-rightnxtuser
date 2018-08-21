@@ -224,6 +224,9 @@ Template.userProfile.events({
 	},
 	
 	'change .userProfileImg': function(event,template){
+
+		// var name = event.currentTarget.files[0].name;
+		// console.log('name:',name);
 	    // event.preventDefault();
 	    if(event.currentTarget.files[0]){  
 	    	// console.log(event.currentTarget.files[0].size);
