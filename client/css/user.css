@@ -612,6 +612,7 @@ padding-left:0!important
 .revName {
 margin-left:-15px;
 }
+.usercommName > a:hover{color: #f89b1c;}
 
 .usercommName {
 margin-left:0!important

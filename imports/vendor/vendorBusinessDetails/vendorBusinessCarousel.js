@@ -20,8 +20,7 @@ Template.vendorBusinessCarousel.helpers({
 		return businessDetails; 
 	},
 
-	'imageCarouselSlide' : function(){
-		
+	'imageCarouselSlide' : function(){	
 		var businessLink = FlowRouter.getParam('businessurl');
 		var business = Business.findOne({"businessLink":businessLink});
 		var arrayBusiness = [];

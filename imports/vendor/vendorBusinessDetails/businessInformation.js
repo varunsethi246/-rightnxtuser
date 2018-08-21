@@ -48,12 +48,14 @@ Template.businessInformation.events({
 	'click .photoPicTab':function(event){
 		var currentId = event.currentTarget.id; 
 		Session.set('ModalimageID',currentId);
+		Session.set('ShowMenuImage','');
 		// $('#bigImageCarousel').modal('show');
 	},
 
 	'click .menuPicTab':function(event){
 		var currentId = event.currentTarget.id; 
 		Session.set('ModalimageID',currentId);
+		Session.set('ShowMenuImage','true');
 		// $('#bigImageCarousel').modal('show');
 	},
 	

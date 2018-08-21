@@ -17,6 +17,7 @@ import { BusinessImage } from '/imports/videoUploadClient/businessImageClient.js
 import { BusinessMenu } from '/imports/videoUploadClient/businessMenuClient.js';
 import { ReviewImage } from '/imports/videoUploadClient/reviewImageClient.js';
 import { VendorImage } from '/imports/videoUploadClient/vendorImageClient.js';
+import { FollowUser } from '/imports/api/userFollowMaster.js';
 
 // hello
 Template.imageCommet.onCreated(function(){
@@ -27,9 +28,6 @@ Template.imageReports.onCreated(function(){
   this.subscribe('businessMenuImage');
 });
 Template.imageCommet.helpers({
-	'businessComment' : function(){
-		var userInfo = Session.get("carouselLikeCount");	
-	},
 	'imgFrom' : function(user){
 		if (user == 'review'){
 			return true;
@@ -47,9 +45,7 @@ Template.imageCommet.helpers({
 					for(var j = 0 ; j < reviewDetails[i].reviewImages.length; j++){
 						if(reviewDetails[i].reviewImages[j].img == imgId){
 							var reviewCounts = Review.find({"userId":reviewDetails[i].userId}).count();
-							var followerCounts = FollowUser.find({'userId':reviewDetails[i].userId}).count();
-							// console.log(reviewCounts);
-							console.log(followerCounts);
+							var followerCounts = FollowUser.find({'followUserId':reviewDetails[i].userId}).count();
 							var reviewTimeAgo = moment(reviewDetails[i].reviewDate).fromNow();
 							var userName = Meteor.users.findOne({"_id":reviewDetails[i].userId});
 							if(userName){
@@ -89,7 +85,12 @@ Template.imageCommet.helpers({
 					if(pic){
 						var pic = pic.link();
 					}else{
-						var pic = 'https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg';
+						var pic1 = ReviewImage.findOne({"_id":businessName.businessImages[0].img});
+						if(pic1){
+							var pic = pic1.link();
+						}else{
+							var pic = 'https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg';
+						}
 					}
 				}else{
 					var pic = 'https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg';
@@ -118,6 +119,7 @@ Template.imageCommet.helpers({
 					var userObj = Meteor.users.findOne({"_id":commentDetails[i].userId});
 					if(userObj){
 						commentDetails[i].commentUserName = userObj.profile.name;
+						commentDetails[i].userProfileUrl = generateURLid(commentDetails[i].userId);
 
 						if(userObj.profile.userProfilePic){								
 							var pic = VendorImage.findOne({"_id":userObj.profile.userProfilePic});
@@ -179,6 +181,7 @@ Template.imageCommet.helpers({
 								var userObj = Meteor.users.findOne({"_id":commentDetails[i].imgMultiComment[j].userId});
 								if(userObj){
 									commentDetails[i].imgMultiComment[j].commentUserName = userObj.profile.name;
+									commentDetails[i].imgMultiComment[j].userProfileUrl = generateURLid(userObj._id);
 
 									if(userObj.profile.userProfilePic){								
 										var pic = VendorImage.findOne({"_id":userObj.profile.userProfilePic});
@@ -265,7 +268,7 @@ Template.imageCommet.helpers({
 					var userProfilePic = VendorImage.findOne({'_id':userPic.profile.userProfilePic});
 					if(userProfilePic){
 						var userImage = userProfilePic.link();
-					}else{
+					}else{						
 						var userImage = '/users/profile/profile_image_dummy.svg';
 					}
 				}else{
@@ -510,64 +513,66 @@ Template.imageReports.helpers({
 		var business = Business.findOne({"businessLink":businessLink});
 		var arrayBusiness = [];
 		if(business){
-			if(business.businessImages){
-				var picId = Session.get('ModalimageID')
-				for (var i = 0 ; i <  business.businessImages.length; i++) {
-					var pic = BusinessImage.findOne({"_id":business.businessImages[i].img});
-					var newObj = {};
-					newObj.imgLikesStatus 	= 'inactive';
-					newObj.imgLikeClass 	= 'fa-heart-o';
-					newObj.userId 			= Meteor.userId();
-					newObj._id			= business.businessImages[i].img ;
-					if(pic){
-						if(pic._id == picId	){
-							newObj.img 			=  pic.link() ;
-							newObj.activeClass 	= 'active';
-						}else{
-							newObj.img 			=  pic.link() ;
-							newObj.activeClass 	= '';
-						}
-						// arrayBusiness.push(newObj);
-					}//if pic
-					else{
-						var picreview = ReviewImage.findOne({"_id":business.businessImages[i].img});
-						// console.log("picreview: ",picreview);
-						// console.log("picId: ",picId);
-						if(picreview){
-							if(picreview._id == picId){
-								newObj.img 			=  picreview.link() ;
+			if(Session.get('ShowMenuImage')){
+				if(business.businessMenu){
+					var picId = Session.get('ModalimageID')
+					for (var i = 0 ; i <  business.businessMenu.length; i++) {
+						var picMenu = BusinessMenu.findOne({"_id":business.businessMenu[i].menu});
+						var newObj = {};
+						newObj.imgLikesStatus 	= 'inactive';
+						newObj.imgLikeClass 	= 'fa-heart-o';
+						newObj.userId 			= Meteor.userId();
+						newObj._id			= business.businessMenu[i].menu ;
+						if(picMenu){
+							if(picMenu._id == picId){
+								newObj.img 			=  picMenu.link() ;
 								newObj.activeClass 	= 'active';
 							}else{
-								newObj.img 			=  picreview.link() ;
+								newObj.img 			=  picMenu.link() ;
 								newObj.activeClass 	= '';
 							}
 						}
+						arrayBusiness.push(newObj);
 					}
-					arrayBusiness.push(newObj);
-
-				}//for loop
-			}//if businessImage
-
-			if(business.businessMenu){
-				var picId = Session.get('ModalimageID')
-				for (var i = 0 ; i <  business.businessMenu.length; i++) {
-					var picMenu = BusinessMenu.findOne({"_id":business.businessMenu[i].menu});
-					var newObj = {};
-					newObj.imgLikesStatus 	= 'inactive';
-					newObj.imgLikeClass 	= 'fa-heart-o';
-					newObj.userId 			= Meteor.userId();
-					newObj._id			= business.businessMenu[i].menu ;
-					if(picMenu){
-						if(picMenu._id == picId){
-							newObj.img 			=  picMenu.link() ;
-							newObj.activeClass 	= 'active';
-						}else{
-							newObj.img 			=  picMenu.link() ;
-							newObj.activeClass 	= '';
-						}
-					}
-					arrayBusiness.push(newObj);
 				}
+			}else{
+				if(business.businessImages){
+					var picId = Session.get('ModalimageID')
+					for (var i = 0 ; i <  business.businessImages.length; i++) {
+						var pic = BusinessImage.findOne({"_id":business.businessImages[i].img});
+						var newObj = {};
+						newObj.imgLikesStatus 	= 'inactive';
+						newObj.imgLikeClass 	= 'fa-heart-o';
+						newObj.userId 			= Meteor.userId();
+						newObj._id				= business.businessImages[i].img ;
+						if(pic){
+							if(pic._id == picId	){
+								newObj.img 			=  pic.link() ;
+								newObj.activeClass 	= 'active';
+							}else{
+								newObj.img 			=  pic.link() ;
+								newObj.activeClass 	= '';
+							}
+							// arrayBusiness.push(newObj);
+						}//if pic
+						else{
+							var picreview = ReviewImage.findOne({"_id":business.businessImages[i].img});
+							// console.log("picreview: ",picreview);
+							// console.log("picId: ",picId);
+							if(picreview){
+								if(picreview._id == picId){
+									newObj.img 			=  picreview.link() ;
+									newObj.activeClass 	= 'active';
+								}else{
+									newObj.img 			=  picreview.link() ;
+									newObj.activeClass 	= '';
+								}
+							}
+						}
+						arrayBusiness.push(newObj);
+
+					}//for loop
+				}//if businessImage
 			}
 
 			//Find whether current user liked the image
@@ -611,22 +616,13 @@ Template.imageReports.events({
 			imgIdNext = $('#myCarousel1 .carousel-inner').find('.imageReportSlider').first().children('img').attr('id');
 		}
 		Session.set("ModalimageID",imgIdNext);
-		var ImageCount = BussImgLikes.find({'LikedImage':imgIdNext}).count();
-		Session.set('carouselLikeCount', ImageCount);
-		$("#likeimage").removeClass('inactivelike');
-		$("#likeimage").removeClass('activelike');
-
-
 	},
 	'click .previousImageID':function(event){
 		var imgIdPrevious = $('#myCarousel1 .carousel-inner').find('.active').prev().children('img').attr('id');
-		// if(!imgIdPrevious){
-		// 	imgIdPrevious = $('#myCarousel1 .carousel-inner').find('.active').last().children('img').attr('id');
-		// console.log('imgIdPrevious',imgIdPrevious);
-		// }
+		if(!imgIdPrevious){
+			imgIdPrevious = $('#myCarousel1 .carousel-inner').find('.imageReportSlider').last().children('img').attr('id');
+		}
 		Session.set("ModalimageID",imgIdPrevious);
-		var ImageCount = BussImgLikes.find({'LikedImage':imgIdPrevious}).count();
-		Session.set('carouselLikeCount', ImageCount);
 	},
 
 	'click .likeModalIcon': function(event){
@@ -962,6 +958,7 @@ Template.imageCarouselItems.events({
 		var currentId = event.currentTarget; 
 		var id = $(currentId).children().attr('id');
 		Session.set('ModalimageID',id);
+		Session.set('ShowMenuImage','');
 	},
 });
 

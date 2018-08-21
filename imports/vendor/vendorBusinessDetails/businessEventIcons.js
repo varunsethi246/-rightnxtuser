@@ -223,6 +223,7 @@ Template.businessEventIcons.events({
 	},
 
 	'click .businessDetailsreview': function(event){
+		event.preventDefault();
 		if(Meteor.userId()){
 			var userReview = Review.findOne({"userId":Meteor.userId()});
 
