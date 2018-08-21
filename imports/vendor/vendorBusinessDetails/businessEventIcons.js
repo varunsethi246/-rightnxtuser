@@ -246,7 +246,7 @@ Template.businessEventIcons.events({
 				}, 500);
 			}else{
 				$('html, body').animate({
-					scrollTop: $("#publish3").offset().top-230
+					scrollTop: $("#publish3").offset().top
 				}, 500);
 			}
 
@@ -318,7 +318,7 @@ Template.businessEventIcons.events({
 		var currentUserNote = $('#toVAddNote').val();
 		var businessLink = FlowRouter.getParam('businessurl');
 		var currentPath = Meteor.absoluteUrl(businessLink);
-		console.log('currentPath :',currentPath);
+		// console.log('currentPath :',currentPath);
 		var businessData = Business.findOne({"businessLink":businessLink});
 		var nameRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
 		if (currentUserMail==null||currentUserMail==""||!currentUserMail.match(nameRegex)) {
@@ -328,7 +328,7 @@ Template.businessEventIcons.events({
 				//============================================================
 				// 			Notification Email / SMS / InApp
 				//============================================================
-				console.log('currentPath 2:',currentPath);
+				// console.log('currentPath 2:',currentPath);
 				
 				var currentUserId = Meteor.userId();
 				var currentUser = Meteor.users.findOne({'_id':currentUserId});
@@ -339,7 +339,7 @@ Template.businessEventIcons.events({
 				}
 	
 				if(currentUser&&admin){
-					console.log('currentPath 3:',currentPath);
+					// console.log('currentPath 3:',currentPath);
 
 					var username = currentUser.profile.name;
 	

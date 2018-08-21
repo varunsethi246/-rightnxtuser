@@ -209,18 +209,21 @@ Template.userReview.helpers({
 						if(reviewData[i].userId == id){
 							reviewData[i].userIDs = reviewData[i].userId;
 						}
-						if(data.profile.userProfilePic){
-							var pic = VendorImage.findOne({"_id":data.profile.userProfilePic});
-							if(pic){
-								reviewData[i].userProfilePic = pic.link();	
+						if(data){
+							if(data.profile){
+								if(data.profile.userProfilePic){
+									var pic = VendorImage.findOne({"_id":data.profile.userProfilePic});
+									if(pic){
+										reviewData[i].userProfilePic = pic.link();	
+									}
+									else{
+										reviewData[i].userProfilePic = "/users/profile/profile_image_dummy.svg";	
+									}
+								}else{
+									reviewData[i].userProfilePic = "/users/profile/profile_image_dummy.svg";
+								}
 							}
-							else{
-								reviewData[i].userProfilePic = "/users/profile/profile_image_dummy.svg";	
-							}
-						}else{
-							reviewData[i].userProfilePic = "/users/profile/profile_image_dummy.svg";
-						}
-						
+						}						
 					}
 
 
@@ -231,26 +234,28 @@ Template.userReview.helpers({
 							var userTagObj = Meteor.users.findOne({"_id":reviewData[i].tagedFriends[m]});
 
 							var dataImgUser = '';
-							if(userTagObj.profile.userProfilePic){
-								var imgData = VendorImage.findOne({"_id":userTagObj.profile.userProfilePic});
-								if(imgData)	{
-									dataImgUser = imgData.link();
-								}else{
-									dataImgUser = '/users/profile/profile_image_dummy.svg';
+							if(userTagObj){
+								if(userTagObj.profile){
+									if(userTagObj.profile.userProfilePic){
+										var imgData = VendorImage.findOne({"_id":userTagObj.profile.userProfilePic});
+										if(imgData)	{
+											dataImgUser = imgData.link();
+										}else{
+											dataImgUser = '/users/profile/profile_image_dummy.svg';
+										}
+									}else{
+										dataImgUser = '/users/profile/profile_image_dummy.svg';
+									}
+
+									var obj = {
+										'tagedFriends'   : userTagObj.profile.name,
+										'tagedFriendsUrl': generateURLid(reviewData[i].tagedFriends[m]),
+										'userTagged':reviewData[i].tagedFriends[m],
+										'imagePath':dataImgUser,
+									}
+									tagedFriendsArray.push(obj);
 								}
-							}else{
-								dataImgUser = '/users/profile/profile_image_dummy.svg';
 							}
-
-
-
-							var obj = {
-								'tagedFriends'   : userTagObj.profile.name,
-								'tagedFriendsUrl': generateURLid(reviewData[i].tagedFriends[m]),
-								'userTagged':reviewData[i].tagedFriends[m],
-								'imagePath':dataImgUser,
-							}
-							tagedFriendsArray.push(obj);
 						}
 						reviewData[i].tagedFriendsArray = tagedFriendsArray;
 					} else{
@@ -276,24 +281,26 @@ Template.userReview.helpers({
 							var userId  = reviewData[i].userComments[k].userId;
 							var userObj = Meteor.users.findOne({"_id":userId});
 							if(userObj){
-								if(userObj._id == Meteor.userId()){
-									reviewData[i].userComments[k].userID = userObj._id;
-								}
-								reviewData[i].userComments[k].commentUserName = userObj.profile.name;
-									if(userObj.profile.userProfilePic){	
-										var pic = VendorImage.findOne({"_id":userObj.profile.userProfilePic});
-										if(pic){
-											reviewData[i].userComments[k].userProfileImgPath = pic.link();	
-										}
-										else{
-											reviewData[i].userComments[k].userProfileImgPath = "/users/profile/profile_image_dummy.svg";
-										}				
-									}else{
-
-										reviewData[i].userComments[k].userProfileImgPath = '/users/profile/profile_image_dummy.svg';
+								if(userObj.profile){									
+									if(userObj._id == Meteor.userId()){
+										reviewData[i].userComments[k].userID = userObj._id;
 									}
+									reviewData[i].userComments[k].commentUserName = userObj.profile.name;
+										if(userObj.profile.userProfilePic){	
+											var pic = VendorImage.findOne({"_id":userObj.profile.userProfilePic});
+											if(pic){
+												reviewData[i].userComments[k].userProfileImgPath = pic.link();	
+											}
+											else{
+												reviewData[i].userComments[k].userProfileImgPath = "/users/profile/profile_image_dummy.svg";
+											}				
+										}else{
 
-								reviewData[i].userComments[k].userCommentDateAgo = moment(reviewData[i].userComments[k].userCommentDate).fromNow();
+											reviewData[i].userComments[k].userProfileImgPath = '/users/profile/profile_image_dummy.svg';
+										}
+
+									reviewData[i].userComments[k].userCommentDateAgo = moment(reviewData[i].userComments[k].userCommentDate).fromNow();
+								}
 							}		
 
 							//=========== Comment Replies =============
@@ -317,17 +324,19 @@ Template.userReview.helpers({
 										}
 										var userObj1 = Meteor.users.findOne({"_id":userId1});
 										if(userObj1){
-											replyObj.commentReplyUserName = userObj1.profile.name;
-											if(userObj1.profile.userProfilePic){	
-												var pic = VendorImage.findOne({"_id":userObj1.profile.userProfilePic});
-												if(pic){
-													replyObj.replyProfileImgPath = pic.link();	
+											if(userObj1.profile){
+												replyObj.commentReplyUserName = userObj1.profile.name;
+												if(userObj1.profile.userProfilePic){	
+													var pic = VendorImage.findOne({"_id":userObj1.profile.userProfilePic});
+													if(pic){
+														replyObj.replyProfileImgPath = pic.link();	
+													}
+													else{
+														replyObj.replyProfileImgPath = "/users/profile/profile_image_dummy.svg";
+													}				
+												}else{
+													replyObj.replyProfileImgPath = '/users/profile/profile_image_dummy.svg';
 												}
-												else{
-													replyObj.replyProfileImgPath = "/users/profile/profile_image_dummy.svg";
-												}				
-											}else{
-												replyObj.replyProfileImgPath = '/users/profile/profile_image_dummy.svg';
 											}
 											replyObj.commentReplyDateAgo = moment(reviewData[i].commentReply[l].commentReplyDate).fromNow();
 
@@ -642,41 +651,42 @@ Template.userReviewSuggestion.helpers ({
 		}
 		var currentUserObj = Meteor.users.findOne({"_id":uid});
 	
-			if(currentUserObj && currentUserObj.profile){
-
-				userCity = currentUserObj.profile.city;
-				var otherUsersData  = Meteor.users.find({"profile.city":userCity, "_id":{$ne: uid}, "roles":{$nin: [ 'admin', 'Vendor']}}).fetch();
-				console.log('otherUsersData :',otherUsersData);
-				if(otherUsersData && otherUsersData.length>0){
-					for(var i=0;i<otherUsersData.length;i++){
-						var name    = otherUsersData[i].profile.name;
-						var id      = otherUsersData[i]._id;
-						var userID  = Session.set('useridone',id);
-						var pic     = VendorImage.findOne({"_id":otherUsersData[i].profile.userProfilePic});
-						if(pic){
-							otherUsersData[i].profile.userProfilePic = pic.link();	
-						}
-						else{
-							otherUsersData[i].profile.userProfilePic = "/users/profile/profile_image_dummy.svg";	
-						}
-						var followUser = FollowUser.findOne({'userId':id , 'followUserId':id});
-						if(!followUser){
-							var followerCount = FollowUser.find({'followUserId': id}).count();
-							var reviewCount   = Review.find({'userId': id}).count();
-							var redirectid 	  = generateURLid(id);
-							userArray.push({
-								'_id'               : id,
-								'SuggestionInt'     : name,
-								'UsersuggestionImg' : otherUsersData[i].profile.userProfilePic,
-								'userSuggestionFol' : followerCount,
-								'userSuggestionRev' : reviewCount,
-								'redirectid'		: redirectid,
-							})
-							
-							
-						}//!followUser
-					}//i
-				}//otherUsersData
+			if(currentUserObj){
+				if(currentUserObj.profile){
+					userCity = currentUserObj.profile.city;
+					var otherUsersData  = Meteor.users.find({"profile.city":userCity, "_id":{$ne: uid}, "roles":{$nin: [ 'admin', 'Vendor']}}).fetch();
+					// console.log('otherUsersData :',otherUsersData);
+					if(otherUsersData && otherUsersData.length>0){
+						for(var i=0;i<otherUsersData.length;i++){
+							var name    = otherUsersData[i].profile.name;
+							var id      = otherUsersData[i]._id;
+							var userID  = Session.set('useridone',id);
+							var pic     = VendorImage.findOne({"_id":otherUsersData[i].profile.userProfilePic});
+							if(pic){
+								otherUsersData[i].profile.userProfilePic = pic.link();	
+							}
+							else{
+								otherUsersData[i].profile.userProfilePic = "/users/profile/profile_image_dummy.svg";	
+							}
+							var followUser = FollowUser.findOne({'userId':id , 'followUserId':id});
+							if(!followUser){
+								var followerCount = FollowUser.find({'followUserId': id}).count();
+								var reviewCount   = Review.find({'userId': id}).count();
+								var redirectid 	  = generateURLid(id);
+								userArray.push({
+									'_id'               : id,
+									'SuggestionInt'     : name,
+									'UsersuggestionImg' : otherUsersData[i].profile.userProfilePic,
+									'userSuggestionFol' : followerCount,
+									'userSuggestionRev' : reviewCount,
+									'redirectid'		: redirectid,
+								})
+								
+								
+							}//!followUser
+						}//i
+					}//otherUsersData
+				}
 			}
 			// var url = FlowRouter.current().path;
 			// var checkIdExists = url.split('/');
@@ -2026,22 +2036,26 @@ Template.userReview.events({
 		for(i=0;i<userData.tagedFriends.length;i++){
 			var userVar = Meteor.users.findOne({"_id":userData.tagedFriends[i]});
 			var userImg = "";
-			if(userVar.profile.userProfilePic){
-				var imgData = VendorImage.findOne({"_id":userVar.profile.userProfilePic});
-				if(imgData)	{
-				var userImg = imgData.link();
-				}else{
-				var userImg = '/users/profile/profile_image_dummy.svg';
-				}
-			} else{
-				var userImg = '/users/profile/profile_image_dummy.svg';
-			}
-			var obj = 	{
-							'selectedUser':userVar.profile.name,
-							'selectedUserId':userData.tagedFriends[i], 
-							'userImage':userImg,
+			if(userVar){
+				if(userVar.profile){
+					if(userVar.profile.userProfilePic){
+						var imgData = VendorImage.findOne({"_id":userVar.profile.userProfilePic});
+						if(imgData)	{
+						var userImg = imgData.link();
+						}else{
+						var userImg = '/users/profile/profile_image_dummy.svg';
 						}
-			tagedFriends.push(obj);
+					} else{
+						var userImg = '/users/profile/profile_image_dummy.svg';
+					}
+					var obj = 	{
+									'selectedUser':userVar.profile.name,
+									'selectedUserId':userData.tagedFriends[i], 
+									'userImage':userImg,
+								}
+					tagedFriends.push(obj);
+				}	
+			}
 		}
 		
 		tagFriend1.search('');
