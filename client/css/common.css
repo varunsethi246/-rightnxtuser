@@ -1268,3 +1268,9 @@ text-align: center;
         height: 325px;
 }
 .resetPwd[disabled]{opacity: 0.5;cursor:not-allowed;}
+.displayAll{
+    display: block;
+}
+.displayOfferOnly{
+    display: none;
+}

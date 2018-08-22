@@ -249,22 +249,42 @@ Template.allbusinessList.events({
 		$('.listRelevance').addClass('busListSelected');
 		$('.thumBusOffers').css('display','none');
 		$('.thumBusDistance').css('display','none');
-		$('.busNoOffer').css('display','block');
+		// $('.busNoOffer').css('display','block');
+		$(".listRelevance").parent().parent().parent().parent().siblings(".busThumbnailsSection").children(".busThumbnailsRow").children(".displayGridView").children(".thumbBusList").children(".row").children('.gridViewBusList').each(function(){
+			if($(this).attr("data-offer") >= 0){
+				$(this).show();
+			}
+		});
 
 	},
-	'click .listOffers': function(){
+	'click .listOffers': function(event){
+
 		$('.busListSelectedPre').removeClass('busListSelected');
 		$('.listOffers').addClass('busListSelected');
 		$('.thumBusDistance').css('display','none');
 		$('.thumBusOffers').css('display','block');
 		// $('.busNoOffer').css('display','none');
+
+
+		$(".listOffers").parent().parent().parent().parent().siblings(".busThumbnailsSection").children(".busThumbnailsRow").children(".displayGridView").children(".thumbBusList").children(".row").children('.gridViewBusList').each(function(){
+			if($(this).attr("data-offer") == 0){
+				$(this).hide();
+			}
+		});
+
 	},
 	'click .listDistance': function(){
 		$('.busListSelectedPre').removeClass('busListSelected');
 		$('.listDistance').addClass('busListSelected');
 		$('.thumBusOffers').css('display','none');
 		$('.thumBusDistance').css('display','inline-block');
-		$('.busNoOffer').css('display','block');
+		// $('.busNoOffer').css('display','block');
+
+		$(".listDistance").parent().parent().parent().parent().siblings(".busThumbnailsSection").children(".busThumbnailsRow").children(".displayGridView").children(".thumbBusList").children(".row").children('.gridViewBusList').each(function(){
+			if($(this).attr("data-offer") >= 0){
+				$(this).show();
+			}
+		});
 
 	},
 	'click .sidebarMapPre': function(){
