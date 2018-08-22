@@ -127,7 +127,7 @@ sendMailNotification = function(inputObj) {
 					var to 		= getMailId(inputObj.to);  
 					var subject	= getSubject(inputObj.templateName);
 					var body	= getMessageContent(inputObj.templateName,inputObj.variables);
-					console.log('in Delete if');
+					// console.log('in Delete if');
 					Meteor.call('sendEmailRightNxt',to, fromId, subject, body,function(error,result){
 						if(error){
 							Bert.alert(error,'danger', 'growl-top-right');

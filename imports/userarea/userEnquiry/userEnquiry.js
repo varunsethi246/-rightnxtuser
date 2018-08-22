@@ -294,6 +294,7 @@ Template.userEnquiryPage.helpers({
 			id = '';
 		}
 		var enqData = Enquiry.findOne({"enquirySentBy":currentUser,'_id':id});
+		console.log('enqData :',enqData);
 		if(enqData){
 			if(enqData.enquiryDesc){
 				for(i=0; i<enqData.enquiryDesc.length; i++){
@@ -312,7 +313,8 @@ Template.userEnquiryPage.helpers({
 						enqData.enquiryDesc[i].posClassTringl = "vEnqTriangleleft";
 					}
 				}
-
+				console.log('enqData.enquiryDesc[i-1] :',enqData.enquiryDesc[i-1]);
+				enqData.enquiryDesc[i-1].scrollTop = enqData.enquiryDesc[i-1].scrollHeight;
 			}
 			var businessLink = enqData.businessLink;
 			var busObj = Business.findOne({"businessLink":businessLink,"status": "active"});
@@ -349,6 +351,7 @@ Template.userEnquiryPage.helpers({
 
 Template.userEnquiry.events({
 	// Read, Unread enquiry: done
+
 	'click .readEnClass':function(event){
 		var thisrow = event.currentTarget;
 		var id = $(thisrow).parent().attr('id');
@@ -362,7 +365,6 @@ Template.userEnquiry.events({
         }
 
 		$('.vEnqRowTwo').removeClass('selectedEnq');
-
 		$("#"+id).addClass('selectedEnqRead');
 		$("#"+id).addClass('selectedEnq');
 
@@ -422,6 +424,19 @@ Template.userEnquiry.events({
 var filesM = [];
 
 Template.userEnquiryPage.events({
+
+	"click .readEnClass": function(event){
+		Meteor.setTimeout(function(){
+			// console.log("last = ", $('.chatRow').last().html());
+			// $('.chatRow').last().scrollTop = $('.chatRow').last().scrollHeight;
+			$('.chatRow').animate({
+		        scrollTop: $(".formBreakWord p").last().offset().top
+		    },
+		        'slow');
+		},1000);
+	},
+
+
 	"keyup .userEnquiryFormSearch": _.throttle(function(e) {
 	    var text = $(e.target).val().trim();
 	    Session.set("nameKeyUser",text);

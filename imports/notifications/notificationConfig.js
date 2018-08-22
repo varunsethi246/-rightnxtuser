@@ -51,6 +51,8 @@ Template.notificationConfig.helpers({
             	}
 			}//notificationConfiguration
 		}//userData
+		// console.log('enquiryConfig :',enquiryConfig);
+
 		return enquiryConfig;
 	},
 
@@ -64,6 +66,8 @@ Template.notificationConfig.helpers({
             	}
 			}//notificationConfiguration
 		}//userData
+		// console.log('ratingConfig :',ratingConfig);
+
 		return ratingConfig;
 	},
 
@@ -77,6 +81,8 @@ Template.notificationConfig.helpers({
             	}
 			}//notificationConfiguration
 		}//userData
+		// console.log('followConfig :',followConfig);
+
 		return followConfig;
 	},
 
@@ -103,7 +109,7 @@ Template.notificationConfig.helpers({
             	}
 			}//notificationConfiguration
 		}//userData
-		console.log('likeConfig :',likeConfig);
+		// console.log('likeConfig :',likeConfig);
 
 		return likeConfig;
 	},
@@ -131,6 +137,8 @@ Template.notificationConfig.helpers({
             	}
 			}//notificationConfiguration
 		}//userData
+		// console.log('commentConfig :',commentConfig);
+		
 		return commentConfig;
 	},
 	editbusinessProcess:function(){
