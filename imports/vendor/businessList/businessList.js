@@ -250,22 +250,36 @@ Template.allbusinessList.events({
 		$('.thumBusOffers').css('display','none');
 		$('.thumBusDistance').css('display','none');
 		// $('.busNoOffer').css('display','block');
+		/*==offer==*/
 		$(".listRelevance").parent().parent().parent().parent().siblings(".busThumbnailsSection").children(".busThumbnailsRow").children(".displayGridView").children(".thumbBusList").children(".row").children('.gridViewBusList').each(function(){
 			if($(this).attr("data-offer") >= 0){
+				$(this).show();
+			}
+		});
+		/*==map==*/
+		$(".listRelevance").parent().parent().parent().parent().siblings(".busThumbnailsSection").children(".busThumbnailsRow").children(".displayGridView").children(".thumbBusList").children(".row").children('.mapViewBusList').each(function(){
+			if($(this).attr("data-target") >= 0){
 				$(this).show();
 			}
 		});
 
 	},
 	'click .listOffers': function(event){
-
+		/*==offer==*/
 		$('.busListSelectedPre').removeClass('busListSelected');
 		$('.listOffers').addClass('busListSelected');
 		$('.thumBusDistance').css('display','none');
 		$('.thumBusOffers').css('display','block');
 		// $('.busNoOffer').css('display','none');
 
+		/*==map==*/
 
+		$(".listOffers").parent().parent().parent().parent().siblings(".busThumbnailsSection").children(".busThumbnailsRow").children(".displayGridView").children(".thumbBusList").children(".row").children('.mapViewBusList').each(function(){
+			if($(this).attr("data-target") == 0){
+				$(this).hide();
+			}
+		});
+		/*==offer==*/
 		$(".listOffers").parent().parent().parent().parent().siblings(".busThumbnailsSection").children(".busThumbnailsRow").children(".displayGridView").children(".thumbBusList").children(".row").children('.gridViewBusList').each(function(){
 			if($(this).attr("data-offer") == 0){
 				$(this).hide();
@@ -280,8 +294,16 @@ Template.allbusinessList.events({
 		$('.thumBusDistance').css('display','inline-block');
 		// $('.busNoOffer').css('display','block');
 
+		/*==offer==*/
 		$(".listDistance").parent().parent().parent().parent().siblings(".busThumbnailsSection").children(".busThumbnailsRow").children(".displayGridView").children(".thumbBusList").children(".row").children('.gridViewBusList').each(function(){
-			if($(this).attr("data-offer") >= 0){
+			if($(this).attr("data-offer") >= 0 ){
+				$(this).css('display','blobk');
+			}
+		});
+		/*==map==*/
+
+		$(".listDistance").parent().parent().parent().parent().siblings(".busThumbnailsSection").children(".busThumbnailsRow").children(".displayGridView").children(".thumbBusList").children(".row").children('.mapViewBusList').each(function(){
+			if($(this).attr("data-target") >= 0){
 				$(this).show();
 			}
 		});
