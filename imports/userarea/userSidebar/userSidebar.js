@@ -15,6 +15,31 @@ import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 import './userSidebar.html';
 
+Template.userSidebar.onRendered(()=>{
+	var urlLinks = FlowRouter.current().path;
+	var urlLink = urlLinks.split('/');
+	console.log(urlLink[1]);
+	if (urlLink[1]) {
+	console.log(urlLink[1]);
+
+		var linkUrl = $('.'+urlLink[1]).parent().attr('data-target');
+		console.log(linkUrl);
+		// console.log($('.userMenuItem').addClass('active'));
+		if (linkUrl) {
+			console.log('if');
+			$('.'+linkUrl).addClass('active');
+			// $('.userMenuItem')
+		}
+		// else{
+		// 	console.log('else');
+
+		// 	$('.'+linkUrl).addClass('active');
+
+		// }
+	}
+
+});
+
 Template.userSidebar.events({
 	'click .userMenuItem':function(event){       
         $('.userMenuItem').removeClass('active');
@@ -23,7 +48,16 @@ Template.userSidebar.events({
 	},
 	'click .closeMenuTab': function(event){
 		$(event.currentTarget).parent().parent().removeClass('in');
-	}
+	},
+	// 'click .userSiderActive':function(event){
+	// 	var link = $(event.currentTarget).attr('data-target');
+	// 	var urlLinks = FlowRouter.current().path;
+	// 	var urlLink = urlLinks.split('/');
+	// 	console.log(urlLink);
+	// 	if (urlLink[1] === link) {
+	// 		$(event.currentTarget).addClass('active');
+	// 	}
+	// }
 });
 
 Template.userSidebar.helpers({

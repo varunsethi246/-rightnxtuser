@@ -9,15 +9,15 @@
         <a class="navbar-brand" href="#">Business Menu</a>
     </div>
     <ul class="usersidebarUl col-lg-9 col-lg-offset-3 col-md-9 col-sm-9 col-xs-12 collapse navbar-collapse" id="businessMenuCollapse">
-    <a href="/userProfile" arial-control="submenu-1">
-        <li class="userMenuItem active {{statusClass}} sidebarlink1 userProfile closeMenuTab">
+    <a href="/userProfile" class="userSiderActive" arial-control="submenu-1" data-target="userProfile">
+        <li class="userMenuItem sidebarlink1 userProfile closeMenuTab">
         
             <i class="fa fa-user fausertmelne" aria-hidden="true"></i>
             <span class="tmelne">Timeline</span>
          
         </li>
     </a>
-    <a href="/userLike{{changeHref}}"> 
+    <a href="/userLike{{changeHref}}" class="userSiderActive" data-target="userLike"> 
         <li class="userMenuItem sidebarlink1 userLike closeMenuTab">
            
             <i class="fa fa-pencil fapencil" aria-hidden="true"></i>
@@ -28,7 +28,7 @@
            
         </li>
     </a>
-    <a href="/userReview{{changeHref}}">
+    <a href="/userReview{{changeHref}}" class="userSiderActive" data-target="userReview">
         <li class="userMenuItem sidebarlink1 userReview {{activeClass}} closeMenuTab">
              
             <i class="fa fa-pencil revpencil" aria-hidden="true"></i>
@@ -39,7 +39,7 @@
             
         </li>
     </a>
-    <a href="/userPhotos{{changeHref}}">
+    <a href="/userPhotos{{changeHref}}" class="userSiderActive" data-target="userPhotos">
         <li class="userMenuItem sidebarlink1 userPhotos closeMenuTab">
   
             <i class="fa fa-picture-o fapic" aria-hidden="true"></i>
@@ -49,7 +49,7 @@
             {{/with}}
         </li>
     </a>
-    <a href="/userFollowers{{changeHref}}">
+    <a href="/userFollowers{{changeHref}}" class="userSiderActive" data-target="userFollowers">
         <li class="userMenuItem sidebarlink1 userFollowers closeMenuTab">
          
             <i class="fa fa-thumbs-up thumbsupfollower" aria-hidden="true"></i>
@@ -59,7 +59,7 @@
             {{/with}}
         </li>
     </a>
-    <a href="/userBookmarks{{changeHref}}">
+    <a href="/userBookmarks{{changeHref}}" class="userSiderActive"  data-target="userBookmarks">
         <li class="userMenuItem sidebarlink1 userBookmarks closeMenuTab">
            
             <i class="fa fa-bookmark fabukmark" aria-hidden="true"></i>
@@ -70,7 +70,7 @@
            
         </li>
      </a>
-    <a href="/userBeenThere{{changeHref}}">
+    <a href="/userBeenThere{{changeHref}}" class="userSiderActive" data-target="userBeenThere">
         <li class="userMenuItem sidebarlink1 userBeenThere closeMenuTab">
          
             <i class="fa fa-check-square squbenthere" aria-hidden="true"></i>
@@ -81,7 +81,7 @@
            
         </li>
     </a>
-    <a href="/userRatings{{changeHref}}"> 
+    <a href="/userRatings{{changeHref}}" class="userSiderActive" data-target="userRatings"> 
         <li class="userMenuItem sidebarlink1 userRatings closeMenuTab">
        
             <i class="fa fa-check-square squratng" aria-hidden="true"></i>
@@ -92,7 +92,7 @@
                            
         </li>
     </a> 
-    <a href="/userOffers{{changeHref}}">
+    <a href="/userOffers{{changeHref}}" class="userSiderActive" data-target="userOffers">
         <li class="userMenuItem sidebarlink1 userOffers closeMenuTab">
           
             <i class="fa fa-bullhorn offerbullhorn" aria-hidden="true"></i>
@@ -103,7 +103,7 @@
                         
         </li>     
     </a>     
-    <a href="/userEnquiry">       
+    <a href="/userEnquiry" class="userSiderActive" data-target="userEnquiry">       
         <li class="userMenuItem sidebarlink1 userEnquiry {{statusClass}} closeMenuTab">
            
             <i class="fa fa-headphones enqheadphone" aria-hidden="true"></i>

@@ -436,7 +436,7 @@ Template.userTimeline.helpers({
 							}else{
 								allReviews[i].userComments[k].userProfileImgPath = "/users/profile/profile_image_dummy.svg";
 								allReviews[i].userComments[k].redirectCommUsrId = '#';
-								allReviews[i].userComments[k].commentUserName = "Deleted User";
+								allReviews[i].userComments[k].commentUserName = "";
 
 							}	
 
