@@ -4,10 +4,10 @@
 		    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 busireviever1" id="scrollToReview-{{_id}}">
 		     	<div class="bussReviewRow col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				    <div class="userRevTempleftImg col-lg-2 col-md-2 col-sm-2 col-xs-3">
-				    	<a href="#"><img src="{{revProfilePic}}" alt=""></a>
+				    	<img src="{{revProfilePic}}" alt="">
 				    </div>
 				    <div class="userRevTempRightTxt col-lg-4 col-md-5 col-xs-4 col-sm-6"> 
-				        <a href="/userReview/{{userProfileUrl}}">
+				        <a href="{{#if currentUser}}{{#if userProfileUrl}}/userReview/{{userProfileUrl}}{{/if}}{{/if}}">
 				        {{username}}
 				    </a>
 				        <p>{{#if area}}{{area}},{{/if}} {{city}}</p>
@@ -134,7 +134,7 @@
 							<output id="reviewImglistEdit"></output>
 							<div class="reviewImgtext">Click here to select images</div>
 							<input type="file" name="files[]" id="reviewImgfilesEdit" multiple="true"
-							class="inputImg">							
+							class="inputImg" accept="image/*">							
 						</div>
 					</div>
 				</div>
@@ -166,7 +166,7 @@
 						{{#each tagedFriendsArray}}
 							<div class="tagedFrndSpansOuter">
 								<span  data-tagedId="{{userTagged}}" data-reviewId="{{../_id}}" class="bus-page-edit-outerFrnd1 bus-page-edit-outerFrnd1-{{../_id}}">x</span>
-								<a class="tagedFrndSpans tagnames" href="/userReview/{{tagedFriendsUrl}}" target="_blank">
+								<a class="tagedFrndSpans tagnames" href="{{#if currentUser}}{{#if tagedFriendsUrl}}/userReview/{{tagedFriendsUrl}}{{/if}}{{/if}}" target="_blank">
 									<div class="taggedFrndShowLiImg">
 										<img src="{{imagePath}}" class="{{checkpngImg}}">
 									</div>
@@ -370,13 +370,8 @@
 									</span>
 									&nbsp; &nbsp;
 									<span class="{{#if isInRole 'user, Vendor'}}commentReply{{else}}unuserLike{{/if}}"> 
-										Reply <span>(
-										{{#if commentReplyCount}}
-											{{commentReplyCount}}
-										{{else}}
-											0
-										{{/if}}
-									)</span> 
+										Reply 
+										<span>({{#if commentReplyCount}}{{commentReplyCount}}{{else}}0{{/if}})</span> 
 									</span>
 								</div>
 								<!-- reply -->

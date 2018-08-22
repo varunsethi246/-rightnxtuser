@@ -898,7 +898,7 @@ font-size:13px;
 color:#4e4f51;
 font-weight:600;
 font-family:'PROXIMANOVA-REGULAR';
-cursor:pointer
+/*cursor:pointer*/
 }
 
 .userRevEdit {
@@ -3584,7 +3584,7 @@ padding:0
 .userRepName {
 color:#4e4f51;
 font-family:'PROXIMANOVA-REGULAR';
-cursor:pointer;
+/*cursor:pointer;*/
 font-size:12px;
 font-weight:600;
 margin-top:10px;
@@ -4393,3 +4393,4 @@ input[type="file"]#reviewImgfilesEdits,input[type="file"]#reviewImgfileEdits,inp
 .forgotPwd ,.verifyotp{
     padding: 0;
 }
+.loginForComment{padding-left: 15px;}

@@ -526,6 +526,8 @@ Template.addReviewTemplate.events({
 		$('.boxbg').removeClass('fixStar2');
 		$('.bunchTagFrndTagged').remove();
 		$('#review').val('');
+        $('.textRemain').text('0 /140');
+
 	},	
 
 	'click .uploadImg': function(event){

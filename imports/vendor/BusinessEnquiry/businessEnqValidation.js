@@ -1,7 +1,7 @@
 // Business Enquiry Validation
 Template.businessEnquiry.events({
 	'focusout #enquiryName': function(e){
-		console.log('focusout');
+		// console.log('focusout');
 		var myFuncVar = $("#enquiryName").val();
 		if (myFuncVar==null||myFuncVar=="") {
 			$(".spanEnqName").addClass("ErrorRedText");

@@ -303,10 +303,7 @@ Template.imageReportModal.events({
 		event.preventDefault();
 		$('#imageReportOne').modal('hide');
 		$('#imageReportComment').val('');
-		// $('.modal-backdrop').hide('#imageReportOne');
-		// if($('.secondModal').hasClass('in')){
-		// 	$('.secondModal').removeClass('in')
-		// }
+		$('#selectImageReport').val('Select an option...');
 	},
 
 	'click #imageReportSubmit': function(event) {
@@ -1089,7 +1086,6 @@ Template.imageCommet.events({
 				Meteor.call('insertImgCommntOfCmmnt',formValues, function(error, result){
 					if(error){
 					}else{
-						$('#replyOfreplyInput').hide();
 						//============================================================
 						// 			Notification Email / SMS / InApp
 						//============================================================
@@ -1221,6 +1217,7 @@ Template.imageCommet.events({
 						// 			End Notification Email / SMS / InApp
 						//============================================================
 						event.currentTarget.value='';
+						$('.reportModInputReply').removeClass('showCmmnt');
 					}
 				});
 			}
@@ -1806,7 +1803,7 @@ Template.imageCommet.events({
 		var commentDocId 	= $(event.currentTarget).attr('data-docId');
 		var commentUserId	= $(event.currentTarget).attr('data-authUserId');
 		var businessLink 	= FlowRouter.getParam('businessurl');
-		var replyId 		= $(event.currentTarget).attr('data-replyId');
+		var replyId 		= $(event.currentTarget).attr('data-replyid');
 
 		var formValues = {
 			"businessLink" 			: businessLink,

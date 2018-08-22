@@ -100,7 +100,14 @@ Template.offersTabContent.events({
 		var fromEmail = Meteor.users.findOne({roles:'admin'}).emails[0].address;
 		var id = event.currentTarget.id;
 		var offerData = Offers.findOne({'_id': id});
-		var offerImgId  = OfferImage.findOne({'_id' : offerData.offerImage}).link();
+		if(offerData){
+			var offerImg = OfferImage.findOne({'_id' : offerData.offerImage});
+			if(offerImg){
+				var offerImgId  = offerImg.link();
+			}else{
+				var offerImgId  = "https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg";
+			}
+		}
 		// console.log('offerImgId: ',offerImgId);
 		if(offerData){
 			var subj = offerData.dealHeadline;
@@ -113,27 +120,39 @@ Template.offersTabContent.events({
 		
 		var toEmail = $('#toVEmail-'+id).val();
 		if (offerImgId) {
-			var image = offerImgId;
+	    	var image  = offerImgId;
 		}else{
 			var imgUri = "images/logo.png";
 	    	var image  = Meteor.absoluteUrl(imgUri);
 		}	
 	    // console.log(image);
-	    var name = Meteor.users.findOne({_id:Meteor.userId()}).profile.name;
+	    var userObj = Meteor.users.findOne({_id:Meteor.userId()});
+	    if(userObj){
+	    	if(userObj.profile){
+	    		var name = userObj.profile.name;
+	    	}
+	    }else{
+	    	var name = '';
+	    }
 	    var addText = $('#toVAddNote-'+id).val();
 		// console.log("addText ",addText);	
-
-	    var msg = 'Hi there, <br/><br/>'+name+ ' has share offer with you. Check it out.<p>'+addText+'</p><br/><div style="border: 1px solid #ccc; width: 550px;"><img src='+image+' alt="" style="height: 60px; width: 60px; padding-left: 15px; padding-top: 15px;" /><SPAN style= "font-size: 16px; font-weight: 700; position:absolute; top: 40%; padding-left: 2%;">'+subj+'</SPAN><span style=""><h5 style="padding-right: 15px; padding-left: 15px;">Expiration Date: From '+from+' To '+to+' </h5><hr style="margin-right: 15px; margin-left: 15px;"><p style="font-size: 14px; padding-right: 15px; padding-left: 15px; text-align: justify; font-weight: 400; color: #555;">'+dealDesc+'</p></span></div>';
+		if(name){
+	    	var msg = 'Hi there, <br/><br/>'+name+ ' has share a offer with you. Check it out.<p>'+addText+'</p><br/><div style="border: 1px solid #ccc; width: 550px;"><img src='+image+' alt="" style="height: 60px; width: 60px; padding-left: 15px; padding-top: 15px;" /><SPAN style= "font-size: 16px; font-weight: 700; position:absolute; top: 40%; padding-left: 2%;">'+subj+'</SPAN><span style=""><h5 style="padding-right: 15px; padding-left: 15px;">Expiration Date: From '+from+' To '+to+' </h5><hr style="margin-right: 15px; margin-left: 15px;"><p style="font-size: 14px; padding-right: 15px; padding-left: 15px; text-align: justify; font-weight: 400; color: #555;">'+dealDesc+'</p></span></div>';
+		}else{
+	    	var msg = 'Hi there, <br/><br/> One offer shared with you. Check it out.<p>'+addText+'</p><br/><div style="border: 1px solid #ccc; width: 550px;"><img src='+image+' alt="" style="height: 60px; width: 60px; padding-left: 15px; padding-top: 15px;" /><SPAN style= "font-size: 16px; font-weight: 700; position:absolute; top: 40%; padding-left: 2%;">'+subj+'</SPAN><span style=""><h5 style="padding-right: 15px; padding-left: 15px;">Expiration Date: From '+from+' To '+to+' </h5><hr style="margin-right: 15px; margin-left: 15px;"><p style="font-size: 14px; padding-right: 15px; padding-left: 15px; text-align: justify; font-weight: 400; color: #555;">'+dealDesc+'</p></span></div>';
+		}
 
 		Meteor.call('sendEmailRightNxt', toEmail, fromEmail, subj, msg,function(error,result){
 			if(error){
 				Bert.alert(error.reason, 'danger', 'growl-top-right' );
 				return;
 			}else{
-				$('#shareOfferPage-'+id).modal('hide');
-				Bert.alert('Offer successfully shared with your friend.','success','growl-top-right');
+				
 			}
 		});
+
+		$('#shareOfferPage-'+id).modal('hide');
+		Bert.alert('Offer successfully shared with your friend.','success','growl-top-right');
 	}
 
 });

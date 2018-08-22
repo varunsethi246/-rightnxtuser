@@ -10,7 +10,8 @@ import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import { EnquiryImage } from '/imports/videoUploadClient/enquiryImageClient.js';
 import ImageCompressor from 'image-compressor.js';
 
-import './businessEnquiry.html'
+import './businessEnquiry.html';
+// import './businessEnqValidation.js';
 
 var filesM = [];
 
@@ -37,19 +38,7 @@ Template.businessEnquiry.events({
     // 'click .SendEnqToAll1' : function(event){
     //     console.log('true');
     // },
-    'focusout #enquiryName': function(e){
-        console.log('focusout');
-        var myFuncVar = $("#enquiryName").val();
-        if (myFuncVar==null||myFuncVar=="") {
-            $(".spanEnqName").addClass("ErrorRedText");
-            $("#enquiryName").addClass("SpanLandLineRedBorder");
-            $( ".spanEnqName" ).text("Please Enter Valid Name" );
-        } else {
-            $( ".spanEnqName" ).text("" );
-            $(".spanEnqName").removeClass("ErrorRedText");
-            $("#enquiryName").removeClass("SpanLandLineRedBorder");
-        }
-    },
+
     'keydown .enquiryName': function(e){
            if ($.inArray(e.keyCode, []) !== -1 ||
                // Allow: Ctrl+A, Command+A
@@ -68,7 +57,20 @@ Template.businessEnquiry.events({
               (e.keyCode >=219 && e.keyCode <=222)) {
               e.preventDefault();
           }
-       },
+    },
+    'focusout .enquiryName': function(e){
+        var myFuncVar = $(".enquiryName").val();
+        var nameRegex = /^[a-zA-Z ]+$/;
+        if (myFuncVar==null||myFuncVar==""||!myFuncVar.match(nameRegex)) {
+            $(".spanEnqName").addClass("ErrorRedText");
+            $(".enquiryName").addClass("SpanLandLineRedBorder");
+            $( ".spanEnqName" ).text("Please Enter Valid Name" );
+        } else {
+            $(".spanEnqName" ).text("" );
+            $(".spanEnqName").removeClass("ErrorRedText");
+            $(".enquiryName").removeClass("SpanLandLineRedBorder");
+        }
+    },
     'keydown .enquiryPhone': function(e){
           if ($.inArray(e.keyCode, [8, 9, 27, 13]) !== -1 ||
                  // Allow: Ctrl+A, Command+A
@@ -86,7 +88,7 @@ Template.businessEnquiry.events({
             }
        },
 
-    'focusout .enquiryPhone': function(){
+    'focusout .enquiryPhone': function(event){
         var myFuncVar = $(".enquiryPhone").val();
         var nameRegex = /^(\+91\s|\+91-|\+91|0)?\d{10}$/;
         if (myFuncVar==null||myFuncVar==""||!myFuncVar.match(nameRegex)) {
@@ -100,7 +102,7 @@ Template.businessEnquiry.events({
         }
     },
 
-    'focusout .enquiryEmail': function(){
+    'focusout .enquiryEmail': function(event){
         var myFuncVar = $(".enquiryEmail").val();
         var nameRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
         if (myFuncVar==null||myFuncVar==""||!myFuncVar.match(nameRegex)) {
@@ -114,7 +116,7 @@ Template.businessEnquiry.events({
         }
     },
 
-    'focusout .enquiryDesc': function(){
+    'focusout .enquiryDesc': function(event){
         var myFuncVar = $(".enquiryDesc").val();
         if (myFuncVar==null||myFuncVar=="") {
             $(".spanEnqDesc").addClass("ErrorRedText");
@@ -130,19 +132,21 @@ Template.businessEnquiry.events({
         var userId = Meteor.userId();
         if (userId) {
             $('.enquiryDesc').val('');
-            $('.enquiryPhoto').val('');
             $('.ErrorRedText').hide();
-            $('.vEnqModalC').removeClass('SpanLandLineRedBorder')
+            $('.vEnqModalC').removeClass('SpanLandLineRedBorder');
         }else{
-
             $('.enquiryName').val('');
             $('.enquiryDesc').val('');
             $('.enquiryPhone').val('');
-            $('.enquiryPhoto').val('');
             $('.enquiryName').val('');
             $('.enquiryEmail').val('');
             $('.ErrorRedText').hide();
             $('.vEnqModalC').removeClass('SpanLandLineRedBorder');
+        }
+        if(filesM.length > 0){
+            $('.showEnquiryImg').find('span').empty(); 
+            $( '<i class="fa fa-camera fa-5x" aria-hidden="true"></i>').appendTo( ".showEnquiryImg" );
+            $('.enquiryPhoto').val('');
         }
     },
     'change .enquiryPhoto' : function(event){
@@ -188,29 +192,15 @@ Template.businessEnquiry.events({
         }else{
             var businessLink = $(event.currentTarget).attr('data-link');
         }
+
+        // $('#businessMenulist').empty();
+
         var enquiryPhoto = '';
-
-        $('#businessMenulist').empty();
-
         var enquirySentBy = Meteor.userId();
         var enquiryName = $('.enquiryName').val();
-        console.log(enquiryName);
         var enquiryEmail = $('.enquiryEmail').val();
         var enquiryPhone = $('.enquiryPhone').val();
         var enquiryDesc = $('.enquiryDesc').val();
-        console.log(enquiryEmail);
-        console.log(enquiryPhone);
-        console.log(enquiryDesc);
-
-        if (!enquiryDesc) {
-            $(".spanEnqDesc").addClass("ErrorRedText");
-            $(".enquiryDesc").addClass("SpanLandLineRedBorder");
-            $( ".spanEnqDesc" ).text("Please enter the description of the product you are looking for." );
-        }else{
-            $(".spanEnqDesc").removeClass("ErrorRedText");
-            $(".enquiryDesc").removeClass("SpanLandLineRedBorder");
-            $( ".spanEnqDesc" ).text("");
-        }
         
         var enquiryPhoneTwo = '';
         if(enquiryPhone){
@@ -218,18 +208,15 @@ Template.businessEnquiry.events({
         }
 
         var businessObject = Business.findOne({"businessLink":businessLink});
-         // console.log('businessObject :',businessObject);
-        var businessid = businessObject._id;
-         // console.log('businessid :',businessid);
-        
-
-        var businessTitle = businessObject.businessTitle;
-        //Save image on S3
-
-        var errorIn = '';
-        if ($(".ErrorRedText").length > 0) {
-            errorIn = "true";
+        if(businessObject){
+            var businessid = businessObject._id;
+            var businessTitle = businessObject.businessTitle;
         }
+        
+        // var errorIn = '';
+        // if ($(".ErrorRedText").length > 0) {
+        //     errorIn = "true";
+        // }
 
         if(enquiryName && enquiryEmail && enquiryPhoneTwo && enquiryDesc) {
             // console.log('inif');
@@ -544,33 +531,43 @@ Template.businessEnquiry.events({
             }
         }else {
             // Bert.alert('Fill all fields before sending enquiry','danger','growl-top-right');
-            if (!enquiryName) {
+            
+            if(!enquiryDesc) {
+                $(".spanEnqDesc").addClass("ErrorRedText");
+                $(".enquiryDesc").addClass("SpanLandLineRedBorder");
+                $(".spanEnqDesc" ).text("Please enter the description of the product you are looking for." );
+            }else{
+                $(".spanEnqDesc").removeClass("ErrorRedText");
+                $(".enquiryDesc").removeClass("SpanLandLineRedBorder");
+                $( ".spanEnqDesc" ).text("");
+            }
+            if (!enquiryName||!enquiryName.match(/^[a-zA-Z ]+$/)) {
                 $(".spanEnqName").addClass("ErrorRedText");
                 $(".enquiryName").addClass("SpanLandLineRedBorder");
                 $(".spanEnqName").text("Please Enter Valid Name" );
             }else{
-            $(".spanEnqDesc").removeClass("ErrorRedText");
-            $(".enquiryDesc").removeClass("SpanLandLineRedBorder");
-            $( ".spanEnqDesc" ).text("");
-        }
-            if (!enquiryEmail) {
+                $(".spanEnqName").removeClass("ErrorRedText");
+                $(".enquiryName").removeClass("SpanLandLineRedBorder");
+                $( ".spanEnqName" ).text("");
+            }
+            if (!enquiryEmail||!enquiryEmail.match(/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/)) {
                 $(".spanEnqEmail").addClass("ErrorRedText");
                 $(".enquiryEmail").addClass("SpanLandLineRedBorder");
                 $( ".spanEnqEmail" ).text("Please Enter Valid Business Email Id" );
             }else{
-            $(".spanEnqDesc").removeClass("ErrorRedText");
-            $(".enquiryDesc").removeClass("SpanLandLineRedBorder");
-            $( ".spanEnqDesc" ).text("");
-        }
-            if (!enquiryPhoneTwo) {
+                $(".spanEnqEmail").removeClass("ErrorRedText");
+                $(".enquiryEmail").removeClass("SpanLandLineRedBorder");
+                $( ".spanEnqEmail" ).text("");
+            }
+            if (!enquiryPhoneTwo||!enquiryPhoneTwo.match(/^(\+91\s|\+91-|\+91|0)?\d{10}$/)) {
                 $(".spanEnqPhone").addClass("ErrorRedText");
                 $(".enquiryPhone").addClass("SpanLandLineRedBorder");
-                $(".spanEnqPhone").text("Please Enter Valid 10 digit Mobile Number" );
+                $(".spanEnqPhone").text("Please Enter Valid Mobile Number" );
             }else{
-            $(".spanEnqDesc").removeClass("ErrorRedText");
-            $(".enquiryDesc").removeClass("SpanLandLineRedBorder");
-            $( ".spanEnqDesc" ).text("");
-        }
+                $(".spanEnqPhone").removeClass("ErrorRedText");
+                $(".enquiryPhone").removeClass("SpanLandLineRedBorder");
+                $( ".spanEnqPhone" ).text("");
+            }
             
             $('.SpanLandLineRedBorder:visible:first').focus();
         }

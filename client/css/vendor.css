@@ -3322,7 +3322,7 @@ border-bottom-right-radius:8px;
 display:none ;
 box-shadow:#555 1px 6px 11px -5px;
 max-height:446px;
-overflow-y:scroll
+overflow-y:auto;
 }
 
 .topSearchBarListWrapper {

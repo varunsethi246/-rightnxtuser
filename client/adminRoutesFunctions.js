@@ -310,7 +310,7 @@ ResetPasswordFunc= function () {
 // }
 
 ViewAdminNotifsFunc= function () {
-	console.log('function');    
+	// console.log('function');    
 	import('/imports/admin/commonAdmin/commonAdmin.js').then(function (handle) {        
 		handle.ViewAllNotifsForm();    
 	})
