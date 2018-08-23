@@ -67,7 +67,8 @@ Template.signupScreen.events({
                 console.log(error);
               }else{
                 // location.reload();
-                $('#loginModal').modal('hide'); 
+                $('#loginModal').modal('hide');
+                $('.modal-backdrop').remove();
                 FlowRouter.go("/LoginOTP");
                 
               }
@@ -154,6 +155,9 @@ Template.signupScreen.events({
                     }
                 }
             }
+            // $('#loginModal').modal('hide');
+            // $('body').removeClass('modal-open');
+            // $('.modal-backdrop').remove();
             FlowRouter.go("/LoginOTP");
           }
         });

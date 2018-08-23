@@ -49,6 +49,7 @@ Meteor.methods({
 			"businessTitle"					: formValues.businessTitle,
 			"reportedImage"					: formValues.reportedImage,
 			'createdAt'						: new Date(),
+			"mailStatus"					: 'block',
 			},function(error,result){
 				if(error){
 					console.log('insertreports error ' , error.reason);

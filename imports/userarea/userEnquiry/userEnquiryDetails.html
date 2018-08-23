@@ -20,28 +20,38 @@
             <div class="vEnqFormImgOne">
                 <h4>Description</h4>
                 {{#each enquiryDesc}}
-                    <div class="row chatRow">
-                        <div class="col-lg-8 {{posClass}} formBreakWord">
-                            {{#if comment}}
-                            <div class="{{posClassTringl}} {{posClass}}-bkgBorder"></div>
-                            <p class="{{posClass}}-bkg" id="vMsg">{{comment}}</p>
-                            {{else}}
-                            <div class="{{posClassTringl}} {{posClass}}-bkgBorder displayNone"></div>
-
-                            <p class="{{posClass}}-bkg displayNone">none</p>
-                            {{/if}}
-                            {{#if enquiryImgVal}}
-                                <div class="vEnqFormImgThreeImg">
-                                    <img src="{{enquiryPhoto}}" class="img-responsive">
-                                </div>
-                            {{/if}}
-                        </div>
-                    </div>
+                    {{> chatRowTemplate}}
                 {{/each}}
             </div>
         </div>
     </div>
 </template>
+
+
+
+<template name="chatRowTemplate">
+
+    <div class="row chatRow">
+        <div class="col-lg-8 {{posClass}} formBreakWord">
+            {{#if comment}}
+            <div class="{{posClassTringl}} {{posClass}}-bkgBorder"></div>
+            <p class="{{posClass}}-bkg" id="vMsg">{{comment}}</p>
+            {{else}}
+            <div class="{{posClassTringl}} {{posClass}}-bkgBorder displayNone"></div>
+
+            <p class="{{posClass}}-bkg displayNone">none</p>
+            {{/if}}
+            {{#if enquiryImgVal}}
+                <div class="vEnqFormImgThreeImg">
+                    <img src="{{enquiryPhoto}}" class="img-responsive">
+                </div>
+            {{/if}}
+        </div>
+    </div>
+
+    
+</template>
+
 
 
 <!--             <div class="vEnqFormImgTwo">

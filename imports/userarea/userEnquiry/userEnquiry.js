@@ -12,6 +12,20 @@ import './userEnquiry.html';
 import './userEnquiryDetails.html';
 import './userEnquiryPage.html';
 
+Template.chatRowTemplate.onRendered(function(){
+	console.log("chatRowTemplate Rendered");
+	console.log('scrollTop :',$('.chatRow').last().scrollTop());
+			console.log($('.vEnqFormImgOne').height() );
+	
+	// console.log('scrollHeight :',$('.chatRow')[0].scrollHeight());
+	$('.chatRow').last().scrollTop($('.chatRow')[0].scrollHeight);
+});
+
+// Template.userEnquiryDetails.onCreated(function(){
+// 	$('.chatRow').last().scrollTop($('.chatRow')[0].scrollHeight);
+// });
+
+
 Template.userEnquiryPage.onRendered(function(){
 	Session.set("tabStatus","activeTab");
 	Session.set('userSort','All');
@@ -294,7 +308,7 @@ Template.userEnquiryPage.helpers({
 			id = '';
 		}
 		var enqData = Enquiry.findOne({"enquirySentBy":currentUser,'_id':id});
-		console.log('enqData :',enqData);
+		// console.log('enqData :',enqData);
 		if(enqData){
 			if(enqData.enquiryDesc){
 				for(i=0; i<enqData.enquiryDesc.length; i++){
@@ -313,8 +327,8 @@ Template.userEnquiryPage.helpers({
 						enqData.enquiryDesc[i].posClassTringl = "vEnqTriangleleft";
 					}
 				}
-				console.log('enqData.enquiryDesc[i-1] :',enqData.enquiryDesc[i-1]);
-				enqData.enquiryDesc[i-1].scrollTop = enqData.enquiryDesc[i-1].scrollHeight;
+				// console.log('enqData.enquiryDesc[i-1] :',enqData.enquiryDesc[i-1]);
+				// enqData.enquiryDesc[i-1].scrollTop = enqData.enquiryDesc[i-1].scrollHeight;
 			}
 			var businessLink = enqData.businessLink;
 			var busObj = Business.findOne({"businessLink":businessLink,"status": "active"});
@@ -369,6 +383,7 @@ Template.userEnquiry.events({
 		$("#"+id).addClass('selectedEnq');
 
 		Meteor.call('updateEnquiryForUserRead',id,'read',function(err,rslt){});
+
 	},
 	
 	// Flag, Unflag and Delete Enquiry Events: done
@@ -426,14 +441,10 @@ var filesM = [];
 Template.userEnquiryPage.events({
 
 	"click .readEnClass": function(event){
-		Meteor.setTimeout(function(){
-			// console.log("last = ", $('.chatRow').last().html());
-			// $('.chatRow').last().scrollTop = $('.chatRow').last().scrollHeight;
-			$('.chatRow').animate({
-		        scrollTop: $(".formBreakWord p").last().offset().top
-		    },
-		        'slow');
-		},1000);
+		$(".vEnqFormImgOne").ready(function(){
+			console.log($('.vEnqFormImgOne').height() );
+			$('.chatRow').last().scrollTop(1000);
+		});		
 	},
 
 
