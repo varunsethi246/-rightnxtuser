@@ -19,9 +19,9 @@ ServiceConfiguration.configurations.remove({
 
 ServiceConfiguration.configurations.insert({
 	service: "google",
-	clientId: "444930413096-he15o98cpej6vtdngpmn02b187k6vglq.apps.googleusercontent.com",
+	clientId: "444930413096-44jp839bttpt711j51qg17kjsetcpj5t.apps.googleusercontent.com",
 	// loginStyle: "popup",
-	secret: "xZ9z80V4EOGqiA1T1wjujWgo"
+	secret: "XHtrDzVcvDbb5E3GJX8i5a-9"
 });
 
 if(Meteor.isServer){
