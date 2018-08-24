@@ -4,12 +4,15 @@ ServiceConfiguration.configurations.remove({
     service: "facebook"
 });
 
-ServiceConfiguration.configurations.insert({
-    service: "facebook",
+ServiceConfiguration.configurations.upsert({
+  service: "facebook"
+}, {
+  $set: {
     appId: '288260801708620',
+    loginStyle: "popup",
     secret: '4e11e10e3d070c0b8ad07aeef3e6711f'
+  }
 });
-
 ServiceConfiguration.configurations.remove({
     service: "google"
 });
