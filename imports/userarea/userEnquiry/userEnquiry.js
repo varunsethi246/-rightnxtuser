@@ -54,7 +54,7 @@ Template.userEnquiryPage.helpers({
 			var tabStatusVar = Session.get("tabStatus");
 			if(tabStatusVar == "archiveTab"){
 				
-				var enqList = Enquiry.find({"enquirySentBy":currentUser,"userArchive":"archived"},{sort: {enquiryCreatedAt:-1}}).fetch();
+				var enqList = Enquiry.find({"enquirySentBy":currentUser,"userArchive":"archived",'deleteStatus' : false},{sort: {enquiryCreatedAt:-1}}).fetch();
 				if(enqList){
 					if(Session.get("nameKeyUser")){
 						var nameKey = (Session.get("nameKeyUser")).toUpperCase();
@@ -134,7 +134,7 @@ Template.userEnquiryPage.helpers({
 				}
 			}
 			else if(tabStatusVar == "flagTab"){
-				var enqList = Enquiry.find({"enquirySentBy":currentUser,"userSpecialFlag":"flag"},{sort: {enquiryCreatedAt:-1}}).fetch();
+				var enqList = Enquiry.find({"enquirySentBy":currentUser,"userSpecialFlag":"flag",'deleteStatus' : false},{sort: {enquiryCreatedAt:-1}}).fetch();
 				if(enqList){
 					if(Session.get("nameKeyUser")){
 						var nameKey = (Session.get("nameKeyUser")).toUpperCase();
@@ -215,7 +215,7 @@ Template.userEnquiryPage.helpers({
 					
 				}
 			}else if(tabStatusVar == "activeTab"){
-				var enqList = Enquiry.find({"enquirySentBy":currentUser,"userArchive":"noArchived"},{sort: {enquiryCreatedAt:-1}}).fetch();
+				var enqList = Enquiry.find({"enquirySentBy":currentUser,"userArchive":"noArchived",'deleteStatus' : false},{sort: {enquiryCreatedAt:-1}}).fetch();
 				if(enqList){
 					if(Session.get("nameKeyUser")){
 						var nameKey = (Session.get("nameKeyUser")).toUpperCase();
@@ -307,8 +307,8 @@ Template.userEnquiryPage.helpers({
 		}else{
 			id = '';
 		}
-		var enqData = Enquiry.findOne({"enquirySentBy":currentUser,'_id':id});
-		// console.log('enqData :',enqData);
+		var enqData = Enquiry.findOne({"enquirySentBy":currentUser,'_id':id,'deleteStatus' : false});
+		console.log('enqData :',enqData);
 		if(enqData){
 			if(enqData.enquiryDesc){
 				for(i=0; i<enqData.enquiryDesc.length; i++){
@@ -400,17 +400,17 @@ Template.userEnquiry.events({
 	'click .deleteEnqBtn': function(event){
 		var thisid = event.currentTarget;
 		var id = $(thisid).parent().parent().parent().parent().parent().parent().parent().attr('id');
-		var enquiryObj = Enquiry.findOne({'_id':id});
-		if(enquiryObj){
-			if(enquiryObj.enquiryDesc.length > 0){
-				for (var i = 0; i < enquiryObj.enquiryDesc.length; i++) {
-					if(enquiryObj.enquiryDesc[i].commentImage){
-						var imgId = enquiryObj.enquiryDesc[i].commentImage;
-						Meteor.call('removeEnquiryImage',imgId ,function(err,rslt){});
-					}
-				}
-			}
-		}
+		// var enquiryObj = Enquiry.findOne({'_id':id});
+		// if(enquiryObj){
+		// 	if(enquiryObj.enquiryDesc.length > 0){
+		// 		for (var i = 0; i < enquiryObj.enquiryDesc.length; i++) {
+		// 			if(enquiryObj.enquiryDesc[i].commentImage){
+		// 				var imgId = enquiryObj.enquiryDesc[i].commentImage;
+		// 				Meteor.call('removeEnquiryImage',imgId ,function(err,rslt){});
+		// 			}
+		// 		}
+		// 	}
+		// }
 		Meteor.call('deleteUserEnquiry',id ,function(err,rslt){
 		});	
 		$('.modal-backdrop').hide();
