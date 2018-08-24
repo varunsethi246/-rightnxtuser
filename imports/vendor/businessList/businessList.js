@@ -444,7 +444,6 @@ Template.allbusinessList.events({
 		}else{
 			var enqSendByRole = "User";
 		}
-	   
 
 		if(Session.get("sendEnqToAll")){
 			$('.thumImgDescP').each(function() {
@@ -494,7 +493,19 @@ Template.allbusinessList.events({
 				            for(j=0;j<serched.length;j++){
 								var id = serched[j];
 								var businessid = Business.findOne({"businessLink":id});
+
 								if(businessid){
+									if(businessid.blockedUsers.length > 0){
+						                var blockUserFlag = businessid.blockedUsers.indexOf(enquirySentBy);
+						                if(blockUserFlag < 0){
+						                    var commentblock = false;
+						                }else{
+						                    var commentblock = true;
+						                }
+						            }else{
+						                var commentblock = false;
+						            }
+
 							    	var formValues = {
 						                "businessid"        : businessid._id,
 						                "businessTitle"     : businessid.businessTitle,
@@ -506,6 +517,7 @@ Template.allbusinessList.events({
 						                "enquiryDesc"       : enquiryDesc,
 						                "enquiryPhoto"      : enquiryPhoto,
 						                "enquiryType"       : enqSendByRole,
+						                "commentblock" 		: commentblock,
 						            }
 
 									Meteor.call('insertBusEnquiry',formValues,function(err,result){
@@ -662,6 +674,17 @@ Template.allbusinessList.events({
 					var businessid = Business.findOne({"businessLink":id});
 
 					if(businessid){
+						if(businessid.blockedUsers.length > 0){
+			                var blockUserFlag = businessid.blockedUsers.indexOf(enquirySentBy);
+			                if(blockUserFlag < 0){
+			                    var commentblock = false;
+			                }else{
+			                    var commentblock = true;
+			                }
+			            }else{
+			                var commentblock = false;
+			            }
+
 				    	var formValues = {
 			                "businessid"        : businessid._id,
 			                "businessTitle"     : businessid.businessTitle,
@@ -673,6 +696,7 @@ Template.allbusinessList.events({
 			                "enquiryDesc"       : enquiryDesc,
 			                "enquiryPhoto"      : enquiryPhoto,
 			                "enquiryType"       : enqSendByRole,
+			                "commentblock" 		: commentblock,
 			              }
 
 						Meteor.call('insertBusEnquiry',formValues, function(err,result){

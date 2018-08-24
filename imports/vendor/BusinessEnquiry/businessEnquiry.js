@@ -211,8 +211,20 @@ Template.businessEnquiry.events({
         if(businessObject){
             var businessid = businessObject._id;
             var businessTitle = businessObject.businessTitle;
+            if(businessObject.blockedUsers.length > 0){
+                var blockUserFlag = businessObject.blockedUsers.indexOf(enquirySentBy);
+                if(blockUserFlag < 0){
+                    var commentblock = false;
+                }else{
+                    var commentblock = true;
+                }
+            }else{
+                var commentblock = false;
+            }
+        }else{
+            var commentblock = false;
         }
-        
+
         // var errorIn = '';
         // if ($(".ErrorRedText").length > 0) {
         //     errorIn = "true";
@@ -255,14 +267,15 @@ Template.businessEnquiry.events({
                             var formValues = {
                                 "businessid"        : businessid,
                                 "businessTitle"     : businessTitle,
-                                "businessLink"      : id,
+                                "businessLink"      : businessLink,
                                 "enquirySentBy"     : enquirySentBy,
                                 "enquiryName"       : enquiryName,
                                 "enquiryEmail"      : enquiryEmail,
                                 "enquiryPhone"      : enquiryPhoneTwo,
                                 "enquiryDesc"       : enquiryDesc,
                                 "enquiryPhoto"      : enquiryPhoto,
-                                "enquiryType"       : "User"
+                                "enquiryType"       : "User",
+                                "commentblock"      : commentblock,
                             }
 
                             Meteor.call('insertBusEnquiry', formValues, function(error,result){
@@ -408,7 +421,7 @@ Template.businessEnquiry.events({
 
                 var formValues = {
                     "businessid"        : businessid,
-                    "businessLink"      : id,
+                    "businessLink"      : businessLink,
                     "businessTitle"     : businessTitle,
                     "enquirySentBy"     : enquirySentBy,
                     "enquiryName"       : enquiryName,
@@ -416,7 +429,8 @@ Template.businessEnquiry.events({
                     "enquiryPhone"      : enquiryPhoneTwo,
                     "enquiryDesc"       : enquiryDesc,
                     "enquiryPhoto"      : enquiryPhoto,
-                    "enquiryType"       : "User"
+                    "enquiryType"       : "User",
+                    "commentblock"      : commentblock,
                 }
                 Meteor.call('insertBusEnquiry', formValues, function(error,result){
                     if(error){

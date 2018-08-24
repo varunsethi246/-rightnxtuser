@@ -60,6 +60,7 @@ Meteor.methods({
 									 "commentsTS" 		:  new Date(),
 									 "commentBy" 		: formValues.enquiryType,
 									 "commentImage" 	: formValues.enquiryPhoto,
+									 "commentblock"     : formValues.commentblock,
 									}
 								  ],
 			"enquiryCreatedAt" 	: new Date(),
@@ -83,6 +84,7 @@ Meteor.methods({
 									"commentsTS" 	: new Date(),
 									"commentBy" 	: "User",
 									"commentImage"  : formValues.enquiryPhoto,
+									"commentblock"  : formValues.commentblock,
 								  }
 					}
 			,

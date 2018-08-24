@@ -1879,7 +1879,7 @@ color:#565656
 }
 .vEnqFormImgOne{
 max-height: 300px;
-overflow-y: scroll;
+overflow-y: auto;
 }
 .vEnqFormImgOne .row,.vEnqFormImgTwo .row,.vEnqFormImgThree .row {
 margin-right:0;
