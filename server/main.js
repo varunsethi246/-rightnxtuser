@@ -148,6 +148,7 @@ Meteor.startup(() => {
   Accounts.emailTemplates.resetPassword.from = () => 'rightnxt <rightnxt123@gmail.com>';
   Accounts.emailTemplates.siteName = "RightNxt";
   Accounts.emailTemplates.from = 'RightNxt Admin <rightnxt123@gmail.com>';
+  // Accounts.emailTemplates.from = 'RightNxt Admin <rightnxt123@gmail.com>';
 
   // Meteor.AppCache.config({
   //   chrome: false,
