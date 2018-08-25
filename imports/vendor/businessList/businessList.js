@@ -297,7 +297,8 @@ Template.allbusinessList.events({
 		/*==offer==*/
 		$(".listDistance").parent().parent().parent().parent().siblings(".busThumbnailsSection").children(".busThumbnailsRow").children(".displayGridView").children(".thumbBusList").children(".row").children('.gridViewBusList').each(function(){
 			if($(this).attr("data-offer") >= 0 ){
-				$(this).css('display','blobk');
+				// $(this).css('display','blobk');
+				$(this).show();
 			}
 		});
 		/*==map==*/

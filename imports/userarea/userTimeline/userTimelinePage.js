@@ -795,65 +795,97 @@ Template.userTimeline.events({
 	// ============================================================
 	// ============================================================
 	// ============================================================
-	'click .shareBusReview': function(event){
-		var currentUserMail = $('#toVEmail').val();
-		var currentUserNote = $('#toVAddNote').val();
-		var currentPathTwo = Meteor.absoluteUrl();
-		var businessLink = $(event.currentTarget).attr('data-busLink');
-		var currentPath = currentPathTwo + businessLink;
-		var businessData = Business.findOne({"businessLink":businessLink});
-		var nameRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
-		if (currentUserMail==null||currentUserMail==""||!currentUserMail.match(nameRegex)) {
-			Bert.alert('Please enter correct Email','danger','growl-top-right');
-		} else {
-			if(currentUserMail&&currentPath&&businessData){
-				//============================================================
-				// 			Notification Email / SMS / InApp
-				//============================================================
-				var currentUserId = Meteor.userId();
-				var currentUser = Meteor.users.findOne({'_id':currentUserId});
+	// 'click .shareBusReview': function(event){
+	// 	var currentUserMail = $('#toVEmail').val();
+	// 	var currentUserNote = $('#toVAddNote').val();
+	// 	var currentPathTwo = Meteor.absoluteUrl();
+	// 	var businessLink = $(event.currentTarget).attr('data-busLink');
+	// 	var currentPath = currentPathTwo + businessLink;
+	// 	var businessData = Business.findOne({"businessLink":businessLink});
+	// 	var nameRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
+	// 	if (currentUserMail==null||currentUserMail==""||!currentUserMail.match(nameRegex)) {
+	// 		// Bert.alert('Please enter correct Email','danger','growl-top-right');
+	// 	} else {
+	// 		if(currentUserMail&&currentPath&&businessData){
+	// 			//============================================================
+	// 			// 			Notification Email / SMS / InApp
+	// 			//============================================================
+	// 			var currentUserId = Meteor.userId();
+	// 			var currentUser = Meteor.users.findOne({'_id':currentUserId});
 	
-				var admin = Meteor.users.findOne({'roles':'admin'});
-				if(admin){
-					var adminId = admin._id;
-				}
+	// 			var admin = Meteor.users.findOne({'roles':'admin'});
+	// 			if(admin){
+	// 				var adminId = admin._id;
+	// 			}
 	
-				if(currentUser&&currentUser.profile&&admin){
-					var username = currentUser.profile.name;
+	// 			if(currentUser&&currentUser.profile&&admin){
+	// 				var username = currentUser.profile.name;
 	
-					//Send Mail to Shared User Email
-					var date 		= new Date();
-					var currentDate = moment(date).format('DD/MM/YYYY');
-					var msgvariable = {
-						'[username]' 		: username,
-						'[currentDate]'		: currentDate,
-						'[businessName]'	: businessData.businessTitle,
-						'[currentPath]' 	: currentPath,
-						'[note]'			: currentUserNote,
-					   };
+	// 				//Send Mail to Shared User Email
+	// 				var date 		= new Date();
+	// 				var currentDate = moment(date).format('DD/MM/YYYY');
+	// 				var msgvariable = {
+	// 					'[username]' 		: username,
+	// 					'[currentDate]'		: currentDate,
+	// 					'[businessName]'	: businessData.businessTitle,
+	// 					'[currentPath]' 	: currentPath,
+	// 					'[note]'			: currentUserNote,
+	// 				   };
 	
-					var inputObj = {
-						from         : adminId,
-						to           : currentUserMail,
-						templateName : 'Business Page Review Share',
-						variables    : msgvariable,
-					}
-					sendPageShareMail(inputObj);
-					$('#Timelineshare').modal('hide');
+	// 				var inputObj = {
+	// 					from         : adminId,
+	// 					to           : currentUserMail,
+	// 					templateName : 'Business Page Review Share',
+	// 					variables    : msgvariable,
+	// 				}
+	// 				sendPageShareMail(inputObj);
+	// 				$('#Timelineshare').modal('hide');
 					
-				}
+	// 			}
 				
-				//============================================================
-				// 			End Notification Email / SMS / InApp
-				//============================================================
-			}
+	// 			//============================================================
+	// 			// 			End Notification Email / SMS / InApp
+	// 			//============================================================
+	// 		}
 	
-			$('#toVEmail').val('');
-			$('#toVAddNote').val('');
+	// 		$('#toVEmail').val('');
+	// 		$('#toVAddNote').val('');
+	// 	}
+		
+	// },
+	'click .shareBusReviewss':function(event){
+		var fromEmail 	= Meteor.users.findOne({roles:'admin'}).emails[0].address;
+		var id 		  	= event.currentTarget.id;
+		console.log('id +',id);
+		var reviewData = Review.findOne({'_id': id});
+		
+		// var userId = Review.findOne({'_id': id}).userId;
+
+		if(reviewData){
+	    	var reviewComment = reviewData.reviewComment;
+	    	var subj = "Review Share";
 		}
 		
-	},
+		var toEmail = $('#toVEmail-'+id).val();
+		if (toEmail) {
+		    var name = Meteor.users.findOne({_id:Meteor.userId()}).profile.name;
+		    var addText = $('#toVAddNote-'+id).val();
 
+		    var msg = 'Hi there, <br/><br/>'+name+ ' has share review comment with you. Check it out.<p>'+addText+'</p><br/><div style="border: 1px solid #ccc;width: 500px;word-break: break-all;"><SPAN style= "font-size: 16px; font-weight: 700; position:absolute; top: 40%; padding-left: 2%;">'+reviewComment+'</SPAN><span style=""></span></div>';
+
+			Meteor.call('commentShareEmail', toEmail, fromEmail, subj, msg,function(error,result){
+				if(error){
+					// Bert.alert(error.reason, 'danger', 'growl-top-right' );
+					// return;
+				}else{
+					Bert.alert('Review successfully shared with your friend.','success','growl-top-right');
+					$('#Timelineshare').modal('hide');
+					$('#toVEmail-'+id).val('');
+					$('#toVAddNote-'+id).val('');
+				}
+			});	
+		}
+	},
 	'click .loadmore': function(event){
 		if(Session.get('loadmore')){			
 			var currentLimit = Session.get('loadmore');

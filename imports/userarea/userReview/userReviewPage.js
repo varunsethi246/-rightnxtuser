@@ -840,7 +840,7 @@ Template.userReview.events({
 	'click .focusInput' : function(event){
 		$('.commentReplyEditInput').focus();
 	},
-	'click .shareBusReview': function(event){
+	/*'click .shareBusReview': function(event){
 		var currentUserMail = $('#toVEmail').val();
 		var currentUserNote = $('#toVAddNote').val();
 		var currentPathTwo = Meteor.absoluteUrl();
@@ -849,7 +849,7 @@ Template.userReview.events({
 		var businessData = Business.findOne({"businessLink":businessLink});
 		var nameRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
 		if (currentUserMail==null||currentUserMail==""||!currentUserMail.match(nameRegex)) {
-			Bert.alert('Please enter correct Email','danger','growl-top-right');
+			// Bert.alert('Please enter correct Email','danger','growl-top-right');
 		} else {
 			if(currentUserMail&&currentPath&&businessData){
 				//============================================================
@@ -899,7 +899,40 @@ Template.userReview.events({
 
 		
 	},
+*/
+	'click .shareBusReviewOne':function(event){
+		var fromEmail 	= Meteor.users.findOne({roles:'admin'}).emails[0].address;
+		var id 		  	= event.currentTarget.id;
+		console.log('id +',id);
+		var reviewData = Review.findOne({'_id': id});
+		
+		// var userId = Review.findOne({'_id': id}).userId;
 
+		if(reviewData){
+	    	var reviewComment = reviewData.reviewComment;
+	    	var subj = "Review Share";
+		}
+		
+		var toEmail = $('#toVEmail-'+id).val();
+		if (toEmail) {
+		    var name = Meteor.users.findOne({_id:Meteor.userId()}).profile.name;
+		    var addText = $('#toVAddNote-'+id).val();
+
+		    var msg = 'Hi there, <br/><br/>'+name+ ' has share review comment with you. Check it out.<p>'+addText+'</p><br/><div style="border: 1px solid #ccc;width: 500px;word-break: break-all;"><SPAN style= "font-size: 16px; font-weight: 700; position:absolute; top: 40%; padding-left: 2%;">'+reviewComment+'</SPAN><span style=""></span></div>';
+
+			Meteor.call('commentShareEmail', toEmail, fromEmail, subj, msg,function(error,result){
+				if(error){
+					// Bert.alert(error.reason, 'danger', 'growl-top-right' );
+					// return;
+				}else{
+					Bert.alert('Review successfully shared with your friend.','success','growl-top-right');
+					$('#userReviewShare').modal('hide');
+					$('#toVEmail-'+id).val('');
+					$('#toVAddNote-'+id).val('');
+				}
+			});	
+		}
+	},
 	'click .loadmore': function(event){
 		if(Session.get('loadmore')){			
 			var currentLimit = Session.get('loadmore');

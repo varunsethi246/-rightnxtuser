@@ -57,22 +57,26 @@ Template.userReviewTemplate.events({
 		}
 		
 		var toEmail = $('#toVEmailRev-'+id).val();
-	    var name = Meteor.users.findOne({_id:Meteor.userId()}).profile.name;
-	    var addText = $('#toVAddNoteRev-'+id).val();
+		if (toEmail) {
+		    var name = Meteor.users.findOne({_id:Meteor.userId()}).profile.name;
+		    var addText = $('#toVAddNoteRev-'+id).val();
 
-	    var msg = 'Hi there, <br/><br/>'+name+ ' has share review comment with you. Check it out.<p>'+addText+'</p><br/><div style="border: 1px solid #ccc;width: 500px;word-break: break-all;"><SPAN style= "font-size: 16px; font-weight: 700; position:absolute; top: 40%; padding-left: 2%;">'+reviewComment+'</SPAN><span style=""></span></div>';
+		    var msg = 'Hi there, <br/><br/>'+name+ ' has share review comment with you. Check it out.<p>'+addText+'</p><br/><div style="border: 1px solid #ccc;width: 500px;word-break: break-all;"><SPAN style= "font-size: 16px; font-weight: 700; position:absolute; top: 40%; padding-left: 2%;">'+reviewComment+'</SPAN><span style=""></span></div>';
 
-		Meteor.call('sendEmailReviewComment', toEmail, fromEmail, subj, msg,function(error,result){
-			if(error){
-				Bert.alert(error.reason, 'danger', 'growl-top-right' );
-				return;
-			}else{
-				$('#shareOfferPage-'+id).modal('hide');
-				Bert.alert('Review successfully shared with your friend.','success','growl-top-right');
-			}
-		});	
+			Meteor.call('commentShareEmail', toEmail, fromEmail, subj, msg,function(error,result){
+				if(error){
+					// Bert.alert(error.reason, 'danger', 'growl-top-right' );
+					// return;
+				}else{
+					Bert.alert('Review successfully shared with your friend.','success','growl-top-right');
+					$('#busPageShare').modal('hide');
+					$('#toVEmailRev-'+id).val('');
+					$('#toVAddNoteRev-'+id).val('');
+				}
+			});	
+		}
 	},
-
+// sendEmailReviewComment
 	'keydown .editReviewOneTime':function(event){
       setTimeout(function() {
          var comment = $('.editReviewOneTime').val();

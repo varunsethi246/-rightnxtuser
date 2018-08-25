@@ -172,7 +172,20 @@ Meteor.methods({
     });
   }, //End of Send Email Function
   
-  sendEmailReviewComment: function (toEmail, fromEmail, subj, msg) {
+  // sendEmailReviewComment: function (toEmail, fromEmail, subj, msg) {
+  //     check([toEmail, fromEmail, subj, msg], [String]);
+  //     // Let other method calls from the same client start running,
+  //     // without waiting for the email sending to complete.
+  //     this.unblock();
+  //     // console.log('to ',to,' from ',from,' subject ',subject,' body ',body);
+  //     Email.send({
+  //       to: toEmail,
+  //       from: fromEmail,
+  //       subject: subj,
+  //       html: msg
+  //     });
+  //   }, //End of Send Email Function
+commentShareEmail: function (toEmail, fromEmail, subj, msg) {
       check([toEmail, fromEmail, subj, msg], [String]);
       // Let other method calls from the same client start running,
       // without waiting for the email sending to complete.
