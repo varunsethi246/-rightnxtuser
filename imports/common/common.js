@@ -144,25 +144,7 @@ Template.generalHeader.helpers({
 });
 
 Template.header.events({
-	'click .login-facebook': function(e) {
-        e.preventDefault();
-
-        Meteor.loginWithFacebook({requestPermissions: ['public_profile', 'email']}, function(err){
-            if (err) {
-                console.log('Handle errors here: ', err);
-            }else{
-            	// console.log('result ',result);
-            	Meteor.call('addRoles',Meteor.userId(),'user',function(err,res){
-            		if(err){
-            			console.log ( err ); 
-            		}else{
-			            	FlowRouter.go('/userProfile');
-			            	$('.modal-backdrop').hide();
-            		}
-            	});
-            }
-        });
-    },
+	
 	'click .login-btn': function(event){
 		$('.genLoginSignup').hide();
 		$('.signupScreen').hide();
@@ -365,7 +347,25 @@ showStarRating = function(){
 } 
 
 Template.header.events({
-	
+	// 'click .login-facebook': function(e) {
+ //        e.preventDefault();
+
+ //        Meteor.loginWithFacebook({requestPermissions: ['public_profile', 'email']}, function(err){
+ //            if (err) {
+ //                console.log('Handle errors here: ', err);
+ //            }else{
+ //            	// console.log('result ',result);
+ //            	Meteor.call('addRoles',Meteor.userId(),'user',function(err,res){
+ //            		if(err){
+ //            			console.log ( err ); 
+ //            		}else{
+	// 		            	FlowRouter.go('/userProfile');
+	// 		            	$('.modal-backdrop').hide();
+ //            		}
+ //            	});
+ //            }
+ //        });
+ //    },
 	'click .login-facebook': function(e) {
  	       e.preventDefault();
 

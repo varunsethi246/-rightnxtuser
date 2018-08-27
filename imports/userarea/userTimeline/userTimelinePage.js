@@ -12,6 +12,8 @@ import { BusinessImage } from '/imports/videoUploadClient/businessImageClient.js
 import { VendorImage } from '/imports/videoUploadClient/vendorImageClient.js';
 import { ReviewImage } from '/imports/videoUploadClient/reviewImageClient.js';
 import ImageCompressor from 'image-compressor.js';
+// import FB from 'fb'; // or,
+import {FB, FacebookApiException} from 'fb';
 
 import '../userLayout.js';
 import './userTimelinePage.html';
@@ -76,6 +78,43 @@ Template.userSuggestion.helpers ({
 		var userId         = Meteor.userId();
 		var userArray      = [];
 		var followArray    = [];
+
+
+		//Identify if user is logged in using facebook
+
+		if(Meteor.user().services){
+			if(Meteor.user().services.facebook){
+				// Bring friends from Facebook
+				const fbAccessToken = user.services.facebook.accessToken;
+				const fbId = user.services.facebook.id;
+
+				var friendsPermission = http.call("GET", "/{fbId}/permissions"); 
+				console.log("friendsPermission = ",friendsPermission);
+				// Match users from facebook and rightnxt
+
+
+			}
+		}
+
+		var fb = new Facebook(options);
+
+		FB.api('4', function (res) {
+		  if(!res || res.error) {
+		   console.log(!res ? 'error occurred' : res.error);
+		   return;
+		  }
+		  console.log(res.id);
+		  console.log(res.name);
+		});
+		
+		FB.api('4', { fields: ['id', 'name'] }, function (res) {
+		  if(!res || res.error) {
+		    console.log(!res ? 'error occurred' : res.error);
+		    return;
+		  }
+		  console.log(res.id);
+		  console.log(res.name);
+		});
 		var currentUserObj = Meteor.users.findOne({"_id":userId});
 		// console.log("currentUserObj: ",currentUserObj);
 		if(currentUserObj){
