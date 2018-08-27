@@ -4028,7 +4028,7 @@ font-weight:600
 .notifyreportWrapper {
 border:1px solid #ccc;
 width:100%;
-height:auto;
+height:600px;
 margin:auto;
 margin-top:2%;
 box-shadow:1px 2px 2px rgba(0,0,0,0.1);
@@ -4036,7 +4036,8 @@ border-radius:3px;
 margin-left:0!important;
 padding:2%;
 background:#fff!important;
-margin-bottom:7%
+margin-bottom:7%;
+overflow-x: hidden;
 }
 
 .notify {
@@ -4122,6 +4123,10 @@ overflow:hidden!important
 
 .notifRowBunch:hover .deleteTrash {
 display:inline-block
+}
+.notifRowBunch{
+    padding: 0;
+    margin: 0;
 }
 
 .userSettingadmin1 {

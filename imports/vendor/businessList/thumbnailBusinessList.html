@@ -56,6 +56,9 @@
 									</div>
 								</div>
 						{{/each}}
+								<div class="col-lg-12 col-md-4 col-sm-4 gridViewBusLists" style="display: none;" id={{_id}} data-offer=0>
+									<h3 style="text-align: center;">No Offer Available</h3>
+								</div>
 				<!-- {{else}}
 					<div class="showGridData">
 					<div class="col-lg-4 gridViewBusList ">
@@ -96,7 +99,7 @@
 									<div class="col-lg-7 col-xs-7" style="padding:0!important">
 										<div class="leftBorder col-lg-12 col-md-12 col-sd-12 col-xs-12" id={{_id}}>
 											<a  href="/{{businessLink}}"  class="enqHelper">
-												<span class="mapVBusTitle thumImgDescP" data-linkUrl={{businessLink}}  id={{businessTitle}}>{{businessTitle}} jkkhk</span>
+												<span class="mapVBusTitle thumImgDescP" data-linkUrl={{businessLink}}  id={{businessTitle}}>{{businessTitle}}</span>
 											</a>
 											<div class="mapVBusAddr">{{businessAddress}}</div>
 											<div class="rvwStarting">
@@ -139,6 +142,10 @@
 							</div>
 						</div>
 				{{/each}}
+
+					<div class="col-lg-12 col-md-4 col-sm-4 mapViewBusLists" style="display: none;" id={{_id}} data-offer=0>
+						<h3 style="text-align: center;">No Offer Available</h3>
+					</div>
 			{{/if}}
 		</div>
 		<div class="loadMoreBus">Load More</div>

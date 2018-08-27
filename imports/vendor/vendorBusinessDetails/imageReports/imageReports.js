@@ -299,7 +299,7 @@ Template.imageReportModal.events({
 		var id = $(event.target).parent().attr('id');
 		// console.log('id ' , id);
 	},
-	'click .imageReportClose':function(){
+	'click .imageReportClose':function(event){
 		event.preventDefault();
 		$('#imageReportOne').modal('hide');
 		$('#imageReportComment').val('');
