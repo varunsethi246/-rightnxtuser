@@ -82,39 +82,39 @@ Template.userSuggestion.helpers ({
 
 		//Identify if user is logged in using facebook
 
-		if(Meteor.user().services){
-			if(Meteor.user().services.facebook){
-				// Bring friends from Facebook
-				const fbAccessToken = user.services.facebook.accessToken;
-				const fbId = user.services.facebook.id;
+		// if(Meteor.user().services){
+		// 	if(Meteor.user().services.facebook){
+		// 		// Bring friends from Facebook
+		// 		const fbAccessToken = user.services.facebook.accessToken;
+		// 		const fbId = user.services.facebook.id;
 
-				var friendsPermission = http.call("GET", "/{fbId}/permissions"); 
-				console.log("friendsPermission = ",friendsPermission);
-				// Match users from facebook and rightnxt
+		// 		var friendsPermission = http.call("GET", "/{fbId}/permissions"); 
+		// 		console.log("friendsPermission = ",friendsPermission);
+		// 		// Match users from facebook and rightnxt
 
 
-			}
-		}
+		// 	}
+		// }
 
-		var fb = new Facebook(options);
+		// var fb = new Facebook(options);
 
-		FB.api('4', function (res) {
-		  if(!res || res.error) {
-		   console.log(!res ? 'error occurred' : res.error);
-		   return;
-		  }
-		  console.log(res.id);
-		  console.log(res.name);
-		});
+		// FB.api('4', function (res) {
+		//   if(!res || res.error) {
+		//    console.log(!res ? 'error occurred' : res.error);
+		//    return;
+		//   }
+		//   console.log(res.id);
+		//   console.log(res.name);
+		// });
 		
-		FB.api('4', { fields: ['id', 'name'] }, function (res) {
-		  if(!res || res.error) {
-		    console.log(!res ? 'error occurred' : res.error);
-		    return;
-		  }
-		  console.log(res.id);
-		  console.log(res.name);
-		});
+		// FB.api('4', { fields: ['id', 'name'] }, function (res) {
+		//   if(!res || res.error) {
+		//     console.log(!res ? 'error occurred' : res.error);
+		//     return;
+		//   }
+		//   console.log(res.id);
+		//   console.log(res.name);
+		// });
 		var currentUserObj = Meteor.users.findOne({"_id":userId});
 		// console.log("currentUserObj: ",currentUserObj);
 		if(currentUserObj){
