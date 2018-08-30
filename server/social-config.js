@@ -3,7 +3,7 @@
 ServiceConfiguration.configurations.remove({
     service: "facebook"
 });
-
+// facealbum.in
 ServiceConfiguration.configurations.upsert({
   service: "facebook"
 }, {
@@ -13,6 +13,18 @@ ServiceConfiguration.configurations.upsert({
     secret: '4e11e10e3d070c0b8ad07aeef3e6711f'
   }
 });
+
+// localhost
+// ServiceConfiguration.configurations.upsert({
+//   service: "facebook"
+// }, {
+//   $set: {
+//     appId: '193603531259655',
+//     loginStyle: "popup",
+//     secret: '0e72d4fb2d6ac18db03af416d6808ff5'
+//   }
+// });
+
 ServiceConfiguration.configurations.remove({
     service: "google"
 });

@@ -138,6 +138,24 @@ Meteor.publish('resumeImage', function() {
 
 
 Meteor.startup(() => {
+
+  // Only for Localhost. 
+  // This code must be commented while pushing to Production. 
+
+    // SSLProxy({
+    //    port: 3002, //or 443 (normal port/requires sudo)
+    //    ssl : {
+    //         key: Assets.getText("server.key"),
+    //         cert: Assets.getText("server.crt"),
+    //         ca: Assets.getText("rootCA.pem"),
+
+    //         //Optional CA
+    //         //Assets.getText("ca.pem")
+    //    }
+    // });
+
+
+
   // process.env.S3='{"s3":{"key": "AKIAIEMSTWVHER5QZS3A", "secret": "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", "bucket": "rightnxt", "region": "ap-south-1"}}' ;
 // process.env.S3='{"s3":{"key": "AKIAIEMSTWVHER5QZS3A", "secret": "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", "bucket": "rightnxt", "region": "ap-south-1"}}' ;
 // process.env.S3='{"s3":{"key": "AKIAI2F7N3DNQ5IAU3SQ", "secret": "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", "bucket": "rightnxt1", "region": "us-east-2"}}' ;
