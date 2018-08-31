@@ -12,19 +12,20 @@ import './userEnquiry.html';
 import './userEnquiryDetails.html';
 import './userEnquiryPage.html';
 
-Template.chatRowTemplate.onRendered(function(){
-	console.log("chatRowTemplate Rendered");
-	console.log('scrollTop :',$('.chatRow').last().scrollTop());
-			console.log($('.vEnqFormImgOne').height() );
+// Template.chatRowTemplate.onRendered(function(){
+// 	console.log("chatRowTemplate Rendered");
+// 	console.log('scrollTop :',$('.chatRow').last().scrollTop());
+// 			console.log($('.vEnqFormImgOne').height() );
 	
-	// console.log('scrollHeight :',$('.chatRow')[0].scrollHeight());
-	$('.chatRow').last().scrollTop($('.chatRow')[0].scrollHeight);
-});
+// 	// console.log('scrollHeight :',$('.chatRow')[0].scrollHeight());
+// 	$('.chatRow').last().scrollTop($('.chatRow')[0].scrollHeight);
+// });
 
 // Template.userEnquiryDetails.onCreated(function(){
 // 	$('.chatRow').last().scrollTop($('.chatRow')[0].scrollHeight);
 // });
-
+var scrollBottom = $('.vEnqFormImgOne').scrollTop() + $(window).height();
+        $('.vEnqFormImgOne').animate({scrollTop: scrollBottom},"fast");
 
 Template.userEnquiryPage.onRendered(function(){
 	Session.set("tabStatus","activeTab");
@@ -340,6 +341,8 @@ Template.userEnquiryPage.helpers({
 				}
 				enqData.enquiryEmail = busObj.businessEmailId;
 			}
+			var scrollBottom = $('.vEnqFormImgOne').scrollTop() + $(window).height();
+        	$('.vEnqFormImgOne').animate({scrollTop: scrollBottom + 2000},"fast");
 			return enqData;			
 		}
 	},
@@ -371,16 +374,18 @@ Template.userEnquiry.events({
 		var id = $(thisrow).parent().attr('id');
 		Session.set("EnqIDSes",id);
 		var windowWidth = $(window).width();
-        if(windowWidth <= 1200){		
-			$('html, body').animate({
-	   		     scrollTop: $('.vendorEnqDetailsScroll').offset().top
-	      		}, 1000,
-	  		);	
-        }
+   //      if(windowWidth <= 1200){		
+			// $('html, body').animate({
+	  //  		     scrollTop: $('.vendorEnqDetailsScroll').offset().top
+	  //     		}, 1000,
+	  // 		);	
+   //      }
 
 		$('.vEnqRowTwo').removeClass('selectedEnq');
 		$("#"+id).addClass('selectedEnqRead');
 		$("#"+id).addClass('selectedEnq');
+		var scrollBottom = $('.vEnqFormImgOne').scrollTop() + $(window).height();
+        $('.vEnqFormImgOne').animate({scrollTop: scrollBottom + 2000},"fast");
 
 		Meteor.call('updateEnquiryForUserRead',id,'read',function(err,rslt){});
 
@@ -390,11 +395,15 @@ Template.userEnquiry.events({
 	'click .flagEnquiry':function(event){
 		var thisFlag = event.currentTarget;
 		id = $(thisFlag).parent().parent().attr('id');
+		var scrollBottom = $('.vEnqFormImgOne').scrollTop() + $(window).height();
+        $('.vEnqFormImgOne').animate({scrollTop: scrollBottom + 2000},"fast");
 		Meteor.call('updateEnquiryForUserFlag',id,'noflag',function(err,rslt){});
 	},
 	'click .noflagEnquiry':function(event){
 		var thisFlag = event.currentTarget;
 		id = $(thisFlag).parent().parent().attr('id');
+		var scrollBottom = $('.vEnqFormImgOne').scrollTop() + $(window).height();
+        $('.vEnqFormImgOne').animate({scrollTop: scrollBottom + 2000},"fast");
 		Meteor.call('updateEnquiryForUserFlag',id,'flag',function(err,rslt){});
 	},
 	'click .deleteEnqBtn': function(event){
@@ -439,12 +448,17 @@ Template.userEnquiry.events({
 var filesM = [];
 
 Template.userEnquiryPage.events({
-
+	'click .vEnqAllC':function(event){
+		var scrollBottom = $('.vEnqFormImgOne').scrollTop() + $(window).height();
+        $('.vEnqFormImgOne').animate({scrollTop: scrollBottom + 2000},"fast");
+	},
 	"click .readEnClass": function(event){
-		$(".vEnqFormImgOne").ready(function(){
-			console.log($('.vEnqFormImgOne').height() );
-			$('.chatRow').last().scrollTop(1000);
-		});		
+		// $(".vEnqFormImgOne").ready(function(){
+		// 	console.log($('.vEnqFormImgOne').height() );
+		// 	$('.chatRow').last().scrollTop(1000);
+		// });	
+		var scrollBottom = $('.vEnqFormImgOne').scrollTop() + $(window).height();
+        $('.vEnqFormImgOne').animate({scrollTop: scrollBottom + 2000},"fast");	
 	},
 
 

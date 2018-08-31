@@ -307,6 +307,8 @@ Template.vendorEnquiry.helpers({
 				}
 			}
 			// $('.vEnqFormImgOne').animate({ scrollTop: $(document).height() }, 1);
+			var scrollBottom = $('.vEnqFormImgOne').scrollTop() + $(window).height();
+        	$('.vEnqFormImgOne').animate({scrollTop: scrollBottom},"fast");
 			return enqData;			
 		}
 	},
@@ -336,7 +338,8 @@ Template.allEnquries.events({
 
 		$("#"+id).addClass('selectedEnqRead');
 		$("#"+id).addClass('selectedEnq');
-
+		var scrollBottom = $('.vEnqFormImgOne').scrollTop() + $(window).height();
+        $('.vEnqFormImgOne').animate({scrollTop: scrollBottom},"fast");
 		Meteor.call('updateEnquiryForRead',id,'read',function(err,rslt){});
 	},
 	'click .flagEnquiry':function(event){
