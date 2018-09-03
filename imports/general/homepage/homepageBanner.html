@@ -42,10 +42,10 @@
 				<div class="modal fade" id="changeCityModal" role="dialog">
 					<div class="modal-dialog">
 						<div class="modal-content city-content">
-				            <div class="modal-header citySearchMheader">
+				            <div class="modal-header citySearchMheader citySearchMheaderHome">
 				            	<a href="#" data-dismiss="modal"  aria-hidden="true" class="city-close close pull-right"><i class="cityShowCloseModal fa fa-times-circle-o fa-lg selectareaclose" aria-hidden="true"></i></a>
-				            	<div class="group">
-		    						<input class="form-control groupHeight-xs" type="text" list="cityShow" placeholder="Enter Your City" id="getCity" disabled>
+				            	<div class="group groupHome">
+		    						<input class="form-control groupHeight-xs" type="text" list="cityShow" placeholder="Enter Your City" id="getCity" disabled="true">
 									<datalist size = {{showListCity}} id="cityShow" class="listCitySelect" >
 										{{#each currentCityList}}
 											<option>{{city}}</option>

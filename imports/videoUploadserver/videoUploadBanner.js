@@ -60,7 +60,7 @@ if(s3Data)
                         // limit size to 1GB and in mp4 format
                         return true;
                     } else {
-                        return "Please upload video";
+                        return "Please upload video of type mp4 or 3gp.";
                     }
 
                 },

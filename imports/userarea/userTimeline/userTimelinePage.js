@@ -149,6 +149,8 @@ Template.userSuggestion.helpers ({
 						}//!followUser
 					}//i
 				}//otherUsersData
+			}else{
+				var currentLocation = getCurrentPosition();
 			}
 		}
 		return userArray;
