@@ -37,7 +37,7 @@ Template.anonymousUserLayout.onCreated(function () {
   this.subscribe('userfunction');
   this.subscribe('allCity');
   this.subscribe('categories');
-  this.subscribe('getBizVideoBanner');  
+  // this.subscribe('getBizVideoBanner');  
   this.subscribe('homeBannerVideo');
   // this.subscribe('userRole');
   // this.subscribe('vendorImage');

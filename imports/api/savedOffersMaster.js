@@ -45,7 +45,7 @@ Meteor.methods({
 				 	'businessId'		: businessId,
 				 	'businessLink'		: businessurl,
 				 	'offerId' 			: offerId,
-					'createdAt'     	: new Date().toLocaleString(),
+					'createdAt'     	: new Date(),
 					'date'				: moment().format('DD/MM/YYYY'),
 					'businessStatus'	: 'active',
 					}, function(error,result){
