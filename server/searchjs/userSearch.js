@@ -19,10 +19,10 @@ SearchSource.defineSource('users', function(searchText, options) {
     var regExp = buildRegExp(searchText);
     var selector = { emails: { $elemMatch: { "address": regExp } },
                     "_id": { $nin: userIdArr } , 
-                    "roles":{$nin: [ 'admin', 'Vendor']} };
+                    "roles":{$nin: [ 'admin', 'Vendor','Staff']} };
     return Meteor.users.find(selector, options).fetch();
   } else {
-    return Meteor.users.find({"_id": { $nin: userIdArr }, "roles":{$nin: [ 'admin', 'Vendor']}}, options).fetch();
+    return Meteor.users.find({"_id": { $nin: userIdArr }, "roles":{$nin: [ 'admin', 'Vendor', 'Staff']}}, options).fetch();
   }
 });
 

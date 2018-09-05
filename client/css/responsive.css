@@ -122,6 +122,15 @@
 	     margin-left: 0%!important; 
 	    margin-top: 20px;
 	}
+	.usercomRevTemtext{
+		    margin-left: 16px;
+	}
+	.maxopenReviewHeight{
+		height: 398px;
+	}
+	.minopenReviewHeight{
+		height: 290px;
+	}
 	/*==========home page===========*/
 
 }

@@ -421,6 +421,7 @@ Template.suggestedFollowUsers.helpers ({
 
 	'userSuggestionData': function(){
 		var otherUsersData = userSearch.getData();
+		console.log('otherUsersData ==',otherUsersData);
 		if(otherUsersData){
 			for(var i=0;i<otherUsersData.length;i++){
 				console.log('otherUsersData[i].profile :',otherUsersData[i].profile);

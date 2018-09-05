@@ -240,7 +240,7 @@ Template.userOffers.events({
 
 		Meteor.call('sendEmailRightNxt', toEmail, fromEmail, subj, msg,function(error,result){
 			if(error){
-				Bert.alert(error.reason, 'danger', 'growl-top-right' );
+				Bert.alert('Please enter email Id.', 'danger', 'growl-top-right' );
 				return;
 			}else{
 				$('#shareOfferPage-'+id).modal('hide');

@@ -204,7 +204,13 @@ Template.thumbnailBusinessList.helpers({
 		return busList;
 
 	},
-
+	'offerIngridview'(){
+		var offerCount = Offers.find({"offerStatus":"Active"}).fetch();
+		var offerLength = offerCount.length;
+		console.log(offerCount);
+		console.log(offerLength);
+		return offerLength;
+	},
 	isGridViewVisible(){
 		if(Session.get('showGridView')){
 			var searchText = FlowRouter.getParam('searchText');
