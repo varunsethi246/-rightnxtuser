@@ -7,7 +7,7 @@
 						<img src={{pic}} class="commentImage" alt="">
 					</div>
 					<div class="review_right col-xs-9 col-lg-9">
-				        <a href="{{#if currentUser}}{{#if userProfileUrl}}/userReview/{{userProfileUrl}}{{/if}}{{/if}}" target="_blank"><p class="userName">{{userName}}</p></a>
+				        <a href="{{#if currentUser}}{{#if userProfileUrl}}/userReview/{{userProfileUrl}}{{/if}}{{/if}}" target="_blank"><p class="userName uUserName">{{userName}}</p></a>
 				        <div class="review-flw">{{reviewCounts}} Reviews, {{followerCounts}} Followers</div>
 				        <!-- <a href="#"> -->
 				        <div class="flw_btn imageReportFollowing">Following</div>
@@ -28,7 +28,7 @@
 						<img src={{pic}} class="commentImage" alt="">
 					</div>
 					<div class="review_right col-xs-9 col-lg-9">
-				        <p class="userName">{{businessName}}</p>
+				        <p class="userName uUserName">{{businessName}}</p>
 						<span class="imageReportBussName"> {{businessaddress}}</span>
 						<!-- {{timeAgo createdAt}}          -->
 				    </div>
@@ -69,7 +69,7 @@
 	                       <!--  {{#if checkCurrentUser userId}}
 	                           <div class="col-lg-6 col-xs-12 col-md-6 revName">{{commentUserName}} </div>
 	                        {{else}} -->
-	                           <a href="{{#if currentUser}}{{#if userProfileUrl}}/userReview/{{userProfileUrl}}{{/if}}{{/if}}" target="_blank"><div class="col-lg-12 revName">  {{commentUserName}} </div>  </a>
+	                           <a href="{{#if currentUser}}{{#if userProfileUrl}}/userReview/{{userProfileUrl}}{{/if}}{{/if}}" target="_blank"><div class="col-lg-12 revName uRevName">  {{commentUserName}} </div>  </a>
 	                        <!-- {{/if}} -->
 	                     </div>
 	                     <div class="col-lg-5 col-xs-4 col-md-6 imgDateAgo">
@@ -88,7 +88,7 @@
 	                     	</span>
 
 	                     </div>
-	                     <div class="col-lg-12 col-xs-12 col-md-12 userCommentText">
+	                     <div class="col-lg-12 col-xs-12 col-md-12 userCommentText nopaddingXS">
 	                     	<span class="replyInputShwHid">{{imgcomment}}</span>
 	                     	<br>
 	                     	<input data-commentId="{{_id}}" class="editReplyInput" placeholder="Edit Comment" name="" type="text">
@@ -120,10 +120,10 @@
 								</div>
 								<div class="col-lg-11 col-xs-11 col-md-11 imgCommentData">
 									<div class="">
-										<div class="col-lg-7 col-xs-8 col-md-6 usercommName">
-											<a href="{{#if currentUser}}{{#if userProfileUrl}}/userReview/{{userProfileUrl}}{{/if}}{{/if}}" target="_blank"><div class="col-lg-12 revName">  {{commentUserName}} </div>  </a>
+										<div class="col-lg-7 col-xs-7 col-md-6 usercommName">
+											<a href="{{#if currentUser}}{{#if userProfileUrl}}/userReview/{{userProfileUrl}}{{/if}}{{/if}}" target="_blank"><div class="col-lg-12 revName uRevName">  {{commentUserName}} </div>  </a>
 										</div>
-										<div class="col-lg-5 col-xs-4 col-md-6 imgDateAgo">
+										<div class="col-lg-5 col-xs-5 col-md-6 imgDateAgo">
 											{{userCommentDateAgo}}
 
 											<span class="{{deletEditReplyBlock}} editdeltCommnt">
@@ -139,7 +139,7 @@
 	                     					</span>
 
 										</div>
-										<div class="col-lg-12 col-xs-12 col-md-12 userCommentText">
+										<div class="col-lg-12 col-xs-12 col-md-12 userCommentText nopaddingXS">
 											<span class="replyOfReplyInpShwHid">{{imgcomment}}</span>
 											<br>
 	                     					<input data-commentId="{{../_id}}" data-replyId="{{replyId}}" class="editReplyOfReplyInput" placeholder="Edit Comment" name="" type="text">

@@ -11,7 +11,6 @@ import './profileSettingLayout.html';
 import './editProfile.js';
 
 Template.profileSetting.events({
-
   'submit #change-password': function(event){
     event.preventDefault();
 

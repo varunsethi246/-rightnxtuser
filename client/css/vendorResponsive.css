@@ -174,7 +174,7 @@ margin-top:26%
 .body-close {
 margin-left:27%
 }
-
+.body-close.uBodyClose {margin-left:36%;}
 .BussDeleteClose {
 position:relative;
 right:18px;
@@ -302,7 +302,8 @@ margin-left:0
 
 #businessSettingCollapse {
 padding-right:0;
-padding-left:0
+padding-left:0;
+border: 1px solid #ccc;
 }
 
 .profSettingsidebarUl {

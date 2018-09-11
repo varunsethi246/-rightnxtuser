@@ -3181,7 +3181,7 @@ padding-bottom:0
 }
 
 .loginForm {
-margin-top:35px
+margin-top:36px;
 }
 
 .loginFormGroup {
@@ -3449,7 +3449,7 @@ margin-left:5.5px
 
 .vndr_delete .fa-trash-o {
 position:relative;
-right:5px
+right:5px!important;
 }
 
 .nonUserBody {
@@ -3531,7 +3531,7 @@ padding-left:10px
 .commentReplyArr{padding-left: 30px!important;}
 .userCommentText,.editBoxComment,.reviewCommCancel{padding-left: 15px!important;}
 .commentReplyInputBox{padding-left: 30px!important;}
-#businessMenuCollapse{padding-left: 0px;padding-right: 0px;overflow-x: hidden;}
+#businessMenuCollapse{padding-left: 0px;padding-right: 0px;overflow-x: hidden;border: 1px solid #ccc;margin-top: -10px!important;}
 #businessMenuCollapse .userMenuItem{margin-left: 0px;padding-left: 15px;}
 .unfollowUserBtn,.unfollowUserBtn:hover{width: 30%!important;}
 .LoadMore1,.takeRating{padding-left: 0px;padding-right: 0px;}
@@ -3558,6 +3558,8 @@ padding-left:10px
 }
 
 @media screen and (min-width: 992px) and (max-width: 1199px) {
+.resetpass h2{width: 100%;}
+.resetWrapper{width: 55%!important;margin-left: 22%!important;}
 /*.notifiacationUsers{left: 0%;}*/
 .mapViewBusList{padding: 0px 15px!important;}
 .footerWrapper-xs {
@@ -3805,7 +3807,9 @@ right:236px!important
 }
 
 @media screen and (min-width: 768px) and (max-width: 991px){
+.resetWrapper{width: 55%!important;margin-left: 22%!important;}
 /*.secondDiv,.firstDiv{padding-left: 0px;}*/
+.resetpass h2{width: 100%;}
 .follwSugg{padding-left: 0px!important;margin-top: 5px;}
 .suggInfoTimeline{padding-left: 15px!important;padding-right: 15px!important;}
 .mapContainer{max-height: 550px;left: 12px;}
@@ -4021,6 +4025,22 @@ padding:4px 5px!important
 }
 
 @media screen and (min-width:320px) and (max-width:767px) {
+.uMyRatingOnBuss{margin-top: 10px;}
+.uUserCommentOne{margin-bottom: 10px;}
+.uUserReplyComent{border: 1px solid #ccc!important;}
+.uUserlike.userlike,.uCommentReplyBox,
+.uReviewReplyCancel{padding-left: 40px!important;}
+.uUsercomRevTemtext{margin-left: 0px!important;}
+.userCommRevTemp{margin-bottom: 10px;}
+.likeModalIcon{margin-right: 4px;}
+.uUserName.userName{margin-left: 0px!important;}
+.nopaddingXS{padding-left: 0px!important;padding-right: 0px!important;}
+.uRevName.revName{padding-left: 0px;}
+.imageReportBodyOne{padding-left: 0px;padding-right: 0px;padding-bottom: 10px;}
+.playButtonCss{width: 25%!important;}
+.enquiryName.vEnqModalCNew{margin-bottom: 12px;}
+.resetpass h2{width: 100%;}
+.forgotEmailMessage{width: 297px!important;}
 .busListEnq{margin-bottom: 10px!important;width: 100%;}
 .mapViewBusList .mapVBusTitle,.mapViewBusList .mapVBusAddr,.mapViewBusList .mapVBusPhnNum {
 width:90%
@@ -4329,24 +4349,24 @@ text-align: center
 .prfUserFollow{margin-bottom: 10px;}
 @media only screen and (orientation: landscape) {
 	@media screen and (min-width: 320px) and (max-width: 767px) {
-		.addPhotoTxt {
+		/*.addPhotoTxt {
 		    right: 5px!important;
 		    width: 120px;
-		}
+		}*/
 		.likeRightTxt {
-		    margin-left: -30px;
+		    /*margin-left: -30px;*/
 	    	padding-left: 0px;
 	    }
-	    .userFollInfoSugg,.suggInfoTimeline{margin-left: -30px!important;}
+	    /*.userFollInfoSugg,.suggInfoTimeline{margin-left: -30px!important;}*/
 	    .busiVedorleftOfferImg{width: 20%;}
 	    .photoAlbmImg{width: 200px;padding-left: 5px!important;}
 	    /*.notifiacationUsers{left: 46%;}*/
 	    /*.logoutBtnDropdown{right: 110px;}*/
-	    .enqActionMargin{padding-left: 18px!important;}
+	    /*.enqActionMargin{padding-left: 18px!important;}*/
 	    .enqBusinessXS{text-align: left!important;padding-left: 45px!important;}
 	    .vEnqInfoUserImg{float: right;}
-	    .delEnq, .flagEnq, .restoreArchivei{top: 0px!important;right: 0px!important;}
-		.profilePic{height: 140px!important;}
+	    .delEnq, .flagEnq, .restoreArchivei{top: 0px!important;right: 5px!important;}
+		/*.profilePic{height: 140px!important;}*/
 	}
 }
 @media (min-width: 1200px){
