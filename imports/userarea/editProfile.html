@@ -38,7 +38,7 @@
 						</div>
 						<div class="form-group editPincode col-lg-6">
 							<label class="control-label areaMasterOption privacyPassName" for="zipcode" >Pin Code</label>
-							<input type="text" pattern="[0-9]{6}" maxlength="6" class="form-control areaMasterSelect col-lg-9 pinCodess" placeholder="Pin Code" id="pinCodes" name="pincode" value="{{userProfileData.profile.pincode}}" required />
+							<input type="text" pattern="[0-9]{6}" maxlength="6" class="form-control areaMasterSelect col-lg-9 pinCodess" placeholder="Pin Code" id="pinCodes" name="pincode" value="{{userProfileData.profile.pincode}}" required >
 							   <!-- <span class="pincodeValidation"></span> -->
 							<span class="duplication1"></span>
 						</div>
@@ -50,7 +50,7 @@
 					    	<label for="mobile" class="privacyPassName">Mobile</label>
 					    	<input type="phone" class="form-control privacyPass" id="mobile" placeholder="Your 10 Digit Mobile Number" name="mobile" maxlength="13" minlength="10"  value="{{userProfileData.profile.mobile}}">
 						</div>
-						<input type="submit" class="btn btn-default saveBtn" value="Save" />
+						<input type="submit" class="btn btn-default saveBtn" value="Save" >
 					{{/with}}
 	          </form>
         </div>

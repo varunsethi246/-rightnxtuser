@@ -3521,13 +3521,13 @@ padding-left:10px
 .logoutRight{margin-right: 0px;margin-top: 25px;box-shadow: 0px 0px 10px #aaa;}
 .right-Carousel i{margin-right: 8px!important;}
 .left-Carousel i{margin-left: 8px!important;}
-.logoNamePhoto{position: absolute;right: 0px;}
+.logoNamePhoto{position: absolute;right: 0px;padding-right: 0px;}
 .RevEditBoxTimeline{position: absolute;right: 0px;top: 90px;padding-left: 0px;padding-right: 0px;z-index: 2;}
 .deleEditBox{padding-right: 3px;}
 .revName{padding-right: 0px;}
 .userReplyComent{padding-left: 10px!important;;}
 .userRepName{padding-left: 15px!important;}
-.usercommReplyDate{padding-left: 10px!important;}
+.usercommReplyDate,.userCommRepDt.usercommReplyDate{padding-left: 10px!important;}
 .commentReplyArr{padding-left: 30px!important;}
 .userCommentText,.editBoxComment,.reviewCommCancel{padding-left: 15px!important;}
 .commentReplyInputBox{padding-left: 30px!important;}
@@ -4025,7 +4025,15 @@ padding:4px 5px!important
 }
 
 @media screen and (min-width:320px) and (max-width:767px) {
+.uRevEditBox{margin-right: 0px;}
+.uEditBoxComment{padding-left: 0px!important;}
+.reviewCommCancel.uReviewCommCancel{padding-left: 0px!important;padding-right: 0px;}
+.uRevCommtext.revCommtext{padding-left: 15px!important;}
+.uUserRowTemp{margin-top: 0px!important;}
+.uRevEditBoxTimeline{top: 120px!important;}
+.uCommentReplyArr.commentReplyArr,.usercomRevTemtext.uPaddingLeft40{padding-left: 40px!important;}
 .uMyRatingOnBuss{margin-top: 10px;}
+.uMyRatingOnBussPage{margin-top: 5px;}
 .uUserCommentOne{margin-bottom: 10px;}
 .uUserReplyComent{border: 1px solid #ccc!important;}
 .uUserlike.userlike,.uCommentReplyBox,
@@ -4034,7 +4042,7 @@ padding:4px 5px!important
 .userCommRevTemp{margin-bottom: 10px;}
 .likeModalIcon{margin-right: 4px;}
 .uUserName.userName{margin-left: 0px!important;}
-.nopaddingXS{padding-left: 0px!important;padding-right: 0px!important;}
+.nopaddingXS,.uUserCommentText{padding-left: 0px!important;padding-right: 0px!important;}
 .uRevName.revName{padding-left: 0px;}
 .imageReportBodyOne{padding-left: 0px;padding-right: 0px;padding-bottom: 10px;}
 .playButtonCss{width: 25%!important;}

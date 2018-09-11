@@ -13,7 +13,7 @@
 				        <p>{{#if area}}{{area}},{{/if}} {{city}}</p>
 				        <p>{{reviewDateAgo}}</p>
 				    </div>
-				    <div class="col-lg-4 col-md-5 col-sm-4 col-xs-5 myRatingOnBuss">
+				    <div class="col-lg-4 col-md-5 col-sm-4 col-xs-5 myRatingOnBuss uMyRatingOnBussPage">
 				    	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="{{_id}}">
 							{{#with showRating _id}}
 								Rating: {{> starRating2 }}
@@ -54,14 +54,14 @@
 		     	</div>
 		    </div>
 
-		    <div class="editBoxCommentRev-{{_id}} editBoxComment col-lg-11 col-md-11 col-sm-11 col-xs-11 ">
+		    <div class="editBoxCommentRev-{{_id}} editBoxComment col-lg-11 col-md-11 col-sm-11 col-xs-12 uEditBoxComment">
 			  	<textarea class="form-control editReviewTextArea editReviewOneTime" rows="5" name="review"  id="{{_id}}" placeholder="at least 140 characters" minlength="140" value="{{reviewComment}}"></textarea>
 				<p class="textRemain">0 / 140</p>
 		  		<!-- <span class="passwordWrongSpan "></span> -->
 		  		<span class="passwordWrongSpans newMsgHide"></span>
 			</div>
 
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopaddingXS" >
 				
 				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 starRatingblock starRatingblock-{{_id}}" >
 						New Rating: 
@@ -77,7 +77,7 @@
 				<div class="col-lg-6 textbox textboxVisible"></div>
 			</div>
 
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopaddingXS">
 				<div class="dropdown pull-right reviewCancel reviewCancel-{{_id}}" id="{{_id}}">
 					Cancel
 				</div>
@@ -88,7 +88,7 @@
 
 
 			<!-- Tagged on Edit -->
-			<div class="tagFrnd tagFrnd-{{_id}} col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="tagFrnd tagFrnd-{{_id}} col-lg-12 col-md-12 col-sm-12 col-xs-12 nopaddingXS">
 				<div class="col-lg-12" id="tagImgDiv">
 					<div class="reviewImgInputDiv">
 						<div class="tagedFrndList">
@@ -368,7 +368,7 @@
 										{{/if}} 
 										<span>({{commentLikeCount}})</span>
 									</span>
-									&nbsp; &nbsp;
+									&nbsp; . &nbsp;
 									<span class="{{#if isInRole 'user, Vendor'}}commentReply{{else}}unuserLike{{/if}}"> 
 										Reply 
 										<span>({{#if commentReplyCount}}{{commentReplyCount}}{{else}}0{{/if}})</span> 
@@ -457,17 +457,17 @@
 				</div>
 				{{else}}
 				<div>
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  showMoreCommntDivNone" data-reviewId="{{../_id}}" data-reviewPostedBy="{{../userId}}" id="{{../_id}}-{{userCommentId}}" data-commentId="{{userCommentId}}" data-businesslink="{{../businessLink}}" > 
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 showMoreCommntDivNone nopaddingXS" data-reviewId="{{../_id}}" data-reviewPostedBy="{{../userId}}" id="{{../_id}}-{{userCommentId}}" data-commentId="{{userCommentId}}" data-businesslink="{{../businessLink}}" > 
 						<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 userRevTempPic">  
 							<img class="commentImg" src="{{userProfileImgPath}}" /> 
 						</div>
 
 						<div class="col-lg-11 col-md-11 col-sm-11 col-xs-11  userRevTempCommentText">
 							<div class="">
-								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-8 userRevname">	{{commentUserName}}</div>
+								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 userRevname">	{{commentUserName}}</div>
 								<div class="col-lg-5 col-md-6 col-sm-6 col-xs-4 userCommDt">	{{userCommentDateAgo}} </div> 
 
-								<div class="dropdown pull-right col-lg-1 col-md-6 col-sm-6 col-xs-4 deleEditBox {{deleEditBlock}}">
+								<div class="dropdown pull-right col-lg-1 col-md-6 col-sm-6 col-xs-1 deleEditBox {{deleEditBlock}}">
 								 	<i class="fa fa-ellipsis-h pull-right" data-toggle="dropdown" aria-hidden="true"></i>
 									<ul class="dropdown-menu userRevDeleEdit">
 									    <li class="userRevCommEdit" id='{{userCommentId}}'>
@@ -504,7 +504,7 @@
 								 	cancel
 								</div>
 
-								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 userTextComment_{{userCommentId}} userCommentText usercomRevTemtext">	
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 userTextComment_{{userCommentId}} userCommentText usercomRevTemtext uUsercomRevTemtext">	
 									{{userComment}} 
 								</div>	
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 userlike">	
@@ -516,7 +516,7 @@
 										{{/if}} 
 										<span>({{commentLikeCount}})</span>
 									</span>
-									&nbsp; &nbsp;
+									&nbsp; . &nbsp;
 									<span class="{{#if isInRole 'user, Vendor'}}commentReply{{else}}unuserLike{{/if}}"> 
 										Reply <span>({{commentReplyCount}})</span> 
 									</span>
@@ -606,7 +606,7 @@
 			{{/each}}
 
 			{{#if userLoadmoreCmmntBtn userComments}}
-		    <div class="showMoreCommnt col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		    <div class="showMoreCommnt col-lg-12 col-md-12 col-sm-12 col-xs-12 nopaddingXS">
 				<div class="showMoreCommntDiv">
 					Show More Comments...
 				</div>
