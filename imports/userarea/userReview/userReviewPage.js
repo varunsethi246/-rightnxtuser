@@ -647,7 +647,7 @@ Template.userReviewSuggestion.helpers ({
 		if(checkIdExists[2] != '' && checkIdExists[2]){
 			uid = produceURLid(checkIdExists[2]);
 		}else{
-			// uid = Meteor.userId();
+			uid = Meteor.userId();
 		}
 		var currentUserObj = Meteor.users.findOne({"_id":uid});
 	
