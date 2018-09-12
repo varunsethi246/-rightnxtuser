@@ -7,7 +7,7 @@
 						<img src={{pic}} class="commentImage" alt="">
 					</div>
 					<div class="review_right col-xs-9 col-lg-9">
-				        <a href="{{#if currentUser}}{{#if userProfileUrl}}/userReview/{{userProfileUrl}}{{/if}}{{/if}}" target="_blank"><p class="userName uUserName">{{userName}}</p></a>
+				        <!-- <a href="{{#if currentUser}}{{#if userProfileUrl}}/userReview/{{userProfileUrl}}{{/if}}{{/if}}" target="_blank"><p class="userName uUserName">{{userName}}</p></a> -->
 				        <div class="review-flw">{{reviewCounts}} Reviews, {{followerCounts}} Followers</div>
 				        <!-- <a href="#"> -->
 				        <div class="flw_btn imageReportFollowing">Following</div>
@@ -69,7 +69,11 @@
 	                       <!--  {{#if checkCurrentUser userId}}
 	                           <div class="col-lg-6 col-xs-12 col-md-6 revName">{{commentUserName}} </div>
 	                        {{else}} -->
-	                           <a href="{{#if currentUser}}{{#if userProfileUrl}}/userReview/{{userProfileUrl}}{{/if}}{{/if}}" target="_blank"><div class="col-lg-12 revName uRevName">  {{commentUserName}} </div>  </a>
+	                        	{{#if userProfileUrl}}
+		                           <a href="{{#if currentUser}}{{#if userProfileUrl}}/userReview/{{userProfileUrl}}{{/if}}{{/if}}" target="_blank"><div class="col-lg-12 revName uRevName">  {{commentUserName}} </div>  </a>
+		                        {{else}}
+	                           		<a href=""><div class="col-lg-12 revName uRevName">  {{commentUserName}} </div>  </a>
+		                        {{/if}}
 	                        <!-- {{/if}} -->
 	                     </div>
 	                     <div class="col-lg-5 col-xs-4 col-md-6 imgDateAgo">
@@ -121,7 +125,9 @@
 								<div class="col-lg-11 col-xs-11 col-md-11 imgCommentData">
 									<div class="">
 										<div class="col-lg-7 col-xs-7 col-md-6 usercommName">
-											<a href="{{#if currentUser}}{{#if userProfileUrl}}/userReview/{{userProfileUrl}}{{/if}}{{/if}}" target="_blank"><div class="col-lg-12 revName uRevName">  {{commentUserName}} </div>  </a>
+											<!-- <a href="{{#if currentUser}}{{#if userProfileUrl}}/userReview/{{userProfileUrl}}{{/if}}{{/if}}" target="_blank"> -->
+												<div class="col-lg-12 revName uRevName">  {{commentUserName}} </div>  
+											<!-- </a> -->
 										</div>
 										<div class="col-lg-5 col-xs-5 col-md-6 imgDateAgo">
 											{{userCommentDateAgo}}

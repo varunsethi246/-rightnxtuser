@@ -258,9 +258,11 @@ Template.userTimeline.helpers({
 	    return result;
 	},
 	checkCurrentUser:function(userId){
+		// console.log(userId);
 		if(userId == Meteor.userId()){
 			return true;
 		}else{
+
 			return false;
 		}
 	},
@@ -451,6 +453,9 @@ Template.userTimeline.helpers({
 						allReviews[i].userComments = allReviews[i].userComments.reverse();
 						for(k=0;k<allReviews[i].userComments.length; k++){
 							var userId  = allReviews[i].userComments[k].userId;
+							if(Roles.userIsInRole(userId, ['user'])){
+								allReviews[i].userComments[k].redirectCommUsrId = generateURLid(userId);
+							}
 							var userObj = Meteor.users.findOne({"_id":userId});
 							if(userObj){
 								if(userObj._id == Meteor.userId()){
@@ -473,18 +478,16 @@ Template.userTimeline.helpers({
 								}
 
 								allReviews[i].userComments[k].userCommentDateAgo = moment(allReviews[i].userComments[k].userCommentDate).fromNow();
-								allReviews[i].userComments[k].redirectCommUsrId = generateURLid(userId);
 							}else{
 								allReviews[i].userComments[k].userProfileImgPath = "/users/profile/profile_image_dummy.svg";
-								allReviews[i].userComments[k].redirectCommUsrId = '#';
 								allReviews[i].userComments[k].commentUserName = "";
 
 							}	
 
 							//=========== Comment Replies =============
-							var rn = 0;
 							if(allReviews[i].commentReply){
 								//create separate of all replies to each comment
+								var rn = 0;
 								var commentReplyArr = [];
 								for(l=0;l<allReviews[i].commentReply.length; l++){
 									var replyObj = {};
@@ -495,6 +498,11 @@ Template.userTimeline.helpers({
 
 										replyObj.replyId  = allReviews[i].commentReply[l].userReplyId;
 										var userId1  = allReviews[i].commentReply[l].userId;
+										if(userId1 === Meteor.userId()){
+											replyObj.repEditBlock = 'show';
+										}else{
+											replyObj.repEditBlock = 'hide';
+										}
 										var userObj1 = Meteor.users.findOne({"_id":userId1});
 										if(userObj1){
 											if(userObj1.profile){
@@ -1325,7 +1333,7 @@ Template.userTimeline.events({
 		});
 
 		// console.log('commentId',commentId);
-		Meteor.call('insertReviewTimelineCommentLike',reviewPostedByUser,reviewId,commentId, function(err,rslt){
+		Meteor.call('insertReviewTimelineCommentLike',businessLink,reviewPostedByUser,reviewId,commentId, function(err,rslt){
 			if(err){
 				console.log('Error: ', err);
 			}else{
@@ -1712,6 +1720,7 @@ Template.userTimeline.events({
 				if(error){
 					Bert.alert('Some technical issue happened... Your comment is not posted.', 'danger', 'growl-top-right');
 				}else{
+					$(event.currentTarget).val('');
 					// Bert.alert('Your comment posted successfully!', 'success', 'growl-top-right');
 					//============================================================
 					// 			Notification Email / SMS / InApp
@@ -1855,8 +1864,6 @@ Template.userTimeline.events({
 	                //============================================================
 					// 			End Notification Email / SMS / InApp
 					//============================================================
-
-					$(event.currentTarget).val('');
 				}
 			});
 		}

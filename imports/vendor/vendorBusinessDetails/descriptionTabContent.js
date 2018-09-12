@@ -146,12 +146,10 @@ Template.descriptionTabContent.helpers({
 			for(i=0; i<allReviews.length; i++){
 				var userObjs = Meteor.users.findOne({"_id":userId});
 
-				if (userObjs) {
-
-					allReviews[i].userProfileUrl = generateURLid(allReviews[i].userId);	
-				}else{
-					allReviews[i].userProfileUrl = "#";	
-
+				if(userObjs){
+					if(Roles.userIsInRole(allReviews[i].userId, ['user'])){
+						allReviews[i].userProfileUrl = generateURLid(allReviews[i].userId);	
+					}
 				}
 				var newUserThree = Meteor.userId();
 				if(newUserThree){
@@ -334,6 +332,11 @@ Template.descriptionTabContent.helpers({
 					allReviews[i].userComments = allReviews[i].userComments.reverse();
 					for(k=0;k<allReviews[i].userComments.length; k++){
 						var userId  = allReviews[i].userComments[k].userId;
+						if(Roles.userIsInRole(userId, ['user'])){
+							if(Meteor.userId() != userId){
+								allReviews[i].userComments[k].redirectid = generateURLid(userId);
+							}
+						}
 						var userObj = Meteor.users.findOne({"_id":userId});
 
 						var newUserIdOne = Meteor.userId();

@@ -45,8 +45,9 @@ Meteor.methods({
 	},
 
 
-	'insertReviewTimelineCommentLike':function(reviewPostedByUser,reviewId,commentId){
+	'insertReviewTimelineCommentLike':function(businessLink,reviewPostedByUser,reviewId,commentId){
 		var checkReviewCommentLike = ReviewCommentLikes.findOne({
+			"businessLink"		: businessLink,
 			"reviewPostedBy"	: reviewPostedByUser,
 			"reviewId"			: reviewId,
 			"commentId"			: commentId,
@@ -59,6 +60,7 @@ Meteor.methods({
 		}else{
 			return ReviewCommentLikes.insert({  
 				
+				"businessLink"		: businessLink,
 				"reviewPostedBy"	: reviewPostedByUser,
 				"reviewId"			: reviewId,
 				"commentId"			: commentId,

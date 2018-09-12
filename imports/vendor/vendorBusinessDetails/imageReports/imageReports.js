@@ -119,7 +119,11 @@ Template.imageCommet.helpers({
 					var userObj = Meteor.users.findOne({"_id":commentDetails[i].userId});
 					if(userObj){
 						commentDetails[i].commentUserName = userObj.profile.name;
-						commentDetails[i].userProfileUrl = generateURLid(commentDetails[i].userId);
+						if(Roles.userIsInRole(commentDetails[i].userId, ['user'])){
+							if(commentDetails[i].userId != Meteor.userId()){
+								commentDetails[i].userProfileUrl = generateURLid(commentDetails[i].userId);
+							}
+						}
 
 						if(userObj.profile.userProfilePic){								
 							var pic = VendorImage.findOne({"_id":userObj.profile.userProfilePic});
@@ -181,7 +185,7 @@ Template.imageCommet.helpers({
 								var userObj = Meteor.users.findOne({"_id":commentDetails[i].imgMultiComment[j].userId});
 								if(userObj){
 									commentDetails[i].imgMultiComment[j].commentUserName = userObj.profile.name;
-									commentDetails[i].imgMultiComment[j].userProfileUrl = generateURLid(userObj._id);
+									// commentDetails[i].imgMultiComment[j].userProfileUrl = generateURLid(userObj._id);
 
 									if(userObj.profile.userProfilePic){								
 										var pic = VendorImage.findOne({"_id":userObj.profile.userProfilePic});

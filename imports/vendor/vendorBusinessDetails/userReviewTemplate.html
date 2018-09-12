@@ -7,9 +7,15 @@
 				    	<img src="{{revProfilePic}}" alt="">
 				    </div>
 				    <div class="userRevTempRightTxt col-lg-4 col-md-5 col-xs-4 col-sm-6"> 
-				        <a href="{{#if currentUser}}{{#if userProfileUrl}}/userReview/{{userProfileUrl}}{{/if}}{{/if}}">
-				        {{username}}
-				    </a>
+					    {{#if userProfileUrl}}
+						    <a href="{{#if currentUser}}{{#if userProfileUrl}}/userReview/{{userProfileUrl}}{{/if}}{{/if}}" target="_blank">
+						        {{username}}
+						    </a>
+						{{else}}
+							<a href="">
+						        {{username}}
+						    </a>
+						{{/if}}
 				        <p>{{#if area}}{{area}},{{/if}} {{city}}</p>
 				        <p>{{reviewDateAgo}}</p>
 				    </div>
@@ -316,7 +322,13 @@
 
 						<div class="col-lg-11 col-md-11 col-sm-11 col-xs-11  userRevTempCommentText">
 							<div class="reComtOne">
-								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 userRevname">	{{commentUserName}}</div>
+								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 userRevname">
+									{{#if redirectid}}
+										<a href="/userReview/{{redirectid}}" target="_blank">{{commentUserName}}</a>
+									{{else}}
+										<a href="">{{commentUserName}}</a>
+									{{/if}}
+								</div>
 								<div class="col-lg-5 col-md-6 col-sm-6 col-xs-4 userCommDt">	{{userCommentDateAgo}} </div> 
 
 								<div class="dropdown pull-right col-lg-1 col-md-6 col-sm-6 col-xs-2 deleEditBox {{deleEditBlock}}">
@@ -464,7 +476,13 @@
 
 						<div class="col-lg-11 col-md-11 col-sm-11 col-xs-11  userRevTempCommentText">
 							<div class="">
-								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 userRevname">	{{commentUserName}}</div>
+								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 userRevname">
+									{{#if redirectid}}
+										<a href="/userReview/{{redirectid}}" target="_blank">{{commentUserName}}</a>
+									{{else}}
+										<a href="">{{commentUserName}}</a>
+									{{/if}}
+								</div>
 								<div class="col-lg-5 col-md-6 col-sm-6 col-xs-4 userCommDt">	{{userCommentDateAgo}} </div> 
 
 								<div class="dropdown pull-right col-lg-1 col-md-6 col-sm-6 col-xs-1 deleEditBox {{deleEditBlock}}">
@@ -562,7 +580,7 @@
 										</div>
 
 										<div class="col-lg-10 col-md-12 col-sm-12 col-xs-12 commentReplyInputBox-{{replyId}} commentReplyBox focusInput uCommentReplyBox">
-									  		<div class="col-lg-12 col-md-11 col-sm-11 col-xs-11 userReplyComent focusInput uUserReplyComent">
+									  		<div class="col-lg-12 col-md-11 col-sm-11 col-xs-12 userReplyComent focusInput uUserReplyComent">
 								  				<input class="commentReplyEditInput" placeholder="Add your Reply here" value="{{commentReply}}" type="text" id="{{../../_id}}" data-reviewPostedBy="{{../userId}}" data-replyId="{{replyId}}" data-businesslink="{{../businessLink}}">
 									  		</div>
 										</div>

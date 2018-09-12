@@ -42,6 +42,20 @@ sortReviewDateDescending = function(){
     $("#reviewDateSort").html(products);
 
 }
+
+Template.userReviewPage.helpers({
+	checkIdExists(){
+		var url = FlowRouter.current().path;
+		var checkIdExists = url.split('/');
+		var data = {};
+		if(checkIdExists[2] != '' && checkIdExists[2]){
+			return false;
+		}else{
+			return true;
+		}
+	}
+});
+
 Template.userReview.onRendered(function(){
 
 	$(document).ready(function(){
@@ -279,6 +293,9 @@ Template.userReview.helpers({
 						reviewData[i].userComments = reviewData[i].userComments.reverse();
 						for(k=0;k<reviewData[i].userComments.length; k++){
 							var userId  = reviewData[i].userComments[k].userId;
+							if(Roles.userIsInRole(userId, ['user'])){
+								reviewData[i].userComments[k].redirectid = generateURLid(userId);
+							}
 							var userObj = Meteor.users.findOne({"_id":userId});
 							if(userObj){
 								if(userObj.profile){									
@@ -322,6 +339,7 @@ Template.userReview.helpers({
 										}else{
 											replyObj.repEditBlock = 'hide';
 										}
+
 										var userObj1 = Meteor.users.findOne({"_id":userId1});
 										if(userObj1){
 											if(userObj1.profile){
@@ -1374,8 +1392,8 @@ Template.userReview.events({
 
 	'click .commentLike' : function(event){
 		var businessLink 		= $(event.currentTarget).parent().parent().parent().parent().attr('data-businesslink');
-		var reviewPostedByUser 	= $(event.currentTarget).parent().parent().parent().parent().siblings('.commentReplyInputBox').find('.commentReplyInput').attr('data-reviewpostedby');
-		var reviewId 			= $(event.currentTarget).parent().parent().parent().parent().siblings('.commentReplyInputBox').find('.commentReplyInput').attr('data-reviewid');
+		var reviewPostedByUser 	= $(event.currentTarget).parent().parent().parent().parent().attr('data-reviewpostedby');
+		var reviewId 			= $(event.currentTarget).parent().parent().parent().parent().attr('data-reviewid');
 		var commentId 			= $(event.currentTarget).attr('data-commentId');	
 
 		var currenCommtUser = $(event.currentTarget).attr('data-userCommentId');
@@ -1390,7 +1408,8 @@ Template.userReview.events({
 			"likedByUserId"		: Meteor.userId(),  
 		});
 
-		Meteor.call('insertReviewTimelineCommentLike',reviewPostedByUser,reviewId,commentId, function(err,rslt){
+
+		Meteor.call('insertReviewTimelineCommentLike',businessLink,reviewPostedByUser,reviewId,commentId, function(err,rslt){
 			if(err){
 				console.log('Error: ', err);
 			}else{
@@ -1860,6 +1879,7 @@ Template.userReview.events({
 				if(error){
 					Bert.alert('Some technical issue happened... Your comment is not posted.', 'danger', 'growl-top-right');
 				}else{
+					$(event.currentTarget).val('');
 					
 					//============================================================
 					// 			Notification Email / SMS / InApp
@@ -2003,8 +2023,6 @@ Template.userReview.events({
 	                //============================================================
 					// 			End Notification Email / SMS / InApp
 					//============================================================
-
-					$(event.currentTarget).val('');
 				}
 			});
 		}

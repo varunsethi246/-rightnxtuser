@@ -5,7 +5,9 @@
         <!-- {{#each timelineData }} -->
         {{> userReview }}
         <!-- {{/each}}  -->
-        {{> userReviewSuggestion }}
+        {{#if checkIdExists}}
+	        {{> userReviewSuggestion }}
+	    {{/if}}
     
 
   </div>

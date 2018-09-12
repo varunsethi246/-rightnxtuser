@@ -130,7 +130,7 @@
         <!-- Tagged on Edit -->
         <!-- Tagged on Edit -->
         <div class="tagFrnd tagFrnd-{{_id}}">
-          <div class="col-lg-12" id="tagImgDiv">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="tagImgDiv">
             <div class="reviewImgInputDiv">
               <div class="tagedFrndList">
                   {{#each getFrndsList.resultFrnds}} 
@@ -339,7 +339,11 @@
                     {{#if checkCurrentUser userId}}
                       <div class="col-lg-8 col-sm-6 col-xs-6 revName nameRev">  {{commentUserName}} </div> 
                     {{else}}
-                      <a href="/userReview/{{userId}}" target="_blank"><div class="col-lg-6 col-sm-6 col-xs-6 revName nameRev">  {{commentUserName}} </div>  </a>
+                      {{#if redirectid}}
+                        <a href="/userReview/{{redirectid}}" target="_blank"><div class="col-lg-6 col-sm-6 col-xs-6 revName nameRev">  {{commentUserName}} </div>  </a>
+                      {{else}}
+                        <a href=""><div class="col-lg-6 col-sm-6 col-xs-6 revName nameRev">  {{commentUserName}} </div>  </a>
+                      {{/if}}
                     {{/if}}
                     <div class="col-lg-3 col-sm-6 col-xs-5 userCommDt">   {{userCommentDateAgo}} </div> 
                     {{#if userID}}
@@ -487,7 +491,11 @@
                     {{#if checkCurrentUser userId}}
                       <div class="col-lg-8 col-sm-6 col-xs-6 revName nameRev">  {{commentUserName}} </div> 
                     {{else}}
-                      <a href="/userReview/{{userId}}" target="_blank"><div class="col-lg-6 col-sm-6 col-xs-6 revName nameRev">  {{commentUserName}} </div>  </a>
+                      {{#if redirectid}}
+                        <a href="/userReview/{{redirectid}}" target="_blank"><div class="col-lg-6 col-sm-6 col-xs-6 revName nameRev">  {{commentUserName}} </div>  </a>
+                      {{else}}
+                        <a href=""><div class="col-lg-6 col-sm-6 col-xs-6 revName nameRev">  {{commentUserName}} </div>  </a>
+                      {{/if}}
                     {{/if}}
                     <div class="col-lg-3 col-sm-6 col-xs-5 userCommDt">   {{userCommentDateAgo}} </div> 
                     {{#if userID}}
@@ -591,7 +599,7 @@
                         </div>
                       </div>
 
-                      <div class="col-lg-3 col-lg-offset-1 col-md-3 col-sm-2 col-xs-12 reviewReplyCancel reviewReplyCancel-{{replyId}}" id="{{replyId}} uReviewReplyCancel">
+                      <div class="col-lg-3 col-lg-offset-1 col-md-3 col-sm-2 col-xs-12 reviewReplyCancel reviewReplyCancel-{{replyId}} uReviewReplyCancel" id="{{replyId}}">
                         cancel
                       </div>
 

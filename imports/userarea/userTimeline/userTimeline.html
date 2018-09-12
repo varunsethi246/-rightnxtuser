@@ -305,7 +305,11 @@
                       {{#if checkCurrentUser userId}}
                       <div class="col-lg-12 col-xs-12 col-md-6 revName">{{commentUserName}} </div>
                       {{else}}
-                      <a href="/userReview/{{redirectCommUsrId}}" target="_blank"><div class="col-lg-12 revName">  {{commentUserName}} </div></a>
+                        {{#if redirectCommUsrId}}
+                          <a href="/userReview/{{redirectCommUsrId}}" target="_blank"><div class="col-lg-12 revName">  {{commentUserName}} </div></a>
+                        {{else}}
+                          <a href=""><div class="col-lg-12 revName">  {{commentUserName}} </div></a>
+                        {{/if}}
                       {{/if}}
                     </div>
                     <div class="col-lg-4 col-xs-4 col-md-6 userCommDt timelineRevDate">   {{userCommentDateAgo}} </div>
@@ -374,7 +378,7 @@
                   <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 noPaddingGeneral">
                     <div class="col-lg-7 col-md-6 col-sm-6 col-xs-6 userRepName">  {{commentReplyUserName}}</div>
                     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-4 userCommRepDt usercommReplyDate">   {{commentReplyDateAgo}} </div>
-                    {{#if ../userID}}
+                    <!-- {{#if ../userID}} -->
                     <div class="dropdown pull-right col-lg-1 col-md-6 col-sm-6 col-xs-1 deleEditBox commRepEditDel {{repEditBlock}}">
                       <i class="fa fa-ellipsis-h pull-right" data-toggle="dropdown" aria-hidden="true"></i>
                       <ul class="dropdown-menu userRevDeleEdit">
@@ -386,7 +390,7 @@
                         </li>
                       </ul>
                     </div>
-                    {{/if}}
+                    <!-- {{/if}} -->
                     <div class="modal fade modaldelete" id="deleteModal-{{replyId}}" role="dialog">
                       <div class="modal-dialog">
                         <div class="modal-content">
@@ -471,7 +475,11 @@
                         {{#if checkCurrentUser userId}}
                         <div class="col-lg-12 col-xs-12 col-md-6 revName">{{commentUserName}} </div>
                         {{else}}
-                        <a href="/userReview/{{redirectCommUsrId}}" target="_blank"><div class="col-lg-12 revName">  {{commentUserName}} </div></a>
+                          {{#if redirectCommUsrId}}
+                            <a href="/userReview/{{redirectCommUsrId}}" target="_blank"><div class="col-lg-12 revName">  {{commentUserName}} </div></a>
+                          {{else}}
+                            <a href=""><div class="col-lg-12 revName">  {{commentUserName}} </div></a>
+                          {{/if}}
                         {{/if}}
                       </div>
                       <div class="col-lg-4 col-xs-4 col-md-6 userCommDt timelineRevDate">   {{userCommentDateAgo}} </div>
@@ -538,7 +546,7 @@
                   <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 noPaddingGeneral">
                     <div class="col-lg-7 col-md-6 col-sm-6 col-xs-6 userRepName">  {{commentReplyUserName}}</div>
                     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-4 userCommRepDt usercommReplyDate">   {{commentReplyDateAgo}} </div>
-                    {{#if ../userID}}
+                    <!-- {{#if ../userID}} -->
                     <div class="dropdown pull-right col-lg-1 col-md-6 col-sm-6 col-xs-1 deleEditBox commRepEditDel {{repEditBlock}}">
                       <i class="fa fa-ellipsis-h pull-right" data-toggle="dropdown" aria-hidden="true"></i>
                       <ul class="dropdown-menu userRevDeleEdit">
@@ -550,7 +558,7 @@
                         </li>
                       </ul>
                     </div>
-                    {{/if}}
+                    <!-- {{/if}} -->
                     <div class="modal fade modaldelete" id="deleteModal-{{replyId}}" role="dialog">
                       <div class="modal-dialog">
                         <div class="modal-content">
@@ -615,7 +623,7 @@
                 <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 userReplyPic">
                   <img class="replyImg" src="{{userProfileImgPath}}" />
                 </div>
-                <div class="col-lg-11 col-md-11 col-sm-11 col-xs-12 userReplyComent xsBorderInput">
+                <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 userReplyComent">
                   <input class="commentReplyInput" placeholder="Add your Reply here" type="text" data-reviewId="{{../_id}}" data-reviewPostedBy="{{../userId}}" data-commentId="{{userCommentId}}" data-businesslink="{{../businessLink}}" data-userCommentId={{userId}}>
                 </div>
               </div>
