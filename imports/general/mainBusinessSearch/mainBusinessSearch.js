@@ -156,7 +156,7 @@ Template.mainBusinessSearch.helpers({
   	getbusiness: function() {
 		var data = dropdownSearchList.getData();
 		var searchString = $('#getBusiness').val();
-
+		// console.log('data===',data);
   		if(data){
 			if(searchString){
 				$('.homeSearchBarList').addClass('searchDisplayShow').removeClass('searchDisplayHide');

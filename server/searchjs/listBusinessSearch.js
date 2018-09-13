@@ -1,7 +1,6 @@
 import { Business } from '/imports/api/businessMaster.js';
 
 SearchSource.defineSource('listbusinessSearch', function(searchText, options) {
-  console.log('searchText ' ,searchText);
   var options = (typeof options == "object") ? options : { sort: { businessTitle: -1 } };
   var data = searchText.split('|');
   if(data[0]) {

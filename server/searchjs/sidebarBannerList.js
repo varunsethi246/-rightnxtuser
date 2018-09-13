@@ -73,7 +73,6 @@ SearchSource.defineSource('sidebarBusinessBanners', (searchText, options)=> {
     var searchPageShowImage = (imgId)=> {
 		if(imgId){
 			var imgData = BusinessImage.findOne({"_id":imgId});
-            console.log('imgData :',imgData);
             // console.log('imgData :',imgData.link());
 			if(imgData)	{
 				var data = {
@@ -211,13 +210,10 @@ SearchSource.defineSource('sidebarBusinessBanners', (searchText, options)=> {
         
     } else{
         businessBannerListB = _.uniq(businessBannerListB, function(p){ return p.businessLink;});
-        console.log('businessBannerListB :',businessBannerListB);
         if(businessBannerListB){
             for(i=0;i<businessBannerListB.length;i++){
                 for(j=0;j<searchResult.length;j++){
                     if(businessBannerListB[i].businessLink==searchResult[j].businessLink){
-                    console.log('searchResult[j] ',searchResult[j]);
-                    console.log('businessBannerListB [j]:',businessBannerListB [j]);
 
 
                         var getBannnerImage = Business.findOne({"businessLink":businessBannerListB[i].businessLink});
@@ -244,7 +240,7 @@ SearchSource.defineSource('sidebarBusinessBanners', (searchText, options)=> {
                                 }
                             }
                         }else{
-                            var data = {
+                            var data =  {
                                 img : 'https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg',
                                 checkpngImg: '',
                             };
@@ -252,7 +248,6 @@ SearchSource.defineSource('sidebarBusinessBanners', (searchText, options)=> {
                         }
 
                         businessBannerListB[i].businessAboutBus = searchResult[j].businessAboutBus;
-                        console.log('businessBannerListB[i].businessAboutBus :',businessBannerListB[i].businessAboutBus);
                         break;
                     }
                 }
