@@ -25,7 +25,12 @@ import './userEnquiryPage.html';
 // 	$('.chatRow').last().scrollTop($('.chatRow')[0].scrollHeight);
 // });
 var scrollBottom = $('.vEnqFormImgOne').scrollTop() + $(window).height();
-        $('.vEnqFormImgOne').animate({scrollTop: scrollBottom},"fast");
+$('.vEnqFormImgOne').animate({scrollTop: scrollBottom},"fast");
+
+Template.userEnquiryDetails.onRendered(function(){
+	var scrollBottom = $('.vEnqFormImgOne').scrollTop() + $(window).height();
+	$('.vEnqFormImgOne').animate({scrollTop: scrollBottom},"fast");
+});
 
 Template.userEnquiryPage.onRendered(function(){
 	Session.set("tabStatus","activeTab");
@@ -309,13 +314,23 @@ Template.userEnquiryPage.helpers({
 			id = '';
 		}
 		var enqData = Enquiry.findOne({"enquirySentBy":currentUser,'_id':id,'deleteStatus' : false});
-		console.log('enqData :',enqData);
+		// console.log('enqData :',enqData);
 		if(enqData){
 			if(enqData.enquiryDesc){
 				for(i=0; i<enqData.enquiryDesc.length; i++){
 					if(enqData.enquiryDesc[i].commentImage != ''){
-						enqData.enquiryDesc[i].enquiryPhoto = EnquiryImage.findOne({"_id":enqData.enquiryDesc[i].commentImage}).link();
-						enqData.enquiryDesc[i].enquiryImgVal = true;
+						var enquiryImage = EnquiryImage.findOne({"_id":enqData.enquiryDesc[i].commentImage});
+						if(enquiryImage){
+							if(enquiryImage.type == 'image/png'){
+								enqData.enquiryDesc[i].checkpngImg = 'bkgImgNone';
+							}else{
+								enqData.enquiryDesc[i].checkpngImg = '';
+							}
+							enqData.enquiryDesc[i].enquiryPhoto = enquiryImage.link();
+							enqData.enquiryDesc[i].enquiryImgVal = true;
+						}else{
+							enqData.enquiryDesc[i].enquiryImgVal = false;
+						}
 					}else{
 						enqData.enquiryDesc[i].enquiryImgVal = false;
 					}

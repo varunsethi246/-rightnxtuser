@@ -572,7 +572,7 @@ Template.userReviewSuggestion.events({
 		                        templateName: 'Follow',
 		                        OrderId     : getResult,
 		                	}
-		                	sendMailnNotif(inputObj);
+		                	sendMailNotification(inputObj);
 	                    }
                 	}//userVar
               	}//followData 
