@@ -42,6 +42,13 @@ Template.userReviewTemplate.helpers({
 
 
 Template.userReviewTemplate.events({
+	'click .busComentClose':function(event){
+		var id = event.currentTarget.id;
+
+		$('#busPageShare').modal('hide');
+		$('#toVEmailRev-'+id).val('');
+		$('#toVAddNoteRev-'+id).val('');
+	},
 	'click .shareBussPageRev' : function(event){
 	    
 		var fromEmail 	= Meteor.users.findOne({roles:'admin'}).emails[0].address;
@@ -55,9 +62,9 @@ Template.userReviewTemplate.events({
 	    	var reviewComment = reviewData.reviewComment;
 	    	var subj = "Review Share";
 		}
-		
+		var regxEmail =/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 		var toEmail = $('#toVEmailRev-'+id).val();
-		if (toEmail) {
+		if (regxEmail.test(toEmail)) {
 		    var name = Meteor.users.findOne({_id:Meteor.userId()}).profile.name;
 		    var addText = $('#toVAddNoteRev-'+id).val();
 
@@ -74,6 +81,8 @@ Template.userReviewTemplate.events({
 					$('#toVAddNoteRev-'+id).val('');
 				}
 			});	
+		}else{
+			Bert.alert('Please enter valid Email Id.','danger','growl-top-right');
 		}
 	},
 // sendEmailReviewComment

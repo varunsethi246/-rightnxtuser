@@ -918,6 +918,13 @@ Template.userReview.events({
 		
 	},
 */
+	'click .reviewCommentBtnClose':function(event){
+		var id 		  	= event.currentTarget.id;
+		
+		$('#userReviewShare').modal('hide');
+		$('#toVEmail-'+id).val('');
+		$('#toVAddNote-'+id).val('');
+	},
 	'click .shareBusReviewOne':function(event){
 		var fromEmail 	= Meteor.users.findOne({roles:'admin'}).emails[0].address;
 		var id 		  	= event.currentTarget.id;
@@ -930,9 +937,10 @@ Template.userReview.events({
 	    	var reviewComment = reviewData.reviewComment;
 	    	var subj = "Review Share";
 		}
+		var regxEmail =/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 		
 		var toEmail = $('#toVEmail-'+id).val();
-		if (toEmail) {
+		if (regxEmail.test(toEmail)) {
 		    var name = Meteor.users.findOne({_id:Meteor.userId()}).profile.name;
 		    var addText = $('#toVAddNote-'+id).val();
 
@@ -949,6 +957,8 @@ Template.userReview.events({
 					$('#toVAddNote-'+id).val('');
 				}
 			});	
+		}else{
+			Bert.alert('Please enter valid Email Id.','danger','growl-top-right');
 		}
 	},
 	'click .loadmore': function(event){
