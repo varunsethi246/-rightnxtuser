@@ -497,6 +497,15 @@ Template.userEnquiryPage.events({
 	       	var businessLink = $(event.currentTarget).attr("data-businessLink");
 	       	var businessId = $(event.currentTarget).attr("data-businessId");
 			var businessObj = Business.findOne({"_id":businessId,"status": "active"});
+
+			Meteor.call('updateUserEnquiry',id ,function(err,rslt){
+				if (err) {
+
+				}else{
+					// console.log(rslt.reason);
+				}
+			});
+			
 			if(businessObj){
 				if(businessObj.blockedUsers.length > 0){
 					var blockedUserArray = businessObj.blockedUsers.indexOf(enquirySentBy);
@@ -705,6 +714,15 @@ Template.userEnquiryPage.events({
        	var businessLink = $(event.currentTarget).attr("data-businessLink");
        	var businessId = $(event.currentTarget).attr("data-businessId");
 		var businessObj = Business.findOne({"_id":businessId,"status": "active"});
+		
+		Meteor.call('updateUserEnquiry',id ,function(err,rslt){
+			if (err) {
+
+			}else{
+				// console.log(rslt.reason);
+			}
+		});
+
 		if(businessObj){
 			if(businessObj.blockedUsers.length > 0){
 				var blockedUserArray = businessObj.blockedUsers.indexOf(enquirySentBy);

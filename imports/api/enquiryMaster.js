@@ -142,6 +142,13 @@ Meteor.methods({
 		
 
 	},
+	'updateUserEnquiry':function(id){
+		// return Enquiry.remove({"_id":id});
+		return Enquiry.update({"_id":id},{$set:{'deleteStatusVen' : false}});
+
+		
+
+	},
 	'updateEnquiryForUserArchive':function(id,value){
 		return Enquiry.update({"_id":id},{$set:{"userArchive":value}});
 	},
