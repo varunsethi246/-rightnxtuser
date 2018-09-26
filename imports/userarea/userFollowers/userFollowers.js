@@ -234,7 +234,11 @@ Template.userFollowers.events({
 
 	'click .followI':function(event){
 		var value  = this;
-		var id     = value.id;
+		if(FlowRouter.getQueryParam('id')){
+			var id     = FlowRouter.getQueryParam('id');
+		}else{
+			var id     = value.id;
+		}
 		var userFollowdata = FollowUser.findOne({'userId':Meteor.userId() , 'followUserId': id});
 		if(userFollowdata){
 			swal("You are already following this person!");
@@ -274,7 +278,11 @@ Template.userFollowers.events({
 Template.suggestedFollowUsers.events({
 	'click .followI':function(event){
 		var value  = this;
-		var id     = value._id;
+		if(FlowRouter.getQueryParam('id')){
+			var id     = FlowRouter.getQueryParam('id');
+		}else{
+			var id     = value._id;
+		}
 		var userFollowdata = FollowUser.findOne({'userId':Meteor.userId() , 'followUserId': id});
 		if(userFollowdata){
 			swal("You are already following this person!");

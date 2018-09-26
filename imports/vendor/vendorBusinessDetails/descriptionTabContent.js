@@ -994,8 +994,10 @@ Template.userReviewTemplate.events({
 	},
 	'click .userFollow' : function(event){
 		event.preventDefault();
-		var followid = event.currentTarget.id.split('-');
-		var followUserId = followid[1];
+		// var followid = event.currentTarget.id.split('-');
+		// var followUserId = followid[1];
+		var followid = FlowRouter.getQueryParam('id');
+		var followUserId = followid;
 		var userId = Meteor.userId();
 		var verifyFollow = FollowUser.findOne({"userId": Meteor.userId(),"followUserId": followUserId});
 		

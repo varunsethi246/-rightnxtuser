@@ -284,8 +284,9 @@ Template.userProfile.events({
 	},
 	'click .userFollow' : function(event){
 		event.preventDefault();
-		var followid = event.currentTarget.id.split('-');
-		var followUserId = followid[1];
+		// var followid = event.currentTarget.id.split('-');
+		// var followUserId = followid[1];
+		var followUserId = FlowRouter.getQueryParam('id');
 		var userId = Meteor.userId();
 		var verifyFollow = FollowUser.findOne({"userId": Meteor.userId(),"followUserId": followUserId});
 		

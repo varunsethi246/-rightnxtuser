@@ -545,9 +545,17 @@ getCategory = function(categoriesArray){
 Template.userReviewSuggestion.events({
 	'click .followII':function(event){
 		var url = FlowRouter.current().path;
-		var userid = url.split('/');
-		if(userid[2] != ''&& userid[2]){
-			id = userid[2];
+		// var userid = url.split('/');
+		// if(userid[2] != ''&& userid[2]){
+		// 	id = userid[2];
+		// }else{
+		// 	var value  = this;
+		// 	id     = value._id;
+		// }
+
+		var userid = FlowRouter.getQueryParam('id');
+		if(userid){
+			id = userid;
 		}else{
 			var value  = this;
 			id     = value._id;

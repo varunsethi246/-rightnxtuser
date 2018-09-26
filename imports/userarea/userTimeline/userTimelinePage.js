@@ -617,10 +617,18 @@ Template.userSuggestion.events({
 	
 	'click .followU':function(event){
 		var id = '';
-		var link = FlowRouter.current().path;
-		var checkIdExists = link.split('/');
-		if(checkIdExists[2] != ''&& checkIdExists[2]){
-			id = produceURLid(checkIdExists[2]);
+		// var link = FlowRouter.current().path;
+		// var checkIdExists = link.split('/');
+		// if(checkIdExists[2] != ''&& checkIdExists[2]){
+		// 	id = produceURLid(checkIdExists[2]);
+		// }else{
+		// 	var value  = this;
+		// 	id     = value.id;
+		// }
+
+		var checkIdExists = FlowRouter.getQueryParam('id');
+		if(checkIdExists){
+			id = checkIdExists;
 		}else{
 			var value  = this;
 			id     = value.id;
