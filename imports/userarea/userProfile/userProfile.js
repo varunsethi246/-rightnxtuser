@@ -102,7 +102,6 @@ Template.userProfile.helpers({
 					id = produceURLid(checkIdExists[2]);
 				}
 			}
-			// console.log('userprofile|'+id+'|');
 	
 			if(id){
 				var data = Meteor.users.findOne({"_id":id},{"profile":1});
@@ -147,8 +146,6 @@ Template.userProfile.helpers({
 						data.followButton = 'hideFollowButton';
 					}else{
 						data.followButton = '';
-						data.followButtonText 	= "Follow";
-						data.followButtonClass = "";
 						var verifyFollow = FollowUser.findOne({
 																"userId": Meteor.userId(),
 																"followUserId": data._id
@@ -156,6 +153,9 @@ Template.userProfile.helpers({
 						if(verifyFollow){
 							data.followButtonText 	= "Following";
 							data.followButtonClass = "alreadyFollowing";
+						}else{
+							data.followButtonText 	= "Follow";
+							data.followButtonClass = "";
 						}
 					}
 
