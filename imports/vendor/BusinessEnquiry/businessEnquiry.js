@@ -11,7 +11,7 @@ import { EnquiryImage } from '/imports/videoUploadClient/enquiryImageClient.js';
 import ImageCompressor from 'image-compressor.js';
 
 import './businessEnquiry.html';
-// import './businessEnqValidation.js';
+import './businessEnqValidation.js';
 
 var filesM = [];
 
@@ -132,7 +132,7 @@ Template.businessEnquiry.events({
         var userId = Meteor.userId();
         if (userId) {
             $('.enquiryDesc').val('');
-            $('.ErrorRedText').hide();
+            $('.ErrorRedText').text('');
             $('.vEnqModalC').removeClass('SpanLandLineRedBorder');
         }else{
             $('.enquiryName').val('');
@@ -140,7 +140,7 @@ Template.businessEnquiry.events({
             $('.enquiryPhone').val('');
             $('.enquiryName').val('');
             $('.enquiryEmail').val('');
-            $('.ErrorRedText').hide();
+            $('.ErrorRedText').text('');
             $('.vEnqModalC').removeClass('SpanLandLineRedBorder');
         }
         if(filesM.length > 0){
