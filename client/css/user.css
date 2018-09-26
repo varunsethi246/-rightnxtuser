@@ -4120,9 +4120,16 @@ display:none
 .venq {
 overflow:hidden!important
 }
-
+/*
 .notifRowBunch:hover .deleteTrash {
 display:inline-block
+}*/
+.NoNotifi{
+        text-align: center;
+    padding-top: 10px;
+}
+.notifRowBunch .deleteTrash {
+display:inline-block;
 }
 .notifRowBunch{
     padding: 0;

@@ -75,7 +75,7 @@ Template.ViewAllNotif.helpers({
       	var userId = Meteor.userId();
       	
 		var userDetail = Meteor.users.findOne({'_id':userId});
-		var notifArr = ["Vendor Modal Image Report", "Vendor Modal Image Report", "business-report-acknowledged", "business-image-report-acknowledged", "User Modal Image Report", "Admin Business Page Modal Report", "Admin Business Page Modal Report", "Vendor Business Page Bookmark", "Vendor Business Page Bookmark", "User Business Page Bookmark", "Vendor Business Page Been There", "Vendor Business Page Been There", "User Business Page Been There", "Business Page Share", "Vendor Business Page Report", "Vendor Business Page Report", "Vendor Business Page Report", "User Business Page Report", "Admin Business Page Report", "Admin Business Page Report", "You have been Tagged", "You have been Tagged", "Delete Business Admin", "Delete Business Admin", "Delete Business Vendor", "Delete Business Vendor", "Anything Else Business Admin", "Anything Else Business Admin", "Thanks for Submiting Offer", "Thanks for Submiting Offer", "Vendor has Submiting Offer", "Vendor has Submiting Offer", "Payment Received", "Payment Received", "Vendor Paid for Offer", "Vendor Paid for Offer", "Offer Deleted", "Offer Deleted", "Vendor deleted Offer", "Vendor deleted Offer", "Vendor Message Send", "Thanks for Registering New Business", "Thanks for Registering New Business", "Vendor Added New Business", "Vendor Added New Business"];
+		var notifArr = ["businessDone-report-acknowledgedOne","Payment Successfull","Invoice","Mail Receipt","User Enquiry Messages","Vendor Enquiry Message","Claim","Vendor Modal Image Report", "Vendor Modal Image Report", "business-report-acknowledged", "business-image-report-acknowledged", "User Modal Image Report", "Admin Business Page Modal Report", "Admin Business Page Modal Report", "Vendor Business Page Bookmark", "Vendor Business Page Bookmark", "User Business Page Bookmark", "Vendor Business Page Been There", "Vendor Business Page Been There", "User Business Page Been There", "Business Page Share", "Vendor Business Page Report", "Vendor Business Page Report", "Vendor Business Page Report", "User Business Page Report", "Admin Business Page Report", "Admin Business Page Report", "You have been Tagged", "You have been Tagged", "Delete Business Admin", "Delete Business Admin", "Delete Business Vendor", "Delete Business Vendor", "Anything Else Business Admin", "Anything Else Business Admin", "Thanks for Submiting Offer", "Thanks for Submiting Offer", "Vendor has Submiting Offer", "Vendor has Submiting Offer", "Payment Received", "Payment Received", "Vendor Paid for Offer", "Vendor Paid for Offer", "Offer Deleted", "Offer Deleted", "Vendor deleted Offer", "Vendor deleted Offer", "Vendor Message Send", "Thanks for Registering New Business", "Thanks for Registering New Business", "Vendor Added New Business", "Vendor Added New Business"];
 
 		if(userDetail.notificationConfiguration){
 			if(userDetail.notificationConfiguration.enquiry == "true"){
@@ -91,7 +91,7 @@ Template.ViewAllNotif.helpers({
 				}
 			}
 			if(userDetail.notificationConfiguration.follow == "true"){
-				var arr = ["Follow User Other", "Follow User Other", "Follow User Current"];
+				var arr = ["Follow User Other", "Follow User Other", "Follow User Current","Follow","UnFollow"];
 				for(j=0;j<arr.length;j++){
 					notifArr.push(arr[j]);
 				}
@@ -131,10 +131,11 @@ Template.ViewAllNotif.helpers({
               'timestamp'       : notifDetails[i].timestamp,
               'statusBackground': statusClass,
               'createdAt'       : createdAt,
+              'count'			: i+1,
             })
           }//i
         }//notifDetails
-        // console.log('notifArray :',notifArray);
+        console.log('notifArray :',notifArray);
       return notifArray;
   },
  //  'AllnotifCounts':function(){
