@@ -18,15 +18,15 @@ import './userSidebar.html';
 Template.userSidebar.onRendered(()=>{
 	var urlLinks = FlowRouter.current().path;
 	var urlLink = urlLinks.split('/');
-	console.log(urlLink[1]);
+	// console.log(urlLink[1]);
 	if (urlLink[1]) {
-	console.log(urlLink[1]);
+	// console.log(urlLink[1]);
 
 		var linkUrl = $('.'+urlLink[1]).parent().attr('data-target');
-		console.log(linkUrl);
+		// console.log(linkUrl);
 		// console.log($('.userMenuItem').addClass('active'));
 		if (linkUrl) {
-			console.log('if');
+			// console.log('if');
 			$('.'+linkUrl).addClass('active');
 			// $('.userMenuItem')
 		}

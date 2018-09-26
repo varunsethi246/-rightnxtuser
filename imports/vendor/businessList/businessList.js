@@ -37,6 +37,11 @@ Template.allbusinessList.onCreated(function(){
 });
 
 Template.businessList.onRendered(function(){
+	$(window).on('popstate', function() {
+	    $('.modal').modal('hide');
+	    $('.modal-backdrop').hide();
+	});
+	
     $("html,body").scrollTop(0);
 
 	$('.mapViewBusList').hide();

@@ -91,6 +91,13 @@ Template.anonymousUserLayout.events({
     },
 });
 
+Template.anonymousUserLayout.onRendered(function(){
+  $(window).on('popstate', function() {
+    $('.modal').modal('hide');
+    $('.modal-backdrop').hide();
+  });
+});
+
 Homepage = function () {  
   BlazeLayout.render("anonymousUserLayout",{main: 'homepage'});
 }
