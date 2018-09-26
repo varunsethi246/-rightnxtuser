@@ -54,12 +54,12 @@ Meteor.methods({
 				console.log("userInfo.emails:",userInfo.emails);
 				Meteor.users.update(
 					{'_id': newId},
-					{$push:
-						{"emails":{
-									"address"  : userInfo.services.facebook.email,
-									"verified" : true
-								  }
+					{$set:
+						{
+							"profile.status"  : 'Active',
+							// "verified" : true
 						}
+						
 					},
 					function(error,result){
 						if(error){
