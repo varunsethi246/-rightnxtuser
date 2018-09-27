@@ -129,6 +129,8 @@ Template.businessEnquiry.events({
         }
     },
     'click .enqSendClose':function(event){
+        event.preventDefault();
+        console.log(filesM.length);
         var userId = Meteor.userId();
         if (userId) {
             $('.enquiryDesc').val('');
@@ -147,6 +149,11 @@ Template.businessEnquiry.events({
             $('.showEnquiryImg').find('span').empty(); 
             $( '<i class="fa fa-camera fa-5x" aria-hidden="true"></i>').appendTo( ".showEnquiryImg" );
             $('.enquiryPhoto').val('');
+        }
+        if(filesM.length == 0){
+            $('.showEnquiryImgAll').find('span').empty(); 
+            $( '<i class="fa fa-camera fa-5x" aria-hidden="true"></i>').appendTo( ".showEnquiryImgAll" );
+            $('.enquiryPhotoAll').val('');
         }
     },
     'change .enquiryPhoto' : function(event){
@@ -348,27 +355,27 @@ Template.businessEnquiry.events({
 
                                                     sendMailNotification(inputObj);
 
-                                                    if(businessData.ownerMobile){
-                                                        var userId        = enquiryData.enquirySentBy;
-                                                        var userVar       = Meteor.users.findOne({'_id':userId});
+                                                    // if(businessData.ownerMobile){
+                                                    //     var userId        = enquiryData.enquirySentBy;
+                                                    //     var userVar       = Meteor.users.findOne({'_id':userId});
                                                         
-                                                        var msgvariable = {
-                                                                    '[username]'            : vendorname,
-                                                                    '[businessTitle]'       : businessData.businessTitle,
-                                                                    '[enquiryName]'         : userDetail.profile.name,
-                                                                    '[enquiryEmail]'        : enquiryEmail,
-                                                                    '[enquiryPhoneTwo]'     : enquiryPhoneTwo,
-                                                                    '[enquiryDesc]'         : enquiryDesc,
-                                                                    '[enquiryUserName]'     : userVar.profile.name,
-                                                                    };
-                                                        var inputObj = {
-                                                            to           : userDetail._id,
-                                                            templateName : 'Vendor Business Enquiry',
-                                                            number       : businessData.businessMobile,
-                                                            variables    : msgvariable,
-                                                        }
-                                                        sendSMS(inputObj);
-                                                    }
+                                                    //     var msgvariable = {
+                                                    //                 '[username]'            : vendorname,
+                                                    //                 '[businessTitle]'       : businessData.businessTitle,
+                                                    //                 '[enquiryName]'         : userDetail.profile.name,
+                                                    //                 '[enquiryEmail]'        : enquiryEmail,
+                                                    //                 '[enquiryPhoneTwo]'     : enquiryPhoneTwo,
+                                                    //                 '[enquiryDesc]'         : enquiryDesc,
+                                                    //                 '[enquiryUserName]'     : userVar.profile.name,
+                                                    //                 };
+                                                    //     var inputObj = {
+                                                    //         to           : userDetail._id,
+                                                    //         templateName : 'Vendor Business Enquiry',
+                                                    //         number       : businessData.businessMobile,
+                                                    //         variables    : msgvariable,
+                                                    //     }
+                                                    //     sendSMS(inputObj);
+                                                    // }
                                                     
                                             }//userDetail
                                         }//businessData 
@@ -495,27 +502,27 @@ Template.businessEnquiry.events({
                                     }
                                     sendMailNotification(inputObj); 
 
-                                    if(businessData.ownerMobile){
-                                        var userId        = enquiryData.enquirySentBy;
-                                        var userVar       = Meteor.users.findOne({'_id':userId});
+                                    // if(businessData.ownerMobile){
+                                    //     var userId        = enquiryData.enquirySentBy;
+                                    //     var userVar       = Meteor.users.findOne({'_id':userId});
                                         
-                                        var msgvariable = {
-                                                    '[username]'            : vendorname,
-                                                    '[businessTitle]'       : businessData.businessTitle,
-                                                    '[enquiryName]'         : userDetail.profile.name,
-                                                    '[enquiryEmail]'        : enquiryEmail,
-                                                    '[enquiryPhoneTwo]'     : enquiryPhoneTwo,
-                                                    '[enquiryDesc]'         : enquiryDesc,
-                                                    '[enquiryUserName]'     : userVar.profile.name,
-                                                    };
-                                        var inputObj = {
-                                            to           : userDetail._id,
-                                            templateName : 'Vendor Business Enquiry',
-                                            number       : businessData.businessMobile,
-                                            variables    : msgvariable,
-                                        }
-                                        sendSMS(inputObj);
-                                    } 
+                                    //     var msgvariable = {
+                                    //                 '[username]'            : vendorname,
+                                    //                 '[businessTitle]'       : businessData.businessTitle,
+                                    //                 '[enquiryName]'         : userDetail.profile.name,
+                                    //                 '[enquiryEmail]'        : enquiryEmail,
+                                    //                 '[enquiryPhoneTwo]'     : enquiryPhoneTwo,
+                                    //                 '[enquiryDesc]'         : enquiryDesc,
+                                    //                 '[enquiryUserName]'     : userVar.profile.name,
+                                    //                 };
+                                    //     var inputObj = {
+                                    //         to           : userDetail._id,
+                                    //         templateName : 'Vendor Business Enquiry',
+                                    //         number       : businessData.businessMobile,
+                                    //         variables    : msgvariable,
+                                    //     }
+                                    //     sendSMS(inputObj);
+                                    // } 
                                 }//userDetail
                             }//businessData 
 
