@@ -255,6 +255,64 @@ Template.rightSidebarBusList.helpers({
 var filesM = [];
 
 Template.allbusinessList.events({
+	'change .enquiryPhoto' : function(event){
+        event.preventDefault();
+
+        filesM = event.target.files; // FileList object
+        $('.showEnquiryImg').empty(); 
+        // Loop through the FileList and render image files as thumbnails.
+    
+        for (var i = 0, f; f = filesM[i]; i++) {
+            // Only process image files.
+            if (!f.type.match('image.*')) {
+                continue;
+            }
+
+            var reader = new FileReader();
+            // Closure to capture the file information.
+            reader.onload = ((theFile) =>{
+
+                return function(e) {
+                    // Render thumbnail.
+                    var span = document.createElement('span');
+                    span.innerHTML = ['<img class="draggedImgenq img-responsive" src="', e.target.result,
+                                  '" title="', escape(theFile.name), '"/>'].join('');
+                    document.getElementById('showEnquiryImgId').insertBefore(span, null);
+                };
+            })(f); //end of onload
+
+            // Read in the image file as a data URL.
+            reader.readAsDataURL(f);
+        }// end of for loop
+            if (filesM.length == 0){
+            	console.log(filesM.length);
+                $( '<i class="fa fa-camera fa-5x" aria-hidden="true"></i>').appendTo( ".showEnquiryImg" );
+            }
+
+    },
+	'click .enqSendClose':function(event){
+        event.preventDefault();
+
+        var userId = Meteor.userId();
+        if (userId) {
+            $('.enquiryDesc').val('');
+            $('.ErrorRedText').text('');
+            $('.vEnqModalC').removeClass('SpanLandLineRedBorder');
+        }else{
+            $('.enquiryName').val('');
+            $('.enquiryDesc').val('');
+            $('.enquiryPhone').val('');
+            $('.enquiryName').val('');
+            $('.enquiryEmail').val('');
+            $('.ErrorRedText').text('');
+            $('.vEnqModalC').removeClass('SpanLandLineRedBorder');
+        }
+        if(filesM.length > 0){
+            $('.showEnquiryImg').find('span').empty(); 
+            $( '<i class="fa fa-camera fa-5x" aria-hidden="true"></i>').appendTo( ".showEnquiryImg" );
+            $('.enquiryPhoto').val('');
+        }
+    },
 	'click .listRelevance': function(){
 		$('.busListSelectedPre').removeClass('busListSelected');
 		$('.listRelevance').addClass('busListSelected');

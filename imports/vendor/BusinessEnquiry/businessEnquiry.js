@@ -150,6 +150,7 @@ Template.businessEnquiry.events({
         }
     },
     'change .enquiryPhoto' : function(event){
+        event.preventDefault();
         filesM = event.target.files; // FileList object
         $('.showEnquiryImg').empty(); 
         // Loop through the FileList and render image files as thumbnails.

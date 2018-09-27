@@ -16,7 +16,9 @@ src:url(/fonts/GOTHIC_0.ttf),url(/fonts/GOTHIC_0.eot)
 .dropmenu,.dropmenuGen {
 padding-left:0
 }
-
+.likeIconModal:hover{
+    color:orange;
+}
 .rowPad > .col-xs-12 > .col-xs-12 {
 padding-right:0;
 margin-top:15px;

@@ -445,6 +445,8 @@ Template.addReviewTemplate.events({
 	'click .publish2': function(event){
 		$('.openReview').hide();
 		$('.publishReview').show();
+		$('.passwordWrongSpan').css('display','block');
+		
 
 	},
 
