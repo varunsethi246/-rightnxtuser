@@ -519,19 +519,22 @@ Template.findYourFriends.events({
 		// FacebookInviteFriends();
 		event.preventDefault();
 		
-		var path = window.location.href;
-		var splitPath = path.split('/');
-		var url = splitPath[2];
-		fbInvite(url);
+		// var path = window.location.href;
+		// var splitPath = path.split('/');
+		// var url = splitPath[2];
+		// fbInvite(url);
+
+		Bert.alert('This functionality will be updated soon.','danger','growl-top-right');
 
 	},
 
 	'click .Googleimport':function(event){
+		event.preventDefault();
 		// auth();
 
-  		gapi.client.setApiKey('xZ9z80V4EOGqiA1T1wjujWgo');
-   		window.setTimeout(checkAuth, 3);
-
+  		// gapi.client.setApiKey('xZ9z80V4EOGqiA1T1wjujWgo');
+   		// 	window.setTimeout(checkAuth, 3);
+		Bert.alert('This functionality will be updated soon.','danger','growl-top-right');
 	},
 
 	'focus #userSearch': function(){

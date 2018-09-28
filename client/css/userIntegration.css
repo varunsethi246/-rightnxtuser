@@ -73,7 +73,7 @@ padding:0!important
 background-color:transparent!important
 }
 
-.FBbTn button,.FBbTn button:hover, .FBbTn button:active {
+.FBbTn button,.FBbTn button:hover, .FBbTn button:active,.FBbTn button:focus {
 padding:0 57px 0 86px;
 margin:0;
 border:0;

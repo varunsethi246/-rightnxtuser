@@ -321,17 +321,20 @@ Template.userEnquiryPage.helpers({
 					if(enqData.enquiryDesc[i].commentImage != ''){
 						var enquiryImage = EnquiryImage.findOne({"_id":enqData.enquiryDesc[i].commentImage});
 						if(enquiryImage){
-							if(enquiryImage.type == 'image/png'){
-								enqData.enquiryDesc[i].checkpngImg = 'bkgImgNone';
-							}else{
-								enqData.enquiryDesc[i].checkpngImg = '';
-							}
+							// if(enquiryImage.type == 'image/png'){
+							// 	enqData.enquiryDesc[i].checkpngImg = 'bkgImgNone';
+							// }else{
+							// 	enqData.enquiryDesc[i].checkpngImg = '';
+							// }
+							enqData.enquiryDesc[i].checkpngImg = 'bkgImgNone';
 							enqData.enquiryDesc[i].enquiryPhoto = enquiryImage.link();
 							enqData.enquiryDesc[i].enquiryImgVal = true;
 						}else{
+							enqData.enquiryDesc[i].checkpngImg = '';
 							enqData.enquiryDesc[i].enquiryImgVal = false;
 						}
 					}else{
+						enqData.enquiryDesc[i].checkpngImg = '';
 						enqData.enquiryDesc[i].enquiryImgVal = false;
 					}
 

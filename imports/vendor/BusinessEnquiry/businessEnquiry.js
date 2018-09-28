@@ -130,7 +130,7 @@ Template.businessEnquiry.events({
     },
     'click .enqSendClose':function(event){
         event.preventDefault();
-        console.log(filesM.length);
+        // console.log(filesM.length);
         var userId = Meteor.userId();
         if (userId) {
             $('.enquiryDesc').val('');

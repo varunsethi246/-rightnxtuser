@@ -230,8 +230,8 @@ Template.userProfile.events({
 	    // event.preventDefault();
 	    if(event.currentTarget.files[0]){  
 	    	// console.log(event.currentTarget.files[0].size);
-	    	$('#userPic').removeClass('bkgImgNone');
-	    	$('#userPic').attr('src','');
+	    	// $('#userPic').removeClass('bkgImgNone');
+	    	// $('#userPic').attr('src','');
 	    	const imageCompressor = new ImageCompressor();
 
 			imageCompressor.compress(event.currentTarget.files[0])
