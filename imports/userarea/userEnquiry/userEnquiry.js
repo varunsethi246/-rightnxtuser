@@ -12,24 +12,12 @@ import './userEnquiry.html';
 import './userEnquiryDetails.html';
 import './userEnquiryPage.html';
 
-// Template.chatRowTemplate.onRendered(function(){
-// 	console.log("chatRowTemplate Rendered");
-// 	console.log('scrollTop :',$('.chatRow').last().scrollTop());
-// 			console.log($('.vEnqFormImgOne').height() );
-	
-// 	// console.log('scrollHeight :',$('.chatRow')[0].scrollHeight());
-// 	$('.chatRow').last().scrollTop($('.chatRow')[0].scrollHeight);
-// });
-
-// Template.userEnquiryDetails.onCreated(function(){
-// 	$('.chatRow').last().scrollTop($('.chatRow')[0].scrollHeight);
-// });
-var scrollBottom = $('.vEnqFormImgOne').scrollTop() + $(window).height();
-$('.vEnqFormImgOne').animate({scrollTop: scrollBottom},"fast");
 
 Template.userEnquiryDetails.onRendered(function(){
-	var scrollBottom = $('.vEnqFormImgOne').scrollTop() + $(window).height();
-	$('.vEnqFormImgOne').animate({scrollTop: scrollBottom},"fast");
+	if(Session.get("EnqIDSes")){
+		var scrollBottom = $('.vEnqFormImgOne').scrollTop() + $(window).height();
+        $('.vEnqFormImgOne').animate({scrollTop: scrollBottom + 2000},"fast");
+	}
 });
 
 Template.userEnquiryPage.onRendered(function(){
@@ -389,7 +377,7 @@ Template.userEnquiry.events({
 
 	'click .readEnClass':function(event){
 		var scrollBottom = $('.vEnqFormImgOne').scrollTop() + $(window).height();
-        $('.vEnqFormImgOne').animate({scrollTop: scrollBottom + 1000},"fast");
+        $('.vEnqFormImgOne').animate({scrollTop: scrollBottom + 2000},"fast");
 
 		var windowWidth = $(window).width();
 		if(windowWidth >= 320 && windowWidth <= 767){
@@ -413,15 +401,11 @@ Template.userEnquiry.events({
 	'click .flagEnquiry':function(event){
 		var thisFlag = event.currentTarget;
 		id = $(thisFlag).parent().parent().attr('id');
-		var scrollBottom = $('.vEnqFormImgOne').scrollTop() + $(window).height();
-        $('.vEnqFormImgOne').animate({scrollTop: scrollBottom + 2000},"fast");
 		Meteor.call('updateEnquiryForUserFlag',id,'noflag',function(err,rslt){});
 	},
 	'click .noflagEnquiry':function(event){
 		var thisFlag = event.currentTarget;
 		id = $(thisFlag).parent().parent().attr('id');
-		var scrollBottom = $('.vEnqFormImgOne').scrollTop() + $(window).height();
-        $('.vEnqFormImgOne').animate({scrollTop: scrollBottom + 2000},"fast");
 		Meteor.call('updateEnquiryForUserFlag',id,'flag',function(err,rslt){});
 	},
 	'click .deleteEnqBtn': function(event){
@@ -466,20 +450,6 @@ Template.userEnquiry.events({
 var filesM = [];
 
 Template.userEnquiryPage.events({
-	'click .vEnqAllC':function(event){
-		var scrollBottom = $('.vEnqFormImgOne').scrollTop() + $(window).height();
-        $('.vEnqFormImgOne').animate({scrollTop: scrollBottom + 2000},"fast");
-	},
-	"click .readEnClass": function(event){
-		// $(".vEnqFormImgOne").ready(function(){
-		// 	console.log($('.vEnqFormImgOne').height() );
-		// 	$('.chatRow').last().scrollTop(1000);
-		// });	
-		var scrollBottom = $('.vEnqFormImgOne').scrollTop() + $(window).height();
-        $('.vEnqFormImgOne').animate({scrollTop: scrollBottom + 2000},"fast");	
-	},
-
-
 	"keyup .userEnquiryFormSearch": _.throttle(function(e) {
 	    var text = $(e.target).val().trim();
 	    Session.set("nameKeyUser",text);
