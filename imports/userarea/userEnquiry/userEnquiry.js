@@ -388,25 +388,25 @@ Template.userEnquiry.events({
 	// Read, Unread enquiry: done
 
 	'click .readEnClass':function(event){
+		var scrollBottom = $('.vEnqFormImgOne').scrollTop() + $(window).height();
+        $('.vEnqFormImgOne').animate({scrollTop: scrollBottom + 1000},"fast");
+
+		var windowWidth = $(window).width();
+		if(windowWidth >= 320 && windowWidth <= 767){
+			$('html, body').animate({
+		        'scrollTop' : $("#vScrollToEnquiry").position().top
+		    });
+		}
+
 		var thisrow = event.currentTarget;
 		var id = $(thisrow).parent().attr('id');
 		Session.set("EnqIDSes",id);
-		var windowWidth = $(window).width();
-   //      if(windowWidth <= 1200){		
-			// $('html, body').animate({
-	  //  		     scrollTop: $('.vendorEnqDetailsScroll').offset().top
-	  //     		}, 1000,
-	  // 		);	
-   //      }
 
 		$('.vEnqRowTwo').removeClass('selectedEnq');
 		$("#"+id).addClass('selectedEnqRead');
 		$("#"+id).addClass('selectedEnq');
-		var scrollBottom = $('.vEnqFormImgOne').scrollTop() + $(window).height();
-        $('.vEnqFormImgOne').animate({scrollTop: scrollBottom + 2000},"fast");
-
+		
 		Meteor.call('updateEnquiryForUserRead',id,'read',function(err,rslt){});
-
 	},
 	
 	// Flag, Unflag and Delete Enquiry Events: done
