@@ -214,17 +214,6 @@ Template.imageCommet.helpers({
 											"replyId" 		: (commentDetails[i].imgMultiComment[j].replyId).toString(),
 										};
 									var checkCommentLike =  ImageCommentLike.findOne(selector);
-									// var checkCommentLike =  ImageCommentLike.find({}).fetch();
-									// console.log("checkCommentLike: ",checkCommentLike);
-									// console.log("checkCommentLike selector: ",selector);
-
-									// if(checkCommentLike){
-									// 	commentDetails[i].imgMultiComment[j].replyLikeUnlike = true;	
-									// }else{
-									// 	commentDetails[i].imgMultiComment[j].replyLikeUnlike = false;
-									// }
-
-									// console.log("commentDetails[i].businessLink: "+commentDetails[i].businessLink+"\n commentDetails[i]._id: "+commentDetails[i]._id+"\n commentDetails[i].imgId: "+commentDetails[i].imgId+"\n commentDetails[i].imgMultiComment[j].userId: "+commentDetails[i].imgMultiComment[j].userId+"\n commentDetails[i].imgMultiComment[j].replyId: "+commentDetails[i].imgMultiComment[j].replyId);
 									
 									var commentLikeCount = ImageCommentLike.find({
 																"businessLink"	: commentDetails[i].businessLink,
@@ -236,7 +225,6 @@ Template.imageCommet.helpers({
 
 									
 
-									// console.log("commentLikeCount: ",commentLikeCount);
 
 									if(commentLikeCount){
 										commentDetails[i].imgMultiComment[j].commentReplyLikeCount = commentLikeCount.length;
@@ -331,7 +319,6 @@ Template.imageReportModal.events({
 					Meteor.call('insertreports',formValues, function(error,result){
 							if(error){
 								Bert.alert('error while inserting data','danger','growl-top-right');
-								// console.log(error);
 							}else{
 								Bert.alert('Report Submitted !','success','growl-top-right');
 			                  
@@ -347,10 +334,7 @@ Template.imageReportModal.events({
 							    	var adminId = admin._id;
 							    }
 
-							    // console.log("formValues: ",formValues);
-							    // console.log("businessurl: ",formValues.businessLink);
 								var businessData = Business.findOne({"businessLink":formValues.businessLink});
-								// console.log("businessData: ",businessData);
 								if(businessData){
 									var vendorId = businessData.businessOwnerId;
 	                				var vendorDetail = Meteor.users.findOne({'_id':vendorId});
@@ -425,7 +409,7 @@ Template.imageReportModal.events({
 				                        var currentDate = moment(date).format('DD/MM/YYYY');
 				                        var msgvariable = {
 				                           '[username]'   	: username,
-				                           '[adminname]'    : admin.profile.firstName,
+				                           '[adminname]'    : 'Admin',
 				                           '[currentDate]'  : currentDate,
 				                           '[businessName]' : businessData.businessTitle,
 			   							   '[reason]' 		: formValues.selectImageReport,
@@ -558,8 +542,6 @@ Template.imageReports.helpers({
 						}//if pic
 						else{
 							var picreview = ReviewImage.findOne({"_id":business.businessImages[i].img});
-							// console.log("picreview: ",picreview);
-							// console.log("picId: ",picId);
 							if(picreview){
 								if(picreview._id == picId){
 									newObj.img 			=  picreview.link() ;
@@ -1559,7 +1541,6 @@ Template.imageCommet.events({
 		var commentUser =   $(event.currentTarget).attr('data-likeDocId'); 
 		var userIdReply =   $(event.currentTarget).attr('data-userIdReply'); 
 		var userIdComment =   $(event.currentTarget).attr('data-userIdComment'); 
-		console.log("commentUser id reply: ",commentUser);
 
 		var formValues = {
 			"userId" 				: userId,

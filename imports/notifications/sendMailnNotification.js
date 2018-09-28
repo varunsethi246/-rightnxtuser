@@ -12,12 +12,9 @@ import { NotificationTemplate } from '../api/NotificationTemplate.js';
 //  Mail Function
 //============================================================
 sendMailNotification = function(inputObj) {
-	// console.log("sendMailNotification: ",sendMailNotification);
-	// console.log('inputObj Mail');
 	
 	if(inputObj){
 		var userDetail = Meteor.users.findOne({'_id':inputObj.to});
-		// console.log('userDetail :',userDetail);
 		var enquiry = ["User Enquiry Message", "User Enquiry Messages","Vendor Enquiry Message", "Vendor Business Enquiry", "User Business Enquiry", "Enquiry Message Send", "User Business Enquiry All"];
 		var rating = ["Vendor Review and Rating", "User Review and Rating", "User Added Review and Rating", "Business Page Review Share"];
 		var like = ["Vendor Modal Image Like", "User Modal Image Like", "Vendor Modal Image Comment Like", "User Modal Image Added Comment Like", "User Modal Image Comment Like", "Vendor Modal Image Comment Reply Like", "User Modal Image Added Comment Reply Like", "User Modal Image Added Comment SubReply Like", "User Modal Image Comment SubReply Like", "Vendor Business Page Like", "User Business Page Like", "Vendor Review and Rating Like", "Other User Review and Rating Like", "Current User Review and Rating Like", "Vendor Review Comment Like", "User Comment Review and Rating Like", "User Review Comment Like", "Current User Review Comment Like", "Vendor Review Comment SubReply Like", "User Added Review and Rating SubReply Like", "User Review Comment SubReply Like", "User Added Review Reply SubReply Like", "Current User Review Comment Reply Like"];
@@ -141,20 +138,33 @@ sendMailNotification = function(inputObj) {
 						});
 					}
 				}
-			}
-			if(other.includes(inputObj.templateName)){
+				if(other.includes(inputObj.templateName)){
+					var fromId 	= getMailId(inputObj.from);
+					var to 		= getMailId(inputObj.to);  
+					var subject	= getSubject(inputObj.templateName);
+					var body	= getMessageContent(inputObj.templateName,inputObj.variables);
+					Meteor.call('sendEmailRightNxt',to, fromId, subject, body,function(error,result){
+						if(error){
+							Bert.alert(error,'danger', 'growl-top-right');
+						}else{
+							console.log('Mail Sent','success', 'growl-top-right');
+								
+						}
+					});
+				}
+			}else{
 				var fromId 	= getMailId(inputObj.from);
-				var to 		= getMailId(inputObj.to);  
-				var subject	= getSubject(inputObj.templateName);
-				var body	= getMessageContent(inputObj.templateName,inputObj.variables);
-				Meteor.call('sendEmailRightNxt',to, fromId, subject, body,function(error,result){
-					if(error){
-						Bert.alert(error,'danger', 'growl-top-right');
-					}else{
-						console.log('Mail Sent','success', 'growl-top-right');
-							
-					}
-				});
+					var to 		= getMailId(inputObj.to);  
+					var subject	= getSubject(inputObj.templateName);
+					var body	= getMessageContent(inputObj.templateName,inputObj.variables);
+					Meteor.call('sendEmailRightNxt',to, fromId, subject, body,function(error,result){
+						if(error){
+							Bert.alert(error,'danger', 'growl-top-right');
+						}else{
+							console.log('Mail Sent','success', 'growl-top-right');
+								
+						}
+					});
 			}
 		}else{
 			// console.log('user detail not found:');
@@ -210,10 +220,8 @@ sendPageShareMail = function(inputObj) {
 //  Notification Function
 //============================================================
 sendInAppNotification = function(inputObj) {
-	// console.log('inputObjIn app:',inputObj);
 	if(inputObj){
 		var userDetail = Meteor.users.findOne({'_id':inputObj.to});
-		// console.log('userDetail :',userDetail);
 		var enquiry = ["User Enquiry Message", "User Enquiry Messages","Vendor Enquiry Message", "Vendor Business Enquiry", "User Business Enquiry", "Enquiry Message Send", "User Business Enquiry All"];
 		var rating = ["Vendor Review and Rating", "User Review and Rating", "User Added Review and Rating", "Business Page Review Share"];
 		var like = ["Vendor Modal Image Like", "User Modal Image Like", "Vendor Modal Image Comment Like", "User Modal Image Added Comment Like", "User Modal Image Comment Like", "Vendor Modal Image Comment Reply Like", "User Modal Image Added Comment Reply Like", "User Modal Image Added Comment SubReply Like", "User Modal Image Comment SubReply Like", "Vendor Business Page Like", "User Business Page Like", "Vendor Review and Rating Like", "Other User Review and Rating Like", "Current User Review and Rating Like", "Vendor Review Comment Like", "User Comment Review and Rating Like", "User Review Comment Like", "Current User Review Comment Like", "Vendor Review Comment SubReply Like", "User Added Review and Rating SubReply Like", "User Review Comment SubReply Like", "User Added Review Reply SubReply Like", "Current User Review Comment Reply Like"];
@@ -224,13 +232,14 @@ sendInAppNotification = function(inputObj) {
 		var other = ['Vendor deleted Offer','Vendor Added New Business','Admin Business Page Modal Report','Vendor Business Page Bookmark','User Business Page Been There','User Business Page Report','User Modal Image Report','Payment Successfull','Thanks for Registering','Vendor Business Page Been There','Offer Deleted','Vendor Business Page Report','Thanks for Submiting Offer','Vendor has Submiting Offer','Vendor Modal Image Report','Invoice','Admin Business Page Report','User Business Page Bookmark','You have been Tagged','Thanks for Registering New Business','Anything Else Business Admin','UnFollow','Mail Receipt','Claim','Business Page Share'];
 		
 		if(userDetail){
+
 			if(userDetail.notificationConfiguration){
 				var notifBody    = getNotificationContent(inputObj.templateName,inputObj.variables);
 				var toMailId     = getMailId(inputObj.to); 
 				var toUserId     = inputObj.to;
 				var templateName = inputObj.templateName;
 				var notifPath    = inputObj.notifPath;
-
+				// console.log('notifBody user ==>',notifBody);
 				if(enquiry.includes(inputObj.templateName)){
 					if(userDetail.notificationConfiguration.enquiry == "true"){
 						Meteor.call('insertNotification',templateName,toMailId,toUserId,notifBody,notifPath,function(error,result){
@@ -302,15 +311,32 @@ sendInAppNotification = function(inputObj) {
 						});
 					}
 				} 
+				if(other.includes(inputObj.templateName)){
+					Meteor.call('insertNotification',templateName,toMailId,toUserId,notifBody,notifPath,function(error,result){
+						if(error){
+							console.log(error,'danger', 'growl-top-right');
+						}else if(result){
+							console.log("Notification sent",'success', 'growl-top-right');
+						}
+					});
+				}
 			}
-			if(other.includes(inputObj.templateName)){
-				Meteor.call('insertNotification',templateName,toMailId,toUserId,notifBody,notifPath,function(error,result){
-					if(error){
-						console.log(error,'danger', 'growl-top-right');
-					}else if(result){
-						console.log("Notification sent",'success', 'growl-top-right');
-					}
-				});
+			else{
+				var notifBody    = getNotificationContent(inputObj.templateName,inputObj.variables);
+				var toMailId     = getMailId(inputObj.to); 
+				var toUserId     = inputObj.to;
+				var templateName = inputObj.templateName;
+				var notifPath    = inputObj.notifPath;
+			
+						Meteor.call('insertNotification',templateName,toMailId,toUserId,notifBody,notifPath,function(error,result){
+							if(error){
+								console.log(error,'danger', 'growl-top-right');
+							}else if(result){
+
+								console.log("Notification sent",'success', 'growl-top-right');
+							}
+						});
+		
 			}
 		}
 	}
@@ -398,8 +424,6 @@ getSubject = function(templateName){
 //  Get Sending Mail Message Function
 //============================================================
 getMessageContent = function(templateName,varObj){
-	
-	// get all content from templatename
 	var NotificationData = NotificationTemplate.findOne({"templateType" : "Email",'templateName':templateName});
 	
 	if(NotificationData){
@@ -430,8 +454,6 @@ getMessageContent = function(templateName,varObj){
 }
 
 getSMSContent = function(templateName,varObj){
-	// get all content from templatename
-	
 	var NotificationData = NotificationTemplate.findOne({"templateType" : "SMS",'templateName':templateName});
 	if(NotificationData){
 		var content = NotificationData.content;
@@ -469,7 +491,6 @@ getNotificationContent = function(templateName,varObj){
 		var content = NotificationData.content;
 		content = content.replace(/<p>/gm, " ");
 		content = content.replace(/<\/p>/gm, " ");
-		// content = content.replace(/<\/p>/gm, "");
 		content = content.replace(/<br>/gm, " ");
 		content = content.replace("&nbsp;", " ");		
 		var words = content.split(' ');
@@ -491,7 +512,6 @@ getNotificationContent = function(templateName,varObj){
 			content = content.replace(tokens[i],varObj[tokens[i]]);
 		}
 	}//NotificationData
-
 	return content;
 }
 

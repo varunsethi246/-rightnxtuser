@@ -25,7 +25,7 @@ Meteor.methods({
  'insertNotification' : function(eventName,toMailId,toUserId,notifBody,notifPath){
         // console.log('in method');
         var notifData = Notification.findOne({}, {sort: {notificationId: -1}});
-        // alert(notifData);
+        // alert('notifData +++',notifData);
         if(notifData){
         notificationId = notifData.notificationId + 1;
         }else{
