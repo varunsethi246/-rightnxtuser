@@ -137,8 +137,7 @@ sendMailNotification = function(inputObj) {
 							}
 						});
 					}
-				}
-				if(other.includes(inputObj.templateName)){
+				} else if(other.includes(inputObj.templateName)){
 					var fromId 	= getMailId(inputObj.from);
 					var to 		= getMailId(inputObj.to);  
 					var subject	= getSubject(inputObj.templateName);
@@ -154,17 +153,17 @@ sendMailNotification = function(inputObj) {
 				}
 			}else{
 				var fromId 	= getMailId(inputObj.from);
-					var to 		= getMailId(inputObj.to);  
-					var subject	= getSubject(inputObj.templateName);
-					var body	= getMessageContent(inputObj.templateName,inputObj.variables);
-					Meteor.call('sendEmailRightNxt',to, fromId, subject, body,function(error,result){
-						if(error){
-							Bert.alert(error,'danger', 'growl-top-right');
-						}else{
-							console.log('Mail Sent','success', 'growl-top-right');
-								
-						}
-					});
+				var to 		= getMailId(inputObj.to);  
+				var subject	= getSubject(inputObj.templateName);
+				var body	= getMessageContent(inputObj.templateName,inputObj.variables);
+				Meteor.call('sendEmailRightNxt',to, fromId, subject, body,function(error,result){
+					if(error){
+						Bert.alert(error,'danger', 'growl-top-right');
+					}else{
+						console.log('Mail Sent','success', 'growl-top-right');
+							
+					}
+				});
 			}
 		}else{
 			// console.log('user detail not found:');
@@ -310,8 +309,7 @@ sendInAppNotification = function(inputObj) {
 							}
 						});
 					}
-				} 
-				if(other.includes(inputObj.templateName)){
+				} else if(other.includes(inputObj.templateName)){
 					Meteor.call('insertNotification',templateName,toMailId,toUserId,notifBody,notifPath,function(error,result){
 						if(error){
 							console.log(error,'danger', 'growl-top-right');
@@ -320,22 +318,21 @@ sendInAppNotification = function(inputObj) {
 						}
 					});
 				}
-			}
-			else{
+			}else{
 				var notifBody    = getNotificationContent(inputObj.templateName,inputObj.variables);
 				var toMailId     = getMailId(inputObj.to); 
 				var toUserId     = inputObj.to;
 				var templateName = inputObj.templateName;
 				var notifPath    = inputObj.notifPath;
 			
-						Meteor.call('insertNotification',templateName,toMailId,toUserId,notifBody,notifPath,function(error,result){
-							if(error){
-								console.log(error,'danger', 'growl-top-right');
-							}else if(result){
+				Meteor.call('insertNotification',templateName,toMailId,toUserId,notifBody,notifPath,function(error,result){
+					if(error){
+						console.log(error,'danger', 'growl-top-right');
+					}else if(result){
 
-								console.log("Notification sent",'success', 'growl-top-right');
-							}
-						});
+						console.log("Notification sent",'success', 'growl-top-right');
+					}
+				});
 		
 			}
 		}

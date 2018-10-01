@@ -584,7 +584,7 @@ Template.userReviewSuggestion.events({
 	                    }
                 	}//userVar
               	}//followData 
-              	// $('.followII').hide();
+              	$('.followII').hide();
 
 			}
 		});
@@ -680,8 +680,11 @@ Template.userReviewSuggestion.helpers ({
 			if(currentUserObj){
 				if(currentUserObj.profile){
 					userCity = currentUserObj.profile.city;
-					var otherUsersData  = Meteor.users.find({"profile.city":userCity, "_id":{$ne: uid}, "roles":{$nin: [ 'admin', 'Vendor','Staff']}}).fetch();
-					// console.log('otherUsersData :',otherUsersData);
+					if(userCity){
+						var otherUsersData  = Meteor.users.find({"profile.city":userCity, "_id":{$ne: uid}, "roles":{$nin: [ 'admin', 'Vendor','Staff']}}).fetch();
+					}else{
+						var otherUsersData  = Meteor.users.find({"_id":{$ne: uid}, "roles":{$nin: [ 'admin', 'Vendor','Staff']}}).fetch();
+					}
 					if(otherUsersData && otherUsersData.length>0){
 						for(var i=0;i<otherUsersData.length;i++){
 							var name    = otherUsersData[i].profile.name;
@@ -694,7 +697,7 @@ Template.userReviewSuggestion.helpers ({
 							else{
 								otherUsersData[i].profile.userProfilePic = "/users/profile/profile_image_dummy.svg";	
 							}
-							var followUser = FollowUser.findOne({'userId':id , 'followUserId':id});
+							var followUser = FollowUser.findOne({'userId': currentUserObj._id, 'followUserId':id});
 							if(!followUser){
 								var followerCount = FollowUser.find({'followUserId': id}).count();
 								var reviewCount   = Review.find({'userId': id}).count();

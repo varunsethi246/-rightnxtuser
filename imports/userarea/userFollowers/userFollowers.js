@@ -384,11 +384,13 @@ Template.suggestedFollowUsers.helpers ({
 		if(currentUserObj){
 			if (currentUserObj.profile.city) {
 				userCity = currentUserObj.profile.city;
-			}else{
-				userCity = "Pune";	
 			}
 
-			var otherUsersData  = Meteor.users.find({"profile.city":userCity, "_id": { $nin: userIdArr }, "roles":{$nin: [ 'admin', 'Vendor' , 'Staff']}}).fetch();
+			if(userCity){
+				var otherUsersData  = Meteor.users.find({"profile.city":userCity, "_id": { $nin: userIdArr }, "roles":{$nin: [ 'admin', 'Vendor' , 'Staff']}}).fetch();
+			}else{
+				var otherUsersData  = Meteor.users.find({"_id": { $nin: userIdArr }, "roles":{$nin: [ 'admin', 'Vendor' , 'Staff']}}).fetch();
+			}
 			console.log('otherUsersData :',otherUsersData);
 			if(otherUsersData){
 				for(var i=0;i<otherUsersData.length;i++){
@@ -422,17 +424,20 @@ Template.suggestedFollowUsers.helpers ({
 			var returnUserArray = userArray.filter(function(el) { 
 				return el._id != produceURLid(checkIdExists[2]); 
 			});
+			console.log('returnUserArray :',returnUserArray);
+			return returnUserArray;
+		}else{
+			console.log('userArray :',userArray);
+			return userArray;
 		}
-		console.log('returnUserArray :',returnUserArray);
-		return returnUserArray;
 	},
 
 	'userSuggestionData': function(){
 		var otherUsersData = userSearch.getData();
-		console.log('otherUsersData ==',otherUsersData);
+		// console.log('otherUsersData ==',otherUsersData);
 		if(otherUsersData){
 			for(var i=0;i<otherUsersData.length;i++){
-				console.log('otherUsersData[i].profile :',otherUsersData[i].profile);
+				// console.log('otherUsersData[i].profile :',otherUsersData[i].profile);
 				if(otherUsersData[i].profile){
 					var pic     = VendorImage.findOne({"_id":otherUsersData[i].profile.userProfilePic});
 					if(pic){
