@@ -24,9 +24,11 @@ Template.notificationConfig.events({
 		// var UnLike  = $('input[name=UnLike]:checked').val();
 		var Comment = $('input[name=Comment]:checked').val();
 
-		var editbusiness = $('input[name=editbusiness]:checked').val();
+		// var editbusiness = $('input[name=editbusiness]:checked').val();
+		var editbusiness = "true";
 		
-		var report	 = $('input[name=report]:checked').val();
+		// var report	 = $('input[name=report]:checked').val();
+		var report	 = "true";
 		
 		Meteor.call('insertUserNotifConfig',Enquiry,Rating,Follow,Like,Comment,editbusiness,report,function(error,result){
 			if(error){

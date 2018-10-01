@@ -89,6 +89,8 @@ Meteor.methods({
                   like    : "true",
                   unlike  : "true",
                   comment : "true",
+                  report  : "true",
+                  editbusiness : "true",
                 }
               }
           },function(error,result){

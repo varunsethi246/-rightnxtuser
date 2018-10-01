@@ -494,6 +494,7 @@ Template.userEnquiryPage.events({
 				var commentblock = false;
 			}
 
+			console.log(filesM.length);
 	       	if(filesM.length > 0){
 				for(i = 0 ; i < filesM.length; i++){
 					const imageCompressor = new ImageCompressor();
