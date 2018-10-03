@@ -64,13 +64,13 @@
 				<div class="col-lg-2 col-md-3 col-sm-3 col-xs-2 {{#if showElement}}dropmenu{{else}}dropmenuGen{{/if}} pull-right">
 					{{#with userDetails}}
 						<li class="dropdown dropGeneral">
-							{{#if displayUserProfileHeader profile.userProfilePic}}
-						    	<img src="{{profile.userProfilePic}}" class="propic profileBkImg {{checkpngImg}}" name="profilepicone">
-						    {{else}}
-						    	<img src="{{profile.userProfilePic}}" class="propic profileBkImg {{checkpngImg}}" name="profilepic">
-						    {{/if}}
 
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								{{#if displayUserProfileHeader profile.userProfilePic}}
+							    	<img src="{{profile.userProfilePic}}" class="propic profileBkImg {{checkpngImg}}" name="profilepicone">
+							    {{else}}
+							    	<img src="{{profile.userProfilePic}}" class="propic profileBkImg {{checkpngImg}}" name="profilepic">
+							    {{/if}}
 								<span class="prfSpan hidden-xs">{{profile.name}}</span>
 								<i class="fa fa-angle-down fa-2x userFaAngle"></i>
 							</a>

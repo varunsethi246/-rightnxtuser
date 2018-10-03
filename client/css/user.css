@@ -12,6 +12,15 @@ src:url(/fonts/PROXIMANOVA-REGULAR.ttf),url(/fonts/PROXIMANOVA-REGULAR.eot)
 font-family:'GOTHIC_0';
 src:url(/fonts/GOTHIC_0.ttf),url(/fonts/GOTHIC_0.eot)
 }
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+}
 
 .dropmenu,.dropmenuGen {
 padding-left:0
@@ -730,8 +739,32 @@ position:relative
 .image-upload > input {
 display:none
 }
+.profilepicHide{
+    display: none;
+    /*display: block;*/
+        position: absolute;
+    bottom: 42%;
+    right: 35%;
+    color: #a2a2a2b0;
+}
+.profilepicHideDiv{
+    display: none;
 
-.addPhotoTxt {
+       height: 199px;
+    width: 59%;
+    opacity: 0.6;
+    background: #868686;
+}
+.genHead:hover .profilepicHideDiv{
+    position: absolute;
+    display: block!important;
+    height: 199px;
+    width: 59%;
+    opacity: 0.6;
+    right: 9%;
+    background: #868686a3;
+}
+.genHead:hover .profilepicHide{
 /*height:18px;
 position:absolute;
 right:20px;
@@ -743,9 +776,18 @@ z-index:1*/
 position: relative;
 bottom: -12px;
 right: 3px;*/
-position: absolute;
+/*position: absolute;
 bottom: 5px;
-right: 20px;
+right: 20px;*/
+
+/*position: absolute;
+    bottom: 42%;
+    right: 72px;*/
+    display: block!important;
+        position: absolute;
+    bottom: 42%;
+    right: 35%;
+    color: #a2a2a2b0;
 }
 
 .prfContent h3 {
