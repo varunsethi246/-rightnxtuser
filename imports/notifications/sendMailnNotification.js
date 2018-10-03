@@ -219,7 +219,6 @@ sendPageShareMail = function(inputObj) {
 //  Notification Function
 //============================================================
 sendInAppNotification = function(inputObj) {
-	console.log(inputObj);
 	if(inputObj){
 		var userDetail = Meteor.users.findOne({'_id':inputObj.to});
 		var enquiry = ["User Enquiry Message", "User Enquiry Messages","Vendor Enquiry Message", "Vendor Business Enquiry", "User Business Enquiry", "Enquiry Message Send", "User Business Enquiry All"];

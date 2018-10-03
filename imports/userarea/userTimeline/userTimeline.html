@@ -454,7 +454,7 @@
               {{/each}}
               <div class="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 commentReplyInputBox commentReplyInputBox-{{userCommentId}}">
                 <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 userReplyPic">
-                  <img class="replyImg" src="{{userProfileImgPath}}" />
+                  <img class="replyImg" src="{{../loggedinUserProfilePic}}" />
                 </div>
                 <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 userReplyComent userReplyComent-{{userCommentId}}">
                   <input class="commentReplyInput" placeholder="Add your Reply here" type="text" data-reviewId="{{../_id}}" data-reviewPostedBy="{{../userId}}" data-commentId="{{userCommentId}}" data-businesslink="{{../businessLink}}" data-userCommentId={{userId}}>
@@ -621,7 +621,7 @@
               {{/each}}
               <div class="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 commentReplyInputBox commentReplyInputBox-{{userCommentId}}">
                 <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 userReplyPic">
-                  <img class="replyImg" src="{{userProfileImgPath}}" />
+                  <img class="replyImg" src="{{../loggedinUserProfilePic}}" />
                 </div>
                 <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 userReplyComent">
                   <input class="commentReplyInput" placeholder="Add your Reply here" type="text" data-reviewId="{{../_id}}" data-reviewPostedBy="{{../userId}}" data-commentId="{{userCommentId}}" data-businesslink="{{../businessLink}}" data-userCommentId={{userId}}>

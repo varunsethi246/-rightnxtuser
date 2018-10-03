@@ -460,25 +460,20 @@ Template.businessEnquiry.events({
                         $('.showEnquiryImg>span').hide();
                         // send mail to admin //
                         var userData    = Meteor.users.findOne({'roles':'admin'});
-                        console.log(userData);
                         if(userData){
                             var adminID = userData._id;
                         }//userData
 
-                        
                         var enquiryData = Enquiry.findOne({"_id":newBusinessId});
-                        console.log(enquiryData);
                         if(enquiryData){
                             //Send Notification, Mail and SMS to Vendor
                             var businessid = enquiryData.businessid;
                             var businessData = Business.findOne({"_id":businessid});
-                            console.log(businessData);
                             if(businessData){
                                 var vendormailId = businessData.businessOwnerId;
                                 var vendorname      = businessData.ownerFullName;
 
                                 var userDetail = Meteor.users.findOne({'_id':vendormailId});
-                            console.log(userDetail);
                                 if(userDetail){
                                     //Send Notification, Mail and SMS to Vendor
                                     var msgvariable = {
@@ -534,7 +529,6 @@ Template.businessEnquiry.events({
                             //Send Notification, Mail and SMS to User
                             var userId  = enquiryData.enquirySentBy;
                             var userVar = Meteor.users.findOne({'_id':userId});
-                            console.log(userVar);
                             if(userVar){
                                 var msgvariable = {
                                     '[businessTitle]'       : businessTitle,

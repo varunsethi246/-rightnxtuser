@@ -229,17 +229,13 @@ Meteor.methods({
 					{
 						$set: { notificationConfiguration : 
 								{
-									"enquiry"		: Enquiry,
-									"invoice"		: "true",
-									"rating"		: Rating,
-									"payment"   	: "true",
-									"follow"    	: Follow,
-									// "unfollow"  : UnFollow,
-									"like"	    	: Like,
-									// "unlike"	: UnLike,
-									"comment"  		: Comment,
-									"editbusiness"  : editbusiness,
-									"report"  		: report,
+									"enquiry" : Enquiry,
+				                    "rating"  : Rating,
+				                    "follow"  : Follow,
+				                    "like"    : Like,
+				                    "comment" : Comment,
+				                    "report"  : report,
+				                    "editbusiness" : editbusiness,
 								}
 							}
 					},function(error,result){
