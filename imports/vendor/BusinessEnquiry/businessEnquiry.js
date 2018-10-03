@@ -192,7 +192,7 @@ Template.businessEnquiry.events({
 
     'click .SendEnqTo': function(event){
         event.preventDefault();
-
+        $(event.currentTarget).css('display','none');
         var id = FlowRouter.getParam('businessurl');
         // console.log("id :",id);
         if(id){

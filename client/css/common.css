@@ -499,7 +499,8 @@ color:#fff
 
 .genLoginSignup {
 display:block;
-margin-top:-49px
+/*margin-top:-49px*/
+margin-top: 150px;
 }
 
 .vendorRegister {
