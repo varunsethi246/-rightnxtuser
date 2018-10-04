@@ -18,16 +18,16 @@
 							<div class="LoadMore1">
 								<div class="followTab" id="{{id}}">
 										<div class="photoSugg col-lg-2 col-md-2 col-sm-2 col-xs-2 userFollPhotoSugg">
-											<a href="/userReview/{{redirectid}}" target="_blank">
+											<a href="{{#if redirectid}}/userReview/{{redirectid}}{{/if}}" target="_blank">
 												<img src="{{UserFollowerImg}}"  alt="" class="userImg" />
 											</a>
 										</div>
 									<div class="infoSugg userFollInfoSugg col-lg-10 col-md-10 col-sm-10 col-xs-10">
-										<h5 class="col-lg-6">
-											<a href="/userReview/{{redirectid}}" target="_blank">{{followerInt}}</a>
+										<h5 class="col-lg-12">
+											<a href="{{#if redirectid}}/userReview/{{redirectid}}{{/if}}" target="_blank">{{followerInt}}</a>
 										</h5>
 									
-										<p class="col-lg-6">
+										<p class="col-lg-12">
 											{{#if reviewCountDis}}
 												<span>{{UserFollowerRev}} Reviews</span>,
 											{{else}} 
@@ -89,14 +89,14 @@
 					<div class="followBox1 col-lg-4 col-md-5 col-sm-8 col-xs-12">
 						<div class="LoadMore1 col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="followTab" id="{{id}}">
-							<a href="/userReview/{{redirectid}}" target="_blank">
+							<a href="{{#if redirectid}}/userReview/{{redirectid}}{{/if}}" target="_blank">
 								<div class="photoSugg col-lg-2 col-md-2 col-sm-2 col-xs-2 userFollPhotoSugg">
 									<img src="{{UserFollowingImg}}"  alt="" class="userImg"/>
 								</div>
 							</a>
 						<div class="infoSugg userFollInfoSugg col-lg-10 col-md-10 col-sm-10 col-xs-10">
-							<h5 class="col-lg-6">
-								<a href="/userReview/{{redirectid}}" target="_blank">{{followingInt}}</a>
+							<h5 class="{{#if followShowHide}}col-lg-6{{else}}col-lg-12{{/if}}">
+								<a href="{{#if redirectid}}/userReview/{{redirectid}}{{/if}}" target="_blank">{{followingInt}}</a>
 							</h5>
 							{{#if followShowHide}}
 								<div class="unfollowUserBtn btn" data-toggle="modal" data-target="#follwMod-{{followId}}">
@@ -120,7 +120,7 @@
 								</div>
 							{{/if}}
 							
-							<p class="col-lg-6">
+							<p class="{{#if followShowHide}}col-lg-6{{else}}col-lg-12{{/if}}">
 							{{#if reviewCountDis}}
 								<span>{{UserFollowingRev}} Reviews</span>,
 							{{else}} 

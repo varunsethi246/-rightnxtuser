@@ -167,7 +167,7 @@
               {{#each tagedFriendsArray}}
               <div class="tagedFrndSpansOuter">
                 <span  data-tagedId="{{userTagged}}" data-reviewId="{{../_id}}" class="bus-page-edit-outerFrnd1 bus-page-edit-outerFrnd1-{{../_id}}">x</span>
-                <a class="tagedFrndSpans tagnames" href="/userReview/{{tagedFriendsUrl}}" target="_blank">
+                <a class="tagedFrndSpans tagnames" href="{{#if tagedFriendsUrl}}/userReview/{{tagedFriendsUrl}}{{/if}}" target="_blank">
                   <div class="taggedFrndShowLiImg">
                     <img src="{{imagePath}}" class="{{checkpngImg}}">
                   </div>

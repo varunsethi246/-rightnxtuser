@@ -144,9 +144,9 @@ Template.descriptionTabContent.helpers({
 			}
 
 			for(i=0; i<allReviews.length; i++){
-				var userObjs = Meteor.users.findOne({"_id":userId});
+				// var userObjs = Meteor.users.findOne({"_id":userId});
 
-				if(userObjs){
+				if(allReviews[i].userId != Meteor.userId()){
 					if(Roles.userIsInRole(allReviews[i].userId, ['user'])){
 						allReviews[i].userProfileUrl = generateURLid(allReviews[i].userId);	
 					}
@@ -211,9 +211,16 @@ Template.descriptionTabContent.helpers({
 							}else{
 								dataImgUser = '/users/profile/profile_image_dummy.svg';
 							}
+
+							if(userTagObj._id == Meteor.userId()){
+								var tagedFriendsUrl = '';
+							}else{
+								var tagedFriendsUrl = generateURLid(allReviews[i].tagedFriends[m]);
+							}
+
 							var obj = {
 								'tagedFriends'   : userTagObj.profile.name,
-								'tagedFriendsUrl': generateURLid(allReviews[i].tagedFriends[m]),
+								'tagedFriendsUrl': tagedFriendsUrl,
 								'userTagged':allReviews[i].tagedFriends[m],
 								'imagePath':dataImgUser,
 							}

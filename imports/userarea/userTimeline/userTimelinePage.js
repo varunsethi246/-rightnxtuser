@@ -371,9 +371,15 @@ Template.userTimeline.helpers({
 									dataImgUser = '/users/profile/profile_image_dummy.svg';
 								}
 
+								if(userTagObj._id == Meteor.userId()){
+									var tagedFriendsUrl = '';
+								}else{
+									var tagedFriendsUrl = generateURLid(allReviews[i].tagedFriends[m]);
+								}
+
 								var obj = {
 									'tagedFriends'   : userTagObj.profile.name,
-									'tagedFriendsUrl': generateURLid(allReviews[i].tagedFriends[m]),
+									'tagedFriendsUrl': tagedFriendsUrl,
 									'userTagged':allReviews[i].tagedFriends[m],
 									'imagePath':dataImgUser,
 								}

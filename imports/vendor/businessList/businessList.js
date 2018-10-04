@@ -212,8 +212,8 @@ Template.thumbnailBusinessList.helpers({
 	'offerIngridview'(){
 		var offerCount = Offers.find({"offerStatus":"Active"}).fetch();
 		var offerLength = offerCount.length;
-		console.log(offerCount);
-		console.log(offerLength);
+		// console.log(offerCount);
+		// console.log(offerLength);
 		return offerLength;
 	},
 	isGridViewVisible(){
@@ -257,7 +257,7 @@ var filesM = [];
 Template.allbusinessList.events({
 	'click .enqSendClose':function(event){
         event.preventDefault();
-
+        // console.log(filesM.length);
         var userId = Meteor.userId();
         if (userId) {
             $('.enquiryDesc').val('');
@@ -273,9 +273,9 @@ Template.allbusinessList.events({
             $('.vEnqModalC').removeClass('SpanLandLineRedBorder');
         }
         if(filesM.length > 0){
-            $('.showEnquiryImg').find('span').empty(); 
-            $( '<i class="fa fa-camera fa-5x" aria-hidden="true"></i>').appendTo( ".showEnquiryImg" );
-            $('.enquiryPhoto').val('');
+            $('.showEnquiryImgAll').find('span').empty(); 
+            $( '<i class="fa fa-camera fa-5x" aria-hidden="true"></i>').appendTo( ".showEnquiryImgAll" );
+            $('.enquiryPhotoAll').val('');
         }
     },
 	'click .listRelevance': function(){
@@ -440,7 +440,7 @@ Template.allbusinessList.events({
 	},
 	'change .enquiryPhotoAll' : function(event){
 	    filesM = event.target.files; // FileList object
-	     $('.showEnquiryImgAll').empty();
+	    $('.showEnquiryImgAll').empty();
 	    for (var i = 0, f; f = filesM[i]; i++) {
 	        if (!f.type.match('image.*')) {
 	          continue;
@@ -461,7 +461,9 @@ Template.allbusinessList.events({
             $( '<i class="fa fa-camera fa-5x" aria-hidden="true"></i>').appendTo( ".showEnquiryImgAll" );
         }
 	  },
-	'click .busListEnq':function(){
+	'click .busListEnq':function(event){
+		event.preventDefault();
+
 		var getUserRole = Meteor.userId();
 		if(getUserRole){
 			var userLogData = Meteor.users.findOne({"_id":getUserRole},{fields:{"roles":1}});
@@ -480,6 +482,8 @@ Template.allbusinessList.events({
 		}
 	},
 	'click .thumbEnqBtn':function(event){
+		event.preventDefault();
+
 		var getUserRole = Meteor.userId();
 		if(getUserRole){
 			var userLogData = Meteor.users.findOne({"_id":getUserRole},{fields:{"roles":1}});
@@ -549,6 +553,7 @@ Template.allbusinessList.events({
         }
 
 		if(errorIn!="true" && enquiryName && enquiryEmail && enquiryPhoneTwo && enquiryDesc) {
+        	$(event.currentTarget).css('display','none');
 			if(filesM.length > 0){
 		      for(i = 0 ; i < filesM.length; i++){
 		      		const imageCompressor = new ImageCompressor();
@@ -618,10 +623,11 @@ Template.allbusinessList.events({
 						                else if(result){
 						                	$('#vEnqModal').modal( "hide" );
 	                                    	$('#vEnqModal').modal({show: false});
+        									$(event.currentTarget).css('display','inline-block');
 						                	var newBusinessId = result;
 						                  	Bert.alert('Vendor will soon get back you. Thank you.','success','growl-top-right');
 											
-											if(!Meteor.userId()){
+											if(!(Meteor.userId())){
 												$('.enquiryName').val('');
 												$('.enquiryEmail').val('');
 												$('.enquiryPhone').val('');
@@ -795,13 +801,11 @@ Template.allbusinessList.events({
 			                }else if(result){
 			                	$('#vEnqModal').modal( "hide" );
 	                            $('#vEnqModal').modal({show: false});
+        						$(event.currentTarget).css('display','inline-block');
 			                	var newBusinessId = result;
 			                  	Bert.alert('Enquiry Sent successfully!','success','growl-top-right');
-								// $('.enquiryName').val('');
-							    // $('.enquiryEmail').val('');
-							    // $('.enquiryPhone').val('');
-								// $('.enquiryDesc').val('');
-								if(!Meteor.userId()){
+								
+								if(!(Meteor.userId())){
 									$('.enquiryName').val('');
 									$('.enquiryEmail').val('');
 									$('.enquiryPhone').val('');

@@ -107,7 +107,8 @@ Template.userReview.helpers({
 		}
 	},
 	checkCurrentUser:function(userId){
-		if(userId == Meteor.userId()){
+		// console.log(FlowRouter.getQueryParam("id"));
+		if(userId == Meteor.userId() || userId == FlowRouter.getQueryParam("id")){
 			return true;
 		}else{
 			return false;
@@ -261,9 +262,15 @@ Template.userReview.helpers({
 										dataImgUser = '/users/profile/profile_image_dummy.svg';
 									}
 
+									if(userTagObj._id == Meteor.userId()){
+										var tagedFriendsUrl = '';
+									}else{
+										var tagedFriendsUrl = generateURLid(reviewData[i].tagedFriends[m]);
+									}
+
 									var obj = {
 										'tagedFriends'   : userTagObj.profile.name,
-										'tagedFriendsUrl': generateURLid(reviewData[i].tagedFriends[m]),
+										'tagedFriendsUrl': tagedFriendsUrl,
 										'userTagged':reviewData[i].tagedFriends[m],
 										'imagePath':dataImgUser,
 									}

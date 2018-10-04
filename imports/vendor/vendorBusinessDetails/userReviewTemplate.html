@@ -323,8 +323,12 @@
 						<div class="col-lg-11 col-md-11 col-sm-11 col-xs-11  userRevTempCommentText">
 							<div class="reComtOne">
 								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 userRevname">
-									{{#if redirectid}}
-										<a href="/userReview/{{redirectid}}" target="_blank">{{commentUserName}}</a>
+									{{#if currentUser}}
+										{{#if redirectid}}
+											<a href="/userReview/{{redirectid}}" target="_blank">{{commentUserName}}</a>
+										{{else}}
+											<a href="">{{commentUserName}}</a>
+										{{/if}}
 									{{else}}
 										<a href="">{{commentUserName}}</a>
 									{{/if}}
@@ -477,8 +481,12 @@
 						<div class="col-lg-11 col-md-11 col-sm-11 col-xs-11  userRevTempCommentText">
 							<div class="">
 								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 userRevname">
-									{{#if redirectid}}
-										<a href="/userReview/{{redirectid}}" target="_blank">{{commentUserName}}</a>
+									{{#if currentUser}}
+										{{#if redirectid}}
+											<a href="/userReview/{{redirectid}}" target="_blank">{{commentUserName}}</a>
+										{{else}}
+											<a href="">{{commentUserName}}</a>
+										{{/if}}
 									{{else}}
 										<a href="">{{commentUserName}}</a>
 									{{/if}}

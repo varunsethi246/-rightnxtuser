@@ -1,5 +1,5 @@
 <template name="businessEnquiry">
-	<div class="vCmtEnqPage pull-right " data-toggle="modal" data-target="#vEnqModal">
+	<div class="vCmtEnqPage pull-right" data-toggle="{{#if isBusinessClaimed}}modal{{/if}}" data-target="{{#if isBusinessClaimed}}#vEnqModal{{/if}}">
 		<button class="btn btn-success btn-sm">Enquiry</button>
 	</div>
 	

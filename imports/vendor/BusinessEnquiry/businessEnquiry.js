@@ -19,6 +19,17 @@ Template.businessEnquiry.onCreated(function(){
   this.subscribe('businessEnquiryImage');
 });
 Template.businessEnquiry.helpers({
+   'isBusinessClaimed':function(){
+        var businessLink = FlowRouter.getParam('businessurl');
+        var businessObj = Business.findOne({'businessLink':businessLink});
+        if(businessObj){
+            if(businessObj.businessOwnerId != 'null'){
+                return true;
+            }else{
+                return false;
+            }
+        }
+   },
    'getuserData':function(){
       var getloginId = Meteor.userId();
       if (getloginId) {
@@ -150,11 +161,6 @@ Template.businessEnquiry.events({
             $( '<i class="fa fa-camera fa-5x" aria-hidden="true"></i>').appendTo( ".showEnquiryImg" );
             $('.enquiryPhoto').val('');
         }
-        if(filesM.length == 0){
-            $('.showEnquiryImgAll').find('span').empty(); 
-            $( '<i class="fa fa-camera fa-5x" aria-hidden="true"></i>').appendTo( ".showEnquiryImgAll" );
-            $('.enquiryPhotoAll').val('');
-        }
     },
     'change .enquiryPhoto' : function(event){
         event.preventDefault();
@@ -192,7 +198,6 @@ Template.businessEnquiry.events({
 
     'click .SendEnqTo': function(event){
         event.preventDefault();
-        $(event.currentTarget).css('display','none');
         var id = FlowRouter.getParam('businessurl');
         // console.log("id :",id);
         if(id){
@@ -240,6 +245,7 @@ Template.businessEnquiry.events({
 
         if(enquiryName && enquiryEmail && enquiryPhoneTwo && enquiryDesc) {
             // console.log('inif');
+            $(event.currentTarget).css('display','none');
             if(filesM.length > 0){
                 for(i = 0 ; i < filesM.length; i++){
                      // console.log('inif');
@@ -293,14 +299,21 @@ Template.businessEnquiry.events({
                                 }else{
                                     $('#vEnqModal').modal( "hide" );
                                     $('#vEnqModal').modal({show: false});
+                                    $(event.currentTarget).css('display','inline-block');
 
                                     var newBusinessId = result;
                                     Bert.alert('Vendor will soon get back to you. Thank you.','success','growl-top-right');
-                                    // $('.enquiryName').val('');
-                                    // $('.enquiryEmail').val('');
-                                    // $('.enquiryPhone').val('');
-                                    $('.enquiryDesc').val('');
-                                    $('.enquiryPhoto').val('');
+                                    
+                                    if(!(Meteor.userId())){
+                                        $('.enquiryName').val('');
+                                        $('.enquiryEmail').val('');
+                                        $('.enquiryPhone').val('');
+                                        $('.enquiryDesc').val('');
+                                        $('.enquiryPhoto').val('');
+                                    }else{
+                                        $('.enquiryDesc').val('');
+                                        $('.enquiryPhoto').val('');
+                                    }
 
                                     //Reset the upload image div to default after sending enquiry
                                     $('.showEnquiryImg>span').hide();
@@ -447,14 +460,20 @@ Template.businessEnquiry.events({
                     }else{
                         $('#vEnqModal').modal( "hide" );
                         $('#vEnqModal').modal({show: false});
+                        $(event.currentTarget).css('display','inline-block');
 
                         var newBusinessId = result;
                         Bert.alert('Vendor will soon get back you. Thank you.','success','growl-top-right');
-                        // $('.enquiryName').val('');
-                        // $('.enquiryEmail').val('');
-                        // $('.enquiryPhone').val('');
-                        $('.enquiryDesc').val('');
-                        $('.enquiryPhoto').val('');
+                        if(!(Meteor.userId())){
+                            $('.enquiryName').val('');
+                            $('.enquiryEmail').val('');
+                            $('.enquiryPhone').val('');
+                            $('.enquiryDesc').val('');
+                            $('.enquiryPhoto').val('');
+                        }else{
+                            $('.enquiryDesc').val('');
+                            $('.enquiryPhoto').val('');
+                        }
 
                         //Reset the upload image div to default after sending enquiry
                         $('.showEnquiryImg>span').hide();
@@ -598,37 +617,20 @@ Template.businessEnquiry.events({
         
     'click .vCmtEnqPage': function(event){
         if(!(Meteor.userId())){
-            $('#loginModal').modal('hide');
-            $('.loginScreen').hide();
-            $('.signupScreen').hide();
-            $('.thankyouscreen').hide();
-            $('.genLoginSignup').show();
-            $('.thankyouscreen').hide();
-            $('.signUpBox').hide();
-            $('#vEnqModal').show();
-        } 
-        // if ((Meteor.userId())) {
-        //     var getId = Meteor.userId();
-        //     var getuser = Meteor.users.findOne({"_id": getId});
-        //     console.log("getuser",getuser);
-        //     if (getuser) {
-        //        var getRole = getuser.roles.length;
-
-
-        //        console.log("getRole",getRole);
-        //        if (getRole == "Vendor" && getRole == "admin") {
-        //         console.log("in if");
-        //         $('#loginModal').modal('hide');
-        //         $('.loginScreen').hide();
-        //         $('.signupScreen').hide();
-        //         $('.thankyouscreen').hide();
-        //         $('.genLoginSignup').show();
-        //         $('.thankyouscreen').hide();
-        //         $('.signUpBox').hide();
-        //         $('#vEnqModal').hide();
-        //        }
-        //     }
-        // }
-                
+            var businessLink = FlowRouter.getParam('businessurl');
+            var businessObj = Business.findOne({'businessLink':businessLink});
+            if(businessObj){
+                if(businessObj.businessOwnerId != 'null'){
+                    $('#loginModal').modal('hide');
+                    $('.loginScreen').hide();
+                    $('.signupScreen').hide();
+                    $('.thankyouscreen').hide();
+                    $('.genLoginSignup').show();
+                    $('.thankyouscreen').hide();
+                    $('.signUpBox').hide();
+                    $('#vEnqModal').show();
+                }
+            }
+        }       
     },
 });

@@ -133,13 +133,19 @@ Template.userFollowers.helpers({
 					var fId            = UserDataObj._id;
 					var followerCount  = FollowUser.find({'followUserId': id}).count();
 					var reviewCount    = Review.find({'userId': id}).count();
+
+					if(UserDataObj._id == Meteor.userId()){
+						var redirectid = '';
+					}else{	
+						var redirectid = generateURLid(fId);
+					}
 					userArray.push({
 						'id'              : fId,
 						'followerInt'     : name,
 						'UserFollowerImg' : UserDataObj.profile.userProfilePic,
 						'userFollowFol'   : followerCount,
 						'UserFollowerRev' : reviewCount,
-						'redirectid'	  : generateURLid(fId),
+						'redirectid'	  : redirectid,
 					})
 				}//UserDataObj
 			}//i
@@ -185,13 +191,20 @@ Template.userFollowers.helpers({
 
 					var followerCount  = FollowUser.find({'followUserId': id}).count();
 					var reviewCount    = Review.find({'userId': id}).count();
+					
+					if(UserDataObj._id == Meteor.userId()){
+						var redirectid = '';
+					}else{
+						var redirectid = generateURLid(fId);
+					}
+					
 					userArray.push({
 						'id'               : fId,
 						'followingInt'     : name,
 						'UserFollowingImg' : UserDataObj.profile.userProfilePic,
 						'userFollowingFol' : followerCount,
 						'UserFollowingRev' : reviewCount,
-						'redirectid'       : generateURLid(fId),
+						'redirectid'       : redirectid,
 						'followId'		   : followUserObj[i]._id,
 					})
 				}//UserDataObj
@@ -372,7 +385,7 @@ Template.suggestedFollowUsers.helpers ({
 		var followArray    = [];
 		var currentUserObj = Meteor.users.findOne({"_id":userId});
 		var userIdArr =[userId];
-		console.log('currentUserObj:',currentUserObj);
+		// console.log('currentUserObj:',currentUserObj);
 
 		var followUserData = FollowUser.find({"userId":userId}).fetch();
 		if(followUserData && followUserData.length>0){
@@ -382,8 +395,10 @@ Template.suggestedFollowUsers.helpers ({
 		}
 
 		if(currentUserObj){
-			if (currentUserObj.profile.city) {
-				userCity = currentUserObj.profile.city;
+			if(currentUserObj.profile){
+				if(currentUserObj.profile.city) {
+					var userCity = currentUserObj.profile.city;
+				}
 			}
 
 			if(userCity){
@@ -391,7 +406,7 @@ Template.suggestedFollowUsers.helpers ({
 			}else{
 				var otherUsersData  = Meteor.users.find({"_id": { $nin: userIdArr }, "roles":{$nin: [ 'admin', 'Vendor' , 'Staff']}}).fetch();
 			}
-			console.log('otherUsersData :',otherUsersData);
+			// console.log('otherUsersData :',otherUsersData);
 			if(otherUsersData){
 				for(var i=0;i<otherUsersData.length;i++){
 					var name    = otherUsersData[i].profile.name;
@@ -424,10 +439,10 @@ Template.suggestedFollowUsers.helpers ({
 			var returnUserArray = userArray.filter(function(el) { 
 				return el._id != produceURLid(checkIdExists[2]); 
 			});
-			console.log('returnUserArray :',returnUserArray);
+			// console.log('returnUserArray :',returnUserArray);
 			return returnUserArray;
 		}else{
-			console.log('userArray :',userArray);
+			// console.log('userArray :',userArray);
 			return userArray;
 		}
 	},
@@ -436,15 +451,18 @@ Template.suggestedFollowUsers.helpers ({
 		var otherUsersData = userSearch.getData();
 		// console.log('otherUsersData ==',otherUsersData);
 		if(otherUsersData){
-			for(var i=0;i<otherUsersData.length;i++){
-				// console.log('otherUsersData[i].profile :',otherUsersData[i].profile);
-				if(otherUsersData[i].profile){
-					var pic     = VendorImage.findOne({"_id":otherUsersData[i].profile.userProfilePic});
-					if(pic){
-						otherUsersData[i].UsersuggestionImg = pic.link();	
-					}
-					else{
-						otherUsersData[i].UsersuggestionImg = "https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/profile_image_dummy.svg";	
+			if(otherUsersData.length > 0){
+				$('.friendListRender').show();
+				for(var i=0;i<otherUsersData.length;i++){
+					// console.log('otherUsersData[i].profile :',otherUsersData[i].profile);
+					if(otherUsersData[i].profile){
+						var pic     = VendorImage.findOne({"_id":otherUsersData[i].profile.userProfilePic});
+						if(pic){
+							otherUsersData[i].UsersuggestionImg = pic.link();	
+						}
+						else{
+							otherUsersData[i].UsersuggestionImg = "https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/profile_image_dummy.svg";	
+						}
 					}
 				}
 			}
@@ -545,13 +563,14 @@ Template.findYourFriends.events({
 	'focus #userSearch': function(){
 		$('.secondDiv').hide();
 		$('.firstDiv').css('display','block');
+		$('.friendListRender').hide();
 	},
 
 	"keyup #userSearch": function(e) {
 		var text = $(e.currentTarget).val().trim();
 		// console.log("text: ",text);
 	    userSearch.search(text);
-	  },
+	},
 });
 
 function FacebookInviteFriends(){

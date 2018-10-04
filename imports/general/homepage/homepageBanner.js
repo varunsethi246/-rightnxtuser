@@ -199,17 +199,32 @@ Template.homepageBanner.events({
     // $("#getCity").val($(e.currentTarget).text());var id=$(e.currentTarget).text().trim();id=id.toLowerCase().replace(/\b[a-z]/g,function(e){return e.toUpperCase()}),Session.set("userSelectedCity",id),$("#changeCityModal").modal("hide");var cityCookie="getCurrentCityName="+id;document.cookie=cityCookie;var currentCity=Cookie.get("getCurrentCityName");if(currentCity)$(".curUserCity").text(currentCity);else{var sesCity=Session.get("userSelectedCity");sesCity?$(".curUserCity").text(sesCity):$(".curUserCity").text("Pune")}
   },
 
-  'click .searchBusList':function() {
+  'click .searchBusList':function(event) {
+    event.preventDefault();
     $(".homeSearchBarList").addClass("searchDisplayShow").removeClass("searchDisplayHide");
     var searchString=$("#getBusiness").val();
     var currentCity = $('#getCity').val();
     var currentArea = $('#getArea').val();
+    // console.log(searchString,currentCity,currentArea);
+
+    if(currentCity){
+      var city = currentCity; 
+    }else{
+      var city = 'Pune';
+    }
+
+    if(currentArea){
+      var area = currentArea;
+    }else
+    {
+      var area = 'All Areas';
+    }
 
     if(searchString){
-      var path =  "/search/"+currentCity+"/"+currentArea+"/"+searchString;
+      var path =  "/search/"+city+"/"+area+"/"+searchString;
       FlowRouter.go(path);
     }else{
-      var path =  "/search/"+currentCity+"/"+currentArea;
+      var path =  "/search/"+city+"/"+area;
       FlowRouter.go(path);
     }
   },
