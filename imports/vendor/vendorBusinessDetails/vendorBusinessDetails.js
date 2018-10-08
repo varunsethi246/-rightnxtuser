@@ -622,19 +622,19 @@ Template.offersTabContent.events({
 				}
 			}else{
 				$('#loginModal').modal('show');
-				$('.loginScreen').hide();
+				$('.loginScreen').show();
 				$('.signupScreen').hide();
 				$('.thankyouscreen').hide();
-				$('.genLoginSignup').show();
+				// $('.genLoginSignup').show();
 				$('.thankyouscreen').hide();
 				$('.signUpBox').hide();
 			}
 		}else{
 			$('#loginModal').modal('show');
-			$('.loginScreen').hide();
+			$('.loginScreen').show();
 			$('.signupScreen').hide();
 			$('.thankyouscreen').hide();
-			$('.genLoginSignup').show();
+			// $('.genLoginSignup').show();
 			$('.thankyouscreen').hide();
 			$('.signUpBox').hide();
 		}	
@@ -721,10 +721,10 @@ Template.businessLocation.events({
 		if(!(Meteor.userId())){
 			$('#loginModal').modal('show');
 			$('#businessReport').hide();
-			$('.loginScreen').hide();
+			$('.loginScreen').show();
 			$('.signupScreen').hide();
 			$('.thankyouscreen').hide();
-			$('.genLoginSignup').show();
+			// $('.genLoginSignup').show();
 			$('.thankyouscreen').hide();
 			$('.signUpBox').hide();
 			$('#reportModal').modal('hide');

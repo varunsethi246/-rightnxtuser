@@ -36,31 +36,6 @@ Template.LoginOTP.helpers({
 });
 
 Template.LoginOTP.events({
-  // 'submit .otpForm' : function(e){
-  //  e.preventDefault();
-  //  var ipOtp        = $('#loginOTP').val();
-  //  var saveOtp      = $('#otpSaved').val();
-  //  var saveEmailOtp = $('#otpemailSaved').val();
-  //  var userId = Session.get("loginSession");
-  //  if((ipOtp == saveOtp) || (ipOtp == saveEmailOtp)){
-  //    Meteor.call('activeUser',userId,function(error,result){
-  //      if(error){
-  //        console.log(error);
-  //      }else{
- //                    // Bert.alert('Your A',"success","growl-top-right"); 
-  //        var userDetails = Meteor.users.findOne({"_id":userId});
-  //        if(userDetails){
-  //                     $('#loginModal').modal();
-  //          $('.signUpBox').hide(); 
-  //                     $('.loginScreen').show(); 
-  //                     $('.genLoginSignup').hide();
-  //          $('.signupScreen').hide();
-  //          $('.thankyouscreen').hide();
-  //        }
-  //          }
-  //         });  
-  //  }
-  // },
   'click .resendotp' : function(e){
     // e.preventDefault();
     var emailId = $('#userEmail').val();

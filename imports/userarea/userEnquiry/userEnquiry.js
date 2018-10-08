@@ -382,7 +382,7 @@ Template.userEnquiry.events({
 		var windowWidth = $(window).width();
 		if(windowWidth >= 320 && windowWidth <= 767){
 			$('html, body').animate({
-		        'scrollTop' : $("#vScrollToEnquiry").position().top
+		        'scrollTop' : $(".vendorEnqDetailsScroll").position().top
 		    });
 		}
 

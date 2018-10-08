@@ -129,10 +129,10 @@ Template.businessEventIcons.events({
 				}			
 			}else{
 				$('#loginModal').modal('show');
-				$('.loginScreen').hide();
+				$('.loginScreen').show();
 				$('.signupScreen').hide();
 				$('.thankyouscreen').hide();
-				$('.genLoginSignup').show();
+				// $('.genLoginSignup').show();
 				$('.thankyouscreen').hide();
 				$('.signUpBox').hide();
 				$('.leftModal').removeClass('hidden-xs');
@@ -140,10 +140,10 @@ Template.businessEventIcons.events({
 			}
 		}else{
 			$('#loginModal').modal('show');
-			$('.loginScreen').hide();
+			$('.loginScreen').show();
 			$('.signupScreen').hide();
 			$('.thankyouscreen').hide();
-			$('.genLoginSignup').show();
+			// $('.genLoginSignup').show();
 			$('.thankyouscreen').hide();
 			$('.signUpBox').hide();
 
@@ -172,10 +172,10 @@ Template.businessEventIcons.events({
 		event.preventDefault();
 		if(!(Meteor.userId())){
 			$('#loginModal').modal('show');
-			$('.loginScreen').hide();
+			$('.loginScreen').show();
 			$('.signupScreen').hide();
 			$('.thankyouscreen').hide();
-			$('.genLoginSignup').show();
+			// $('.genLoginSignup').show();
 			$('.signUpBox').hide();
 			$('.leftModal').removeClass('hidden-xs');
 			$('.rightModal').removeClass('newHeight');
@@ -186,10 +186,10 @@ Template.businessEventIcons.events({
 		if(!(Meteor.userId())){
 			$('#loginModal').modal('show');
 			$('#sharebtn').hide();
-			$('.loginScreen').hide();
+			$('.loginScreen').show();
 			$('.signupScreen').hide();
 			$('.thankyouscreen').hide();
-			$('.genLoginSignup').show();
+			// $('.genLoginSignup').show();
 			$('.signUpBox').hide();
 			$('#share_page3').modal('hide');
 			$('.leftModal').removeClass('hidden-xs');
@@ -252,10 +252,10 @@ Template.businessEventIcons.events({
 
 		}else{
 			$('#loginModal').modal('show');
-			$('.loginScreen').hide();
+			$('.loginScreen').show();
 			$('.signupScreen').hide();
 			$('.thankyouscreen').hide();
-			$('.genLoginSignup').show();
+			// $('.genLoginSignup').show();
 			$('.signUpBox').hide();
 			$('.leftModal').removeClass('hidden-xs');
 			$('.rightModal').removeClass('newHeight');

@@ -162,10 +162,10 @@ Template.header.events({
 	},
 
 	'click .login': function(event){
-		$('.loginScreen').hide();
+		$('.loginScreen').show();
 		$('.signupScreen').hide();
 		$('.thankyouscreen').hide();
-		$('.genLoginSignup').show();
+		// $('.genLoginSignup').show();
 		$('.thankyouscreen').hide();
 		$('.signUpBox').hide();
 		$('.leftModal').removeClass('hidden-xs');
@@ -173,7 +173,8 @@ Template.header.events({
 	},
 	'click .loginTxt': function(event){
 		$('.loginScreen').hide();
-		$('.genLoginSignup').show();
+		$('.signupScreen').show();
+		// $('.genLoginSignup').show();
 		$('.thankyouscreen').hide();
 	},
 	'click .signUp-btn': function(event){
@@ -200,8 +201,8 @@ Template.header.events({
 		$('.thankyouscreen').hide();
 	},
 	'click .loginTxt1': function(event){
-		$('.loginScreen').hide();
-		$('.genLoginSignup').show();
+		$('.loginScreen').show();
+		// $('.genLoginSignup').show();
 		$('.signupScreen').hide();
 		$('.thankyouscreen').hide();
 		$('.leftModal').removeClass('hidden-xs');

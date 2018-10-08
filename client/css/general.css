@@ -4026,6 +4026,7 @@ padding:4px 5px!important
 }
 
 @media screen and (min-width:320px) and (max-width:767px) {
+.genHead:hover .profilepicHideDiv{height: 90px!important;width: 90px!important;right: 12%!important;}
 .uRevEditBox{margin-right: 0px;}
 .uEditBoxComment{padding-left: 0px!important;}
 .reviewCommCancel.uReviewCommCancel{padding-left: 0px!important;padding-right: 0px;}

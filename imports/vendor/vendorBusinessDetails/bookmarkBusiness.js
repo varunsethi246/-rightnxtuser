@@ -130,10 +130,10 @@ Template.businessEventIcons.events({
 				}
 			}else{
 				$('#loginModal').modal('show');
-				$('.loginScreen').hide();
+				$('.loginScreen').show();
 				$('.signupScreen').hide();
 				$('.thankyouscreen').hide();
-				$('.genLoginSignup').show();
+				// $('.genLoginSignup').show();
 				$('.thankyouscreen').hide();
 				$('.signUpBox').hide();
 				$('.leftModal').removeClass('hidden-xs');
@@ -141,10 +141,10 @@ Template.businessEventIcons.events({
 			}
 		}else{
 			$('#loginModal').modal('show');
-			$('.loginScreen').hide();
+			$('.loginScreen').show();
 			$('.signupScreen').hide();
 			$('.thankyouscreen').hide();
-			$('.genLoginSignup').show();
+			// $('.genLoginSignup').show();
 			$('.thankyouscreen').hide();
 			$('.signUpBox').hide();
 			$('.leftModal').removeClass('hidden-xs');
@@ -268,10 +268,10 @@ Template.businessEventIcons.events({
 				}
 			}else{
 				$('#loginModal').modal('show');
-				$('.loginScreen').hide();
+				$('.loginScreen').show();
 				$('.signupScreen').hide();
 				$('.thankyouscreen').hide();
-				$('.genLoginSignup').show();
+				// $('.genLoginSignup').show();
 				$('.thankyouscreen').hide();
 				$('.signUpBox').hide();
 				$('.leftModal').removeClass('hidden-xs');
@@ -279,10 +279,10 @@ Template.businessEventIcons.events({
 			}
 		}else{
 			$('#loginModal').modal('show');
-			$('.loginScreen').hide();
+			$('.loginScreen').show();
 			$('.signupScreen').hide();
 			$('.thankyouscreen').hide();
-			$('.genLoginSignup').show();
+			// $('.genLoginSignup').show();
 			$('.thankyouscreen').hide();
 			$('.signUpBox').hide();
 			$('.leftModal').removeClass('hidden-xs');

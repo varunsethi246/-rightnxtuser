@@ -437,11 +437,6 @@ Template.claim.events({
 			$('.claimProcess').hide();
 			$('.alreadyClaimed').hide();
 			$('#loginModal').modal('show');
-			// $('.loginScreen').hide();
-			// $('.signupScreen').hide();
-			// $('.thankyouscreen').hide();
-			// $('.genLoginSignup').show();
-			// $('.signUpBox').hide();
 			$('.loginScreen').hide();
 			$('.genLoginSignup').hide();
 			$('.signupScreen').hide();
@@ -465,11 +460,6 @@ Template.claim.events({
 			$('.claimProcess').hide();
 			$('.alreadyClaimed').hide();
 			$('#loginModal').modal('show');
-			// $('.loginScreen').hide();
-			// $('.signupScreen').hide();
-			// $('.thankyouscreen').hide();
-			// $('.genLoginSignup').show();
-			// $('.signUpBox').hide();
 			$('.loginScreen').hide();
 			$('.genLoginSignup').hide();
 			$('.signupScreen').hide();
@@ -495,17 +485,6 @@ Template.claim.events({
 			}
 		}else{
 			$('#loginModal').modal('show');
-			// $('.loginScreen').hide();
-			// $('.signupScreen').hide();
-			// $('.thankyouscreen').hide();
-			// $('.genLoginSignup').show();
-			// $('.signUpBox').hide();	
-
-			// $('.loginScreen').hide();
-			// $('.genLoginSignup').hide();
-			// $('.signupScreen').hide();
-			// $('.thankyouscreen').hide();
-			// $('.signUpBox').show();
 			$('.loginScreen').hide();
 		$('.genLoginSignup').hide();
 		$('.signupScreen').hide();

@@ -454,23 +454,18 @@ Template.imageReportModal.events({
 	'click .reportModalIcon':function(event){
 		event.preventDefault();
 		if(Meteor.userId()){
-			// $('#imageReportOne').modal('hide');
 			if($('#imgModalReport').hasClass('in')){
 				$('#imgModalReport').removeClass('in');
 			}
-			// $('#imageReportOne').addClass('in');
 
 		}else{
 			$('#loginModal').modal('show');
-			$('.loginScreen').hide();
+			$('.loginScreen').show();
 			$('.signupScreen').hide();
 			$('.thankyouscreen').hide();
-			$('.genLoginSignup').show();
+			// $('.genLoginSignup').show();
 			$('.thankyouscreen').hide();
 			$('.signUpBox').hide();
-			// $('.nonuserlike').hide();
-			// $('#imageReportOne').hide();
-
 		}
 	},
 });
@@ -726,10 +721,10 @@ Template.imageReports.events({
 					);			
 			}else{
 				$('#loginModal').modal('show');
-				$('.loginScreen').hide();
+				$('.loginScreen').show();
 				$('.signupScreen').hide();
 				$('.thankyouscreen').hide();
-				$('.genLoginSignup').show();
+				// $('.genLoginSignup').show();
 				$('.thankyouscreen').hide();
 				$('.signUpBox').hide();
 
@@ -775,10 +770,10 @@ Template.imageReports.events({
 
 		}else{
 			$('#loginModal').modal('show');
-			$('.loginScreen').hide();
+			$('.loginScreen').show();
 			$('.signupScreen').hide();
 			$('.thankyouscreen').hide();
-			$('.genLoginSignup').show();
+			// $('.genLoginSignup').show();
 			$('.thankyouscreen').hide();
 			$('.signUpBox').hide();
 			$('.nonuserShare').hide();
@@ -826,10 +821,10 @@ Template.imageReports.events({
 	'click .likeIconModal':function(event){
 		event.preventDefault();
 		$('#loginModal').modal('show');
-		$('.loginScreen').hide();
+		$('.loginScreen').show();
 		$('.signupScreen').hide();
 		$('.thankyouscreen').hide();
-		$('.genLoginSignup').show();
+		// $('.genLoginSignup').show();
 		$('.thankyouscreen').hide();
 		$('.signUpBox').hide();
 		$('#imageReportShare').hide();

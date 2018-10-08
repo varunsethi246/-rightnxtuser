@@ -622,10 +622,10 @@ Template.businessEnquiry.events({
             if(businessObj){
                 if(businessObj.businessOwnerId != 'null'){
                     $('#loginModal').modal('hide');
-                    $('.loginScreen').hide();
+                    $('.loginScreen').show();
                     $('.signupScreen').hide();
                     $('.thankyouscreen').hide();
-                    $('.genLoginSignup').show();
+                    // $('.genLoginSignup').show();
                     $('.thankyouscreen').hide();
                     $('.signUpBox').hide();
                     $('#vEnqModal').show();
