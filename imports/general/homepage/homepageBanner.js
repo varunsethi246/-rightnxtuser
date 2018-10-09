@@ -66,7 +66,7 @@ Template.homepageBanner.helpers({
       // console.log(bussData);
       if(bussData){
         var data = BizVideoBanner.findOne({"_id":bussData.bannerLink});
-        console.log('data :',data);
+        // console.log('data :',data);
           if(data){
             return data;
           }else{
