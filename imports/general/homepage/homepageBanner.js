@@ -202,7 +202,7 @@ Template.homepageBanner.events({
   'click .searchBusList':function(event) {
     event.preventDefault();
     $(".homeSearchBarList").addClass("searchDisplayShow").removeClass("searchDisplayHide");
-    var searchString=$("#getBusiness").val();
+    var searchString=$("#getBusiness").val().split(' ').join('-');
     var currentCity = $('#getCity').val();
     var currentArea = $('#getArea').val();
     // console.log(searchString,currentCity,currentArea);
@@ -214,10 +214,10 @@ Template.homepageBanner.events({
     }
 
     if(currentArea){
-      var area = currentArea;
+      var area = currentArea.split(' ').join('-');
     }else
     {
-      var area = 'All Areas';
+      var area = 'All Areas'.split(' ').join('-');
     }
 
     if(searchString){
