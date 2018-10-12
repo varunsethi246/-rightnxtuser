@@ -161,6 +161,16 @@ Template.header.events({
     	$('.loginLabel').removeClass('active');
 	},
 
+	'click .login-margin': function(event){
+		$('.passwordWrongSpan').removeClass('passwordWrongWar');
+	    $('label.error').hide();
+	    $('input[type="text"]').val('');
+	    $('input[type="password"]').val('');
+	    $('input[type="tel"]').val('');
+	    $('input[type="email"]').val('');
+    	$('.loginLabel').removeClass('active');
+	},
+
 	'click .login': function(event){
 		$('.loginScreen').show();
 		$('.signupScreen').hide();

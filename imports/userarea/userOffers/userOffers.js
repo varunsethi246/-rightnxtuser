@@ -218,7 +218,13 @@ Template.userOffers.events({
 		var fromEmail = Meteor.users.findOne({roles:'admin'}).emails[0].address;
 		var id = event.currentTarget.id;
 		var offerData = Offers.findOne({'_id': id});
-		var offerImgId  = OfferImage.findOne({'_id' : offerData.offerImage}).link();
+		var offerImgObj  = OfferImage.findOne({'_id' : offerData.offerImage});
+
+		if(offerImgObj){
+			var offerImgId = offerImgObj.link();
+		}else{
+			var offerImgId = '';
+		}
 
 		if(offerData){
 			var subj = offerData.dealHeadline;

@@ -222,10 +222,64 @@ Template.thumbnailBusinessList.helpers({
 
 	},
 	'offerIngridview'(){
-		var offerCount = Offers.find({"offerStatus":"Active"}).fetch();
-		var offerLength = offerCount.length;
-		// console.log(offerCount);
-		// console.log(offerLength);
+		var categoryArr = [];
+		var categoriesLevel = [];
+		if(FlowRouter.getParam('searchText')){
+			var categoryName = FlowRouter.getParam('searchText');
+		}else if(FlowRouter.getParam('category')){
+			var categoryName = FlowRouter.getParam('category');
+		}else{
+			var categoryName = '';
+		}
+
+		if(categoryName){
+			var businessLink = Business.find({'status':'active'}).fetch();
+		    console.log(businessLink);
+			if(businessLink){
+				if(businessLink.length > 0){
+					for (var i = 0; i < businessLink.length; i++) {
+						var offerCount = Offers.findOne({"businessLink":businessLink[i].businessLink,"offerStatus":"Active"});
+		        		console.log(offerCount);
+						if(offerCount){
+							if(businessLink[i].businesscategories){
+								if(businessLink[i].businesscategories.length > 0){
+									for (var j = 0; j < businessLink[i].businesscategories.length; j++) {
+										categoriesLevel.push({'category':businessLink[i].businesscategories[j].split('>').trim()});
+									}
+									var pluck = _.pluck(categoriesLevel, 'category');
+		        					var data = _.uniq(pluck);
+		        					console.log(data);
+
+		        					if(data.length>0){
+							          	for(var k=0;k<data.length;k++){
+							              categoryArr.push(data[k]);
+							            }  
+		        						console.log(categoryArr);
+
+							            if(categoryArr.indexOf(categoryName) >= 0){
+							            	var offerLength = i++;
+							            }
+		        						console.log(offerLength);
+
+							        }//j
+								}
+							}
+						}
+					}
+				}else{
+					var offerLength = 0;
+				}
+			}else{
+				var offerLength = 0;
+			}
+		}else{
+			var offerCount = Offers.find({"offerStatus":"Active"}).fetch();
+			if(offerCount){
+				var offerLength = offerCount.length;
+			}else{
+				var offerLength = 0;
+			}
+		}
 		return offerLength;
 	},
 	isGridViewVisible(){
