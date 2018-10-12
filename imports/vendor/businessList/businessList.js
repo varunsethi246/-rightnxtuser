@@ -244,24 +244,29 @@ Template.thumbnailBusinessList.helpers({
 							if(businessLink[i].businesscategories){
 								if(businessLink[i].businesscategories.length > 0){
 									for (var j = 0; j < businessLink[i].businesscategories.length; j++) {
-										categoriesLevel.push({'category':businessLink[i].businesscategories[j].split('>').trim()});
+										var tempArr = businessLink[i].businesscategories[j].split('>');
+										for(var k=0;k<tempArr.length;k++){
+											categoriesLevel.push({'category': tempArr[k]});
+										}
+										var pluck = _.pluck(categoriesLevel, 'category');
+			        					var data = _.uniq(pluck);
+			        					console.log(data);
+
+			        					if(data.length>0){
+								          	for(var l=0;l<data.length;l++){
+								              categoryArr.push(data[l]);
+								            }  
+								        }
 									}
-									var pluck = _.pluck(categoriesLevel, 'category');
-		        					var data = _.uniq(pluck);
-		        					console.log(data);
-
-		        					if(data.length>0){
-							          	for(var k=0;k<data.length;k++){
-							              categoryArr.push(data[k]);
-							            }  
-		        						console.log(categoryArr);
-
-							            if(categoryArr.indexOf(categoryName) >= 0){
+			        				console.log(categoryArr);
+			        				if(categoryArr.length > 0){
+								        if(categoryArr.indexOf(categoryName) >= 0){
 							            	var offerLength = i++;
 							            }
-		        						console.log(offerLength);
-
-							        }//j
+			        				}else{
+							           	var offerLength = 0;
+			        				}
+	        						console.log(offerLength);
 								}
 							}
 						}
@@ -273,6 +278,7 @@ Template.thumbnailBusinessList.helpers({
 				var offerLength = 0;
 			}
 		}else{
+			console.log('without category');
 			var offerCount = Offers.find({"offerStatus":"Active"}).fetch();
 			if(offerCount){
 				var offerLength = offerCount.length;
