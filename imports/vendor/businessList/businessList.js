@@ -222,8 +222,6 @@ Template.thumbnailBusinessList.helpers({
 
 	},
 	'offerIngridview'(){
-		var categoryArr = [];
-		var categoriesLevel = [];
 		if(FlowRouter.getParam('searchText')){
 			var categoryName = FlowRouter.getParam('searchText');
 		}else if(FlowRouter.getParam('category')){
@@ -233,53 +231,89 @@ Template.thumbnailBusinessList.helpers({
 		}
 
 		if(categoryName){
-			var businessLink = Business.find({'status':'active'}).fetch();
-		    console.log(businessLink);
-			if(businessLink){
-				if(businessLink.length > 0){
-					for (var i = 0; i < businessLink.length; i++) {
-						var offerCount = Offers.findOne({"businessLink":businessLink[i].businessLink,"offerStatus":"Active"});
-		        		console.log(offerCount);
-						if(offerCount){
-							if(businessLink[i].businesscategories){
-								if(businessLink[i].businesscategories.length > 0){
-									for (var j = 0; j < businessLink[i].businesscategories.length; j++) {
-										var tempArr = businessLink[i].businesscategories[j].split('>');
-										for(var k=0;k<tempArr.length;k++){
-											categoriesLevel.push({'category': tempArr[k].trim()});
-										}
-										var pluck = _.pluck(categoriesLevel, 'category');
-			        					var data = _.uniq(pluck);
-			        					console.log('data',data);
-
-			        					if(data.length>0){
-								          	for(var l=0;l<data.length;l++){
-								              categoryArr.push(data[l]);
-			        							console.log('categoryArrloop',categoryArr);
-								            }  
-								        }
+			var offerCount = Offers.find({"offerStatus":"Active"}).fetch();
+			if(offerCount.length > 0){
+				for (var i = 0; i < offerCount.length; i++) {
+					var categoriesLevel = [];
+					var businessLink = Business.findOne({'businessLink':offerCount[i].businessLink,'status':'active'});
+					if(businessLink){
+						if(businessLink.businesscategories){
+							if(businessLink.businesscategories.length > 0){
+								for (var j = 0; j < businessLink.businesscategories.length; j++) {
+									var tempArr = businessLink.businesscategories[j].split('>');
+									for(var k=0;k<tempArr.length;k++){
+										categoriesLevel.push(tempArr[k].trim());
 									}
-			        				console.log('categoryArr',categoryArr);
-			        				if(categoryArr.length > 0){
-								        if(categoryArr.indexOf(categoryName) >= 0){
-							            	var offerLength = i++;
-							            }
-			        				}else{
-							           	var offerLength = 0;
-			        				}
-	        						console.log('offerLength',offerLength);
 								}
 							}
 						}
 					}
-				}else{
-					var offerLength = 0;
-				}
+
+					// console.log(categoriesLevel);
+					if(categoriesLevel.length > 0){
+						categoryName = categoryName.split('-').join(' ');
+				        if(categoriesLevel.indexOf(categoryName) >= 0){
+			            	var offerLength = 1;
+			            	break;
+			            }else{
+				           	var offerLength = 0;
+	    				}
+					}else{
+						var offerLength = 0;
+					}							
+				}	
 			}else{
 				var offerLength = 0;
 			}
+
+			// var businessLink = Business.find({'status':'active'}).fetch();
+			// if(businessLink){
+			// 	if(businessLink.length > 0){
+			// 		for (var i = 0; i < businessLink.length; i++) {
+			// 			var offerCount = Offers.findOne({"businessLink":businessLink[i].businessLink,"offerStatus":"Active"});
+			// 			if(offerCount){
+			// 				if(businessLink[i].businesscategories){
+			// 					if(businessLink[i].businesscategories.length > 0){
+			// 						for (var j = 0; j < businessLink[i].businesscategories.length; j++) {
+			// 							var tempArr = businessLink[i].businesscategories[j].split('>');
+			// 							for(var k=0;k<tempArr.length;k++){
+			// 								categoriesLevel.push({'category': tempArr[k].trim()});
+			// 							}
+			//         					// console.log('categoriesLevel',categoriesLevel);
+			// 						}
+
+			// 						var pluck = _.pluck(categoriesLevel, 'category');
+		 //        					var categoryArr = _.uniq(pluck);
+			// 					}else{
+			// 			           	var offerLength = 0;
+		 //        				}
+			// 				}else{
+			// 		           	var offerLength = 0;
+	  //       				}
+			// 			}else{
+			// 	           	var offerLength = 0;
+   //      				}
+			// 		}
+			// 		// console.log('categoryArr',categoryArr);
+   //  				if(categoryArr.length > 0){
+   //  					categoryName = categoryName.split('-').join(' ');
+			// 	        if(categoryArr.indexOf(categoryName) >= 0){
+			//             	var offerLength = 1;
+			//             }else{
+			// 	           	var offerLength = 0;
+   //      				}
+   //  				}else{
+			//            	var offerLength = 0;
+   //  				}
+			// 		// console.log('offerLength',offerLength);
+			// 	}else{
+			// 		var offerLength = 0;
+			// 	}
+			// }else{
+			// 	var offerLength = 0;
+			// }
 		}else{
-			console.log('without category');
+			// console.log('without category');
 			var offerCount = Offers.find({"offerStatus":"Active"}).fetch();
 			if(offerCount){
 				var offerLength = offerCount.length;
