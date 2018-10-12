@@ -246,19 +246,20 @@ Template.thumbnailBusinessList.helpers({
 									for (var j = 0; j < businessLink[i].businesscategories.length; j++) {
 										var tempArr = businessLink[i].businesscategories[j].split('>');
 										for(var k=0;k<tempArr.length;k++){
-											categoriesLevel.push({'category': tempArr[k]});
+											categoriesLevel.push({'category': tempArr[k].trim()});
 										}
 										var pluck = _.pluck(categoriesLevel, 'category');
 			        					var data = _.uniq(pluck);
-			        					console.log(data);
+			        					console.log('data',data);
 
 			        					if(data.length>0){
 								          	for(var l=0;l<data.length;l++){
 								              categoryArr.push(data[l]);
+			        							console.log('categoryArrloop',categoryArr);
 								            }  
 								        }
 									}
-			        				console.log(categoryArr);
+			        				console.log('categoryArr',categoryArr);
 			        				if(categoryArr.length > 0){
 								        if(categoryArr.indexOf(categoryName) >= 0){
 							            	var offerLength = i++;
@@ -266,7 +267,7 @@ Template.thumbnailBusinessList.helpers({
 			        				}else{
 							           	var offerLength = 0;
 			        				}
-	        						console.log(offerLength);
+	        						console.log('offerLength',offerLength);
 								}
 							}
 						}
