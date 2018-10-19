@@ -33,12 +33,15 @@ Template.anonymousUserLayout.onCreated(function () {
   this.subscribe('notificationTemplate');
   this.subscribe('notification');
   this.subscribe('area');
-  this.subscribe('currentuser');
   this.subscribe('userfunction');
-  this.subscribe('allCity');
   this.subscribe('categories');
+  
+  // this.subscribe('currentuser');
+  // this.subscribe('allCity');
+  // this.subscribe('homeBannerVideo');
+  
+
   // this.subscribe('getBizVideoBanner');  
-  this.subscribe('homeBannerVideo');
   // this.subscribe('userRole');
   // this.subscribe('vendorImage');
   // this.subscribe('vendorBusiness');

@@ -199,7 +199,12 @@
 						</td>
 						{{#if showStatus status}}
 						<td class="bussTabletwo oneform">		
-							<a href="/{{businessLink}}" target="_blank" >
+							<a href="/{{businessLink}}" target="_blank" class="hidden-xs">
+								<span class="buttonform">
+									<i class="fa fa-eye fa-lg" aria-hidden="true" title="View"></i>
+								</span>
+							</a>
+							<a href="/{{businessLink}}" class="hidden-lg hidden-md hidden-sm">
 								<span class="buttonform">
 									<i class="fa fa-eye fa-lg" aria-hidden="true" title="View"></i>
 								</span>
@@ -224,7 +229,12 @@
 						{{else}}
 						<td class="bussTabletwo">
 							
-								<a href="/{{businessLink}}" target="_blank" >
+								<a href="/{{businessLink}}" target="_blank" class="hidden-xs">
+									<span class="buttonform">
+										<i class="fa fa-eye fa-lg" aria-hidden="true"></i>
+									</span>
+								</a>
+								<a href="/{{businessLink}}" class="hidden-lg hidden-md hidden-sm">
 									<span class="buttonform">
 										<i class="fa fa-eye fa-lg" aria-hidden="true"></i>
 									</span>

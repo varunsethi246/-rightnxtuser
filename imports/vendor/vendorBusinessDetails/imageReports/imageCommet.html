@@ -7,7 +7,8 @@
 						<img src={{pic}} class="commentImage" alt="">
 					</div>
 					<div class="review_right col-xs-9 col-lg-9">
-				        <a href="{{#if currentUser}}{{#if userProfileUrl}}/userReview/{{userProfileUrl}}{{/if}}{{/if}}" target="_blank"><p class="userName uUserName">{{userName}}</p></a>
+				        <a href="{{#if currentUser}}{{#if userProfileUrl}}/userReview/{{userProfileUrl}}{{/if}}{{/if}}" target="_blank" class="hidden-xs"><p class="userName uUserName">{{userName}}</p></a>
+				        <a href="{{#if currentUser}}{{#if userProfileUrl}}/userReview/{{userProfileUrl}}{{/if}}{{/if}}" class="hidden-lg hidden-md hidden-sm"><p class="userName uUserName">{{userName}}</p></a>
 				        <div class="review-flw">{{reviewCounts}} Reviews, {{followerCounts}} Followers</div>
 				        <!-- <a href="#"> -->
 				        <div class="flw_btn imageReportFollowing">Following</div>
@@ -70,7 +71,8 @@
 	                           <div class="col-lg-6 col-xs-12 col-md-6 revName">{{commentUserName}} </div>
 	                        {{else}} -->
 	                        	{{#if userProfileUrl}}
-		                           <a href="{{#if currentUser}}{{#if userProfileUrl}}/userReview/{{userProfileUrl}}{{/if}}{{/if}}" target="_blank"><div class="col-lg-12 revName uRevName">  {{commentUserName}} </div>  </a>
+		                           <a href="{{#if currentUser}}{{#if userProfileUrl}}/userReview/{{userProfileUrl}}{{/if}}{{/if}}" target="_blank" class="hidden-xs"><div class="col-lg-12 revName uRevName">  {{commentUserName}} </div>  </a>
+		                           <a href="{{#if currentUser}}{{#if userProfileUrl}}/userReview/{{userProfileUrl}}{{/if}}{{/if}}" class="hidden-lg hidden-md hidden-sm"><div class="col-lg-12 revName uRevName">  {{commentUserName}} </div>  </a>
 		                        {{else}}
 	                           		<a href=""><div class="col-lg-12 revName uRevName">  {{commentUserName}} </div>  </a>
 		                        {{/if}}

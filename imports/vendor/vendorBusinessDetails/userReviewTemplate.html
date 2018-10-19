@@ -8,7 +8,10 @@
 				    </div>
 				    <div class="userRevTempRightTxt col-lg-4 col-md-5 col-xs-4 col-sm-6"> 
 					    {{#if userProfileUrl}}
-						    <a href="{{#if currentUser}}{{#if userProfileUrl}}/userReview/{{userProfileUrl}}{{/if}}{{/if}}" target="_blank">
+						    <a href="{{#if currentUser}}{{#if userProfileUrl}}/userReview/{{userProfileUrl}}{{/if}}{{/if}}" target="_blank" class="hidden-xs">
+						        {{username}}
+						    </a>
+						    <a href="{{#if currentUser}}{{#if userProfileUrl}}/userReview/{{userProfileUrl}}{{/if}}{{/if}}" class="hidden-lg hidden-md hidden-sm">
 						        {{username}}
 						    </a>
 						{{else}}
@@ -172,7 +175,15 @@
 						{{#each tagedFriendsArray}}
 							<div class="tagedFrndSpansOuter">
 								<span  data-tagedId="{{userTagged}}" data-reviewId="{{../_id}}" class="bus-page-edit-outerFrnd1 bus-page-edit-outerFrnd1-{{../_id}}">x</span>
-								<a class="tagedFrndSpans tagnames" href="{{#if currentUser}}{{#if tagedFriendsUrl}}/userReview/{{tagedFriendsUrl}}{{/if}}{{/if}}" target="_blank">
+								<a class="tagedFrndSpans tagnames hidden-xs" href="{{#if currentUser}}{{#if tagedFriendsUrl}}/userReview/{{tagedFriendsUrl}}{{/if}}{{/if}}" target="_blank">
+									<div class="taggedFrndShowLiImg">
+										<img src="{{imagePath}}" class="{{checkpngImg}}">
+									</div>
+									<div class="taggedFrndShowLiName">
+										{{tagedFriends}}
+									</div>
+								</a>
+								<a class="tagedFrndSpans tagnames hidden-lg hidden-md hidden-sm" href="{{#if currentUser}}{{#if tagedFriendsUrl}}/userReview/{{tagedFriendsUrl}}{{/if}}{{/if}}">
 									<div class="taggedFrndShowLiImg">
 										<img src="{{imagePath}}" class="{{checkpngImg}}">
 									</div>
@@ -228,7 +239,7 @@
 					   			</div>
 					            <div class="modal-body">
 				          			<p>Are you sure you want to delete your review?</p>
-				          			<div class="body-close">
+				          			<div class="body-close userReviewDel">
 				          
 					                	<button type="button" class="btn btn-default busiDeleteRev" id="del-{{_id}}"><b>Yes</b></button>
 						            	<button type="button" class="btn btn-danger btn-ok" data-dismiss="modal"><b>No</b></button>
@@ -325,7 +336,8 @@
 								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 userRevname">
 									{{#if currentUser}}
 										{{#if redirectid}}
-											<a href="/userReview/{{redirectid}}" target="_blank">{{commentUserName}}</a>
+											<a href="/userReview/{{redirectid}}" target="_blank" class="hidden-xs">{{commentUserName}}</a>
+											<a href="/userReview/{{redirectid}}" class="hidden-lg hidden-md hidden-sm">{{commentUserName}}</a>
 										{{else}}
 											<a href="">{{commentUserName}}</a>
 										{{/if}}
@@ -341,13 +353,13 @@
 									    <li class="userRevCommEdit" id='{{userCommentId}}'>
 									    	<i class="fa fa-pencil editPen" aria-hidden="true"></i> Edit
 									    </li>
-									    <li class="userRevvCommentDel" data-toggle="modal" data-target="#deleteDataModal-{{userCommentId}}">  
+									    <li class="userRevvCommentDel" data-toggle="modal" data-target="#{{../userId}}deleteDataModal-{{userCommentId}}">  
 									    	<i class="fa fa-trash-o deltrash" aria-hidden="true"></i> Delete
 									    </li>
 									</ul>
 								</div>
 								
-								<div class="modal fade modaldelete" id="deleteDataModal-{{userCommentId}}" role="dialog">
+								<div class="modal fade modaldelete" id="{{../userId}}deleteDataModal-{{userCommentId}}" role="dialog">
 									<div class="modal-dialog">
 										<div class="modal-content">
 											<div class="modal-header delete-close editofferModal1">
@@ -404,13 +416,13 @@
 											    <li class="userRevRepEdit" id='{{replyId}}'>
 											    	<i class="fa fa-pencil editPen" aria-hidden="true"></i> Edit
 											    </li>
-											    <li class="userRevvReplyDel" data-toggle="modal" data-target="#deleteReplyModal-{{replyId}}">  
+											    <li class="userRevvReplyDel" data-toggle="modal" data-target="#{{commentReplyUserId}}deleteReplyModal-{{replyId}}">  
 											    	<i class="fa fa-trash-o deltrash" aria-hidden="true"></i> Delete
 											    </li>
 											</ul>
 										</div> 
 
-										<div class="modal fade modaldelete" id="deleteReplyModal-{{replyId}}" role="dialog">
+										<div class="modal fade modaldelete" id="{{commentReplyUserId}}deleteReplyModal-{{replyId}}" role="dialog">
 											<div class="modal-dialog">
 												<div class="modal-content">
 													<div class="modal-header delete-close editofferModal1">
@@ -483,7 +495,8 @@
 								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 userRevname">
 									{{#if currentUser}}
 										{{#if redirectid}}
-											<a href="/userReview/{{redirectid}}" target="_blank">{{commentUserName}}</a>
+											<a href="/userReview/{{redirectid}}" target="_blank" class="hidden-xs">{{commentUserName}}</a>
+											<a href="/userReview/{{redirectid}}" class="hidden-lg hidden-md hidden-sm">{{commentUserName}}</a>
 										{{else}}
 											<a href="">{{commentUserName}}</a>
 										{{/if}}
@@ -499,13 +512,13 @@
 									    <li class="userRevCommEdit" id='{{userCommentId}}'>
 									    	<i class="fa fa-pencil editPen" aria-hidden="true"></i> Edit
 									    </li>
-									    <li class="userRevvCommentDel" data-toggle="modal" data-target="#deleteDataModal-{{userCommentId}}">  
+									    <li class="userRevvCommentDel" data-toggle="modal" data-target="#{{../userId}}deleteDataModal-{{userCommentId}}">  
 									    	<i class="fa fa-trash-o deltrash" aria-hidden="true"></i> Delete
 									    </li>
 									</ul>
 								</div>
 								
-								<div class="modal fade modaldelete" id="deleteDataModal-{{userCommentId}}" role="dialog">
+								<div class="modal fade modaldelete" id="{{../userId}}deleteDataModal-{{userCommentId}}" role="dialog">
 									<div class="modal-dialog">
 										<div class="modal-content">
 											<div class="modal-header delete-close editofferModal1">
@@ -561,13 +574,13 @@
 											    <li class="userRevRepEdit" id='{{replyId}}'>
 											    	<i class="fa fa-pencil editPen" aria-hidden="true"></i> Edit
 											    </li>
-											    <li class="userRevvReplyDel" data-toggle="modal" data-target="#deleteReplyModal-{{replyId}}">  
+											    <li class="userRevvReplyDel" data-toggle="modal" data-target="#{{commentReplyUserId}}deleteReplyModal-{{replyId}}">  
 											    	<i class="fa fa-trash-o deltrash" aria-hidden="true"></i> Delete
 											    </li>
 											</ul>
 										</div> 
 
-										<div class="modal fade modaldelete" id="deleteReplyModal-{{replyId}}" role="dialog">
+										<div class="modal fade modaldelete" id="{{commentReplyUserId}}deleteReplyModal-{{replyId}}" role="dialog">
 											<div class="modal-dialog">
 												<div class="modal-content">
 													<div class="modal-header delete-close editofferModal1">

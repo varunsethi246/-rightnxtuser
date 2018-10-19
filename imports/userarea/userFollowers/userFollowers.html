@@ -18,13 +18,17 @@
 							<div class="LoadMore1">
 								<div class="followTab" id="{{id}}">
 										<div class="photoSugg col-lg-2 col-md-2 col-sm-2 col-xs-2 userFollPhotoSugg">
-											<a href="{{#if redirectid}}/userReview/{{redirectid}}{{/if}}" target="_blank">
+											<a href="{{#if redirectid}}/userReview/{{redirectid}}{{/if}}" target="_blank" class="hidden-xs">
+												<img src="{{UserFollowerImg}}"  alt="" class="userImg" />
+											</a>
+											<a href="{{#if redirectid}}/userReview/{{redirectid}}{{/if}}" class="hidden-lg hidden-sm hidden-md">
 												<img src="{{UserFollowerImg}}"  alt="" class="userImg" />
 											</a>
 										</div>
 									<div class="infoSugg userFollInfoSugg col-lg-10 col-md-10 col-sm-10 col-xs-10">
 										<h5 class="col-lg-12">
-											<a href="{{#if redirectid}}/userReview/{{redirectid}}{{/if}}" target="_blank">{{followerInt}}</a>
+											<a href="{{#if redirectid}}/userReview/{{redirectid}}{{/if}}" target="_blank" class="hidden-xs">{{followerInt}}</a>
+											<a href="{{#if redirectid}}/userReview/{{redirectid}}{{/if}}" class="hidden-lg hidden-sm hidden-md">{{followerInt}}</a>
 										</h5>
 									
 										<p class="col-lg-12">
@@ -89,14 +93,20 @@
 					<div class="followBox1 col-lg-4 col-md-5 col-sm-8 col-xs-12">
 						<div class="LoadMore1 col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="followTab" id="{{id}}">
-							<a href="{{#if redirectid}}/userReview/{{redirectid}}{{/if}}" target="_blank">
+							<a href="{{#if redirectid}}/userReview/{{redirectid}}{{/if}}" target="_blank" class="hidden-xs">
+								<div class="photoSugg col-lg-2 col-md-2 col-sm-2 col-xs-2 userFollPhotoSugg">
+									<img src="{{UserFollowingImg}}"  alt="" class="userImg"/>
+								</div>
+							</a>
+							<a href="{{#if redirectid}}/userReview/{{redirectid}}{{/if}}" class="hidden-lg hidden-md hidden-sm">
 								<div class="photoSugg col-lg-2 col-md-2 col-sm-2 col-xs-2 userFollPhotoSugg">
 									<img src="{{UserFollowingImg}}"  alt="" class="userImg"/>
 								</div>
 							</a>
 						<div class="infoSugg userFollInfoSugg col-lg-10 col-md-10 col-sm-10 col-xs-10">
 							<h5 class="{{#if followShowHide}}col-lg-6{{else}}col-lg-12{{/if}}">
-								<a href="{{#if redirectid}}/userReview/{{redirectid}}{{/if}}" target="_blank">{{followingInt}}</a>
+								<a href="{{#if redirectid}}/userReview/{{redirectid}}{{/if}}" target="_blank" class="hidden-xs">{{followingInt}}</a>
+								<a href="{{#if redirectid}}/userReview/{{redirectid}}{{/if}}" class="hidden-lg hidden-md hidden-sm">{{followingInt}}</a>
 							</h5>
 							{{#if followShowHide}}
 								<div class="unfollowUserBtn btn" data-toggle="modal" data-target="#follwMod-{{followId}}">

@@ -51,7 +51,10 @@
 							<img src="{{#if offerImgData}}{{offerImgData.link}}{{else}}https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg{{/if}}"  alt=""/>
 						</div>
 						<div class="busiVendorMiddleOfferText col-lg-8 col-md-8 col-sm-7 col-xs-8 ">
-							<a href="{{busLink}}" class="userSavedOffer" target="_blank">
+							<a href="{{busLink}}" class="userSavedOffer hidden-xs" target="_blank">
+								{{busTitle}}
+							</a>
+							<a href="{{busLink}}" class="userSavedOffer hidden-lg hidden-md hidden-sm">
 								{{busTitle}}
 							</a>
 							<p>{{dealHeadline}}</p>

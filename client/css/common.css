@@ -856,7 +856,7 @@ display:block
     font-size: 13px;
     color: red;
     padding: 0;
-    margin-top: 29px;
+    /*margin-top: 29px;*/
 }
 /*.reviewWrngErrorMsg {
 display:block;

@@ -193,7 +193,15 @@
                 {{#each tagedFriendsArray}}
                 <div class="tagedFrndSpansOuter">
                   <span  data-tagedId="{{userTagged}}" data-reviewId="{{../_id}}" class="bus-page-edit-outerFrnd1 bus-page-edit-outerFrnd1-{{../_id}}">x</span>
-                  <a class="tagedFrndSpans tagnames" href="{{#if tagedFriendsUrl}}/userReview/{{tagedFriendsUrl}}{{/if}}" target="_blank">
+                  <a class="tagedFrndSpans tagnames hidden-xs" href="{{#if tagedFriendsUrl}}/userReview/{{tagedFriendsUrl}}{{/if}}" target="_blank">
+                    <div class="taggedFrndShowLiImg">
+                      <img src="{{imagePath}}" class="{{checkpngImg}}">
+                    </div>
+                    <div class="taggedFrndShowLiName">
+                      {{tagedFriends}}
+                    </div>
+                  </a>
+                  <a class="tagedFrndSpans tagnames hidden-lg hidden-md hidden-sm" href="{{#if tagedFriendsUrl}}/userReview/{{tagedFriendsUrl}}{{/if}}">
                     <div class="taggedFrndShowLiImg">
                       <img src="{{imagePath}}" class="{{checkpngImg}}">
                     </div>
@@ -340,7 +348,8 @@
                       <div class="col-lg-8 col-sm-6 col-xs-6 revName nameRev">  {{commentUserName}} </div> 
                     {{else}}
                       {{#if redirectid}}
-                        <a href="{{#if isInRole 'user'}}/userReview/{{redirectid}}{{/if}}" target="_blank"><div class="col-lg-6 col-sm-6 col-xs-6 revName nameRev">  {{commentUserName}} </div>  </a>
+                        <a href="{{#if isInRole 'user'}}/userReview/{{redirectid}}{{/if}}" target="_blank" class="hidden-xs"><div class="col-lg-6 col-sm-6 col-xs-6 revName nameRev">  {{commentUserName}} </div>  </a>
+                        <a href="{{#if isInRole 'user'}}/userReview/{{redirectid}}{{/if}}" class="hidden-lg hidden-md hidden-sm"><div class="col-lg-6 col-sm-6 col-xs-6 revName nameRev">  {{commentUserName}} </div>  </a>
                       {{else}}
                         <a href=""><div class="col-lg-6 col-sm-6 col-xs-6 revName nameRev">  {{commentUserName}} </div>  </a>
                       {{/if}}
@@ -492,7 +501,8 @@
                       <div class="col-lg-8 col-sm-6 col-xs-6 revName nameRev">  {{commentUserName}} </div> 
                     {{else}}
                       {{#if redirectid}}
-                        <a href="{{#if isInRole 'user'}}/userReview/{{redirectid}}{{/if}}" target="_blank"><div class="col-lg-6 col-sm-6 col-xs-6 revName nameRev">  {{commentUserName}} </div>  </a>
+                        <a href="{{#if isInRole 'user'}}/userReview/{{redirectid}}{{/if}}" target="_blank" class="hidden-xs"><div class="col-lg-6 col-sm-6 col-xs-6 revName nameRev">  {{commentUserName}} </div>  </a>
+                        <a href="{{#if isInRole 'user'}}/userReview/{{redirectid}}{{/if}}" class="hidden-lg hidden-md hidden-sm"><div class="col-lg-6 col-sm-6 col-xs-6 revName nameRev">  {{commentUserName}} </div>  </a>
                       {{else}}
                         <a href=""><div class="col-lg-6 col-sm-6 col-xs-6 revName nameRev">  {{commentUserName}} </div>  </a>
                       {{/if}}

@@ -49,7 +49,8 @@
 		position: absolute;
 	}
 	.loginForComment{
-		float: right;
+		/*float: right;*/
+		text-align: left;
 	}
 	.logoutUser{
 		height: 140px;
@@ -114,6 +115,7 @@
 	.dayBuss{
 		margin-left: 0px; 
 	}
+	.userReviewDel.body-close{margin-left: 35.5%;}
 	.resetWrapper{
 	    border: 1px solid #f89b1c;
 	    height: 283px;
@@ -126,10 +128,12 @@
 		    margin-left: 16px;
 	}
 	.maxopenReviewHeight{
-		height: 398px;
+		height: auto!important;
+		margin-bottom: 10px;
 	}
 	.minopenReviewHeight{
-		height: 290px;
+		margin-bottom: 10px;
+		height: auto!important;
 	}
 	/*==========home page===========*/
 

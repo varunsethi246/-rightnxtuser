@@ -120,7 +120,6 @@ Template.vendorBusinessCarousel.events({
 		$('#bussVideo').attr('src',"");
 		var newbusVideo = $('#bussCarouselVideo').attr('src');
 		$('#bussVideo').attr('src',newbusVideo);
-		
 	},
 	// 'click .video':function(event){
 	// 	console.log('click');

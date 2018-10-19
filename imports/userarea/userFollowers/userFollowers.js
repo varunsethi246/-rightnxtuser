@@ -503,6 +503,7 @@ Template.suggestedFollowUsers.helpers ({
 });
 
 Template.findYourFriends.onRendered(function(){
+	$('html,body').scrollTop(0);
 
 /* global gapi */
 // var gapi = require('gapi');

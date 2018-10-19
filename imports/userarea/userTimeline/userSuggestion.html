@@ -10,13 +10,19 @@
               {{#each userSuggestionData}}
                   <li>
                     <div class="photoSugg col-lg-2 col-md-1 col-sm-1 col-xs-2">
-                      <a href="/userReview/{{redirectid}}" target="_blank">
+                      <a href="/userReview/{{redirectid}}" target="_blank" class="hidden-xs">
+                        <img src="{{UsersuggestionImg}}" alt="" class="userImg">
+
+                      </a>
+                      <a href="/userReview/{{redirectid}}" class="hidden-lg hidden-md hidden-sm">
                         <img src="{{UsersuggestionImg}}" alt="" class="userImg">
 
                       </a>
                     </div>
                       <div class="suggInfoTimeline col-lg-8 col-md-10 col-sm-10 col-xs-8">
-                          <a href="/userReview/{{redirectid}}" target="_blank">
+                          <a href="/userReview/{{redirectid}}" target="_blank" class="hidden-xs">
+                          <h5 class="switchUser" id={{id}}>{{SuggestionInt}}</h5></a>
+                          <a href="/userReview/{{redirectid}}" class="hidden-lg hidden-md hidden-sm">
                           <h5 class="switchUser" id={{id}}>{{SuggestionInt}}</h5></a>
                           <p>
                             {{#if reviewsDataTimeline}}

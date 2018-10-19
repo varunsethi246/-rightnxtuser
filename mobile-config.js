@@ -1,11 +1,18 @@
 App.info({ 
-  name: 'rightnxtuser',
-  version: "1.0.0", 
+  name: 'rightnxt',
+  version: "1.10.1", 
 });
 
 App.setPreference('loadUrlTimeoutValue', '700000', 'android');
-// App.accessRule('*://facealbum.in');
 App.accessRule('*://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/*');
+App.accessRule('*');
+App.accessRule('https://*.googleapis.com/*');
+App.accessRule('https://*.google.com/*');
+App.accessRule('https://*.gstatic.com/*');
+App.accessRule('http://admin.facealbum.in/cdn/storage/bussVideo/*');
+// App.accessRule('http://admin.rightnxt.com/cdn/storage/bussVideo/*');
+// App.accessRule('*://facealbum.in/*');
+// App.accessRule('https://s3.us-east-2.amazonaws.com/rightnxt1/BannerVideo/n9a6JFjfWRTtDmM9X-original.mp4');
 // App.launchScreens({
 //   'android_mdpi_portrait': 'splashscreen/320.png',
 // });

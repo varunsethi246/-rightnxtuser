@@ -47,7 +47,12 @@
       <div id="bookmarkDateSort">
         {{#each bookmarkData}}
           <div class="bookmarkImg col-lg-3 col-md-3 col-sm-3 col-xs-12 {{categoryClasses}} {{AreaClasses}} " data-date="{{bookmarkDateNumber}}">
-            <a href="/{{businessLink}}" target="_blank">
+            <a href="/{{businessLink}}" target="_blank" class="hidden-xs">
+                <img src="{{ownerPhoto}}"  alt=""/>
+                <h6>{{businessName}}</h6>
+                <p>{{businessArea}}, {{businessCity}}</p>
+            </a>
+            <a href="/{{businessLink}}" class="hidden-lg hidden-md hidden-sm">
                 <img src="{{ownerPhoto}}"  alt=""/>
                 <h6>{{businessName}}</h6>
                 <p>{{businessArea}}, {{businessCity}}</p>

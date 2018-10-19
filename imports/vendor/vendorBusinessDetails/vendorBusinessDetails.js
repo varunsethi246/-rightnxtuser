@@ -150,11 +150,16 @@ Template.vendorBusinessLayout.events({
 		// offersData
 		// $(".offersData").trigger("click");
 		var getOfferDiv = $(".offersData").attr('class');
-		console.log("getOfferDiv: ",getOfferDiv);
+		// console.log("getOfferDiv: ",getOfferDiv);
 		$(".descData").removeClass('active');
 		$(".offersData").addClass('active');
 		$("#description").removeClass('active in');
 		$("#offers").addClass('active in');
+
+		$('html, body').animate({
+   		     scrollTop: $('.mainConBusi').offset().top
+      		}, 1000,
+  		);
 	},
 	'click .bussScrollTop' : function(event){
     	var $this = $(event.target);

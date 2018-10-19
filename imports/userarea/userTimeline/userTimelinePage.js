@@ -674,6 +674,10 @@ Template.userSuggestion.events({
 	
 });
 
+Template.userSuggestion.onRendered(function(){
+	$('html,body').scrollTop(0);
+});
+
 Template.userTimeline.onRendered(function(){
 
 	$(document).ready(function(){
