@@ -9,8 +9,8 @@ App.accessRule('*');
 App.accessRule('https://*.googleapis.com/*');
 App.accessRule('https://*.google.com/*');
 App.accessRule('https://*.gstatic.com/*');
-App.accessRule('http://admin.facealbum.in/cdn/storage/bussVideo/*');
-// App.accessRule('http://admin.rightnxt.com/cdn/storage/bussVideo/*');
+App.accessRule('blob:*',{type: 'intent'});
+App.accessRule('polyblob:*',{type: 'intent'});
 // App.accessRule('*://facealbum.in/*');
 // App.accessRule('https://s3.us-east-2.amazonaws.com/rightnxt1/BannerVideo/n9a6JFjfWRTtDmM9X-original.mp4');
 // App.launchScreens({

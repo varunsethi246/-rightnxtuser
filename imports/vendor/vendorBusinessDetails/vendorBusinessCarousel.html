@@ -5,13 +5,8 @@
 			<div class="vedio col-lg-2 col-md-2 col-sm-3 col-xs-6" >
 				{{#each showVideo }}
 					<video  src="{{fileURL this}}?play=true" data-toggle="modal" data-target="#carouselvideo" class="showVideoDiv video-js vjs-default-skin video" type="video/{{ext}}" id="bussCarouselVideo"></video>
-					<!-- <video data-toggle="modal" autobuffer data-target="#carouselvideo" class="showVideoDiv video-js vjs-default-skin video" id="bussCarouselVideo">
-					  <source src="{{fileURL this}}?play=true" type="video/mp4">
-					  <source src="{{fileURL this}}?play=true" type="video/3gp">
-					  <source src="{{fileURL this}}?play=true" type="video/ogv">
-					  <source src="{{fileURL this}}?play=true" type="video/webm">
-					  Your browser does not support HTML5 video.
-					</video> -->
+					<!-- <video  src="{{fileURL this}}" data-toggle="modal" data-target="#carouselvideo" class="showVideoDiv video-js vjs-default-skin video hidden-lg hidden-md hidden-sm" type="video/{{ext}}" id="bussCarouselVideo"></video> -->
+
 					
 					<!-- Modal  -->
 					<button class="btn playButtonCss" id="playvideo" data-toggle="modal" data-target="#carouselvideo"><i class="fa fa-play fa-2x"></i></button>
