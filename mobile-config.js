@@ -1,6 +1,6 @@
 App.info({ 
   name: 'rightnxt',
-  version: "1.10.1", 
+  version: "1.10.0", 
 });
 
 App.setPreference('loadUrlTimeoutValue', '700000', 'android');
@@ -11,7 +11,7 @@ App.accessRule('https://*.google.com/*');
 App.accessRule('https://*.gstatic.com/*');
 App.accessRule('blob:*',{type: 'intent'});
 App.accessRule('polyblob:*',{type: 'intent'});
-// App.accessRule('*://facealbum.in/*');
+App.accessRule('*://facealbum.in/*');
 // App.accessRule('https://s3.us-east-2.amazonaws.com/rightnxt1/BannerVideo/n9a6JFjfWRTtDmM9X-original.mp4');
 // App.launchScreens({
 //   'android_mdpi_portrait': 'splashscreen/320.png',

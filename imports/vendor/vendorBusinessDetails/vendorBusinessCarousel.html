@@ -4,9 +4,8 @@
 			<!-- video present  -->
 			<div class="vedio col-lg-2 col-md-2 col-sm-3 col-xs-6" >
 				{{#each showVideo }}
-					<video  src="{{fileURL this}}?play=true" data-toggle="modal" data-target="#carouselvideo" class="showVideoDiv video-js vjs-default-skin video" type="video/{{ext}}" id="bussCarouselVideo"></video>
-					<!-- <video  src="{{fileURL this}}" data-toggle="modal" data-target="#carouselvideo" class="showVideoDiv video-js vjs-default-skin video hidden-lg hidden-md hidden-sm" type="video/{{ext}}" id="bussCarouselVideo"></video> -->
-
+					<video  src="{{fileURL this}}?play=true" poster="{{posterImg}}" data-toggle="modal" data-target="#carouselvideo" class="showVideoDiv video-js vjs-default-skin video hidden-lg hidden-md hidden-sm" type="video/{{ext}}" id="bussCarouselVideo"></video>
+					<video  src="{{fileURL this}}?play=true" data-toggle="modal" data-target="#carouselvideo" class="showVideoDiv video-js vjs-default-skin video hidden-xs videoBkImg" type="video/{{ext}}" id="bussCarouselVideo"></video>
 					
 					<!-- Modal  -->
 					<button class="btn playButtonCss" id="playvideo" data-toggle="modal" data-target="#carouselvideo"><i class="fa fa-play fa-2x"></i></button>
@@ -16,14 +15,8 @@
 							<button type="button" class="close closeVideo closeVideoModal" data-dismiss="modal">&times;</button>
 							<div class="modal-content">
 						 		<div class="carouselVideoBody modal-body">
-									<video controls src="{{fileURL this}}?play=true" class="showVideoDiv showVideoDivAdj" type="video/{{ext}}" id="bussVideo" controlsList="nodownload"></video>
-									<!-- <video controls class="showVideoDiv showVideoDivAdj" id="bussVideo" controlsList="nodownload" autobuffer>
-									  <source src="{{fileURL this}}?play=true" type="video/mp4">
-									  <source src="{{fileURL this}}?play=true" type="video/3gp">
-									  <source src="{{fileURL this}}?play=true" type="video/ogv">
-									  <source src="{{fileURL this}}?play=true" type="video/webm">
-									  Your browser does not support HTML5 video.
-									</video> -->
+									<video controls src="{{fileURL this}}?play=true" class="showVideoDiv showVideoDivAdj hidden-lg hidden-md hidden-sm" type="video/{{ext}}" id="bussVideo" controlsList="nodownload" poster="{{posterImg}}"></video>
+									<video controls src="{{fileURL this}}?play=true" class="showVideoDiv showVideoDivAdj hidden-xs videoBkImg" type="video/{{ext}}" id="bussVideo" controlsList="nodownload"></video>
 						 		</div>
 						  	</div>
 						</div>
@@ -52,6 +45,7 @@
 			</div>
 		{{/if}}
 	</div>
+
 		{{> imageReports link=businessLink}}
 </template>
 

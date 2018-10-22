@@ -22,6 +22,7 @@ import { BusinessMenu } from '/imports/videoUploadClient/businessMenuClient.js';
 import { OfferImage } from '/imports/videoUploadClient/offerImageClient.js';
 import { OwnerImage } from '/imports/videoUploadClient/ownerImageClient.js';
 import { ReviewImage } from '/imports/videoUploadClient/reviewImageClient.js';
+import { ThumbnailVideo } from '/imports/api/thumbnailMaster.js';
 
 import '../BusinessEnquiry/businessEnquiry.js';
 import './vendorBusinessLayout.html';
@@ -764,10 +765,22 @@ Template.vendorBusinessCarousel.onCreated(function() {
 
 Template.vendorBusinessCarousel.helpers({
 	showVideo(){
+		var windowWidth = $(window).width();
 		var businessLink = FlowRouter.getParam('businessurl');
     	var bussData = Business.findOne({"businessLink":businessLink});
     	if(bussData){
 	        var data = BizVideo.find({"_id":bussData.businessVideo}).fetch();
+	        if(windowWidth >= 320 && windowWidth <= 767){
+		        var thumbnailVidObj = ThumbnailVideo.findOne({'fileObjId':data[0]._id});
+		        if(thumbnailVidObj){
+		        	data[0].posterImg = thumbnailVidObj.posterImage;
+		        }else{
+		        	data[0].posterImg = "/images/loading/loading-squares2.gif";
+		        } 
+	        }else{
+		       	data[0].posterImg = "/images/loading/loading-squares2.gif";
+	        }
+	        // console.log(data);
 	        return data;
 	    }
 	},
