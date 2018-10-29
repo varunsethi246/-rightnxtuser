@@ -79,39 +79,38 @@ Template.userBookmarks.helpers({
 						}else{
 							businessBookmark[i].categoryClasses = '';
 						}
+					}
 
-						businessBookmark[i].businessName = businessObj.businessTitle;
-						businessBookmark[i].businessArea = businessObj.businessArea;
+					businessBookmark[i].businessName = businessObj.businessTitle;
+					businessBookmark[i].businessArea = businessObj.businessArea;
 
-						businessObj.businessArea 	= businessObj.businessArea.split(' ').join('-');
-						businessBookmark[i].AreaClasses 	= businessObj.businessArea.split('.').join('-');
+					businessObj.businessArea 	= businessObj.businessArea.split(' ').join('-');
+					businessBookmark[i].AreaClasses 	= businessObj.businessArea.split('.').join('-');
 
-						businessBookmark[i].businessCity = businessObj.businessCity;
-						businessBookmark[i].businessLink = businessObj.businessLink;
+					businessBookmark[i].businessCity = businessObj.businessCity;
+					businessBookmark[i].businessLink = businessObj.businessLink;
 
-						if(businessObj.businessImages){
-							if(businessObj.businessImages.length>0){
-								var pic = BusinessImage.findOne({"_id":businessObj.businessImages[0].img});
-								var pic1 = ReviewImage.findOne({"_id":businessObj.businessImages[0].img});
-								if(pic){
-									businessBookmark[i].ownerPhoto = pic.link();
-								}else if(pic1){
-									businessBookmark[i].ownerPhoto = pic1.link();
-								}else{
-									businessBookmark[i].ownerPhoto = 'https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg'
-								}	
+					if(businessObj.businessImages){
+						if(businessObj.businessImages.length>0){
+							var pic = BusinessImage.findOne({"_id":businessObj.businessImages[0].img});
+							var pic1 = ReviewImage.findOne({"_id":businessObj.businessImages[0].img});
+							if(pic){
+								businessBookmark[i].ownerPhoto = pic.link();
+							}else if(pic1){
+								businessBookmark[i].ownerPhoto = pic1.link();
 							}else{
 								businessBookmark[i].ownerPhoto = 'https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg'
-							}
-						}
-						else{
+							}	
+						}else{
 							businessBookmark[i].ownerPhoto = 'https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg'
 						}
+					}else{
+						businessBookmark[i].ownerPhoto = 'https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg'
 					}
 					bookmarkdataArr.push(businessBookmark[i]);
 				}
 			}
-			console.log('businessBookmark ' , businessBookmark);
+			// console.log('businessBookmark ' , businessBookmark);
 			return bookmarkdataArr;	
 		}
 	},

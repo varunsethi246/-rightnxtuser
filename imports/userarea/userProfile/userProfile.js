@@ -179,6 +179,14 @@ Template.userProfile.helpers({
 
 
 Template.userProfile.events({
+	'mouseenter .genHead' : function(event){
+		var checkIdExists = FlowRouter.getQueryParam('id');
+		if(checkIdExists){
+			$(event.target).find('.profileBkImg').css('opacity','1');
+			$(event.target).find('.cameraIconPro').css('opacity','0');
+		}
+	},
+
 	'click .cameraIconPro' : function(event){
 		$("input[id='uploadImg']").click();
 	},

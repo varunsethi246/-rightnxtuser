@@ -19,11 +19,11 @@ Template.nearbyBusiness.helpers({
 		if(data){
 			if(data.businesscategories.length > 0){
 				var nearByBusinesses	= Business.find({
-													"businessCountry"	: data.businessCountry , 
-												 	"businessState"		: data.businessState ,
-												 	"businessCity" 		: data.businessCity,
-												 	"businessArea" 		: data.businessArea,
-												}).fetch();
+					"businessCountry"	: data.businessCountry , 
+				 	"businessState"		: data.businessState ,
+				 	"businessCity" 		: data.businessCity,
+				 	"businessArea" 		: data.businessArea,
+				}).fetch();
 				if(nearByBusinesses){
 					var actualBusiness = [];
 					var count = 0;
