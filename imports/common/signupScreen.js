@@ -7,13 +7,25 @@ Template.signupScreen.events({
     'click .loginLabel' : function(event){
       $(event.target).siblings().focus();
     },
-    // 'click .termAndCondition':function(event){
-    //   $('.modal-backdrop').hide();
-    // },
+    'click .termAndCondition':function(event){
+      event.preventDefault();
+      var windowWidth = $(window).width();
+      if(windowWidth >= 320 && windowWidth <= 767){
+        $('#loginModal').modal('hide');
+        $('.modal-backdrop').hide();
+        FlowRouter.go('/webpage/terms-of-service');
+      }
+    },
 
-    // 'click .privacyPolicy':function(event){
-    //   $('.modal-backdrop').hide();
-    // },
+    'click .privacyPolicy':function(event){
+      event.preventDefault();
+      var windowWidth = $(window).width();
+      if(windowWidth >= 320 && windowWidth <= 767){
+        $('#loginModal').modal('hide');
+        $('.modal-backdrop').hide();
+        FlowRouter.go('/webpage/privacy-policy');
+      }
+    },
 
     'focusout .signUpEmail':function(event){
       var value = $(event.target).val();

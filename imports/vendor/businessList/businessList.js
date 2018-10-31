@@ -1173,6 +1173,15 @@ Template.businessList.events({
 });
 
 Template.thumbnailBusinessList.events({
+	'click .redirectBusinessLink':function(event){
+		event.preventDefault();
+      	var windowWidth = $(window).width();
+      	if(windowWidth >= 320 && windowWidth <= 767){
+			var path = $(event.currentTarget).attr('href');
+			// console.log(path);
+			FlowRouter.go(path);
+      	}
+	},
 	'click .thumbEnqBtn':function(event){
 		event.preventDefault();
 		var linkName = $(event.currentTarget).attr('data-link');
