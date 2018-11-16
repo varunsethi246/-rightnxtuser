@@ -31,7 +31,7 @@
 										</div>
 										<div class="thumImgDesc">
 											<a  href="/{{businessLink}}"  class="enqHelper col-lg-12 col-md-12 col-sm-12 col-xs-12 noPaddingVendor">
-												<p class="thumImgDescP thumbTxtOverfl" data-linkUrl={{businessLink}} id={{businessTitle}}>{{businessTitle}}</p>
+												<p class="thumImgDescP thumbTxtOverfl" data-linkUrl={{businessLink}} id={{businessTitle}} data-ownerId={{businessOwnerId}}>{{businessTitle}}</p>
 											</a>
 											<p class="thumbTxtOverfl thumbTxtAddr col-lg-12 col-md-12 col-sm-12 col-xs-12 noPaddingVendor">{{businessAddress}}</p>
 											<div class="thumDescPhon thumbTxtOverfl col-lg-12 col-md-12 col-sm-12 col-xs-12 noPaddingVendor">
@@ -45,7 +45,7 @@
 											</span>
 											<span class="thumBusOffersSnT">{{busNoOffer}} Offer</span>
 										</div>
-										<div class="thumbEnqBtn" data-link="{{businessLink}}" data-toggle="modal" data-target="#vEnqModal">
+										<div class="thumbEnqBtn" data-link="{{businessLink}}" data-toggle="{{#if ownerId}}modal{{/if}}" data-target="{{#if ownerId}}#vEnqModal{{/if}}">
 											<button class="btn btn-success">Enquiry</button>
 											<span class="vCmtEnqPageHideGrid">
 												{{> businessEnquiry}}
@@ -100,7 +100,7 @@
 									<div class="col-lg-7 col-xs-7" style="padding:0!important">
 										<div class="leftBorder col-lg-12 col-md-12 col-sd-12 col-xs-12" id={{_id}}>
 											<a  href="/{{businessLink}}"  class="enqHelper">
-												<span class="mapVBusTitle thumImgDescP" data-linkUrl={{businessLink}}  id={{businessTitle}}>{{businessTitle}}</span>
+												<span class="mapVBusTitle thumImgDescP" data-linkUrl={{businessLink}}  id={{businessTitle}} data-ownerId={{businessOwnerId}}>{{businessTitle}}</span>
 											</a>
 											<div class="mapVBusAddr">{{businessAddress}}</div>
 											<div class="rvwStarting">
@@ -116,7 +116,7 @@
 												<span>{{businessLandline}}{{mobNumSeperator}} {{businessMobile}}</span>
 											</div>
 
-											<div class="thumbEnqBtn" data-link="{{businessLink}}" data-toggle="modal" data-target="#vEnqModal">
+											<div class="thumbEnqBtn" data-link="{{businessLink}}" data-toggle="{{#if ownerId}}modal{{/if}}" data-target="{{#if ownerId}}#vEnqModal{{/if}}">
 												<button class="btn btn-success">Enquiry</button>
 												<span class="vCmtEnqPageHideGrid">
 													{{> businessEnquiry}}

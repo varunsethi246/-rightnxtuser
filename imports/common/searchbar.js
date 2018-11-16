@@ -424,8 +424,10 @@ Template.searchbar.events({
 		// console.log("Me clicked");
 		// $('.topSearchBarList').addClass('searchDisplayShow').removeClass('searchDisplayHide');
 		var currentPath = FlowRouter.current().path;
+		// console.log(currentPath);
 		var currentParams 	= FlowRouter.getParam('businessurl');
 		var currentText = $('#gridSearchBusiness').val().split(' ').join('-');
+		// console.log(currentText);
 		// if(!currentText){
 		// 	currentText = "*";
 		// }

@@ -104,6 +104,7 @@ Template.thumbnailBusinessList.helpers({
 	gridviewBusinessList() {
 		var listCategory = [];
 		var busList = businessSearch1.getData();
+		// console.log(busList);
 
 		//**************************************************************
 		//*******************To get Current Location********************
@@ -136,6 +137,11 @@ Template.thumbnailBusinessList.helpers({
 
 		if(busList){
 			for(var i = 0  ; i < busList.length ; i++){
+				if(busList[i].businessOwnerId != 'null'){
+					busList[i].ownerId = true;
+				}else{
+					busList[i].ownerId = false;
+				}
 				if(busList[i].businesscategories){
 					for(var j = 0 ; j < busList[i].businesscategories.length; j++){
 						if(busList[i].businesscategories[j]){
@@ -217,7 +223,6 @@ Template.thumbnailBusinessList.helpers({
 		//*********************************************************************
 
 		}
-		// console.log(busList);
 		return busList;
 
 	},
@@ -647,7 +652,10 @@ Template.allbusinessList.events({
 
 		if(Session.get("sendEnqToAll")){
 			$('.thumImgDescP').each(function() {
-			    serched.push($(this).attr('data-linkUrl'));
+				// console.log($(this).attr('data-ownerId'));
+				if($(this).attr('data-ownerId') != 'null'){
+			    	serched.push($(this).attr('data-linkUrl'));
+				}
 			});
 		}
 		if(Session.get("sendEnqToOne")){
