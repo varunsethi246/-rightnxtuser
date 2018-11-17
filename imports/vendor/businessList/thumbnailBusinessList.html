@@ -45,12 +45,14 @@
 											</span>
 											<span class="thumBusOffersSnT">{{busNoOffer}} Offer</span>
 										</div>
-										<div class="thumbEnqBtn" data-link="{{businessLink}}" data-toggle="{{#if ownerId}}modal{{/if}}" data-target="{{#if ownerId}}#vEnqModal{{/if}}">
-											<button class="btn btn-success">Enquiry</button>
-											<span class="vCmtEnqPageHideGrid">
-												{{> businessEnquiry}}
-											</span>
-										</div>
+										{{#if ownerId}}
+											<div class="thumbEnqBtn" data-link="{{businessLink}}" data-toggle="{{#if ownerId}}modal{{/if}}" data-target="{{#if ownerId}}#vEnqModal{{/if}}">
+												<button class="btn btn-success">Enquiry</button>
+												<span class="vCmtEnqPageHideGrid">
+													{{> businessEnquiry}}
+												</span>
+											</div>
+										{{/if}}
 										<div class="thumBusDistance pull-right">
 											{{#if busDist}}{{busDist}}{{else}}--{{/if}} km
 										</div>
@@ -115,14 +117,14 @@
 												<i class="fa fa-phone" aria-hidden="true"></i>
 												<span>{{businessLandline}}{{mobNumSeperator}} {{businessMobile}}</span>
 											</div>
-
-											<div class="thumbEnqBtn" data-link="{{businessLink}}" data-toggle="{{#if ownerId}}modal{{/if}}" data-target="{{#if ownerId}}#vEnqModal{{/if}}">
-												<button class="btn btn-success">Enquiry</button>
-												<span class="vCmtEnqPageHideGrid">
-													{{> businessEnquiry}}
-												</span>
-											</div>
-											
+											{{#if ownerId}}
+												<div class="thumbEnqBtn" data-link="{{businessLink}}" data-toggle="{{#if ownerId}}modal{{/if}}" data-target="{{#if ownerId}}#vEnqModal{{/if}}">
+													<button class="btn btn-success">Enquiry</button>
+													<span class="vCmtEnqPageHideGrid">
+														{{> businessEnquiry}}
+													</span>
+												</div>
+											{{/if}}
 											<div class="thumBusDistance pull-right">
 												{{#if busDist}}{{busDist}}{{else}}--{{/if}} km
 											</div>
