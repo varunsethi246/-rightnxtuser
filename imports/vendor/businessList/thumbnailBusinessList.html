@@ -45,14 +45,16 @@
 											</span>
 											<span class="thumBusOffersSnT">{{busNoOffer}} Offer</span>
 										</div>
-										{{#if ownerId}}
-											<div class="thumbEnqBtn" data-link="{{businessLink}}" data-toggle="{{#if ownerId}}modal{{/if}}" data-target="{{#if ownerId}}#vEnqModal{{/if}}">
+										<div class="thumbEnqBtn" data-link="{{businessLink}}" data-toggle="{{#if ownerId}}modal{{/if}}" data-target="{{#if ownerId}}#vEnqModal{{/if}}">
+											{{#if ownerId}}
 												<button class="btn btn-success">Enquiry</button>
-												<span class="vCmtEnqPageHideGrid">
-													{{> businessEnquiry}}
-												</span>
-											</div>
-										{{/if}}
+											{{else}}
+												<button class="btn btn-success" disabled>Enquiry</button>
+											{{/if}}
+											<span class="vCmtEnqPageHideGrid">
+												{{> businessEnquiry}}
+											</span>
+										</div>
 										<div class="thumBusDistance pull-right">
 											{{#if busDist}}{{busDist}}{{else}}--{{/if}} km
 										</div>
@@ -117,14 +119,16 @@
 												<i class="fa fa-phone" aria-hidden="true"></i>
 												<span>{{businessLandline}}{{mobNumSeperator}} {{businessMobile}}</span>
 											</div>
-											{{#if ownerId}}
-												<div class="thumbEnqBtn" data-link="{{businessLink}}" data-toggle="{{#if ownerId}}modal{{/if}}" data-target="{{#if ownerId}}#vEnqModal{{/if}}">
+											<div class="thumbEnqBtn" data-link="{{businessLink}}" data-toggle="{{#if ownerId}}modal{{/if}}" data-target="{{#if ownerId}}#vEnqModal{{/if}}">
+												{{#if ownerId}}
 													<button class="btn btn-success">Enquiry</button>
-													<span class="vCmtEnqPageHideGrid">
-														{{> businessEnquiry}}
-													</span>
-												</div>
-											{{/if}}
+												{{else}}
+													<button class="btn btn-success" disabled>Enquiry</button>
+												{{/if}}
+												<span class="vCmtEnqPageHideGrid">
+													{{> businessEnquiry}}
+												</span>
+											</div>
 											<div class="thumBusDistance pull-right">
 												{{#if busDist}}{{busDist}}{{else}}--{{/if}} km
 											</div>

@@ -13,7 +13,7 @@ Template.signupScreen.events({
       if(windowWidth >= 320 && windowWidth <= 767){
         $('#loginModal').modal('hide');
         $('.modal-backdrop').hide();
-        FlowRouter.go('/webpage/terms-of-service');
+        FlowRouter.go('/terms-of-service');
       }
     },
 
@@ -23,7 +23,7 @@ Template.signupScreen.events({
       if(windowWidth >= 320 && windowWidth <= 767){
         $('#loginModal').modal('hide');
         $('.modal-backdrop').hide();
-        FlowRouter.go('/webpage/privacy-policy');
+        FlowRouter.go('/privacy-policy');
       }
     },
 
