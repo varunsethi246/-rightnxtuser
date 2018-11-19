@@ -12,6 +12,24 @@
 		<div class="homeSearchBarListWrapper">
 			{{#each getbusiness}}
 				{{#if businessHomeSearchTypeBus searchType}}
+				{{else}}
+				<div class="topSearchBarListContent optionSearchHomePage"  data-catg={{categoryTitle}}>
+					<a>
+						<img src="https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/favicon.ico" style="width: 14px">
+						<span class="selectedTitleVal">{{categoryTitle}}</span>
+						<span class="homeCategoryDropList">[+]</span>
+					</a>
+				</div>
+				{{/if}}
+				{{#if businessHomeSearchTypeBus searchType}}
+				<div class="homeSearchBarListContent optionSearchHomePage" data-busLink={{businessLink}}>
+					<a href="/{{businessLink}}">
+						<i class="fa fa-shopping-bag" style="margin-right: 5px;color: #666;" aria-hidden="true"></i>
+						<span class="selectedTitleVal">{{businessTitle}} </span>({{businessArea}})
+					</a>
+				</div>
+				{{/if}}
+				<!-- {{#if businessHomeSearchTypeBus searchType}}
 					<div class="homeSearchBarListContent optionSearchHomePage" data-busLink={{businessLink}}>
 						<a href="/{{businessLink}}">
 							<i class="fa fa-shopping-bag" style="margin-right: 5px;color: #666;" aria-hidden="true"></i>
@@ -26,7 +44,7 @@
 							<span class="homeCategoryDropList">[+]</span>
 						</a>
 					</div>
-				{{/if}}
+				{{/if}} -->
 			{{/each}}
 		</div>
 	</div>
