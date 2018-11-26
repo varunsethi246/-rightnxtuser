@@ -43,6 +43,7 @@ Template.searchbar.onRendered(function(){
 
 Template.searchbar.helpers({
 	businessSearchTypeBus: function(searchType){
+		console.log("searchType",searchType);
 		if(searchType=="Category") {
 			return true;
 		} else {
@@ -53,7 +54,7 @@ Template.searchbar.helpers({
 	//To get business list of search results
 	businessSearchList() {
 		var busList 		= dropdownSearchList.getData();
-		// console.log("busList: ",busList);
+		console.log("busList: ",busList);
 		if(busList){
 			return busList;
 		}
