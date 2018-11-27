@@ -86,7 +86,7 @@ Template.nearbyBusiness.helpers({
 	showRating(){
 
 		var businessLink = $().parent().attr('class');
-		// console.log('businessLink: ',businessLink);
+		console.log('businessLink: ',businessLink);
 
 		var allReviews = Review.find({"businessLink" : businessLink}).fetch();
 		console.log('allReviews: ',allReviews);
