@@ -123,10 +123,15 @@ SearchSource.defineSource('dropdownSearch', function(searchText, options) {
         }
     }
 
-    if(finalArray.length>0){
-        finalArray = catArrSortList.concat(newBusArr);
+    if(catArrSortList.length > 0){    
+        if(newBusArr){
+            finalArray = catArrSortList.concat(newBusArr);
+        }
         // finalArray = newBusArr.concat(catArrSortList);
         console.log("finalArray: ",finalArray);
+    }
+
+    if(finalArray.length>0){
         return finalArray;
     }else {
         return [];
