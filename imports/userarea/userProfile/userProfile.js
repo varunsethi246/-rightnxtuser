@@ -184,6 +184,7 @@ Template.userProfile.events({
 		if(checkIdExists){
 			$(event.target).find('.profileBkImg').css('opacity','1');
 			$(event.target).find('.cameraIconPro').css('opacity','0');
+			$(event.target).find('.cameraIconPro').children('.profilepicHide').css('cursor','default');
 		}
 	},
 

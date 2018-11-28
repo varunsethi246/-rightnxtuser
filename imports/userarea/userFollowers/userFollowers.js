@@ -109,7 +109,6 @@ Template.userFollowers.helpers({
 
 		var followUserObjTotalCount = FollowUser.find({"followUserId":userId},{sort: {followingDate:-1}}).count();
 		var followUserObj = FollowUser.find({"followUserId":userId},{sort: {followingDate:-1}, limit:limitFollows}).fetch();
-		console.log(followUserObj);
 		if(followUserObj){
 			if(followUserObj.length < 5 || followUserObj.length == followUserObjTotalCount){
 				userArray.showLoadMoreFollow = 'hideFollowButton';
@@ -151,12 +150,12 @@ Template.userFollowers.helpers({
 				}//UserDataObj
 			}//i
 		}//followUserObj
-		console.log(userArray);
 		return userArray;
 	},
 
 	'userFollowerCount':function(){
 		var count = Counts.get('followerCount');
+		console.log('count',count);
 		return count;
 	},
 
