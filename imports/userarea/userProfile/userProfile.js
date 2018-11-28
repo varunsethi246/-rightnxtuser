@@ -188,7 +188,10 @@ Template.userProfile.events({
 	},
 
 	'click .cameraIconPro' : function(event){
-		$("input[id='uploadImg']").click();
+		var checkIdExists = FlowRouter.getQueryParam('id');
+		if(!checkIdExists){
+			$("input[id='uploadImg']").click();
+		}
 	},
 	
 	'change .userProfileImg': function(event,template){

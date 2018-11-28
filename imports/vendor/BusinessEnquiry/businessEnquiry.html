@@ -1,7 +1,13 @@
 <template name="businessEnquiry">
-	<div class="vCmtEnqPage pull-right" data-toggle="{{#if isBusinessClaimed}}modal{{/if}}" data-target="{{#if isBusinessClaimed}}#vEnqModal{{/if}}">
-		<button class="btn btn-success btn-sm">Enquiry</button>
-	</div>
+	{{#if isBusinessClaimed}}
+		<div class="vCmtEnqPage pull-right" data-toggle="modal" data-target="#vEnqModal">
+			<button class="btn btn-success btn-sm">Enquiry</button>
+		</div>
+	{{else}}
+		<div class="vCmtEnqPage pull-right">
+			<button class="btn btn-success btn-sm" disabled="disabled">Enquiry</button>
+		</div>
+	{{/if}}
 	
 	<!-- Modal -->
 {{#if curretUser}}

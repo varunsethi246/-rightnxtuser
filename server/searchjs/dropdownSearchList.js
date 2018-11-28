@@ -91,15 +91,16 @@ SearchSource.defineSource('dropdownSearch', function(searchText, options) {
 
 
         catArrSort     = _.uniq(catArrSort, function(p){ return p; });
-
-        for(i=0;i<catArrSort.length;i++){
-            var selectedObj = {
-                "_id"             :   count,
-                "categoryTitle"   :   catArrSort[i],
-                "searchType"      :   "Category",
+        if(catArrSort){
+            for(i=0;i<catArrSort.length;i++){
+                var selectedObj = {
+                    "_id"             :   count,
+                    "categoryTitle"   :   catArrSort[i],
+                    "searchType"      :   "Category",
+                }
+                catArrSortList.push(selectedObj);
+                count = count + 1;
             }
-            catArrSortList.push(selectedObj);
-            count = count + 1;
         }
 
         if(newBusArr){

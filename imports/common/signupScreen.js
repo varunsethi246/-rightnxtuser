@@ -9,22 +9,28 @@ Template.signupScreen.events({
     },
     'click .termAndCondition':function(event){
       event.preventDefault();
-      var windowWidth = $(window).width();
-      if(windowWidth >= 320 && windowWidth <= 767){
-        $('#loginModal').modal('hide');
-        $('.modal-backdrop').hide();
-        FlowRouter.go('/terms-of-service');
-      }
+      $('#loginModal').modal('hide');
+      $('.modal-backdrop').hide();
+      FlowRouter.go('/terms-of-service');
+      // var windowWidth = $(window).width();
+      // if(windowWidth >= 320 && windowWidth <= 767){
+      //   $('#loginModal').modal('hide');
+      //   $('.modal-backdrop').hide();
+      //   FlowRouter.go('/terms-of-service');
+      // }
     },
 
     'click .privacyPolicy':function(event){
       event.preventDefault();
-      var windowWidth = $(window).width();
-      if(windowWidth >= 320 && windowWidth <= 767){
-        $('#loginModal').modal('hide');
-        $('.modal-backdrop').hide();
-        FlowRouter.go('/privacy-policy');
-      }
+      $('#loginModal').modal('hide');
+      $('.modal-backdrop').hide();
+      FlowRouter.go('/privacy-policy');
+      // var windowWidth = $(window).width();
+      // if(windowWidth >= 320 && windowWidth <= 767){
+      //   $('#loginModal').modal('hide');
+      //   $('.modal-backdrop').hide();
+      //   FlowRouter.go('/privacy-policy');
+      // }
     },
 
     'focusout .signUpEmail':function(event){
