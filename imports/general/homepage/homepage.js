@@ -30,12 +30,12 @@ import '../mainBusinessSearch/mainBusinessSearch.js';
 });*/
 Template.anonymousUserLayout.onCreated(function () {
   // Use this.subscribe inside onCreated callback
-  this.subscribe('notificationTemplate');
-  this.subscribe('notification');
-  this.subscribe('area');
-  this.subscribe('userfunction');
-  this.subscribe('categories');
-  this.subscribe('categoriesListSearch');
+  // this.subscribe('notificationTemplate');
+  // this.subscribe('notification');
+  // this.subscribe('area');
+  // this.subscribe('userfunction');
+  // this.subscribe('categories');
+  // this.subscribe('categoriesListSearch');
   
   // this.subscribe('currentuser');
   // this.subscribe('allCity');
