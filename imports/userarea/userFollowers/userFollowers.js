@@ -156,6 +156,7 @@ Template.userFollowers.helpers({
 	'userFollowerCount':function(){
 		var count = Counts.get('followerCount');
 		console.log('count',count);
+		// console.log('count',count);
 		return count;
 	},
 
