@@ -35,6 +35,7 @@ Template.anonymousUserLayout.onCreated(function () {
   this.subscribe('area');
   this.subscribe('userfunction');
   this.subscribe('categories');
+  this.subscribe('categoriesListSearch');
   
   // this.subscribe('currentuser');
   // this.subscribe('allCity');
