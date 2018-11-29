@@ -31,117 +31,92 @@ SearchSource.defineSource('dropdownSearch', function(searchText, options) {
             var areaSelector = { "businessArea" : searchArea };
         }
 
-        console.log('regExp',regExp);
-
-        if(regExp){
-            var busSelector = {$or: [
-                {businessTitle: regExp},
-                {businessTag: regExp},
-                {businesscategories: regExp},
-            ]};
-
-            //Get Category List related to Search Text
-            var selector = {$or: [
-                {level0: regExp},
-                {level1: regExp},
-                {level2: regExp},
-                {level3: regExp},
-                {level4: regExp},
-                {tags   : regExp},
-                {menuStatus:'Enable'}
-            ]};
-        }
+        var busSelector = {$or: [
+            {businessTitle: regExp},
+            {businessTag: regExp},
+            {businesscategories: regExp},
+        ]};
 
         var newSelector = {};
         newSelector["$and"] = [];
-        if(busSelector){
-            newSelector["$and"].push(busSelector);
-        }
-        if(searchCity){
-            newSelector["$and"].push({"businessCity":searchCity}); 
-        }
+        newSelector["$and"].push(busSelector);
+        newSelector["$and"].push({"businessCity":searchCity}); 
         newSelector["$and"].push({"status" : "active"}); 
-        if(areaSelector){
-            newSelector["$and"].push(areaSelector);
-        }
+        newSelector["$and"].push(areaSelector);
 
-        if(newSelector){
-            console.log('newSelector',newSelector);
-            newBusArr = Business.find(newSelector, {
+        newBusArr = Business.find(newSelector, {
                             fields : {"businessTitle":1, "businessLink":1,"businessArea":1,"businessState":1, "businessCity":1},
                             sort   : { businessTitle: 1 },
                             limit  : 40,
                         }).fetch();
 
-            if(newBusArr){
-                console.log('newBusArr',newBusArr);
-                for(i=0;i<newBusArr.length;i++){
-                    newBusArr[i]._id = count;
-                    newBusArr[i].searchType = "Business";
-                    count = count + 1;
-                }
-            }
-        }
-
-        if(selector){
-            console.log('selector',selector);
-            var newCatArr = Categories.find(selector, {
+     
+        //Get Category List related to Search Text
+        var selector = {$or: [
+            {level0: regExp},
+            {level1: regExp},
+            {level2: regExp},
+            {level3: regExp},
+            {level4: regExp},
+            // {tags   : regExp},
+            // {menuStatus:'Enable'}
+        ],menuStatus:'Enable'};
+        var newCatArr = Categories.find(selector, {
                         fields : {"level0":1, "level1":1,"level2":1,"level3":1,"level4":1, "tags":1,"menuStatus":"Enable"},
                         sort   : { level1: 1 },
                         limit  : 40,
                     }).fetch();
-            var stringText = searchTextString[2];
-            if(stringText){
-                console.log('stringText',stringText);
-                var newSearch = new RegExp([stringText].join(""), "i");
-            }
 
-            if(newCatArr && newSearch){
-                console.log('newSearch',newSearch);
-                console.log('newCatArr',newCatArr);
-                for(j=0;j<newCatArr.length;j++){
-                   if((newCatArr[j].menuStatus) == 'Enable'){
-                     // catArrSort.push(newCatArr[j].level4);
-                   if(((newCatArr[j].level4).search(newSearch))!=-1){
-                     catArrSort.push(newCatArr[j].level4);
-                   } else if (((newCatArr[j].level3).search(newSearch))!=-1){
-                     catArrSort.push(newCatArr[j].level3);
-                   } else if (((newCatArr[j].level2).search(newSearch))!=-1){
-                     catArrSort.push(newCatArr[j].level2);
-                   } else if (((newCatArr[j].level1).search(newSearch))!=-1){
-                     catArrSort.push(newCatArr[j].level1);
-                   } else if (((newCatArr[j].level0).search(newSearch))!=-1){
-                     catArrSort.push(newCatArr[j].level0);
-                   }
-                   }
-                }
+        var stringText = searchTextString[2];
+        
+        var newSearch = new RegExp([stringText].join(""), "i");
 
-                if(catArrSort){
-                    console.log('catArrSort',catArrSort);
-                    catArrSort     = _.uniq(catArrSort, function(p){ return p; });
-                    for(i=0;i<catArrSort.length;i++){
-                        var selectedObj = {
-                            "_id"             :   count,
-                            "categoryTitle"   :   catArrSort[i],
-                            "searchType"      :   "Category",
-                        }
-                        catArrSortList.push(selectedObj);
-                        count = count + 1;
-                    }
-                }
-            }
+        if(newCatArr){
+            for(j=0;j<newCatArr.length;j++){
+               if((newCatArr[j].menuStatus) == 'Enable'){
+                 // catArrSort.push(newCatArr[j].level4);
+               if(((newCatArr[j].level4).search(newSearch))!=-1){
+                 catArrSort.push(newCatArr[j].level4);
+               } else if (((newCatArr[j].level3).search(newSearch))!=-1){
+                 catArrSort.push(newCatArr[j].level3);
+               } else if (((newCatArr[j].level2).search(newSearch))!=-1){
+                 catArrSort.push(newCatArr[j].level2);
+               } else if (((newCatArr[j].level1).search(newSearch))!=-1){
+                 catArrSort.push(newCatArr[j].level1);
+               } else if (((newCatArr[j].level0).search(newSearch))!=-1){
+                 catArrSort.push(newCatArr[j].level0);
+               }
+           }}
         }
-    }
 
-    if(catArrSortList.length > 0){    
-        console.log('catArrSortList',catArrSortList);
+
+        catArrSort     = _.uniq(catArrSort, function(p){ return p; });
+
+        for(i=0;i<catArrSort.length;i++){
+            var selectedObj = {
+                "_id"             :   count,
+                "categoryTitle"   :   catArrSort[i],
+                "searchType"      :   "Category",
+            }
+            catArrSortList.push(selectedObj);
+            count = count + 1;
+        }
+
         if(newBusArr){
-            console.log('newBusArr',newBusArr);
-            finalArray = catArrSortList.concat(newBusArr);
+            for(i=0;i<newBusArr.length;i++){
+                newBusArr[i]._id = count;
+                newBusArr[i].searchType = "Business";
+                count = count + 1;
+            }
         }
-        // finalArray = newBusArr.concat(catArrSortList);
-        console.log("finalArray: ",finalArray);
+
+        
     }
+   
+
+    finalArray = catArrSortList.concat(newBusArr);
+    // finalArray = newBusArr.concat(catArrSortList);
+    // console.log("finalArray: ",finalArray);
 
     if(finalArray.length>0){
         return finalArray;
