@@ -31,6 +31,8 @@ SearchSource.defineSource('dropdownSearch', function(searchText, options) {
             var areaSelector = { "businessArea" : searchArea };
         }
 
+        console.log('regExp',regExp);
+
         if(regExp){
             var busSelector = {$or: [
                 {businessTitle: regExp},
@@ -64,6 +66,7 @@ SearchSource.defineSource('dropdownSearch', function(searchText, options) {
         }
 
         if(newSelector){
+            console.log('newSelector',newSelector);
             newBusArr = Business.find(newSelector, {
                             fields : {"businessTitle":1, "businessLink":1,"businessArea":1,"businessState":1, "businessCity":1},
                             sort   : { businessTitle: 1 },
@@ -71,6 +74,7 @@ SearchSource.defineSource('dropdownSearch', function(searchText, options) {
                         }).fetch();
 
             if(newBusArr){
+                console.log('newBusArr',newBusArr);
                 for(i=0;i<newBusArr.length;i++){
                     newBusArr[i]._id = count;
                     newBusArr[i].searchType = "Business";
@@ -80,6 +84,7 @@ SearchSource.defineSource('dropdownSearch', function(searchText, options) {
         }
 
         if(selector){
+            console.log('selector',selector);
             var newCatArr = Categories.find(selector, {
                         fields : {"level0":1, "level1":1,"level2":1,"level3":1,"level4":1, "tags":1,"menuStatus":"Enable"},
                         sort   : { level1: 1 },
@@ -87,10 +92,13 @@ SearchSource.defineSource('dropdownSearch', function(searchText, options) {
                     }).fetch();
             var stringText = searchTextString[2];
             if(stringText){
+                console.log('stringText',stringText);
                 var newSearch = new RegExp([stringText].join(""), "i");
             }
 
-            if(newCatArr){
+            if(newCatArr && newSearch){
+                console.log('newSearch',newSearch);
+                console.log('newCatArr',newCatArr);
                 for(j=0;j<newCatArr.length;j++){
                    if((newCatArr[j].menuStatus) == 'Enable'){
                      // catArrSort.push(newCatArr[j].level4);
@@ -105,26 +113,30 @@ SearchSource.defineSource('dropdownSearch', function(searchText, options) {
                    } else if (((newCatArr[j].level0).search(newSearch))!=-1){
                      catArrSort.push(newCatArr[j].level0);
                    }
-               }}
-            }
+                   }
+                }
 
-            if(catArrSort){
-                catArrSort     = _.uniq(catArrSort, function(p){ return p; });
-                for(i=0;i<catArrSort.length;i++){
-                    var selectedObj = {
-                        "_id"             :   count,
-                        "categoryTitle"   :   catArrSort[i],
-                        "searchType"      :   "Category",
+                if(catArrSort){
+                    console.log('catArrSort',catArrSort);
+                    catArrSort     = _.uniq(catArrSort, function(p){ return p; });
+                    for(i=0;i<catArrSort.length;i++){
+                        var selectedObj = {
+                            "_id"             :   count,
+                            "categoryTitle"   :   catArrSort[i],
+                            "searchType"      :   "Category",
+                        }
+                        catArrSortList.push(selectedObj);
+                        count = count + 1;
                     }
-                    catArrSortList.push(selectedObj);
-                    count = count + 1;
                 }
             }
         }
     }
 
     if(catArrSortList.length > 0){    
+        console.log('catArrSortList',catArrSortList);
         if(newBusArr){
+            console.log('newBusArr',newBusArr);
             finalArray = catArrSortList.concat(newBusArr);
         }
         // finalArray = newBusArr.concat(catArrSortList);
