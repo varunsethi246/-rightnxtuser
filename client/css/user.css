@@ -1092,7 +1092,7 @@ font-size:14px;
 color:#4e4f51;
 font-family:"PROXIMANOVA-REGULAR";
 line-height:20px;
-word-break:break-all
+word-break:break-word;
 }
 
 .timelineRevieverImg ul {
@@ -1429,7 +1429,7 @@ padding:0
 }
 
 .ReviewTxt p {
-word-break:break-all;
+word-break:break-word;
 text-align:justify
 }
 
@@ -2752,7 +2752,7 @@ font-family:'PROXIMANOVA-BOLD'
 font-size:14px;
 color:#4e4f51;
 text-align:justify;
-word-break:break-all
+word-break:break-word;
 }
 
 .owner_lft h4 {
@@ -3025,7 +3025,7 @@ font-size:14px;
 text-align:justify;
 color:#4e4f51;
 font-family:"PROXIMANOVA-REGULAR";
-word-break:break-all
+word-break:break-word;
 }
 
 .userFollow {
@@ -3584,7 +3584,7 @@ padding: 0;
 .userCommentText {
 font-size:12px;
 color:#333;
-word-break:break-all;
+word-break:break-word;
 margin-top:0
 }
 
@@ -3783,7 +3783,7 @@ padding:3px 0 0;
 
 .vendorCon h1 {
 font-size: 28px;
-word-break: break-all;
+word-break: break-word;
 color: #f89b1c!important;
 text-align: left;
 padding: 0;

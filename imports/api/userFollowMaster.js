@@ -18,12 +18,18 @@ if (Meteor.isServer) {
  	//  Counts.publish(this, 'followerCounts', FollowUser.find({}));
   // });
 	Meteor.publish('followeringCount', function(userID) {
-			// var userID = this.userId;
-		Counts.publish(this, 'followeringCount', FollowUser.find({'userId':userID}));
+		// var userID = this.userId;
+		var isUserId = Meteor.users.findOne({'_id':userID});
+		if(isUserId){
+			Counts.publish(this, 'followeringCount', FollowUser.find({'userId':userID}));
+		}
 	});
 	Meteor.publish('followerCount', function(userID) {
-			// var userID = this.userId;
-		Counts.publish(this, 'followerCount', FollowUser.find({'followUserId':userID}));
+		// var userID = this.userId;
+		var isUserId = Meteor.users.findOne({'_id':userID});
+		if(isUserId){
+			Counts.publish(this, 'followerCount', FollowUser.find({'followUserId':userID}));
+		}
 	});
 
 }

@@ -22,7 +22,7 @@ Template.businessEnquiry.helpers({
    'isBusinessClaimed':function(){
         var businessLink = FlowRouter.getParam('businessurl');
         var businessObj = Business.findOne({'businessLink':businessLink});
-        console.log(businessObj);
+        // console.log(businessObj);
         if(businessObj){
             if(businessObj.businessOwnerId != 'null'){
                 return true;
@@ -30,7 +30,7 @@ Template.businessEnquiry.helpers({
                 return false;
             }
         }
-   },
+    },
    'getuserData':function(){
       var getloginId = Meteor.userId();
       if (getloginId) {

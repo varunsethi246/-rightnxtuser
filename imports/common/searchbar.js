@@ -676,6 +676,18 @@ Template.searchbar.events({
 		Session.set('showMapView',false);
 		Session.set('showGridView',true);
 
+		setTimeout(function() {
+        	if($('.listRelevance').hasClass('busListSelected')){
+				$('.listRelevance').click();
+			}
+			if($('.listOffers').hasClass('busListSelected')){
+				$('.listOffers').click();
+			}
+			if($('.listDistance').hasClass('busListSelected')){
+				$('.listDistance').click();
+			}
+      	}, 1);
+
 	}
 });
 

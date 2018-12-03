@@ -98,7 +98,27 @@ Template.businessList.onRendered(function(){
 	Session.set('showGridView',true);
 });
 
-
+Template.allbusinessList.helpers({
+	'isBusinessClaimed':function(){
+	    // var businessLink = FlowRouter.getParam('businessurl');
+	    var businessObj = Business.find({}).fetch();
+	    // console.log(businessObj);
+	    if(businessObj){
+	    	// console.log(businessObj.length);
+	    	if(businessObj.length > 0){
+	    		for (var i = 0; i < businessObj.length; i++) {
+		        	if(businessObj[i].businessOwnerId != 'null'){
+		                return true;
+		            }else{
+	    				if(businessObj.length == (i+1)){
+		                	return false;
+	    				}
+		            }
+	    		}
+	    	}
+	    }
+	},
+});
 
 Template.thumbnailBusinessList.helpers({	
 	gridviewBusinessList() {
