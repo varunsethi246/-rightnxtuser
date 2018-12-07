@@ -19,10 +19,10 @@ if (Meteor.isServer) {
   // });
 	Meteor.publish('followeringCount', function(userID) {
 		// var userID = this.userId;
-		var isUserId = Meteor.users.findOne({'_id':userID});
-		if(isUserId){
+		// var isUserId = Meteor.users.findOne({'_id':userID});
+		// if(isUserId){
 			Counts.publish(this, 'followeringCount', FollowUser.find({'userId':userID}));
-		}
+		// }
 	});
 	Meteor.publish('followerCount', function(userID) {
 		// var userID = this.userId;

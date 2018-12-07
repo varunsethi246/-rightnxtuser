@@ -122,6 +122,7 @@ Template.userSuggestion.helpers ({
 				var userCity = currentUserObj.profile.city;
 				if(userCity){
 					var otherUsersData  = Meteor.users.find({"profile.city":userCity, "_id":{$ne: userId}, "roles":{$nin: [ 'admin', 'Vendor' , 'Staff']}}).fetch();
+					// var otherUsersData  = Meteor.users.find({"_id":{$ne: userId}, "roles":{$nin: [ 'admin', 'Vendor' , 'Staff']}}).fetch();
 				}else{
 					var otherUsersData  = Meteor.users.find({"_id":{$ne: userId}, "roles":{$nin: [ 'admin', 'Vendor' , 'Staff']}}).fetch();
 				}

@@ -67,6 +67,7 @@ Meteor.methods({
                                           mobile          : formValues.mobile,
                                           reverse         : formValues.reverse,
                                           status          : 'Active',
+                                          city            : '-',
                                           createdOn       : new Date(),
                                         }
                                 
