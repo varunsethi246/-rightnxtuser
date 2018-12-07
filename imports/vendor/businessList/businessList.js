@@ -1203,11 +1203,17 @@ Template.businessList.events({
 Template.thumbnailBusinessList.events({
 	'click .redirectBusinessLink':function(event){
 		event.preventDefault();
+		// console.log($(event.target));
+		if($(event.target).hasClass('fa-map-marker') || $(event.target).hasClass('btn')){
+
+		}else{
+			var path = $(event.currentTarget).attr('data-link');			
+			FlowRouter.go(path);
+		}
       	// var windowWidth = $(window).width();
       	// if(windowWidth >= 320 && windowWidth <= 767){
-			var path = $(event.currentTarget).attr('href');
+			// var path = $(event.currentTarget).attr('href');
 			// console.log(path);
-			FlowRouter.go(path);
       	// }
 	},
 	'click .thumbEnqBtn':function(event){

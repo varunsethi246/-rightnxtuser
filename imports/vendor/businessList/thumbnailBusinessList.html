@@ -6,7 +6,7 @@
 						{{#each gridviewBusinessList}}
 								<!-- Grid View -->
 								<div class="col-lg-4 col-md-4 col-sm-4 gridViewBusList" id={{_id}} data-offer={{busNoOffer}}>
-									<div class="thumbBusDiv">
+									<div class="thumbBusDiv redirectBusinessLink" data-link="/{{businessLink}}">
 										<div class="thumImgDim">
 											<div class="enqRatingBus">
 												<div class="enqLeftDiv">
@@ -23,7 +23,7 @@
 												</div>
 											</div>
 											<!-- <a href="/{{businessLink}}" class="col-xs-12 nopaddingXS"> -->
-											<a href="/{{businessLink}}" class="redirectBusinessLink">
+											<a href="/{{businessLink}}" class="">
 												<!-- {{#with searchPageShowImage businessSelectedImages}} -->
 													<img src="{{businessSelectedImagesNew.img}}" class="searchImgList thumImgDimCss {{businessSelectedImagesNew.checkpngImg}}">
 												<!-- {{/with}} -->
@@ -88,7 +88,7 @@
 				{{#each gridviewBusinessList}}
 					<!-- Map View -->
 						<div class="col-lg-11 col-md-12 col-sm-12 col-xs-12 mapViewBusList" id={{_id}} data-target={{busNoOffer}}>
-							<div class="thumbBusDivs">
+							<div class="thumbBusDivs redirectBusinessLink" data-link="/{{businessLink}}">
 								<div class="row">
 									<div class="thumImgDims col-xs-5 col-lg-5" >
 										<div class="imageOverflow">

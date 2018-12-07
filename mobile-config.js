@@ -1,6 +1,7 @@
 App.info({
-  name: 'rightnxt',
-  version: "1.10.0", 
+  id : "com.rightuser",
+  name: 'Rightnxt User',
+  version: "1.0.0", 
   author: 'iAssure IT',
   email: 'rightnxt123@gmail.com',
   website: 'https://rightnxt.com'

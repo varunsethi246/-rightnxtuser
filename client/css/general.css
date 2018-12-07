@@ -4390,3 +4390,4 @@ text-align: center
 .userRevname > a{color: #4e4f51;}
 .showMoreNoPadding,.uUserCommentOne{padding-left: 0px;padding-right: 0px;}
 .enquiryToAlButton{opacity: 0.6;cursor: not-allowed;}
+.redirectBusinessLink{cursor: pointer;}
