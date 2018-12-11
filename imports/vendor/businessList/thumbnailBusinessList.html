@@ -48,12 +48,15 @@
 										<div class="thumbEnqBtn" data-link="{{businessLink}}" data-toggle="{{#if ownerId}}modal{{/if}}" data-target="{{#if ownerId}}#vEnqModal{{/if}}">
 											{{#if ownerId}}
 												<button class="btn btn-success">Enquiry</button>
+												<span class="vCmtEnqPageHideGrid">
+													{{> businessEnquiry}}
+												</span>
 											{{else}}
-												<button class="btn btn-success" disabled>Enquiry</button>
+												<div style="opacity: 0;">
+													<button class="btn">Enquiry</button>
+													<!-- <button class="btn btn-success" disabled>Enquiry</button> -->
+												</div>
 											{{/if}}
-											<span class="vCmtEnqPageHideGrid">
-												{{> businessEnquiry}}
-											</span>
 										</div>
 										<div class="thumBusDistance pull-right">
 											{{#if busDist}}{{busDist}}{{else}}--{{/if}} km
@@ -122,12 +125,15 @@
 											<div class="thumbEnqBtn" data-link="{{businessLink}}" data-toggle="{{#if ownerId}}modal{{/if}}" data-target="{{#if ownerId}}#vEnqModal{{/if}}">
 												{{#if ownerId}}
 													<button class="btn btn-success">Enquiry</button>
+													<span class="vCmtEnqPageHideGrid">
+														{{> businessEnquiry}}
+													</span>
 												{{else}}
-													<button class="btn btn-success" disabled>Enquiry</button>
+													<div style="opacity: 0;">
+														<button class="btn">Enquiry</button>
+														<!-- <button class="btn btn-success" disabled>Enquiry</button> -->
+													</div>
 												{{/if}}
-												<span class="vCmtEnqPageHideGrid">
-													{{> businessEnquiry}}
-												</span>
 											</div>
 											<div class="thumBusDistance pull-right">
 												{{#if busDist}}{{busDist}}{{else}}--{{/if}} km

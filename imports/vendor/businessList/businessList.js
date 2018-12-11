@@ -1204,7 +1204,7 @@ Template.thumbnailBusinessList.events({
 	'click .redirectBusinessLink':function(event){
 		event.preventDefault();
 		// console.log($(event.target));
-		if($(event.target).hasClass('fa-map-marker') || $(event.target).hasClass('btn')){
+		if($(event.target).hasClass('fa-map-marker') || $(event.target).hasClass('btn-success')){
 
 		}else{
 			var path = $(event.currentTarget).attr('data-link');			
