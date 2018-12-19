@@ -326,7 +326,7 @@ Template.businessEventIcons.events({
 		var businessData = Business.findOne({"businessLink":businessLink});
 		var nameRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
 		if (currentUserMail==null||currentUserMail==""||!currentUserMail.match(nameRegex)) {
-			Bert.alert('Please enter valid Email Id.','danger','growl-top-right');
+			Bert.alert('Please enter a valid email id.','danger','growl-top-right');
 		} else {
 			if(currentUserMail&&currentPath&&businessData){
 				//============================================================

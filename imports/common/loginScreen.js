@@ -63,7 +63,7 @@ import '/imports/common/common.js';
             }
         }
       }else{
-          Bert.alert('Please enter the email address.',"danger","growl-top-right");
+          Bert.alert('Please enter your registered email address.',"danger","growl-top-right");
       }
         
           
@@ -123,7 +123,7 @@ import '/imports/common/common.js';
               Meteor.loginWithPassword(email, pwd, (error)=> {
                  if (error) {
                     $('#loginModal').show();
-                    $('.passwordWrongSpan').text("Please Enter Valid Email or Password");
+                    $('.passwordWrongSpan').text("The email address or password you entered is not valid. Please try again");
                     $('.passwordWrongSpan').addClass('passwordWrongWar');
                     
                     // Bert.alert( error.reason, 'danger', 'fixed-top', 'fa-frown-o' );
@@ -177,7 +177,7 @@ import '/imports/common/common.js';
                    $('.passwordWrongSpan').addClass('passwordWrongWar');
             }else{    
                   $('#loginModal').show();
-                  $('.passwordWrongSpan').text("Please Enter Valid Email or Password");
+                  $('.passwordWrongSpan').text("The email address or password you entered is not valid. Please try again");
                   $('.passwordWrongSpan').addClass('passwordWrongWar');         
             }
           });

@@ -82,7 +82,7 @@ Template.userReviewTemplate.events({
 				}
 			});	
 		}else{
-			Bert.alert('Please enter valid Email Id.','danger','growl-top-right');
+			Bert.alert('Please enter a valid email id.','danger','growl-top-right');
 		}
 	},
 // sendEmailReviewComment

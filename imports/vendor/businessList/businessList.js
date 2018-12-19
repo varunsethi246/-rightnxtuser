@@ -1054,12 +1054,12 @@ Template.allbusinessList.events({
 			if (!enquiryName) {
                 $(".spanEnqName").addClass("ErrorRedText");
                 $(".enquiryName").addClass("SpanLandLineRedBorder");
-                $(".spanEnqName").text("Please Enter Valid Name" );
+                $(".spanEnqName").text("Please enter valid Name" );
             }
             if (!enquiryEmail) {
                 $(".spanEnqEmail").addClass("ErrorRedText");
                 $(".enquiryEmail").addClass("SpanLandLineRedBorder");
-                $( ".spanEnqEmail" ).text("Please Enter Valid Business Email Id" );
+                $( ".spanEnqEmail" ).text("Please enter a valid Business email address" );
             }
             if (!enquiryPhoneTwo) {
                 $(".spanEnqPhone").addClass("ErrorRedText");

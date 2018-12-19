@@ -486,7 +486,7 @@ Template.addReviewTemplate.events({
 		if(userReview){
 			// businessObj.alreadyReviewed = true;
 			console.log('hi in review');
-			$('.passwordWrongSpan').text("You have already reviewed this Business. Hence more review is not allowed.");
+			$('.passwordWrongSpan').text("You have already reviewed this Business. Hence more reviews are not allowed.");
             $('.passwordWrongSpan').addClass('reviewWrngErrorMsg');	
             // $('.Valignspan').css('top','37%');	
             // $('.Valign').css('top','38%');
@@ -510,7 +510,7 @@ Template.addReviewTemplate.events({
 			// console.log('userReview',userReview);
 			if(userReview){
 			// businessObj.alreadyReviewed = true;
-				$('.passwordWrongSpan').text("You have already reviewed this Business. Hence more review is not allowed.");
+				$('.passwordWrongSpan').text("You have already reviewed this Business. Hence more reviews are not allowed.");
 	            $('.passwordWrongSpan').addClass('reviewWrngErrorMsg');	
 	            // $('.Valignspan').css('top','37%');	
 	            // $('.Valign').css('top','38%');

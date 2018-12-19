@@ -108,7 +108,7 @@ Template.editProfile.events({
          if (myFuncVar&&!myFuncVar.match(nameRegex)) {
             $(".spanSettingMobile").addClass("ErrorRedText");
             $(".settingMobile").addClass("SpanLandLineRedBorder");
-            $( ".spanSettingMobile" ).text("Please Enter Valid Mobile Number" );
+            $( ".spanSettingMobile" ).text("Please enter a valid mobile number" );
          } else {
             $(".spanSettingMobile").removeClass("ErrorRedText");
             $(".settingMobile").removeClass("SpanLandLineRedBorder");
@@ -182,7 +182,7 @@ Template.editProfile.events({
 
 //  	$.validator.addMethod("regxx2", function(value, element, regexpr) {          
 //       return regexpr.test(value);
-//   	}	, "Please Enter Valid Mobile Number");
+//   	}	, "Please enter a valid mobile number");
 
 //   	$("#editProfileForm").validate({
 // 	    rules: {

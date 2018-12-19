@@ -40,13 +40,13 @@ Template.LoginOTP.events({
     // e.preventDefault();
     var emailId = $('#userEmail').val();
     if(!emailId ){
-      Bert.alert('Please enter registered email address.',"danger","growl-top-right");   
+      Bert.alert('Please enter your registered email address',"danger","growl-top-right");   
     }else{
       var newID = Meteor.users.findOne({"emails.address":emailId});
       if(newID){
         var otp = newID.profile.emailotp;
         if(!otp){
-          Bert.alert("Email already Verified.",'danger','growl-top-right');
+          Bert.alert("This email address is already verified.",'danger','growl-top-right');
           // FlowRouter.go('/');
                         // $('#loginModal').modal();
               // $('.signUpBox').hide(); 
@@ -64,7 +64,7 @@ Template.LoginOTP.events({
               }); // send verification mail ends
         }   
       } else{
-        Bert.alert('Please enter correct Email','danger','growl-top-right');
+        Bert.alert('Please enter the correct email address','danger','growl-top-right');
       }
     }
   },
@@ -131,7 +131,7 @@ Template.LoginOTP.events({
 
       }
     }else{
-      Bert.alert('Please enter correct Email','danger','growl-top-right');
+      Bert.alert('Please enter the correct email address','danger','growl-top-right');
     }
   },
 });
@@ -226,7 +226,7 @@ export { LoginOTP };
 //              }); // send verification mail ends
 //        }   
 //      } else{
-//        Bert.alert('Please enter correct Email','danger','growl-top-right');
+//        Bert.alert('Please enter the correct email address','danger','growl-top-right');
 //      }
 //    }
 //  },
@@ -283,7 +283,7 @@ export { LoginOTP };
 //                 Bert.alert('Please enter vaild OTP',"danger","growl-top-right"); 
 //      }
 //    }else{
-//             Bert.alert('Please enter correct Email','danger','growl-top-right');
+//             Bert.alert('Please enter the correct email address','danger','growl-top-right');
 //    }
 //  },
 // });
