@@ -738,7 +738,7 @@ Template.businessLocation.events({
 			$('.reportBox').removeAttr('data-target','#nousersreviews');
 		}
 	},
-	'click .bussMapContainer':function(){
+	'click .bussMapContainer':function(event){
 		var businessLink = FlowRouter.getParam('businessurl');
 	    var businessData = Business.findOne({'businessLink':businessLink});
 	    var busLat = businessData.businessLatitude;

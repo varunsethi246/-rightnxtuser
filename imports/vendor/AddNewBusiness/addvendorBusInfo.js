@@ -157,7 +157,7 @@ Template.addVendorBusInfo.events({
          }
       }, 1);
    },
-   'focusout .businessAbtBus':function(){
+   'focusout .businessAbtBus':function(event){
         var myFuncVar = $(".businessAbtBus").val();
         if ((myFuncVar.length>0&&myFuncVar.length<150)||myFuncVar.length>2500) {
             $(".SpanbusinessAbtBus").addClass("ErrorRedText");
@@ -204,7 +204,7 @@ Template.addVendorBusInfo.events({
         }
    },
 
-   'change .addVenState': function () {
+   'change .addVenState': function (event) {
       var state = $(".addVenState").val();
       Session.set("addVenStateSes",state);
 
@@ -218,7 +218,7 @@ Template.addVendorBusInfo.events({
             $(".addVenState").removeClass("SpanLandLineRedBorder");
          }
    },
-   'change .businessCityC': function () {
+   'change .businessCityC': function (event) {
       var city = $(".businessCityC").val();
       Session.set("addVenCitySes",city);
 
@@ -232,7 +232,7 @@ Template.addVendorBusInfo.events({
          $(".addVenCity").removeClass("SpanLandLineRedBorder");
       }
    },
-   'change .businessAreaC': function () {
+   'change .businessAreaC': function (event) {
       var area = $(".businessAreaC").val();
       Session.set("addVenAreaSes",area);
 

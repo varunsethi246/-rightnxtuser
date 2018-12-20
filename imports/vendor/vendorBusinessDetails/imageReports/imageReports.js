@@ -863,7 +863,7 @@ Template.imageReports.events({
 		}//businessData
 		
 	},
-	'click .bussImgShareGP ':function(){
+	'click .bussImgShareGP ':function(event){
 		event.preventDefault();
 		var url = window.location.href;
 		var title = Session.get('urlforModal');

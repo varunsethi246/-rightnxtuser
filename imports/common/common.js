@@ -237,10 +237,10 @@ Template.header.events({
 });
 
 Template.footer.events({
-	'click .clickAddNewBusi': function(){
+	'click .clickAddNewBusi': function(event){
     	Session.set("backlinkurl",'');
 	},
-	'click .webpageLinks': function(){
+	'click .webpageLinks': function(event){
     	$('html, body').scrollTop(0);
 	}
 });

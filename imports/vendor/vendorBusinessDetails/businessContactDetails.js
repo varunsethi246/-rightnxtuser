@@ -64,7 +64,7 @@ Template.businessContactDetails.helpers({
 });
 
 Template.businessContactDetails.events({
-	'click .mobileCalls':function(){
+	'click .mobileCalls':function(event){
 	    var businessLink = FlowRouter.getParam('businessurl');
 		var count = 1;
 		

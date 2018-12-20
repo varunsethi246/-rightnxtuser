@@ -15,7 +15,7 @@ Template.addVendorBusInfo.events({
    //       }
 
    //    },
-   'focusout #businessEmailId': function(){
+   'focusout #businessEmailId': function(event){
          var myFuncVar = $("#businessEmailId").val();
          var nameRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
          if (myFuncVar==null||myFuncVar==""||!myFuncVar.match(nameRegex)) {
@@ -29,7 +29,7 @@ Template.addVendorBusInfo.events({
 
          }
       },
-   'focusout #businessAddress': function(){
+   'focusout #businessAddress': function(event){
          var myFuncVar = $("#businessAddress").val().replace(/ /g,'');
          // var nameRegex = /^[A-Za-z0-9'\.\-\s\,/]{3,300}$/;
          if (myFuncVar==null||myFuncVar=="") {
@@ -48,7 +48,7 @@ Template.addVendorBusInfo.events({
         // $( ".addVenCountry" ).scrollTop( -100 );
          
       },
-   'focusout .addVenState': function(){
+   'focusout .addVenState': function(event){
 
          // alert("city");
          var myFuncVar = $(".addVenState").val();
@@ -63,7 +63,7 @@ Template.addVendorBusInfo.events({
 
          }
       },
-   'focusout .addVenCity': function(){
+   'focusout .addVenCity': function(event){
          // alert("city");
          var myFuncVar = $(".addVenCity").val();
          if (myFuncVar==null||myFuncVar==""||myFuncVar=='--Select--') {
@@ -78,7 +78,7 @@ Template.addVendorBusInfo.events({
          }
         // $('.addVenArea').focus();
       },
-   'focusout .addVenArea': function(){
+   'focusout .addVenArea': function(event){
          // alert("Area");
 
          var myFuncVar = $(".addVenArea").val();
@@ -93,7 +93,7 @@ Template.addVendorBusInfo.events({
 
          }
       },
-      'focusout .businessZipCodeC': function(){
+      'focusout .businessZipCodeC': function(event){
          var myFuncVar = $(".businessZipCodeC").val();
          // alert(myFuncVar);
          // var nameRegex = /^[A-Za-z0-9 ]{2,15}$/;
@@ -108,7 +108,7 @@ Template.addVendorBusInfo.events({
 
          }
       },
-      'change .businessLat': function(){
+      'change .businessLat': function(event){
          var myFuncVar = $(".businessLat").val();
          $( ".SpanBusinessLatitude" ).text("" );
 
@@ -123,7 +123,7 @@ Template.addVendorBusInfo.events({
             $( ".SpanBusinessLatitude" ).text("" );
          }
       },
-      'change .businessLng': function(){
+      'change .businessLng': function(event){
          var myFuncVar = $(".businessLng").val();
          $( ".SpanBusinessLongitude" ).text("" );
          
@@ -192,7 +192,7 @@ Template.addvendorOpeningAndClosing.events({
         }
    },
    
-    'focusout #businessLandline': function(){
+    'focusout #businessLandline': function(event){
          var myFuncVar = $("#businessLandline").val();
          var nameRegex = /^([0-9\-\s]{2,5}[0-9]{6,8})$/;
          var myFuncVarMob = $("#businessMobile").val();
@@ -234,7 +234,7 @@ Template.addvendorOpeningAndClosing.events({
    },
 
 
-   'focusout #businessMobile': function(){
+   'focusout #businessMobile': function(event){
          var myFuncVar = $("#businessMobile").val();
          var nameRegex = /^\d+$/;
          var nameRegexLandLine = /^([0-9\-\s]{2,5}[0-9]{6,8})$/;
@@ -309,7 +309,7 @@ Template.addvendorOpeningAndClosing.events({
                e.preventDefault();
            }
       },
-      'focusout #businessAltMobile': function(){
+      'focusout #businessAltMobile': function(event){
          var myFuncVar = $("#businessAltMobile").val();
          // var nameRegex = /^(\+91\s|\+91-|\+91|0)?\d{10}$/;
          var nameRegex = /^\d+$/;
@@ -339,7 +339,7 @@ Template.addvendorOpeningAndClosing.events({
          //    $( ".SpanAltMobile" ).text("Please Enter Valid 10 digit Mobile Number" );
          // }
       },
-      'focusout #businessWebAdress': function(){
+      'focusout #businessWebAdress': function(event){
          var myFuncVar = $("#businessWebAdress").val();
 // /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|(www\.|(?!www\.))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9]\.[^\s]{2,})/
          var nameRegex = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9]\.[^\s]{2,})/;
@@ -379,7 +379,7 @@ Template.addvendorAboutOwner.events({
 
    //       }
    //    },
-   'focusout #businessYourDesc': function(){
+   'focusout #businessYourDesc': function(event){
          var myFuncVar = $("#businessYourDesc").val();
          if ((myFuncVar.length>0&&myFuncVar.length<50)||myFuncVar.length>1000) {
             $(".SpanBusinessYourDesc").addClass("ErrorRedText");
@@ -406,7 +406,7 @@ Template.addvendorAboutOwner.events({
             e.preventDefault();
         }
    },
-   'focusout #businessMobile': function(){
+   'focusout #businessMobile': function(event){
          var myFuncVar = $("#businessMobile").val();
          var nameRegex = /^\d+$/;
          if(myFuncVar){
@@ -426,7 +426,7 @@ Template.addvendorAboutOwner.events({
          }
          
       },
-   'focusout #businessEmail': function(){
+   'focusout #businessEmail': function(event){
          var myFuncVar = $("#businessEmail").val();
          var nameRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
          if(myFuncVar){

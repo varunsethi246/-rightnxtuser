@@ -4,7 +4,7 @@ import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 
 Template.vendorLoginForm.events({
-	'submit form.loginForm' : function(){
+	'submit form.loginForm' : function(event){
 		event.preventDefault();
 
 		FlowRouter.go('/claim');

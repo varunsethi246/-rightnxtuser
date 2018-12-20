@@ -163,7 +163,7 @@ Template.addReviewTemplate.events({
 	'click .addFriends': function(event){
 		$('.frnds').css('display','block');
 	},
-	'click #searchFrnds': function(){
+	'click #searchFrnds': function(event){
 		// $('.tagFrndUl').removeClass('searchDisplayHide').addClass('searchDisplayShow');
 	},
 	'click .tagFrndUl': function(event){

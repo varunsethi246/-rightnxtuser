@@ -563,7 +563,7 @@ Template.findYourFriends.events({
 		Bert.alert('This functionality will be updated soon.','danger','growl-top-right');
 	},
 
-	'focus #userSearch': function(){
+	'focus #userSearch': function(event){
 		$('.secondDiv').hide();
 		$('.firstDiv').css('display','block');
 		$('.friendListRender').hide();

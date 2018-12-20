@@ -533,7 +533,7 @@ Template.userReviewTemplate.events({
 		
 	},
 
-	'click .busPagegpShare ':function(){
+	'click .busPagegpShare ':function(event){
 		var url = window.location.href;
 		// googleplusshare(url);
 

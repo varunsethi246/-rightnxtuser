@@ -1284,7 +1284,7 @@ Template.userReview.events({
 		});
 	},
 
-	'change #sortReviewDate' : function(){
+	'change #sortReviewDate' : function(event){
 		var sortDate = $('#sortReviewDate').val();
 		if(sortDate == 'oldestRevFirst'){
 			sortReviewDateAscending();

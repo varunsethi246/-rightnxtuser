@@ -268,7 +268,7 @@ Template.userOffers.events({
 		}
 	},
 
-	'change #sortOfferDate' : function(){
+	'change #sortOfferDate' : function(event){
 		var sortDate = $('#sortOfferDate').val();
 		if(sortDate == 'oldestRevFirst'){
 			sortOfferDateAscending();

@@ -288,7 +288,7 @@ Template.addvendorOpeningAndClosing.events({
     });
   },
 
-  'focusin .vendorPayHideInput':function(){
+  'focusin .vendorPayHideInput':function(event){
     // $('.selectOption').css('background','red');
     $('.selectOption').focus();
     if($('.selectOption').focus()){

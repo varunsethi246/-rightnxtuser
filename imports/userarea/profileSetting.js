@@ -35,7 +35,7 @@ import { Accounts } from 'meteor/accounts-base';
 // });
 
 Template.profileSetting.events({
-  'click #change-password': function() {
+  'click #change-password': function(event) {
     var digest = Package.sha.SHA256($('#password').val());
     Meteor.call('checkPassword', digest, function(err, result) {
       if (result) {

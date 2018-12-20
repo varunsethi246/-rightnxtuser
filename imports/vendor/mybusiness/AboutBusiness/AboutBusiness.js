@@ -544,7 +544,7 @@ Template.aboutBusiness.events({
 		$('.modal-backdrop').hide();
 	},
   
-  'change .venState': function (events) {
+  'change .venState': function (event) {
     var state = $(".venState").val();
     Session.set("busState",state);
 
@@ -559,7 +559,7 @@ Template.aboutBusiness.events({
      }
   },
   
-  'change .venCity': function (events) {
+  'change .venCity': function (event) {
   	var city = $(".venCity").val();
     Session.set("busCity",city);
 
@@ -573,7 +573,7 @@ Template.aboutBusiness.events({
         $(".venCity").removeClass("SpanLandLineRedBorder");
      }
   },
-  'change .venArea': function (events) {
+  'change .venArea': function (event) {
   	var area = $(".venArea").val();
     Session.set("busArea",area);
 

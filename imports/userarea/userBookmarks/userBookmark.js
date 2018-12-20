@@ -223,7 +223,7 @@ getCategory = function(categoriesArray){
 }
 
 Template.userBookmarks.events({
-	'change #sortBookmarkDate' : function(){
+	'change #sortBookmarkDate' : function(event){
 		var sortDate = $('#sortBookmarkDate').val();
 		if(sortDate == 'oldestRevFirst'){
 			sortBookmarkDateAscending();

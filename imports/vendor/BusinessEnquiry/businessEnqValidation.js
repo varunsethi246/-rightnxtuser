@@ -49,7 +49,7 @@ Template.businessEnquiry.events({
 	        }
 	   },
 
-	'focusout .enquiryPhone': function(){
+	'focusout .enquiryPhone': function(event){
 		var myFuncVar = $(".enquiryPhone").val();
 		var nameRegex = /^(\+91\s|\+91-|\+91|0)?\d{10}$/;
 		if (myFuncVar==null||myFuncVar==""||!myFuncVar.match(nameRegex)) {
@@ -63,7 +63,7 @@ Template.businessEnquiry.events({
 		}
 	},
 
-	'focusout .enquiryEmail': function(){
+	'focusout .enquiryEmail': function(event){
 		var myFuncVar = $(".enquiryEmail").val();
 		var nameRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
 		if (myFuncVar==null||myFuncVar==""||!myFuncVar.match(nameRegex)) {
@@ -77,7 +77,7 @@ Template.businessEnquiry.events({
 		}
 	},
 
-	'focusout .enquiryDesc': function(){
+	'focusout .enquiryDesc': function(event){
 		var myFuncVar = $(".enquiryDesc").val();
 		if (myFuncVar==null||myFuncVar=="") {
 			$(".spanEnqDesc").addClass("ErrorRedText");

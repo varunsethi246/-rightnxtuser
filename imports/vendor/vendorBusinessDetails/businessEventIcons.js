@@ -151,24 +151,24 @@ Template.businessEventIcons.events({
 		$('.rightModal').removeClass('newHeight');
 		}
 	},
-	'mouseover #likeme':function(){
+	'mouseover #likeme':function(event){
 		event.preventDefault();
 		$('.tooltipone').tooltip({title: "Like", trigger: "hover"});
 	},
-	'mouseover #bookmark':function(){
+	'mouseover #bookmark':function(event){
 		event.preventDefault();
 		$('.tooltiptwo').tooltip({title: "Bookmark", trigger: "hover"});
 	},
-	'mouseover #beenThere':function(){
+	'mouseover #beenThere':function(event){
 		event.preventDefault();
 		$('.tooltipthree').tooltip({title: "Been There", trigger: "hover"});
 	},
-	'mouseover #share':function(){
+	'mouseover #share':function(event){
 			event.preventDefault();
 			$('.tooltipfour').tooltip({title: "Share", trigger: "hover"});
 	},
 
-	'click .your-rating':function(){
+	'click .your-rating':function(event){
 		event.preventDefault();
 		if(!(Meteor.userId())){
 			$('#loginModal').modal('show');
@@ -308,7 +308,7 @@ Template.businessEventIcons.events({
 		
 	},
 
-	'click .gpShareDiv ':function(){
+	'click .gpShareDiv ':function(event){
 		var destination = window.location.href;
 		googleplusshare(destination);
 

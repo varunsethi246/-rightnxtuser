@@ -50,7 +50,7 @@ Template.contactUs.events({
             e.preventDefault();
         }
    },
-   'focusout #contactMblNumber': function(){
+   'focusout #contactMblNumber': function(event){
          var myFuncVar = $("#contactMblNumber").val();
          var nameRegex = /^\d+$/;
          var nameRegexLandLine = /^([0-9\-\s]{2,5}[0-9]{6,8})$/;
