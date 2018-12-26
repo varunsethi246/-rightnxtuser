@@ -46,7 +46,7 @@ if(s3Data)
             // console.log('s3: ', s3);
             // Declare the Meteor file collection on the Server
             export const VendorImage = new FilesCollection({
-                debug: true, // Change to `true` for debugging
+                debug: false, // Change to `true` for debugging
                 storagePath: 'vendorImage',
                 collectionName: 'vendorImage',
                 // Disallow Client to execute remove, use the Meteor.method
@@ -61,11 +61,13 @@ if(s3Data)
                     }
                     return 'Please upload image, with size equal or less than 10MB';
                 },
+
+
                 // Start moving files to AWS:S3
                 // after fully received by the Meteor server
                 onAfterUpload(fileRef) {
                     // Run through each of the uploaded file
-                    // console.log("fileRef2: ", fileRef);
+                    console.log("fileRef2: ", fileRef);
                     _.each(fileRef.versions, (vRef, version) => {
                         // We use Random.id() instead of real file's _id
                         // to secure files from reverse engineering on the AWS client

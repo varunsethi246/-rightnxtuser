@@ -46,7 +46,7 @@ if(s3Data)
             // console.log('s3: ', s3);
             // Declare the Meteor file collection on the Server
             export const OfferImage = new FilesCollection({
-                debug: true, // Change to `true` for debugging
+                debug: false, // Change to `true` for debugging
                 storagePath: 'offerImage',
                 collectionName: 'offerImage',
                 // Disallow Client to execute remove, use the Meteor.method

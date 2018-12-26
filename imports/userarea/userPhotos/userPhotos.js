@@ -84,7 +84,9 @@ Template.userPhotos.helpers({
 					for(j = 0 ; j < imgListCount ; j++)
 					{
 						var imgId =  data[i].reviewImages[j];
+						// console.log('data',data[i].reviewImages[j]);
 						var imgData = ReviewImage.findOne({"_id":imgId.img});
+						// console.log(imgData);
 						if(imgData){
 							imgData.showDelete = showDelete;
 							imgData.margLike = margLike;

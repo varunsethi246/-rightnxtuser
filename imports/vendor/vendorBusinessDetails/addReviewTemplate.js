@@ -196,7 +196,7 @@ Template.addReviewTemplate.events({
 			"reviewComment" 		: event.target.review.value,
 			"tagedFriends"      : tagedFriendsList,
 		};
-		console.log('rating :', rating);	
+		// console.log('rating :', rating);	
 		if(rating == 0){
 			$('.passwordWrongSpan').text("Please rate the business before submitting the review!");
       		$('.passwordWrongSpan').addClass('passwordWrongWar');
@@ -336,9 +336,9 @@ Template.addReviewTemplate.events({
 					        //============================================================
 							// 			End Notification Email / Text / InApp
 							//============================================================
-
+							console.log('filesR:',filesR);
 						    if(filesR){
-								for(i = 0 ; i < filesR.length; i++){
+								for(var i = 0 ; i < filesR.length; i++){
 									const imageCompressor = new ImageCompressor();
 								    imageCompressor.compress(filesR[i])
 								        .then((result) => {
@@ -405,7 +405,7 @@ Template.addReviewTemplate.events({
 							if(allReviews){						
 								var totalRating = 0;
 								var totalVote = allReviews.length;
-								for(i=0; i<allReviews.length; i++){
+								for(var i=0; i<allReviews.length; i++){
 									totalRating = totalRating + allReviews[i].rating;
 								}
 								totalRating = totalRating / allReviews.length ;

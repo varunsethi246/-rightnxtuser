@@ -46,15 +46,17 @@ if(s3Data)
             // console.log('s3: ', s3);
             // Declare the Meteor file collection on the Server
             export const ReviewImage = new FilesCollection({
-                debug: true, // Change to `true` for debugging
+                debug: false, // Change to `true` for debugging
                 storagePath: 'reviewImage',
                 collectionName: 'reviewImage',
                 // Disallow Client to execute remove, use the Meteor.method
                 allowClientCode: false,
                 chunkSize: 1024 * 1024,
                 onBeforeUpload(file) {
+                    console.log("before file upload:",file.extension);
                     // Allow upload files under 10MB, and only in png/jpg/jpeg formats
                     if (file.size <= 10485760 && /png|jpg|jpeg/i.test(file.extension)) {
+                    console.log("before file upload test pass");
                       return true;
                     }
                     return 'Please upload image, with size equal or less than 10MB';
@@ -62,6 +64,8 @@ if(s3Data)
                 // Start moving files to AWS:S3
                 // after fully received by the Meteor server
                 onAfterUpload(fileRef) {
+                    console.log("after file upload:",fileRef);
+
                     // Run through each of the uploaded file
                     // console.log("fileRef2: ", fileRef);
                     _.each(fileRef.versions, (vRef, version) => {

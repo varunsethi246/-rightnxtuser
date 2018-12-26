@@ -46,7 +46,7 @@ if(s3Data)
             // console.log('s3: ', s3);
             // Declare the Meteor file collection on the Server
             export const OwnerImage = new FilesCollection({
-                debug: true, // Change to `true` for debugging
+                debug: false, // Change to `true` for debugging
                 storagePath: 'ownerImage',
                 collectionName: 'ownerImage',
                 // Disallow Client to execute remove, use the Meteor.method
@@ -98,7 +98,7 @@ if(s3Data)
                                     }, upd, (updError) => {
                                         if (updError) {
                                             // console.log("updError: ", updError);
-                                            console.error(updError);
+                                            console.error('updError: ',updError);
                                         } else {
                                             // Unlink original files from FS after successful upload to AWS:S3
                                             // console.log("unlink: ", fileRef._id);

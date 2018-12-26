@@ -3525,7 +3525,7 @@ padding-left:10px
 .right-Carousel i{margin-right: 8px!important;}
 .left-Carousel i{margin-left: 8px!important;}
 .logoNamePhoto{position: absolute;right: 0px;padding-right: 0px;}
-.RevEditBoxTimeline{position: absolute;right: 0px;top: 90px;padding-left: 0px;padding-right: 0px;z-index: 2;}
+/*.RevEditBoxTimeline{position: absolute;right: 0px;top: 90px;padding-left: 0px;padding-right: 0px;z-index: 2;}*/
 .deleEditBox{padding-right: 3px;}
 .revName{padding-right: 0px;}
 .userReplyComent{padding-left: 10px!important;;}
@@ -4034,7 +4034,7 @@ padding:4px 5px!important
 .reviewCommCancel.uReviewCommCancel{padding-left: 0px!important;padding-right: 0px;}
 .uRevCommtext.revCommtext{padding-left: 15px!important;}
 .uUserRowTemp{margin-top: 0px!important;}
-.uRevEditBoxTimeline{top: 120px!important;}
+/*.uRevEditBoxTimeline{top: 120px!important;}*/
 .uCommentReplyArr.commentReplyArr,.usercomRevTemtext.uPaddingLeft40{padding-left: 40px!important;}
 .uMyRatingOnBuss{margin-top: 10px;}
 .uMyRatingOnBussPage{margin-top: 5px;}

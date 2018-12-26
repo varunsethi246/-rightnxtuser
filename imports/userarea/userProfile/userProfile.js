@@ -6,7 +6,7 @@ import ImageCompressor from 'image-compressor.js';
 
 Template.userProfile.onCreated(function() {
     this.currentUpload = new ReactiveVar(false);
-    // this.subscribe('vendorImage');
+    this.subscribe('allvendorImage');
 });
 
 Template.userProfile.helpers({
@@ -197,8 +197,8 @@ Template.userProfile.events({
 	
 	'change .userProfileImg': function(event,template){
 
-		// var name = event.currentTarget.files[0].name;
-		// console.log('name:',name);
+		var name = event.currentTarget.files[0];
+		console.log('name:',name);
 	    // event.preventDefault();
 	    if(event.currentTarget.files[0]){  
 	    	// console.log(event.currentTarget.files[0].size);
@@ -208,7 +208,7 @@ Template.userProfile.events({
 
 			imageCompressor.compress(event.currentTarget.files[0])
 			  .then((result) => {
-			    // console.log(result);
+			    console.log(result);
 
 			    // Handle the compressed image file.
 			    // We upload only one file, in case
@@ -233,7 +233,7 @@ Template.userProfile.events({
 				  		// alert('File "' + fileObj._id + '" successfully uploaded');
 				    	Bert.alert('User Image uploaded.','success','growl-top-right');
 				  	
-					  	// console.log(fileObj._id);
+					  	console.log(fileObj._id);
 					  	Meteor.call("updateUserProfileImage", fileObj._id,
 					        function(error, result) { 
 					            if(error) {

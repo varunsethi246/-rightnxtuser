@@ -64,7 +64,7 @@ Template.userReviewTemplate.helpers({
 
 			ratingObj = {};
 
-			for(i=1; i<=10; i++){
+			for(var i=1; i<=10; i++){
 				var x = "star" + i;
 				if(i <= finalRating*2){
 					if( i%2 == 0){
@@ -143,7 +143,7 @@ Template.descriptionTabContent.helpers({
 				allReviews.showLoadMore = '';
 			}
 
-			for(i=0; i<allReviews.length; i++){
+			for(var i=0; i<allReviews.length; i++){
 				// var userObjs = Meteor.users.findOne({"_id":userId});
 
 				if(allReviews[i].userId != Meteor.userId()){
@@ -195,7 +195,7 @@ Template.descriptionTabContent.helpers({
 				if(allReviews[i].tagedFriends && allReviews[i].tagedFriends.length != 0){
 					allReviews[i].tagedFriendsValidate = true;
 					var tagedFriendsArray = [];
-					for(m=0;m<allReviews[i].tagedFriends.length;m++){
+					for(var m=0;m<allReviews[i].tagedFriends.length;m++){
 						var userTagObj = Meteor.users.findOne({"_id":allReviews[i].tagedFriends[m]});
 						// console.log('userTagObj:',userTagObj);
 						var dataImgUser = '';
@@ -283,7 +283,7 @@ Template.descriptionTabContent.helpers({
 
 
 				if(allReviews[i].reviewImages){
-					for(j=0;j<allReviews[i].reviewImages.length;j++){
+					for(var j=0;j<allReviews[i].reviewImages.length;j++){
 						var reviewPhoto = ReviewImage.findOne({"_id":allReviews[i].reviewImages[j].img});
 						if(reviewPhoto){
 							// if(reviewPhoto.copies){
@@ -337,7 +337,7 @@ Template.descriptionTabContent.helpers({
 				if(allReviews[i].userComments){
 					allReviews[i].userCommentsCount = allReviews[i].userComments.length;
 					allReviews[i].userComments = allReviews[i].userComments.reverse();
-					for(k=0;k<allReviews[i].userComments.length; k++){
+					for(var k=0;k<allReviews[i].userComments.length; k++){
 						var userId  = allReviews[i].userComments[k].userId;
 						if(Roles.userIsInRole(userId, ['user'])){
 							if(Meteor.userId() != userId){
@@ -375,7 +375,7 @@ Template.descriptionTabContent.helpers({
 						if(allReviews[i].commentReply){
 							var commentReplyArr = [];
 							var rn = 0;
-							for(l=0;l<allReviews[i].commentReply.length; l++){
+							for(var l=0;l<allReviews[i].commentReply.length; l++){
 								var replyObj = {};
 								if(allReviews[i].commentReply[l].userCommentId == allReviews[i].userComments[k].userCommentId){
 									replyObj.commentReplyUserId = allReviews[i].commentReply[l].userId;
@@ -476,7 +476,7 @@ Template.descriptionTabContent.helpers({
 				if(allReviews[i].reviewLikes){					
 					allReviews[i].reviewLikeCount = allReviews[i].reviewLikes.length;
 					allReviews[i].likeClass = '';
-					for(l=0; l<allReviews[i].reviewLikes.length; l++){
+					for(var l=0; l<allReviews[i].reviewLikes.length; l++){
 						if(allReviews[i].reviewLikes[l].likedByUser == Meteor.userId() ){
 							allReviews[i].likeClass = 'orangeHeart';
 							break;
@@ -1331,7 +1331,7 @@ Template.userReviewTemplate.events({
 
 		tagedFriends = [];
 		var userData = Review.findOne({"_id": id});
-		for(i=0;i<userData.tagedFriends.length;i++){
+		for(var i=0;i<userData.tagedFriends.length;i++){
 			var userVar = Meteor.users.findOne({"_id":userData.tagedFriends[i]});
 			var userImg = "";
 			if(userVar.profile.userProfilePic){
@@ -1449,11 +1449,11 @@ Template.userReviewTemplate.events({
 				var rating = ratingInt.rating;
 			}
 			if(filesR){
-				for(i = 0 ; i < filesR.length; i++){
+				for(var i = 0 ; i < filesR.length; i++){
 					const imageCompressor = new ImageCompressor();
 				    imageCompressor.compress(filesR[i])
 				        .then((result) => {
-				          // console.log(result);
+				          console.log(result);
 
 				          // Handle the compressed image file.
 				          // We upload only one file, in case
@@ -1477,7 +1477,7 @@ Template.userReviewTemplate.events({
 				          } else {
 				            // alert('File "' + fileObj._id + '" successfully uploaded');
 				            Bert.alert('Review Image uploaded.','success','growl-top-right');
-				            // console.log(fileObj._id);
+				            console.log(fileObj);
 				            // Session.set("vendorImgFilePath",fileObj._id);
 				            var imgId =  fileObj._id ;
 					        Meteor.call("updateReviewBulkImg", id, imgId,
@@ -1491,7 +1491,7 @@ Template.userReviewTemplate.events({
 									$('.openReviewBox').hide();
 									$('.reviewImages').hide();
 									$('#searchFrndsEdit').val('');
-									event.target.review.value	= '';
+									// event.target.review.value	= '';
 					              }
 					        });
 				          }

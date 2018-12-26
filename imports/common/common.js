@@ -179,6 +179,7 @@ Template.header.events({
 		$('.thankyouscreen').hide();
 		$('.signUpBox').hide();
 		$('.leftModal').removeClass('hidden-xs');
+		$('#forgotPwdModal').modal('hide');
 		
 	},
 	'click .loginTxt': function(event){

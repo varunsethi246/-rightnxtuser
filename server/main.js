@@ -89,6 +89,7 @@ import { OfferImage } from '/imports/videoUploadserver/offerImageServer.js';
 import { EnquiryImage } from '/imports/videoUploadserver/enquiryImageServer.js';
 import { ReviewImage } from '/imports/videoUploadserver/reviewImageServer.js';
 import { ResumeImage } from '/imports/videoUploadserver/resumeImageServer.js';
+import { Business } from  '/imports/api/businessMaster.js';
 
 Meteor.publish('getBizVideo', function() {
     return BizVideo.find({}).cursor;

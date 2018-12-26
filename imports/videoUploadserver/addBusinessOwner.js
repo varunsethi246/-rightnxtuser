@@ -48,7 +48,7 @@ if(s3Data)
             // console.log('s3: ', s3);
             // Declare the Meteor file collection on the Server
             export const BusinessOwnerImages = new FilesCollection({
-                debug: true, // Change to `true` for debugging
+                debug: false, // Change to `true` for debugging
                 storagePath: 'BusinessOwnerImages',
                 collectionName: 'BusinessOwnerImages',
                 // Disallow Client to execute remove, use the Meteor.method
