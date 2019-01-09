@@ -56,11 +56,11 @@ if(s3Data)
                 streams: 'dynamic',
                 chunkSize: 'dynamic',
                 onBeforeUpload: function(file) {
-                    if ( /mp4|3gp/i.test(file.extension)) {
+                    if ( /mp4|3gp|ogv|webm/i.test(file.extension)) {
                         // limit size to 1GB and in mp4 format
                         return true;
                     } else {
-                        return "Please upload video of type mp4 or 3gp.";
+                        return "Please upload video of type .mp4, .3gp, .ogv or .webm";
                     }
 
                 },
@@ -89,10 +89,10 @@ if(s3Data)
                             Body         : fs.createReadStream(vRef.path),
                             ContentType  : vRef.type,
                         }, (error) => {
-                            // console.log("error: ", error);
+                            console.log("error: ", error);
                             bound(() => {
                                 if (error) {
-                                    console.error(error);
+                                    // console.error(error);
                                 } else {
                                     // Update FilesCollection with link to the file at AWS
                                     const upd = { $set: {} };
@@ -103,8 +103,8 @@ if(s3Data)
                                         _id: fileRef._id
                                     }, upd, (updError) => {
                                         if (updError) {
-                                            // console.log("updError: ", updError);
-                                            console.error(updError);
+                                            console.log("updError: ", updError);
+                                            // console.error(updError);
                                         } else {
                                             // Unlink original files from FS after successful upload to AWS:S3
                                             // console.log("unlink: ", fileRef._id);
@@ -163,7 +163,7 @@ if(s3Data)
                         const fileColl = this;
                         s3.getObject(opts, function(error) {
                             if (error) {
-                                // console.error(error);
+                                console.error(error);
                                 if (!http.response.finished) {
                                     http.response.end();
                                 }

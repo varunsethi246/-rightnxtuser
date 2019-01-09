@@ -1,14 +1,5 @@
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
-//============================================================
-//   Meteor Files or OSTRIO Files import for images
-//============================================================
-import { BusinessOwnerImages } from '/imports/api/ostriofiles/addBusinessOwnerServer.js';
-
-Meteor.publish('allBusinessOwnerImages', function () {
-  return BusinessOwnerImages.find().cursor;
-});
-
 
 
 //============================================================

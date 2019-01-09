@@ -57,7 +57,18 @@ Template.userBeenThere.helpers({
 					userBeenThere[i].businessCity = businessObj.businessCity;
 					userBeenThere[i].businessLink = businessObj.businessLink;
 
-					if(businessObj.businessImages && businessObj.businessImages.length>0){
+					if(businessObj.publishedImage){
+						var pic = BusinessImage.findOne({"_id":businessObj.publishedImage});
+						var pic1 = ReviewImage.findOne({"_id":businessObj.publishedImage});
+						if(pic){
+							userBeenThere[i].ownerPhoto = pic.link();
+						}else if(pic1){
+							userBeenThere[i].ownerPhoto = pic1.link();
+						}else{
+							userBeenThere[i].ownerPhoto = 'https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg'
+						}
+					}
+					else if(businessObj.businessImages && businessObj.businessImages.length>0){
 						var pic = BusinessImage.findOne({"_id":businessObj.businessImages[0].img});
 						var pic1 = ReviewImage.findOne({"_id":businessObj.businessImages[0].img});
 						if(pic){

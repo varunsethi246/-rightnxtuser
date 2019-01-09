@@ -53,10 +53,8 @@ if(s3Data)
                 allowClientCode: false,
                 chunkSize: 1024 * 1024,
                 onBeforeUpload(file) {
-                    console.log("before file upload:",file.extension);
                     // Allow upload files under 10MB, and only in png/jpg/jpeg formats
                     if (file.size <= 10485760 && /png|jpg|jpeg/i.test(file.extension)) {
-                    console.log("before file upload test pass");
                       return true;
                     }
                     return 'Please upload image, with size equal or less than 10MB';
@@ -64,8 +62,6 @@ if(s3Data)
                 // Start moving files to AWS:S3
                 // after fully received by the Meteor server
                 onAfterUpload(fileRef) {
-                    console.log("after file upload:",fileRef);
-
                     // Run through each of the uploaded file
                     // console.log("fileRef2: ", fileRef);
                     _.each(fileRef.versions, (vRef, version) => {
@@ -87,10 +83,10 @@ if(s3Data)
                             Body         : fs.createReadStream(vRef.path),
                             ContentType  : vRef.type,
                         }, (error) => {
-                            // console.log("error: ", error);
+                            console.log("error: ", error);
                             bound(() => {
                                 if (error) {
-                                    console.error(error);
+                                    // console.error(error);
                                 } else {
                                     // Update FilesCollection with link to the file at AWS
                                     const upd = { $set: {} };
@@ -101,8 +97,8 @@ if(s3Data)
                                         _id: fileRef._id
                                     }, upd, (updError) => {
                                         if (updError) {
-                                            // console.log("updError: ", updError);
-                                            console.error(updError);
+                                            console.log("updError: ", updError);
+                                            // console.error(updError);
                                         } else {
                                             // Unlink original files from FS after successful upload to AWS:S3
                                             // console.log("unlink: ", fileRef._id);

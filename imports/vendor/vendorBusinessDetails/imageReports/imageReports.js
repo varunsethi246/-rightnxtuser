@@ -79,7 +79,20 @@ Template.imageCommet.helpers({
 		}
 		var businessName = Business.findOne({"businessLink":busLink});
 		if(businessName){
-			if(businessName.businessImages.length>0){
+			if(businessName.publishedImage){
+				var pic = BusinessImage.findOne({"_id":businessName.publishedImage});
+				if(pic){
+					var pic = pic.link();
+				}else{
+					var pic1 = ReviewImage.findOne({"_id":businessName.publishedImage});
+					if(pic1){
+						var pic = pic1.link();
+					}else{
+						var pic = 'https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg';
+					}
+				}
+			}
+			else if(businessName.businessImages.length>0){
 				if(businessName.businessImages[0].img){
 					var pic = BusinessImage.findOne({"_id":businessName.businessImages[0].img});
 					if(pic){

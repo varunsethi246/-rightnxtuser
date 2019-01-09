@@ -286,7 +286,15 @@ Template.businessEventIcons.events({
 				var description = "Welcome to my page";
 			}
 			
-			if(businessData.businessImages && businessData.businessImages.length>0){
+			if(businessData.publishedImage){
+				var pic = BusinessImage.findOne({"_id":businessData.publishedImage});
+				if(pic){
+					businessData.businessImages = pic.path;
+				}else{
+					businessData.businessImages = 'https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg';
+				}
+			}
+			else if(businessData.businessImages && businessData.businessImages.length>0){
 				var pic = BusinessImage.findOne({"_id":businessData.businessImages[0].img});
 				if(pic){
 					businessData.businessImages = pic.path;

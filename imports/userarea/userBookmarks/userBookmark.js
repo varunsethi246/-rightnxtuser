@@ -90,7 +90,22 @@ Template.userBookmarks.helpers({
 					businessBookmark[i].businessCity = businessObj.businessCity;
 					businessBookmark[i].businessLink = businessObj.businessLink;
 
-					if(businessObj.businessImages){
+					if(businessObj.publishedImage){
+						if(businessObj.businessImages.length>0){
+							var pic = BusinessImage.findOne({"_id":businessObj.publishedImage});
+							var pic1 = ReviewImage.findOne({"_id":businessObj.publishedImage});
+							if(pic){
+								businessBookmark[i].ownerPhoto = pic.link();
+							}else if(pic1){
+								businessBookmark[i].ownerPhoto = pic1.link();
+							}else{
+								businessBookmark[i].ownerPhoto = 'https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg'
+							}	
+						}else{
+							businessBookmark[i].ownerPhoto = 'https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg'
+						}
+					}
+					else if(businessObj.businessImages){
 						if(businessObj.businessImages.length>0){
 							var pic = BusinessImage.findOne({"_id":businessObj.businessImages[0].img});
 							var pic1 = ReviewImage.findOne({"_id":businessObj.businessImages[0].img});

@@ -7,7 +7,6 @@ import stream from 'stream';
 import S3 from 'aws-sdk/clients/s3'; // http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html
 import fs from 'fs';
 
-
 import {S3Details} from '/imports/api/s3Details.js';
 
 var s3Data =  S3Details.findOne({});
@@ -54,11 +53,11 @@ if(s3Data)
                 allowClientCode: false,
                 chunkSize: 1024 * 1024,
                 onBeforeUpload: function(file) {
-                    if ( /mp4|3gp|ogv|webm/i.test(file.extension)) {
+                    if (file.size <= 209715200 && /mp4|3gp|ogv|webm/i.test(file.extension)) {
                         // limit size to 1GB and in mp4 format
                         return true;
                     } else {
-                        return "Please upload video of type .mp4, .3gp, .ogv or .webm";
+                        return "Please upload video of size less than 200Mb & of type .mp4, .3gp, .ogv or .webm";
                     }
 
                 },
@@ -87,10 +86,10 @@ if(s3Data)
                             Body         : fs.createReadStream(vRef.path),
                             ContentType  : vRef.type,
                         }, (error) => {
-                            // console.log("error: ", error);
+                            console.log("error: ", error);
                             bound(() => {
                                 if (error) {
-                                    console.error(error);
+                                    // console.error(error);
                                 } else {
                                     // Update FilesCollection with link to the file at AWS
                                     const upd = { $set: {} };
@@ -101,8 +100,8 @@ if(s3Data)
                                         _id: fileRef._id
                                     }, upd, (updError) => {
                                         if (updError) {
-                                            // console.log("updError: ", updError);
-                                            console.error(updError);
+                                            console.log("updError: ", updError);
+                                            // console.error(updError);
                                         } else {
                                             // Unlink original files from FS after successful upload to AWS:S3
                                             // console.log("unlink: ", fileRef._id);

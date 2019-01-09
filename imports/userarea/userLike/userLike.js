@@ -57,8 +57,20 @@ Template.userLike.helpers({
 					var businessTitle	 = bussdata.businessTitle;
 					var businessImage ='';
 
-					
-					if(bussdata.businessImages){
+					if(bussdata.publishedImage){
+						var pic = BusinessImage.findOne({"_id":bussdata.publishedImage});
+						if(pic){
+							businessImage = pic.link();
+						}else{
+							var imgObj = ReviewImage.findOne({"_id":bussdata.publishedImage});
+							if(imgObj){
+								businessImage = imgObj.link();
+							}else{
+								businessImage = 'https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg';
+							}
+						}
+					}
+					else if(bussdata.businessImages){
 						if(bussdata.businessImages.length>0){
 							var pic = BusinessImage.findOne({"_id":bussdata.businessImages[0].img});
 							if(pic){

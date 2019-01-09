@@ -55,13 +55,21 @@ Template.nearbyBusiness.helpers({
 						}
 
 						actualBusiness = _.uniq(actualBusiness);
-						console.log('actualBusinessbefore',actualBusiness);
+						// console.log('actualBusinessbefore',actualBusiness);
 						if(actualBusiness){
 							if(actualBusiness.length > 5){
 								actualBusiness =  actualBusiness.slice(0,4);
 							}
 							for(i=0; i<actualBusiness.length;i++){
-								if(actualBusiness[i].businessImages && actualBusiness[i].businessImages.length>0){								
+								if(actualBusiness[i].publishedImage){
+									var pic = BusinessImage.findOne({"_id":actualBusiness[i].publishedImage});
+									if(pic){
+										actualBusiness[i].imgUrl = pic.link(); 
+									}else{
+										actualBusiness[i].imgUrl = "https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg";
+									}
+								}
+								else if(actualBusiness[i].businessImages && actualBusiness[i].businessImages.length>0){								
 									var pic = BusinessImage.findOne({"_id":actualBusiness[i].businessImages[0].img});
 									if(pic){
 										actualBusiness[i].imgUrl = pic.link(); 

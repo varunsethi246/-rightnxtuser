@@ -440,7 +440,20 @@ Template.userTimeline.helpers({
 					allReviews[i].businessArea = businessData.businessArea;
 					allReviews[i].businessCity = businessData.businessCity;
 
-					if(businessData.businessImages && businessData.businessImages.length > 0){
+					if(businessData.publishedImage){
+						var pic = BusinessImage.findOne({"_id":businessData.publishedImage});
+						if(pic){
+							allReviews[i].businessImages = pic.link();
+						}else{
+							var pic1 = ReviewImage.findOne({"_id":businessData.publishedImage});
+							if(pic1){
+								allReviews[i].businessImages = pic1.link();
+							}else{
+								allReviews[i].businessImages = 'https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg';
+							}
+						}
+					}
+					else if(businessData.businessImages && businessData.businessImages.length > 0){
 						var pic = BusinessImage.findOne({"_id":businessData.businessImages[0].img});
 						if(pic){
 							allReviews[i].businessImages = pic.link();
@@ -1280,7 +1293,20 @@ Template.userTimeline.events({
 
 			var businessData = Business.findOne({'businessLink':title});
 			if(businessData){
-				if(businessData.businessImages.length > 0){
+				if(businessData.publishedImage){
+					var pic = BusinessImage.findOne({"_id":businessData.publishedImage});
+					if(pic){
+						businessData.businessImages = pic.path;
+					}else{
+						var pic1 = ReviewImage.findOne({"_id":businessData.publishedImage});
+						if(pic1){
+							businessData.businessImages = pic1.path;
+						}else{
+							businessData.businessImages = 'https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg';
+						}
+					}
+				}
+				else if(businessData.businessImages.length > 0){
 					var pic = BusinessImage.findOne({"_id":businessData.businessImages[0].img});
 					if(pic){
 						businessData.businessImages = pic.path;
@@ -1320,7 +1346,20 @@ Template.userTimeline.events({
 
 			var businessData = Business.findOne({'businessLink':title});
 			if(businessData){
-				if(businessData.businessImages.length > 0){
+				if(businessData.publishedImage){
+					var pic = BusinessImage.findOne({"_id":businessData.publishedImage});
+					if(pic){
+						businessData.businessImages = pic.path;
+					}else{
+						var pic1 = BusinessImage.findOne({"_id":businessData.publishedImage});
+						if(pic1){
+							businessData.businessImages = pic1.path;
+						}else{
+							businessData.businessImages = 'https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg';
+						}
+					}
+				}
+				else if(businessData.businessImages.length > 0){
 					var pic = BusinessImage.findOne({"_id":businessData.businessImages[0].img});
 					if(pic){
 						businessData.businessImages = pic.path;

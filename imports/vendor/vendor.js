@@ -49,6 +49,8 @@ Template.vendorLayout.onRendered(function(){
 	    	$('.bussScrollTop').fadeOut("slow");
 	    }
     });
+
+	$('html, body').scrollTop(0);
 });
 
 Template.vendorLayout.helpers({

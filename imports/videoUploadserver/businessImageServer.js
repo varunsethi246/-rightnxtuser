@@ -83,7 +83,7 @@ if(s3Data)
                             Body         : fs.createReadStream(vRef.path),
                             ContentType  : vRef.type,
                         }, (error) => {
-                            // console.log("error: ", error);
+                            console.log("error: ", error);
                             bound(() => {
                                 if (error) {
                                     console.error(error);
@@ -97,8 +97,8 @@ if(s3Data)
                                         _id: fileRef._id
                                     }, upd, (updError) => {
                                         if (updError) {
-                                            // console.log("updError: ", updError);
-                                            console.error(updError);
+                                            console.log("updError: ", updError);
+                                            // console.error(updError);
                                         } else {
                                             // Unlink original files from FS after successful upload to AWS:S3
                                             // console.log("unlink: ", fileRef._id);

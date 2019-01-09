@@ -87,6 +87,14 @@ Template.anonymousUserLayout1.helpers({
     },
 });
 
+Template.anonymousUserLayout.onRendered(function(){
+	$('html, body').scrollTop(0);
+});
+
+Template.anonymousUserLayout1.onRendered(function(){
+	$('html, body').scrollTop(0);
+});
+
 Template.footer.helpers({
 	currentYear(){
 		return (new Date()).getFullYear();
@@ -297,7 +305,7 @@ Template.generalHeader.onRendered(function(){
 	      $(".transperent_bg").show();
 	      $(".header").removeClass("header-fix");
 	    }
-  });
+    });
 });
 
 // Template.generalHeader.events({

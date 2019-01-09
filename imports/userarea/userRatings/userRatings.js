@@ -47,7 +47,20 @@ Template.userRatings.helpers({
 					businessRatings[i].businessCity = businessObj.businessCity;
 					businessRatings[i].businessLink = businessObj.businessLink;
 
-					if(businessObj.businessImages){
+					if(businessObj.publishedImage){
+						var pic = BusinessImage.findOne({"_id":businessObj.publishedImage});
+						if(pic){
+							businessRatings[i].businessImages = pic.link();
+						}else{
+							var pic1 = ReviewImage.findOne({"_id":businessObj.publishedImage});
+							if(pic1){
+								businessRatings[i].businessImages = pic1.link();
+							}else{
+								businessRatings[i].businessImages = 'https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg';
+							}	
+						}
+					}
+					else if(businessObj.businessImages){
 						if(businessObj.businessImages.length>0){
 							var pic = BusinessImage.findOne({"_id":businessObj.businessImages[0].img});
 							if(pic){
