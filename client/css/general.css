@@ -2961,7 +2961,8 @@ margin-top:0%;
 
 .howitworks h1 {
 font-size:30px;
-margin-bottom:20px
+margin-bottom:20px;
+margin-top: 20px;
 }
 
 .howitworks-xs .howitworks_text {
@@ -4195,7 +4196,8 @@ padding-left:12px!important
 .howitworks h1 {
 margin-top:20px;
 margin-bottom:42px;
-font-size:38px
+font-size:38px;
+margin-top: 20px;
 }
 
 .groupHeight1-xs {

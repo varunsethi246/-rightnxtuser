@@ -188,7 +188,13 @@ Template.userProfile.events({
 		}
 	},
 
-	'click .cameraIconPro' : function(event){
+	// 'click .cameraIconPro' : function(event){
+	// 	var checkIdExists = FlowRouter.getQueryParam('id');
+	// 	if(!checkIdExists){
+	// 		$("input[id='uploadImg']").click();
+	// 	}
+	// },
+	'click .cameraIconClick' : function(event){
 		var checkIdExists = FlowRouter.getQueryParam('id');
 		if(!checkIdExists){
 			$("input[id='uploadImg']").click();
