@@ -5,6 +5,9 @@ import { Notification } from '/imports/api/notification.js';
 import { Categories } from '/imports/api/masterData/categoriesMaster.js';
 import { Business } from '/imports/api/businessMaster.js';
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+// import { BusinessBanner } from '/imports/api/businessBannerMaster.js';
+// import { ReviewImage } from '/imports/videoUploadClient/reviewImageClient.js';
+// import { BusinessImage } from '/imports/videoUploadClient/businessImageClient.js';
 
 import './searchbar.html'
 import '../vendor/businessList/businessMapView/businessMapView.js'
@@ -43,7 +46,7 @@ Template.searchbar.onRendered(function(){
 
 Template.searchbar.helpers({
 	businessSearchTypeBus: function(searchType){
-		console.log("searchType",searchType);
+		// console.log("searchType",searchType);
 		if(searchType=="Category") {
 			return true;
 		} else {
@@ -54,7 +57,7 @@ Template.searchbar.helpers({
 	//To get business list of search results
 	businessSearchList() {
 		var busList 		= dropdownSearchList.getData();
-		console.log("busList: ",busList);
+		// console.log("busList: ",busList);
 		if(busList){
 			return busList;
 		}

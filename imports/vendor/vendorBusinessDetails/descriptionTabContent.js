@@ -145,6 +145,11 @@ Template.descriptionTabContent.helpers({
 
 			for(var i=0; i<allReviews.length; i++){
 				// var userObjs = Meteor.users.findOne({"_id":userId});
+				if(allReviews[i].userId == Meteor.userId()){
+					allReviews[i].showRText = true;
+				}else{
+					allReviews[i].showRText = false;
+				}
 
 				if(allReviews[i].userId != Meteor.userId()){
 					if(Roles.userIsInRole(allReviews[i].userId, ['user'])){
@@ -501,6 +506,7 @@ Template.descriptionTabContent.helpers({
 			}//end i loop
 			var totalReview = allReviews.length;
 			Session.set('totalReview', totalReview);
+			// console.log('allReviews',allReviews);
 		return allReviews;
 		}
 	},

@@ -8,6 +8,8 @@ import { BusinessAds } from '/imports/api/businessAdsMaster.js';
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import { EnquiryImage } from '/imports/videoUploadClient/enquiryImageClient.js';
 import ImageCompressor from 'image-compressor.js';
+import { ReviewImage } from '/imports/videoUploadClient/reviewImageClient.js';
+import { BusinessImage } from '/imports/videoUploadClient/businessImageClient.js';
 
 import '../../common/searchinitialisation.js'
 import './businessList.html'
@@ -378,7 +380,91 @@ Template.thumbnailBusinessList.helpers({
 
 Template.rightSidebarBusList.helpers({
 	'gridVRightBusList': function(){
-		var busList = businessSearchbanner1.getData();
+		//old code
+		// var busList = businessSearchbanner1.getData();
+		// return busList;
+
+		//new code
+		var busList = [];
+		var city = FlowRouter.getParam('city');
+		var area = FlowRouter.getParam('area').split('-').join(' ');
+		if(FlowRouter.getParam('category')){
+			var category = FlowRouter.getParam('category').split('-').join(' ');
+		}else if(FlowRouter.getParam('searchText')){
+			var category = FlowRouter.getParam('searchText').split('-').join(' ');
+		}
+		// console.log('city,area,category',city,area,category);
+
+		if(area&&category){
+			if(area=='All Areas'){
+				var selector = {$and:[ 
+					{"category" : category},
+					{'status':'active'}
+				]};
+			}else{
+				var selector = {$and:[ 
+					{ "areas":{$in  : [area]}},
+					{"category" : category},
+					{'status':'active'}
+				]};
+			}
+		}else if(area){
+			if(area=='All Areas'){
+				var selector = {'status':'active'};
+			}else{
+				var selector = {$and:[ 
+					{ "areas":{$in  : [area]}},
+					{'status':'active'}
+				]};
+			}
+		}else if(category){
+			var selector = {$and:[ 
+				{"category" : category},
+				{'status':'active'}
+			]};
+		}else{
+			var selector = {'status':'active'};
+		}
+
+		var businessBannerData = BusinessBanner.find(selector).fetch();
+		// console.log('businessBannerData',businessBannerData);
+		if(businessBannerData&&businessBannerData.length>0){
+			for (var i = 0; i < businessBannerData.length; i++) {
+				// var newEndDate = new Date(businessBannerData[i].endDate);
+				// var todayDate = new Date();
+				// console.log('newEndDate,todayDate',newEndDate,todayDate);
+
+				// if(newEndDate > todayDate){
+					var businessData = Business.findOne({'businessLink':businessBannerData[i].businessLink,'status':'active'});
+	                var img = 'https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg';
+					if(businessData){
+						if(businessData.publishedImage){
+	                        img = searchPageShowImage(businessData.publishedImage);
+	                    }else{
+	                        if(businessData.businessImages){
+	                            if(businessData.businessImages[0]){
+	                                img = searchPageShowImage(businessData.businessImages[0].img);
+	                            }
+	                        }
+	                    }
+
+                    	var checkBusiness = busList.findIndex(x=>x.businessLink == businessBannerData[i].businessLink);
+            			// console.log('checkBusiness',checkBusiness);
+            			if(checkBusiness<0){
+            				busList.push({
+								'businessLink' : businessData.businessLink,
+								'businessTitle' : businessData.businessTitle,
+								'businessAboutBus' : businessData.businessAboutBus,
+								'area' : businessData.businessArea,
+								'mobile' : businessData.businessMobile,
+								'businessSelectedImagesNew' : img
+							});
+            			}
+					}	
+				// }
+			}
+		} 
+		// console.log('busList',busList);
 		return busList;
 	},
 });
@@ -1285,6 +1371,42 @@ Template.thumbnailBusinessList.events({
 		  Blaze.renderWithData(Template.businessMap, data, $(".mapContainer")[0]);
 	}
 });
+
+var searchPageShowImage = (imgId)=> {
+	if(imgId){
+		var imgData = BusinessImage.findOne({"_id":imgId});
+        // console.log('imgData :',imgData.link());
+		if(imgData)	{
+			var data = {
+				img : imgData.link(),
+			}
+			if(imgData.type == 'image/png'){
+				data.checkpngImg = 'bkgImgNone';
+			}else{
+				data.checkpngImg = '';
+			}
+		}else{
+            var imgObj = ReviewImage.findOne({"_id":imgId});
+            // console.log('imgObj :',imgObj);
+            if(imgObj) {
+                var data = {
+                    img : imgObj.link(),
+                }
+                if(imgObj.type == 'image/png'){
+                    data.checkpngImg = 'bkgImgNone';
+                }else{
+                    data.checkpngImg = '';
+                }
+            }else{
+				var data = {
+					img : 'https://s3.us-east-2.amazonaws.com/rightnxt1/StaticImages/general/rightnxt_image_nocontent.jpg',
+					checkpngImg: '',
+				};
+            }
+		}
+		return data;
+    }
+}
 
 
 businessListForm = function () {  

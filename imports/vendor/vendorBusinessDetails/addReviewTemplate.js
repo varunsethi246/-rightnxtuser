@@ -485,7 +485,7 @@ Template.addReviewTemplate.events({
 		var userReview = Review.findOne({"userId":Meteor.userId(),"businessLink":busLink});
 		if(userReview){
 			// businessObj.alreadyReviewed = true;
-			console.log('hi in review');
+			// console.log('hi in review');
 			$('.passwordWrongSpan').text("You have already reviewed this Business. Hence more reviews are not allowed.");
             $('.passwordWrongSpan').addClass('reviewWrngErrorMsg');	
             // $('.Valignspan').css('top','37%');	
@@ -505,17 +505,21 @@ Template.addReviewTemplate.events({
 	},
 	'click .NopublishReview': function(event){
 		var busLink = FlowRouter.getParam("businessurl");
+      	var windowWidth = $(window).width();
 		if(Meteor.userId()){
 			var userReview = Review.findOne({"userId":Meteor.userId(),"businessLink":busLink});
 			// console.log('userReview',userReview);
 			if(userReview){
 			// businessObj.alreadyReviewed = true;
 				$('.passwordWrongSpan').text("You have already reviewed this Business. Hence more reviews are not allowed.");
-	            $('.passwordWrongSpan').addClass('reviewWrngErrorMsg');	
-	            // $('.Valignspan').css('top','37%');	
-	            // $('.Valign').css('top','38%');
-	            $('.Valignspan').css('top','44%');	
-	            $('.Valign').css('top','48%');
+	            $('.passwordWrongSpan').addClass('reviewWrngErrorMsg');
+	            if(windowWidth >= 320 && windowWidth <= 767){
+		            $('.Valignspan').css('top','37%');	
+		            $('.Valign').css('top','38%');
+	            }else{
+	            	$('.Valignspan').css('top','44%');	
+	            	$('.Valign').css('top','48%');
+	            }	
 
 			}else{
 			// businessObj.alreadyReviewed = false;
