@@ -10,7 +10,7 @@ import fs from 'fs';
 import {S3Details} from '/imports/api/s3Details.js';
 
 var s3Data =  S3Details.findOne({});
-console.log(s3Data);
+// console.log(s3Data);
 if(s3Data)
 {
 
@@ -43,7 +43,7 @@ if(s3Data)
                 }
             });
 
-            console.log('s3: ', s3);
+            // console.log('s3: ', s3);
             // Declare the Meteor file collection on the Server
             export const VendorImage = new FilesCollection({
                 debug: false, // Change to `true` for debugging
