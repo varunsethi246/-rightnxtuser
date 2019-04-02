@@ -16,6 +16,7 @@ SearchSource.defineSource('business', (searchText, options)=> {
     var searchArea      = splitData[1].split('-').join(' ');
     var searchCatg      = splitData[2].split('-').join(' ');
     var searchString    = splitData[2].split('-').join(' ');
+    // console.log('searchCityMain',searchCity);
 
     if(searchCity == 'undefined'){
         searchCity = 'Pune';
@@ -61,12 +62,28 @@ SearchSource.defineSource('business', (searchText, options)=> {
     selector["$and"].push({"status" : "active"}); 
     selector["$and"].push(areaSelector);
     // selector["$and"].push(catgSelector);
-
     
     // searchResult = Business.find(selector, options).fetch();
     searchResult = Business.find(selector).fetch();
-    // console.log(searchResult);
+    // console.log(searchResult,'searchResult');
 
+    //new code 02 April 2019
+    if(searchResult.length==0){
+        var businessAdsDetails = BusinessAds.find({'status':'active'},{"areas":{ $in: [areaSelector] }}).fetch();
+        // console.log('businessAdsDetails',businessAdsDetails);
+        var tempArr = [];
+        if(businessAdsDetails.length>0){
+            for (var a = 0; a < businessAdsDetails.length; a++) {
+                var showAds = tempArr.findIndex(x=>x.businessLink == businessAdsDetails[a].businessLink);
+                if(showAds<0){        
+                    tempArr.push({'businessLink':businessAdsDetails[a].businessLink});                           
+                    searchResult = Business.find({'businessLink':businessAdsDetails[a].businessLink}).fetch();               
+                }
+            }
+        }
+    }
+
+    // console.log(searchResult,'searchResult');
 
     // =========================================================
     // ==================Get Image URL from Start ==============

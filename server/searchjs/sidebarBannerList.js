@@ -19,6 +19,7 @@ SearchSource.defineSource('sidebarBusinessBanners', (searchText, options)=> {
     var searchCatg      = splitData[2];
     var searchString    = splitData[2];
 
+    // console.log('searchCity',searchCity);
     if(searchCity == 'undefined'){
         searchCity = 'Pune';
     }
