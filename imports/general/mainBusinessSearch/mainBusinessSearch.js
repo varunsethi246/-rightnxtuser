@@ -136,9 +136,9 @@ Template.mainBusinessSearch.events({
 	    	FlowRouter.go(flowGo);
 		}
 		if(!selectedBus){
-			var searchCatg = $(e.currentTarget).attr('data-catg');
+			var searchCatg = $(e.currentTarget).attr('data-catg').split(' ').join('-');
 			var currentCity = $('#getCity').val();
-			var currentArea = $('#getArea').val();
+			var currentArea = $('#getArea').val().split(' ').join('-');
 
 			var path =  "/search/"+currentCity+"/"+currentArea+"/"+searchCatg;
 			FlowRouter.go(path);
@@ -158,6 +158,11 @@ Template.mainBusinessSearch.helpers({
 		var searchString = $('#getBusiness').val();
 		// console.log('data===',data);
   		if(data){
+  			for (var i = 0; i < data.length; i++) {
+  				if(data[i].businessLink){
+  					data[i].businessLink = data[i].businessLink.split(' ').join('-');
+  				}
+  			}
 			if(searchString){
 				$('.homeSearchBarList').addClass('searchDisplayShow').removeClass('searchDisplayHide');
 			}else{
