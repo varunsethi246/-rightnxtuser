@@ -333,6 +333,7 @@ Template.userTimeline.helpers({
 				// console.log('userobj :',userobj);
 				if (userobj) {
 					if(loggedinUser){					
+						allReviews[i].deletedUser = false;
 						if(loggedinUser.profile){
 							if(loggedinUser.profile.userProfilePic){
 								var userpic = VendorImage.findOne({"_id":loggedinUser.profile.userProfilePic});
@@ -349,6 +350,7 @@ Template.userTimeline.helpers({
 					}
 				}else{
 					allReviews[i].loggedinUserProfilePic = "/users/profile/profile_image_dummy.svg";
+					allReviews[i].deletedUser = true;
 				}
 
 				if(allReviews[i].tagedFriends.length != 0){

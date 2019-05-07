@@ -26,27 +26,40 @@
                 {{/with}}
               </div>
               <div class="logoNamePhoto col-lg-3 pull-right col-xs-4 col-md-3 col-sm-3">
-                <div class="userPicReview"> 
-                  <a href="/userReview/{{redirectUid}}" target="_blank" class="hidden-xs">
-                    <img src="{{userProfilePic}}"  height="40px" width="40px" alt="userProfilePic" class="bgGif">
-                  </a>
-                  <a href="/userReview/{{redirectUid}}" class="hidden-lg hidden-md hidden-sm">
-                    <img src="{{userProfilePic}}"  height="40px" width="40px" alt="userProfilePic" class="bgGif">
-                  </a>
-                </div>
-                <div class="userName">
-                  {{#if checkCurrentUser userId}}
-                    <p>{{username}}</p>
-                  {{else}}
-                    <a href="/userReview/{{redirectUid}}" target="_blank" class="hidden-xs"><p>{{username}}</p> </a>
-                    <a href="/userReview/{{redirectUid}}" class="hidden-lg hidden-md hidden-sm"><p>{{username}}</p> </a>
-                  {{/if}}
-                </div> 
-                <div class="RevEditBox RevEditBoxTimeline {{revEditButton}} uRevEditBoxTimeline">
-                  <div class="userRevComEdit"  id="{{_id}}">
-                    Edit
+                {{#if deletedUser}}
+                  <div class="">
+                    <p>Deleted User</p>
                   </div>
-                </div>
+                {{else}}
+                  <div class="userPicReview"> 
+                    {{#if checkCurrentUser userId}}
+                      <img src="{{userProfilePic}}"  height="40px" width="40px" alt="userProfilePic" class="bgGif hidden-xs">
+                      <img src="{{userProfilePic}}"  height="40px" width="40px" alt="userProfilePic" class="bgGif hidden-lg hidden-md hidden-sm">
+                    {{else}}
+                     <a href="/userReview/{{redirectUid}}" target="_blank" class="hidden-xs">
+                      <img src="{{userProfilePic}}"  height="40px" width="40px" alt="userProfilePic" class="bgGif">
+                    </a>
+                    <a href="/userReview/{{redirectUid}}" class="hidden-lg hidden-md hidden-sm">
+                      <img src="{{userProfilePic}}"  height="40px" width="40px" alt="userProfilePic" class="bgGif">
+                    </a>
+                    {{/if}}
+                  </div>
+                  <div class="userName">
+                    {{#if checkCurrentUser userId}}
+                      <p>{{username}}</p>
+                    {{else}}
+                      <a href="/userReview/{{redirectUid}}" target="_blank" class="hidden-xs"><p>{{username}}</p> </a>
+                      <a href="/userReview/{{redirectUid}}" class="hidden-lg hidden-md hidden-sm"><p>{{username}}</p> </a>
+                    {{/if}}
+                  </div> 
+                  {{#if checkCurrentUser userId}}
+                  <div class="RevEditBox RevEditBoxTimeline {{revEditButton}} uRevEditBoxTimeline">
+                    <div class="userRevComEdit"  id="{{_id}}">
+                      Edit
+                    </div>
+                  </div>
+                  {{/if}}
+                {{/if}}
               </div>
             </div>
           </div>

@@ -2,6 +2,8 @@ import { Accounts } from 'meteor/accounts-base';
 import { check } from 'meteor/check';
 import { Email } from 'meteor/email';
 
+import { FollowUser } from './userFollowMaster.js';
+
 
   // Meteor.publish('signUpConfig', function() {
   //     // this.unblock();
@@ -196,6 +198,9 @@ Meteor.methods({
       // var businessName  =  Business.find({'businessOwnerId':userId}).fetch();
       // console.log('businessName:',businessName);
         Meteor.users.remove({'_id': uid});
+        FollowUser.remove({'userId':uid});
+        FollowUser.remove({'followUserId':checkedUsersList[i]});
+
   },
 
     deleteRole: function(roleID){
@@ -296,6 +301,8 @@ Meteor.methods({
         }
       }
       ); //end of update
+      FollowUser.remove({'userId':checkedUsersList[i]});
+      FollowUser.remove({'followUserId':checkedUsersList[i]});
     } //End of for loop
     return checkedUsersList;
 
