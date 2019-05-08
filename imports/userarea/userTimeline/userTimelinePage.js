@@ -544,25 +544,30 @@ Template.userTimeline.helpers({
 													replyObj.replyProfileImgPath = '/users/profile/profile_image_dummy.svg';
 												}
 											}
-											replyObj.commentReplyDateAgo = moment(allReviews[i].commentReply[l].commentReplyDate).fromNow();
-
-											//check if current user has liked the current comment-reply
-											var replySelector = {
-																"reviewId" 		: allReviews[i]._id,
-																"replyId"		: replyObj.replyId.toString(),
-																"likedByUserId"	: Meteor.userId(),
-															};
-											var checkCommentReplyLike =  ReviewCommentLikes.findOne(replySelector);
-
-											var commentReplyLikeCount = ReviewCommentLikes.find({
-																			"reviewId" 		: allReviews[i]._id,
-																			"replyId" 		: replyObj.replyId.toString(),
-																		}).fetch();
-											if(commentReplyLikeCount){
-
-												replyObj.commentReplyLikeCount = commentReplyLikeCount.length;
-											}
+										}else{
+											replyObj.commentReplyUserName = "Deleted User";
+											replyObj.replyProfileImgPath = '/users/profile/profile_image_dummy.svg';
 										}
+										
+										replyObj.commentReplyDateAgo = moment(allReviews[i].commentReply[l].commentReplyDate).fromNow();
+
+										//check if current user has liked the current comment-reply
+										var replySelector = {
+															"reviewId" 		: allReviews[i]._id,
+															"replyId"		: replyObj.replyId.toString(),
+															"likedByUserId"	: Meteor.userId(),
+														};
+										var checkCommentReplyLike =  ReviewCommentLikes.findOne(replySelector);
+
+										var commentReplyLikeCount = ReviewCommentLikes.find({
+																		"reviewId" 		: allReviews[i]._id,
+																		"replyId" 		: replyObj.replyId.toString(),
+																	}).fetch();
+										if(commentReplyLikeCount){
+
+											replyObj.commentReplyLikeCount = commentReplyLikeCount.length;
+										}
+										
 										commentReplyArr.push(replyObj);
 										rn++;
 									}//if

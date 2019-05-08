@@ -376,6 +376,10 @@ Template.descriptionTabContent.helpers({
 								allReviews[i].userComments[k].userProfileImgPath = '/users/profile/profile_image_dummy.svg';
 							}
 							allReviews[i].userComments[k].userCommentDateAgo = moment(allReviews[i].userComments[k].userCommentDate).fromNow();
+						}else{
+							allReviews[i].userComments[k].commentUserName = "Deleted User";
+							allReviews[i].userComments[k].userProfileImgPath = '/users/profile/profile_image_dummy.svg';
+							allReviews[i].userComments[k].userCommentDateAgo = moment(allReviews[i].userComments[k].userCommentDate).fromNow();
 						}
 						if(allReviews[i].commentReply){
 							var commentReplyArr = [];
@@ -417,29 +421,34 @@ Template.descriptionTabContent.helpers({
 										}else{
 											replyObj.replyProfileImgPath = '/users/profile/profile_image_dummy.svg';
 										}
-										replyObj.commentReplyDateAgo = moment(allReviews[i].commentReply[l].commentReplyDate).fromNow();
-										var replySelector = {
-															"reviewId" 		: allReviews[i]._id,
-															"replyId"		: replyObj.replyId.toString(),
-															"likedByUserId"	: Meteor.userId(),
-															"commentId" 	: replyObj.userCommentID.toString(),
-														};
-										var checkCommentReplyLike =  ReviewCommentLikes.findOne(replySelector);
-
-										// if(checkCommentReplyLike){
-										// 	replyObj.replyLikeUnlike = true;	
-										// }else{
-										// 	replyObj.replyLikeUnlike = false;
-										// }
-										var commentReplyLikeCount = ReviewCommentLikes.find({
-																		"reviewId" 		: allReviews[i]._id,
-																		"replyId" 		: replyObj.replyId.toString(),
-																		"commentId" 	: replyObj.userCommentID.toString(),
-																	}).fetch();
-										if(commentReplyLikeCount){
-											replyObj.commentReplyLikeCount = commentReplyLikeCount.length;
-										}
+									}else{
+										replyObj.commentReplyUserName = "Deleted User";
+										replyObj.replyProfileImgPath = '/users/profile/profile_image_dummy.svg';
 									}
+
+									replyObj.commentReplyDateAgo = moment(allReviews[i].commentReply[l].commentReplyDate).fromNow();
+									var replySelector = {
+														"reviewId" 		: allReviews[i]._id,
+														"replyId"		: replyObj.replyId.toString(),
+														"likedByUserId"	: Meteor.userId(),
+														"commentId" 	: replyObj.userCommentID.toString(),
+													};
+									var checkCommentReplyLike =  ReviewCommentLikes.findOne(replySelector);
+
+									// if(checkCommentReplyLike){
+									// 	replyObj.replyLikeUnlike = true;	
+									// }else{
+									// 	replyObj.replyLikeUnlike = false;
+									// }
+									var commentReplyLikeCount = ReviewCommentLikes.find({
+																	"reviewId" 		: allReviews[i]._id,
+																	"replyId" 		: replyObj.replyId.toString(),
+																	"commentId" 	: replyObj.userCommentID.toString(),
+																}).fetch();
+									if(commentReplyLikeCount){
+										replyObj.commentReplyLikeCount = commentReplyLikeCount.length;
+									}
+									
 
 									commentReplyArr.push(replyObj);
 									rn++;
