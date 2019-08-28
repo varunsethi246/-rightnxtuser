@@ -4029,6 +4029,7 @@ padding:4px 5px!important
 }
 
 @media screen and (min-width:320px) and (max-width:767px) {
+.uUserRowTemp>.textboxVisible{margin-top: 0px;}
 .genHead:hover .profilepicHideDiv{height: 90px!important;width: 90px!important;right: 12%!important;}
 .uRevEditBox{margin-right: 0px;}
 .uEditBoxComment{padding-left: 0px!important;}
@@ -4345,6 +4346,7 @@ text-align: center
 	.mapViewBusList .mapVBusTitle, .mapViewBusList .mapVBusAddr, .mapViewBusList .mapVBusPhnNum {width: 100%}
 }
 @media screen and (min-width: 768px) and (max-width: 1024px){
+	.uUserRowTemp>.textboxVisible{margin-top: 0px}
 	#faqCollapse{margin-left: 21%;}
 }
 @media screen and (min-width: 640px){
@@ -4394,3 +4396,4 @@ text-align: center
 .enquiryToAlButton{opacity: 0.6;cursor: not-allowed;}
 .redirectBusinessLink{cursor: pointer;}
 .starRatingblock>.takeRating{padding-left: 0px;}
+.uUserRowTemp>.textboxVisible{margin-top: 25px;}
